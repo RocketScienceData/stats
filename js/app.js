@@ -249,13 +249,19 @@ window.StatApp = (function() {
     });
   }
 
+  function getCompetenceLevelDisplay() {
+    if (!state.scanCompleted) {
+      return window.I18N ? window.I18N.getCompetenceName('unscanned') : 'Not yet scanned';
+    }
+    return window.I18N ? window.I18N.getCompetenceName(state.competenceKey || state.diagnosticScore || 'foundations') : state.competenceLevel;
+  }
+
   function updateProgressHeader() {
     const totalLevels = 24;
     const completedCount = state.completedLevels.length;
     const progressPercent = Math.round((completedCount / totalLevels) * 100);
 
     const isEs = window.I18N && window.I18N.currentLang === 'es';
-    const isEn = window.I18N && window.I18N.currentLang === 'en';
 
     const levelBadge = document.getElementById("header-current-level");
     if (levelBadge) levelBadge.innerText = `${isEs ? 'Nivel' : 'Level'} ${state.currentLevel} / ${totalLevels}`;
@@ -268,11 +274,7 @@ window.StatApp = (function() {
 
     const coachStatus = document.getElementById("header-coach-status");
     if (coachStatus) {
-      if (!state.scanCompleted) {
-        coachStatus.innerText = isEs ? "Aún no evaluado" : (isEn ? "Not yet scanned" : "Nog niet gescand");
-      } else {
-        coachStatus.innerText = state.competenceLevel;
-      }
+      coachStatus.innerText = getCompetenceLevelDisplay();
     }
   }
 
@@ -375,7 +377,7 @@ window.StatApp = (function() {
             <div class="flex items-center gap-2">
               <span class="text-xs font-bold uppercase tracking-wider text-indigo-300">${t('coach_title')}</span>
               <span class="text-[10px] px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700">
-                ${t('coach_status_label')} ${state.competenceLevel}
+                ${t('coach_status_label')} ${getCompetenceLevelDisplay()}
               </span>
             </div>
             <p class="text-xs text-slate-300 mt-1">
@@ -415,15 +417,15 @@ window.StatApp = (function() {
               <table class="w-full text-left text-xs">
                 <thead>
                   <tr class="border-b border-slate-800 text-slate-400 bg-slate-900/90">
-                    ${Object.keys(lvl.case.data[0]).map(k => `
-                      <th class="py-2 px-3 font-semibold capitalize">${k.replace(/([A-Z])/g, ' $1')}</th>
+                    ${Object.keys(c.data ? c.data[0] : lvl.case.data[0]).map(k => `
+                      <th class="py-2 px-3 font-semibold capitalize">${window.I18N ? window.I18N.translateColumnHeader(k) : k.replace(/([A-Z])/g, ' $1')}</th>
                     `).join('')}
                   </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-800/60 font-mono text-[11px] text-slate-300">
-                  ${lvl.case.data.slice(0, 6).map(row => `
+                  ${(c.data || lvl.case.data).slice(0, 6).map(row => `
                     <tr class="hover:bg-slate-800/40 transition">
-                      ${Object.values(row).map(val => `<td class="py-1.5 px-3 whitespace-nowrap">${val}</td>`).join('')}
+                      ${Object.values(row).map(val => `<td class="py-1.5 px-3 whitespace-nowrap">${window.I18N ? window.I18N.translateCellValue(val) : val}</td>`).join('')}
                     </tr>
                   `).join('')}
                 </tbody>
@@ -947,6 +949,7 @@ window.StatApp = (function() {
         competenceName = isEs ? "Explorador de Fundamentos" : (isEn ? "Foundations Explorer" : "Fundamenten Verkenner");
       }
 
+      state.competenceKey = adaptiveUserScore >= 20 ? 'apex' : (adaptiveUserScore >= 16 ? 'bayesian' : (adaptiveUserScore >= 11 ? 'mixed' : (adaptiveUserScore >= 6 ? 'regression' : 'foundations')));
       state.competenceLevel = competenceName;
       state.diagnosticScore = adaptiveUserScore;
       state.scanCompleted = true;
@@ -1210,6 +1213,16 @@ window.StatApp = (function() {
 
     if (window.StatAnalytics) {
       window.StatAnalytics.trackCertificateView(24, state.xp);
+    }
+
+    const nameEl = document.getElementById("cert-user-name");
+    if (nameEl) {
+      const defaultNames = ["Statistiek Reiziger", "Statistics Voyager", "Viajero/a Estadístico/a"];
+      if (!state.userName || defaultNames.includes(state.userName)) {
+        nameEl.innerText = window.I18N ? window.I18N.t('cert_name_default') : 'Statistics Voyager';
+      } else {
+        nameEl.innerText = state.userName;
+      }
     }
 
     const dateSpan = document.getElementById("cert-date");

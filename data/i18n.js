@@ -294,7 +294,22 @@ const dict = {
     "sim_l24_potential": "∇_ℳ Φ (Potentiaalveld)",
     "sim_l24_regime": "Ruisregime (Hurst H)",
     "sim_l24_state": "Causale Toestand",
-    "sim_l24_hilbert": "X_t ∈ ℋ (Hilbertruimte)"
+    "sim_l24_hilbert": "X_t ∈ ℋ (Hilbertruimte)",
+    "continuum_badge": "Visueel Continuum",
+    "continuum_title": "Het Statistische Continuum: 4 Progressieve Fases",
+    "continuum_range": "Levels 1 → 24 Apex",
+    "free_instant_access": "✓ 100% Direct Toegankelijk",
+    "free_no_billing": "✓ Geen Betaalvalkuil",
+    "free_instant_start": "✓ Direct Starten Zonder Account",
+    "free_cert_included": "✓ Officieel Certificaat Inbegrepen",
+    "pain_trad_result": "Gevolg: Impostor syndrome, p-hacking en foute onderzoeksmodellen.",
+    "pain_our_result": "Gevolg: Zelfverzekerd wetenschappelijk redeneren en onwrikbare statistische intuïtie.",
+    "focus_mixed": "Focus: Mixed Models & Power",
+    "focus_causality": "Focus: Causaliteit & Manifolds",
+    "focus_diagnostics": "Focus: Diagnostiek & Valkuilen",
+    "faq_bottom_scan_btn": "🧠 Start Gratis Niveau-Scan",
+    "faq_bottom_studio_btn": "🚀 Open Cursus Studio",
+    "cert_apex_subtitle": "Infinite-Dimensional Non-parametric Bayesian SDEs on Manifolds with Rough Paths & Causal Hilbert Spaces",
   },
   "en": {
     "meta_title": "Statistical Journey | Adaptive Statistics Course from Level 1 to Level 24 Apex",
@@ -586,7 +601,22 @@ const dict = {
     "sim_l24_potential": "∇_ℳ Φ (Potential Field)",
     "sim_l24_regime": "Noise Regime (Hurst H)",
     "sim_l24_state": "Causal State",
-    "sim_l24_hilbert": "X_t ∈ ℋ (Hilbert Space)"
+    "sim_l24_hilbert": "X_t ∈ ℋ (Hilbert Space)",
+    "continuum_badge": "Visual Continuum",
+    "continuum_title": "The Statistical Continuum: 4 Progressive Phases",
+    "continuum_range": "Levels 1 → 24 Apex",
+    "free_instant_access": "✓ 100% Instant Access",
+    "free_no_billing": "✓ No Billing Trap",
+    "free_instant_start": "✓ 0 Seconds Sign-Up Friction",
+    "free_cert_included": "✓ Official Credential Included",
+    "pain_trad_result": "Result: Impostor syndrome, p-hacking, and broken research models.",
+    "pain_our_result": "Result: Confident scientific reasoning and unshakeable statistical intuition.",
+    "focus_mixed": "Focus: Mixed Models & Power",
+    "focus_causality": "Focus: Causality & Manifolds",
+    "focus_diagnostics": "Focus: Diagnostics & Pitfalls",
+    "faq_bottom_scan_btn": "🧠 Take Free Level Scan",
+    "faq_bottom_studio_btn": "🚀 Open Course Studio",
+    "cert_apex_subtitle": "Infinite-Dimensional Non-parametric Bayesian SDEs on Manifolds with Rough Paths & Causal Hilbert Spaces",
   },
   "es": {
     "meta_title": "Statistical Journey | Curso Adaptativo de Estadística del Nivel 1 al 24 Apex",
@@ -878,7 +908,22 @@ const dict = {
     "sim_l24_potential": "∇_ℳ Φ (Campo de Potencial)",
     "sim_l24_regime": "Régimen de Ruido (Hurst H)",
     "sim_l24_state": "Estado Causal",
-    "sim_l24_hilbert": "X_t ∈ ℋ (Espacio de Hilbert)"
+    "sim_l24_hilbert": "X_t ∈ ℋ (Espacio de Hilbert)",
+    "continuum_badge": "Continuo Visual",
+    "continuum_title": "El Continuo Estadístico: 4 Fases Progresivas",
+    "continuum_range": "Niveles 1 → 24 Apex",
+    "free_instant_access": "✓ 100% Acceso Inmediato",
+    "free_no_billing": "✓ Cero Trampas de Pago",
+    "free_instant_start": "✓ Inicio Inmediato Sin Registro",
+    "free_cert_included": "✓ Certificado Oficial Incluido",
+    "pain_trad_result": "Resultado: Síndrome del impostor, p-hacking y modelos rotos.",
+    "pain_our_result": "Resultado: Razonamiento científico seguro e intuición estadística inquebrantable.",
+    "focus_mixed": "Enfoque: Modelos Mixtos y Potencia",
+    "focus_causality": "Enfoque: Causalidad y Variedades",
+    "focus_diagnostics": "Enfoque: Diagnóstico y Trampas",
+    "faq_bottom_scan_btn": "🧠 Iniciar Evaluación Gratuita",
+    "faq_bottom_studio_btn": "🚀 Abrir Estudio del Curso",
+    "cert_apex_subtitle": "Infinite-Dimensional Non-parametric Bayesian SDEs on Manifolds with Rough Paths & Causal Hilbert Spaces",
   }
 };
 
@@ -1200,9 +1245,9 @@ window.I18N = {
     return level.badge;
   },
 
-  getPhaseTitle(phaseNumber) {
-    const lang = this.currentLang || 'nl';
-    if (lang === 'nl') {
+  getPhaseTitle(phaseNumber, lang) {
+    const l = lang || this.currentLang || 'nl';
+    if (l === 'nl') {
       const defaultPhases = {
         1: "Fase 1: De Fundamenten",
         2: "Fase 2: Klassieke Regressie & Diagnostiek",
@@ -1211,8 +1256,8 @@ window.I18N = {
       };
       return defaultPhases[phaseNumber] || `Fase ${phaseNumber}`;
     }
-    if (this.levelMeta[lang] && this.levelMeta[lang].phases[phaseNumber]) {
-      return this.levelMeta[lang].phases[phaseNumber];
+    if (this.levelMeta[l] && this.levelMeta[l].phases[phaseNumber]) {
+      return this.levelMeta[l].phases[phaseNumber];
     }
     if (this.levelMeta.en && this.levelMeta.en.phases[phaseNumber]) {
       return this.levelMeta.en.phases[phaseNumber];
@@ -1249,34 +1294,45 @@ window.I18N = {
     const lang = this.currentLang || 'nl';
     const orig = level.interpretation;
     if (!orig) return null;
+
+    function formatMetric(tm, om) {
+      if (!tm) return om || { label: '', value: '', note: '' };
+      let label = tm.label || (om ? om.label : '');
+      let value = tm.value !== undefined ? tm.value : null;
+      let note = tm.note !== undefined ? tm.note : '';
+
+      if (value === null) {
+        // Try parsing from note if formatted like "Value (Note)"
+        const match = note.match(/^([^(]+)\s*\(([^)]+)\)$/);
+        if (match) {
+          value = match[1].trim();
+          note = match[2].trim();
+        } else if (om && om.value) {
+          value = om.value;
+        } else {
+          value = note;
+          note = '';
+        }
+      }
+      return { label, value, note };
+    }
+
     if (lang === 'es' && level.interpretation_es) {
       const trans = level.interpretation_es;
+      const transMetrics = trans.metrics && trans.metrics.length > 0 ? trans.metrics : orig.metrics;
       return {
         title: trans.title || orig.title,
         recommendation: trans.recommendation || orig.recommendation,
-        metrics: orig.metrics.map((m, idx) => {
-          const tm = trans.metrics && trans.metrics[idx];
-          return {
-            label: tm ? tm.label : m.label,
-            value: m.value,
-            note: tm ? tm.note : m.note
-          };
-        })
+        metrics: transMetrics.map((tm, idx) => formatMetric(tm, orig.metrics ? orig.metrics[idx] : null))
       };
     }
     if (lang === 'en' && level.interpretation_en) {
       const trans = level.interpretation_en;
+      const transMetrics = trans.metrics && trans.metrics.length > 0 ? trans.metrics : orig.metrics;
       return {
         title: trans.title || orig.title,
         recommendation: trans.recommendation || orig.recommendation,
-        metrics: orig.metrics.map((m, idx) => {
-          const tm = trans.metrics && trans.metrics[idx];
-          return {
-            label: tm ? tm.label : m.label,
-            value: m.value,
-            note: tm ? tm.note : m.note
-          };
-        })
+        metrics: transMetrics.map((tm, idx) => formatMetric(tm, orig.metrics ? orig.metrics[idx] : null))
       };
     }
     return orig;
@@ -1326,14 +1382,228 @@ window.I18N = {
     return (map[l] && map[l][cat]) || cat;
   },
 
+  translateColumnHeader(key, lang) {
+    const l = lang || this.currentLang || 'nl';
+    const map = {
+      en: {
+        medewerker: 'Employee', salaris: 'Salary', meterId: 'Meter ID', meting: 'Measurement',
+        status: 'Status', klant: 'Customer', wachttijdMin: 'Wait Time (min)', metric: 'Metric',
+        waarde: 'Value', groep: 'Group', gemSlaapUur: 'Avg Sleep (hrs)', sd: 'SD',
+        student: 'Student', studieUren: 'Study Hours', cijfer: 'Grade', model: 'Model',
+        r2: 'R²', adjR2: 'Adj R²', bedrijfGrootte: 'Company Size', werkelijk: 'Actual',
+        residu: 'Residual', sportUur: 'Exercise (hrs)', hellingBinnenGroep: 'Within-Group Slope',
+        variabele: 'Variable', pWaarde: 'p-value', patient: 'Patient', leeftijd: 'Age',
+        hogeBloeddruk: 'Hypertension', heropname: 'Readmission', methode: 'Method',
+        testR2: 'Test R²', actieveVars: 'Active Vars', analyse: 'Analysis', se: 'SE',
+        school: 'School', startNiveau: 'Baseline Level', helling: 'Slope', start: 'Baseline',
+        tempo: 'Rate', afdeling: 'Department', nPatienten: 'N Patients', infecties: 'Infections',
+        clusterLogitIntercept: 'Cluster Logit Intercept', tempC: 'Temp (°C)', verbruik: 'Consumption',
+        regime: 'Regime', maandenTotEvent: 'Months to Event', overleden: 'Event / Censored',
+        parameter: 'Parameter', efficiency: 'Efficiency', acceptatie: 'Acceptance Rate',
+        boorpunt: 'Site ID', xCoord: 'X Coord', onzekerheid: 'Uncertainty',
+        perspectief: 'Perspective', conclusie: 'Conclusion', tijd: 'Time', positie: 'Position',
+        dimensie: 'Dimension', eigenschap: 'Property', rol: 'Role'
+      },
+      es: {
+        medewerker: 'Empleado/a', salaris: 'Salario', meterId: 'ID Medidor', meting: 'Medición',
+        status: 'Estado', klant: 'Cliente', wachttijdMin: 'Tiempo Espera (min)', metric: 'Métrica',
+        waarde: 'Valor', groep: 'Grupo', gemSlaapUur: 'Sueño Prom. (hrs)', sd: 'DE',
+        student: 'Estudiante', studieUren: 'Horas de Estudio', cijfer: 'Calificación', model: 'Modelo',
+        r2: 'R²', adjR2: 'R² Ajust.', bedrijfGrootte: 'Tamaño Empresa', werkelijk: 'Real',
+        residu: 'Residuo', sportUur: 'Ejercicio (hrs)', hellingBinnenGroep: 'Pendiente Intra-Grupo',
+        variabele: 'Variable', pWaarde: 'Valor p', patient: 'Paciente', leeftijd: 'Edad',
+        hogeBloeddruk: 'Hipertensión', heropname: 'Reingreso', methode: 'Método',
+        testR2: 'R² Prueba', actieveVars: 'Vars Activas', analyse: 'Análisis', se: 'EE',
+        school: 'Escuela', startNiveau: 'Nivel Inicial', helling: 'Pendiente', start: 'Inicio',
+        tempo: 'Ritmo', afdeling: 'Departamento', nPatienten: 'N Pacientes', infecties: 'Infecciones',
+        clusterLogitIntercept: 'Intercepto Logit Cluster', tempC: 'Temp (°C)', verbruik: 'Consumo',
+        regime: 'Régimen', maandenTotEvent: 'Meses a Evento', overleden: 'Evento / Censura',
+        parameter: 'Parámetro', efficiency: 'Eficiencia', acceptatie: 'Tasa Aceptación',
+        boorpunt: 'Punto de Muestreo', xCoord: 'Coord X', onzekerheid: 'Incertidumbre',
+        perspectief: 'Perspectiva', conclusie: 'Conclusión', tijd: 'Tiempo', positie: 'Posición',
+        dimensie: 'Dimensión', eigenschap: 'Propiedad', rol: 'Rol'
+      }
+    };
+    if (map[l] && map[l][key]) return map[l][key];
+    return key.replace(/([A-Z])/g, ' $1');
+  },
+
+  translateCellValue(val, lang) {
+    if (typeof val !== 'string') return val;
+    const l = lang || this.currentLang || 'nl';
+    if (l === 'nl') return val;
+    const map = {
+      en: {
+        'Goedgekeurd': 'Approved',
+        'AFGEKEURD (> +2 SD)': 'REJECTED (> +2 SD)',
+        'AFGEKEURD (< -2 SD)': 'REJECTED (< -2 SD)',
+        'Verwerpen!': 'Reject!',
+        'Significant bij α = 0.05': 'Significant at α = 0.05',
+        'Klein (5 mdw)': 'Small (5 emp)',
+        'Groot (120 mdw)': 'Large (120 emp)',
+        'Jongeren': 'Youth',
+        'Senioren': 'Seniors',
+        'Gecombineerd (Zonder leeftijd)': 'Combined (No age)',
+        '-0.26 (Gezonde daling)': '-0.26 (Healthy drop)',
+        '-0.28 (Gezonde daling)': '-0.28 (Healthy drop)',
+        '+0.32 (Schadelijke stijging!?)': '+0.32 (Harmful rise!?)',
+        'Overall Model (F-test)': 'Overall Model (F-test)',
+        '< 0.0001 (Significant)': '< 0.0001 (Significant)',
+        'Linkerbeen (cm)': 'Left Leg (cm)',
+        'Rechterbeen (cm)': 'Right Leg (cm)',
+        '0.681 (Niet significant!?)': '0.681 (Not significant!?)',
+        '0.785 (Niet significant!?)': '0.785 (Not significant!?)',
+        'Standaard OLS': 'Standard OLS',
+        'Ridge (L2)': 'Ridge (L2)',
+        'Lasso (L1)': 'Lasso (L1)',
+        '0.08 (Drama)': '0.08 (Failure)',
+        '0.69 (Stabiel)': '0.69 (Stable)',
+        '0.72 (Optimaal)': '0.72 (Optimal)',
+        '50 (gekrompen)': '50 (shrunk)',
+        '6 (geselecteerd!)': '6 (selected!)',
+        'Pooled OLS (Onafhankelijk aangenomen)': 'Pooled OLS (Independence assumed)',
+        'Cluster-gecorrigeerd (ICC)': 'Cluster-corrected (ICC)',
+        '0.0004 (Vals alarm!)': '0.0004 (False discovery!)',
+        '0.084 (Niet significant!)': '0.084 (Not significant)',
+        'Kleine School D (3 lln)': 'Small School D (3 pupils)',
+        '6.6 (Shrinkage!)': '6.6 (Shrinkage!)',
+        'Chirurgie A (Algemeen)': 'Surgery A (General)',
+        'Chirurgie B (Trauma)': 'Surgery B (Trauma)',
+        'Chirurgie C (Plastisch)': 'Surgery C (Plastic)',
+        'Verwarming': 'Heating',
+        'Optimaal': 'Optimal',
+        'Airco': 'Cooling / AC',
+        'Gecensureerd (nog in leven)': 'Censored (Alive)',
+        'Gecensureerd (verhuisd)': 'Censored (Moved)',
+        'Prior Prevalentie P(Ziek)': 'Prior Prevalence P(D)',
+        'Sensitiviteit P(+ | Ziek)': 'Sensitivity P(+ | D)',
+        'Vals-Positief P(+ | Gezond)': 'False Positive P(+ | H)',
+        'Werkelijke Posterior P(Ziek | +)': 'True Posterior P(D | +)',
+        'Slechts ~1.9%!': 'Only ~1.9%!',
+        'Trage random walk': 'Slow random walk',
+        'No-U-Turn Sampler (NUTS / Stan)': 'No-U-Turn Sampler (NUTS / Stan)',
+        'Fysische simulatie (HMC)': 'Physical simulation (HMC)',
+        '0.0 (exact gemeten)': '0.0 (exact measured)',
+        '± 2.4 (onzekerheidsband)': '± 2.4 (uncertainty band)',
+        'Passieve Observatie P(Y | X)': 'Passive Observation P(Y | X)',
+        'Positieve correlatie (hoofdpijn en pil)': 'Positive correlation (headache & pill)',
+        'Actieve Interventie P(Y | do(X))': 'Active Intervention P(Y | do(X))',
+        'Causale genezing (pil verlaagt hoofdpijn)': 'Causal cure (pill relieves headache)',
+        'Start in potentiaalkuil': 'Start in potential well',
+        'Stochastische sprong over barrière': 'Stochastic jump over barrier'
+      },
+      es: {
+        'Goedgekeurd': 'Aprobado',
+        'AFGEKEURD (> +2 SD)': 'RECHAZADO (> +2 SD)',
+        'AFGEKEURD (< -2 SD)': 'RECHAZADO (< -2 SD)',
+        'Verwerpen!': '¡Rechazar!',
+        'Significant bij α = 0.05': 'Significativo con α = 0.05',
+        'Klein (5 mdw)': 'Pequeña (5 emp)',
+        'Groot (120 mdw)': 'Grande (120 emp)',
+        'Jongeren': 'Jóvenes',
+        'Senioren': 'Adultos mayores',
+        'Gecombineerd (Zonder leeftijd)': 'Combinado (Sin edad)',
+        '-0.26 (Gezonde daling)': '-0.26 (Descenso saludable)',
+        '-0.28 (Gezonde daling)': '-0.28 (Descenso saludable)',
+        '+0.32 (Schadelijke stijging!?)': '+0.32 (¿¡Aumento perjudicial!?)',
+        'Overall Model (F-test)': 'Modelo Global (Prueba F)',
+        '< 0.0001 (Significant)': '< 0.0001 (Significativo)',
+        'Linkerbeen (cm)': 'Pierna Izquierda (cm)',
+        'Rechterbeen (cm)': 'Pierna Derecha (cm)',
+        '0.681 (Niet significant!?)': '0.681 (¿¡No significativo!?)',
+        '0.785 (Niet significant!?)': '0.785 (¿¡No significativo!?)',
+        'Standaard OLS': 'MCO Estándar',
+        'Ridge (L2)': 'Ridge (L2)',
+        'Lasso (L1)': 'Lasso (L1)',
+        '0.08 (Drama)': '0.08 (Fracaso)',
+        '0.69 (Stabiel)': '0.69 (Estable)',
+        '0.72 (Optimaal)': '0.72 (Óptimo)',
+        '50 (gekrompen)': '50 (contraídos)',
+        '6 (geselecteerd!)': '6 (¡seleccionados!)',
+        'Pooled OLS (Onafhankelijk aangenomen)': 'MCO Agrupado (Independencia supuesta)',
+        'Cluster-gecorrigeerd (ICC)': 'Corregido por Clusters (ICC)',
+        '0.0004 (Vals alarm!)': '0.0004 (¡Falso positivo!)',
+        '0.084 (Niet significant!)': '0.084 (No significativo)',
+        'Kleine School D (3 lln)': 'Escuela Pequeña D (3 alum)',
+        '6.6 (Shrinkage!)': '6.6 (¡Contracción!)',
+        'Chirurgie A (Algemeen)': 'Cirugía A (General)',
+        'Chirurgie B (Trauma)': 'Cirugía B (Trauma)',
+        'Chirurgie C (Plastisch)': 'Cirugía C (Plástica)',
+        'Verwarming': 'Calefacción',
+        'Optimaal': 'Óptimo',
+        'Airco': 'Aire Acondicionado',
+        'Gecensureerd (nog in leven)': 'Censurado (Vivo)',
+        'Gecensureerd (verhuisd)': 'Censurado (Mudado)',
+        'Prior Prevalentie P(Ziek)': 'Prevalencia Previa P(E)',
+        'Sensitiviteit P(+ | Ziek)': 'Sensibilidad P(+ | E)',
+        'Vals-Positief P(+ | Gezond)': 'Falso Positivo P(+ | S)',
+        'Werkelijke Posterior P(Ziek | +)': 'Posterior Real P(E | +)',
+        'Slechts ~1.9%!': '¡Apenas ~1.9%!',
+        'Trage random walk': 'Paseo aleatorio lento',
+        'No-U-Turn Sampler (NUTS / Stan)': 'No-U-Turn Sampler (NUTS / Stan)',
+        'Fysische simulatie (HMC)': 'Simulación física (HMC)',
+        '0.0 (exact gemeten)': '0.0 (medido exacto)',
+        '± 2.4 (onzekerheidsband)': '± 2.4 (banda de incertidumbre)',
+        'Passieve Observatie P(Y | X)': 'Observación Pasiva P(Y | X)',
+        'Positieve correlatie (hoofdpijn en pil)': 'Correlación positiva (dolor y píldora)',
+        'Actieve Interventie P(Y | do(X))': 'Intervención Activa P(Y | do(X))',
+        'Causale genezing (pil verlaagt hoofdpijn)': 'Cura causal (píldora alivia dolor)',
+        'Start in potentiaalkuil': 'Inicio en pozo de potencial',
+        'Stochastische sprong over barrière': 'Salto estocástico sobre barrera'
+      }
+    };
+    if (map[l] && map[l][val]) return map[l][val];
+    return val;
+  },
+
+  getCompetenceName(scoreOrKey, lang) {
+    const l = lang || this.currentLang || 'nl';
+    let key = scoreOrKey;
+    if (typeof scoreOrKey === 'number') {
+      if (scoreOrKey >= 20) key = 'apex';
+      else if (scoreOrKey >= 16) key = 'bayesian';
+      else if (scoreOrKey >= 11) key = 'mixed';
+      else if (scoreOrKey >= 6) key = 'regression';
+      else key = 'foundations';
+    }
+    const map = {
+      nl: {
+        unscanned: "Nog niet gescand",
+        foundations: "Fundamenten Verkenner",
+        regression: "Regressie Analist",
+        mixed: "Mixed Models Virtuoos",
+        bayesian: "Bayesiaans Expert",
+        apex: "Apex Kosmoloog"
+      },
+      en: {
+        unscanned: "Not yet scanned",
+        foundations: "Foundations Explorer",
+        regression: "Regression Analyst",
+        mixed: "Mixed Models Virtuoso",
+        bayesian: "Bayesian Expert",
+        apex: "Apex Cosmologist"
+      },
+      es: {
+        unscanned: "Aún no evaluado",
+        foundations: "Explorador de Fundamentos",
+        regression: "Analista de Regresión",
+        mixed: "Virtuoso de Modelos Mixtos",
+        bayesian: "Experto Bayesiano",
+        apex: "Cosmólogo del Apex"
+      }
+    };
+    return (map[l] && map[l][key]) || (map.en && map.en[key]) || key;
+  },
+
   translateContainer(container) {
-    if (!container || typeof document === 'undefined') return;
+    if (!container || typeof document === 'undefined' || typeof document.createTreeWalker !== 'function') return;
     const lang = this.currentLang || 'nl';
     if (lang === 'nl') return;
     const nlDict = this.dict.nl;
     const targetDict = this.dict[lang] || nlDict;
 
-    const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, null, false);
+    const showText = (typeof NodeFilter !== 'undefined' && NodeFilter.SHOW_TEXT) ? NodeFilter.SHOW_TEXT : 4;
+    const walker = document.createTreeWalker(container, showText, null, false);
     let node;
     while ((node = walker.nextNode())) {
       const val = node.nodeValue;

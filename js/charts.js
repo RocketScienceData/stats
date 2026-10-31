@@ -2,6 +2,18 @@
 // Biedt interactieve visualisaties voor alle 24 levels, inclusief het Ultieme Apex (Level 24)
 
 window.StatCharts = (function() {
+  // Localization helper
+  function getSimLang() {
+    return (window.I18N && window.I18N.currentLang) || 'nl';
+  }
+
+  function tSim(nl, en, es) {
+    const l = getSimLang();
+    if (l === 'es') return (es !== undefined ? es : (en !== undefined ? en : nl));
+    if (l === 'en') return (en !== undefined ? en : nl);
+    return nl;
+  }
+
 
   // Box-Muller standaardnormale generator N(0, 1)
   function gaussianRandom() {
@@ -40,7 +52,7 @@ window.StatCharts = (function() {
       <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-700/60">
         <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
           <div>
-            <label class="text-sm font-semibold text-slate-300">Salaris CEO (Uitschieter):</label>
+            <label class="text-sm font-semibold text-slate-300">${tSim("Salaris CEO (Uitschieter):", "CEO Salary (Outlier):", "Salario del CEO (Atípico):")}</label>
             <span id="l1-outlier-val" class="ml-2 font-mono text-emerald-400 font-bold text-lg">€ 48.000</span>
           </div>
           <div class="flex items-center gap-2">
@@ -52,24 +64,24 @@ window.StatCharts = (function() {
 
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4 text-center">
           <div class="bg-slate-800/80 p-3 rounded-lg border border-slate-700">
-            <div class="text-xs text-slate-400 font-medium">Gemiddelde (Mean)</div>
+            <div class="text-xs text-slate-400 font-medium">${tSim("Gemiddelde (Mean)", "Mean", "Media")}</div>
             <div id="l1-mean-display" class="text-lg font-bold text-rose-400 font-mono mt-1">€ 7.700</div>
-            <div class="text-[10px] text-rose-300/80">Gevoelig voor outlier!</div>
+            <div class="text-[10px] text-rose-300/80">${tSim("Gevoelig voor outlier!", "Sensitive to outlier!", "¡Sensible a valores atípicos!")}</div>
           </div>
           <div class="bg-slate-800/80 p-3 rounded-lg border border-slate-700">
-            <div class="text-xs text-slate-400 font-medium">Mediaan (Median)</div>
+            <div class="text-xs text-slate-400 font-medium">${tSim("Mediaan (Median)", "Median", "Mediana")}</div>
             <div id="l1-median-display" class="text-lg font-bold text-emerald-400 font-mono mt-1">€ 3.100</div>
-            <div class="text-[10px] text-emerald-300/80">Robuust tegen outlier</div>
+            <div class="text-[10px] text-emerald-300/80">${tSim("Robuust tegen outlier", "Robust to outlier", "Robusto contra atípicos")}</div>
           </div>
           <div class="bg-slate-800/80 p-3 rounded-lg border border-slate-700">
-            <div class="text-xs text-slate-400 font-medium">Standaardafwijking (SD)</div>
+            <div class="text-xs text-slate-400 font-medium">${tSim("Standaardafwijking (SD)", "Standard Deviation (SD)", "Desviación Estándar (DE)")}</div>
             <div id="l1-sd-display" class="text-lg font-bold text-amber-400 font-mono mt-1">€ 14.168</div>
-            <div class="text-[10px] text-amber-300/80">Opgeblazen spreiding</div>
+            <div class="text-[10px] text-amber-300/80">${tSim("Opgeblazen spreiding", "Inflated spread", "Dispersión inflada")}</div>
           </div>
           <div class="bg-slate-800/80 p-3 rounded-lg border border-slate-700">
-            <div class="text-xs text-slate-400 font-medium">Interkwartiel (IQR)</div>
+            <div class="text-xs text-slate-400 font-medium">${tSim("Interkwartiel (IQR)", "Interquartile Range (IQR)", "Rango Intercuartílico (RIC)")}</div>
             <div id="l1-iqr-display" class="text-lg font-bold text-sky-400 font-mono mt-1">€ 400</div>
-            <div class="text-[10px] text-sky-300/80">Zuivere midden-50%</div>
+            <div class="text-[10px] text-sky-300/80">${tSim("Zuivere midden-50%", "Pure central 50%", "50% central puro")}</div>
           </div>
         </div>
 
@@ -80,7 +92,8 @@ window.StatCharts = (function() {
     `;
 
     const baseSalaries = [2800, 2900, 3000, 3000, 3100, 3100, 3200, 3400, 4500];
-    const names = ["Anna", "Bram", "Claire", "Daan", "Eva", "Frank", "Gijs", "Hanna", "Ivo", "Jeroen (CEO)"];
+    const ceoTitle = tSim("Jeroen (CEO)", "Jeroen (CEO)", "Jeroen (CEO)");
+    const names = ["Anna", "Bram", "Claire", "Daan", "Eva", "Frank", "Gijs", "Hanna", "Ivo", ceoTitle];
 
     function computeStats(salaries) {
       const n = salaries.length;
@@ -102,11 +115,12 @@ window.StatCharts = (function() {
       const allSalaries = [...baseSalaries, ceoSalary];
       const stats = computeStats(allSalaries);
 
-      document.getElementById("l1-outlier-val").innerText = `€ ${ceoSalary.toLocaleString('nl-NL')}`;
-      document.getElementById("l1-mean-display").innerText = `€ ${stats.mean.toLocaleString('nl-NL')}`;
-      document.getElementById("l1-median-display").innerText = `€ ${stats.median.toLocaleString('nl-NL')}`;
-      document.getElementById("l1-sd-display").innerText = `€ ${stats.sd.toLocaleString('nl-NL')}`;
-      document.getElementById("l1-iqr-display").innerText = `€ ${stats.iqr.toLocaleString('nl-NL')}`;
+      const locale = getSimLang() === 'nl' ? 'nl-NL' : (getSimLang() === 'es' ? 'es-ES' : 'en-US');
+      document.getElementById("l1-outlier-val").innerText = `€ ${ceoSalary.toLocaleString(locale)}`;
+      document.getElementById("l1-mean-display").innerText = `€ ${stats.mean.toLocaleString(locale)}`;
+      document.getElementById("l1-median-display").innerText = `€ ${stats.median.toLocaleString(locale)}`;
+      document.getElementById("l1-sd-display").innerText = `€ ${stats.sd.toLocaleString(locale)}`;
+      document.getElementById("l1-iqr-display").innerText = `€ ${stats.iqr.toLocaleString(locale)}`;
 
       if (currentChart) {
         currentChart.data.datasets[0].data = allSalaries;
@@ -120,13 +134,13 @@ window.StatCharts = (function() {
             labels: names,
             datasets: [
               {
-                label: "Salaris (€)",
+                label: tSim("Salaris (€)", "Salary (€)", "Salario (€)"),
                 data: allSalaries,
                 backgroundColor: allSalaries.map((_, i) => i === 9 ? 'rgba(239, 68, 68, 0.75)' : 'rgba(14, 165, 233, 0.7)'),
                 borderRadius: 4
               },
               {
-                label: "Gemiddelde",
+                label: tSim("Gemiddelde", "Mean", "Media"),
                 type: "line",
                 data: allSalaries.map(() => stats.mean),
                 borderColor: '#f43f5e',
@@ -134,7 +148,7 @@ window.StatCharts = (function() {
                 pointRadius: 0
               },
               {
-                label: "Mediaan",
+                label: tSim("Mediaan", "Median", "Mediana"),
                 type: "line",
                 data: allSalaries.map(() => stats.median),
                 borderColor: '#10b981',
@@ -165,26 +179,26 @@ window.StatCharts = (function() {
       <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-700/60">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
           <div>
-            <label class="text-xs text-slate-400 block mb-1">Standaardafwijking (σ): <span id="l2-sigma-val" class="font-bold text-amber-400">2.0 mmHg</span></label>
+            <label class="text-xs text-slate-400 block mb-1">${tSim("Standaardafwijking (σ):", "Standard Deviation (σ):", "Desviación Estándar (σ):")} <span id="l2-sigma-val" class="font-bold text-amber-400">2.0 mmHg</span></label>
             <input id="l2-sigma-slider" type="range" min="1" max="5" step="0.5" value="2" class="w-full accent-amber-500 cursor-pointer">
           </div>
           <div>
-            <label class="text-xs text-slate-400 block mb-1">Afkeurgrens (X): <span id="l2-cutoff-val" class="font-bold text-rose-400">124 mmHg</span></label>
+            <label class="text-xs text-slate-400 block mb-1">${tSim("Afkeurgrens (X):", "Rejection Threshold (X):", "Límite de Rechazo (X):")} <span id="l2-cutoff-val" class="font-bold text-rose-400">124 mmHg</span></label>
             <input id="l2-cutoff-slider" type="range" min="115" max="130" step="0.5" value="124" class="w-full accent-rose-500 cursor-pointer">
           </div>
         </div>
 
         <div class="grid grid-cols-3 gap-3 mb-4 text-center">
           <div class="bg-slate-800/80 p-2.5 rounded-lg border border-slate-700">
-            <div class="text-[11px] text-slate-400">Berekende Z-score</div>
+            <div class="text-[11px] text-slate-400">${tSim("Berekende Z-score", "Calculated Z-Score", "Puntuación Z Calculada")}</div>
             <div id="l2-z-display" class="text-base font-bold text-rose-400 font-mono">Z = +2.00</div>
           </div>
           <div class="bg-slate-800/80 p-2.5 rounded-lg border border-slate-700">
-            <div class="text-[11px] text-slate-400">Kans boven grens P(X > x)</div>
+            <div class="text-[11px] text-slate-400">${tSim("Kans boven grens P(X > x)", "Probability above threshold P(X > x)", "Probabilidad sobre límite P(X > x)")}</div>
             <div id="l2-tail-display" class="text-base font-bold text-amber-400 font-mono">2.28%</div>
           </div>
           <div class="bg-slate-800/80 p-2.5 rounded-lg border border-slate-700">
-            <div class="text-[11px] text-slate-400">Binnen ± 2 SD</div>
+            <div class="text-[11px] text-slate-400">${tSim("Binnen ± 2 SD", "Within ± 2 SD", "Dentro de ± 2 DE")}</div>
             <div class="text-base font-bold text-emerald-400 font-mono">95.45%</div>
           </div>
         </div>
@@ -248,8 +262,8 @@ window.StatCharts = (function() {
           data: {
             labels,
             datasets: [
-              { label: "Normale Curve N(120, σ²)", data: curveData, borderColor: '#38bdf8', fill: true, backgroundColor: 'rgba(56,189,248,0.1)', pointRadius: 0 },
-              { label: "Afgekeurd Gebied", data: rejectedData, borderColor: '#f43f5e', fill: true, backgroundColor: 'rgba(244,63,94,0.4)', pointRadius: 0 }
+              { label: tSim("Normale Curve N(120, σ²)", "Normal Curve N(120, σ²)", "Curva Normal N(120, σ²)"), data: curveData, borderColor: '#38bdf8', fill: true, backgroundColor: 'rgba(56,189,248,0.1)', pointRadius: 0 },
+              { label: tSim("Afgekeurd Gebied", "Rejection Region", "Región de Rechazo"), data: rejectedData, borderColor: '#f43f5e', fill: true, backgroundColor: 'rgba(244,63,94,0.4)', pointRadius: 0 }
             ]
           },
           options: { responsive: true, maintainAspectRatio: false, scales: { x: { ticks: { color: '#94a3b8' } }, y: { display: false } } }
@@ -268,11 +282,11 @@ window.StatCharts = (function() {
       <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-700/60">
         <div class="flex flex-wrap items-center justify-between gap-4 mb-3">
           <div>
-            <h3 class="text-sm font-bold text-emerald-400">Centrale Limietstelling (CLT) Monte Carlo Simulator</h3>
-            <p class="text-xs text-slate-300">Trek 1.000 steekproeven van grootte N en zie de Gauss-curve ontstaan.</p>
+            <h3 class="text-sm font-bold text-emerald-400">${tSim("Centrale Limietstelling (CLT) Monte Carlo Simulator", "Central Limit Theorem (CLT) Monte Carlo Simulator", "Simulador Monte Carlo del Teorema Central del Límite (TCL)")}</h3>
+            <p class="text-xs text-slate-300">${tSim("Trek 1.000 steekproeven van grootte N en zie de Gauss-curve ontstaan.", "Draw 1,000 samples of size N and watch the Gaussian curve emerge.", "Extrae 1.000 muestras de tamaño N y observa emerger la curva gaussiana.")}</p>
           </div>
           <div class="flex items-center gap-2">
-            <label class="text-xs text-slate-300 font-medium">Steekproefgrootte (N):</label>
+            <label class="text-xs text-slate-300 font-medium">${tSim("Steekproefgrootte (N):", "Sample Size (N):", "Tamaño Muestral (N):")}</label>
             <input id="l3-n-slider" type="range" min="1" max="100" step="1" value="30" class="w-32 sm:w-44 accent-emerald-500 cursor-pointer">
             <span id="l3-n-val" class="font-mono text-emerald-400 font-bold text-xs">N = 30</span>
           </div>
@@ -280,30 +294,30 @@ window.StatCharts = (function() {
 
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-3 text-center">
           <div class="bg-slate-800/80 p-2 rounded-lg border border-slate-700">
-            <div class="text-[10px] text-slate-400">Verdelingsvorm</div>
-            <div id="l3-shape-val" class="text-xs font-bold text-emerald-400">Klokvormig Normaal</div>
+            <div class="text-[10px] text-slate-400">${tSim("Verdelingsvorm", "Distribution Shape", "Forma de Distribución")}</div>
+            <div id="l3-shape-val" class="text-xs font-bold text-emerald-400">${tSim("Klokvormig Normaal", "Bell-shaped Normal", "Normal Acampanada")}</div>
           </div>
           <div class="bg-slate-800/80 p-2 rounded-lg border border-slate-700">
-            <div class="text-[10px] text-slate-400">Gemiddelde van x̄</div>
+            <div class="text-[10px] text-slate-400">${tSim("Gemiddelde van x̄", "Mean of x̄", "Media de x̄")}</div>
             <div id="l3-mean-val" class="text-xs font-bold text-sky-400 font-mono">μ̂ = 3.50</div>
           </div>
           <div class="bg-slate-800/80 p-2 rounded-lg border border-slate-700">
-            <div class="text-[10px] text-slate-400">Empirische SE</div>
+            <div class="text-[10px] text-slate-400">${tSim("Empirische SE", "Empirical SE", "EE Empírico")}</div>
             <div id="l3-se-val" class="text-xs font-bold text-amber-400 font-mono">SE = 0.31</div>
           </div>
           <div class="bg-slate-800/80 p-2 rounded-lg border border-slate-700">
-            <div class="text-[10px] text-slate-400">Theoretische SE (σ/√N)</div>
+            <div class="text-[10px] text-slate-400">${tSim("Theoretische SE (σ/√N)", "Theoretical SE (σ/√N)", "EE Teórico (σ/√N)")}</div>
             <div id="l3-se-theo" class="text-xs font-bold text-purple-400 font-mono">0.31</div>
           </div>
         </div>
 
         <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
           <div class="flex items-center gap-2">
-            <button id="l3-dist-uniform" class="px-2.5 py-1 text-[11px] rounded font-semibold bg-emerald-600 text-white shadow">Dobbelsteen (Uniform)</button>
-            <button id="l3-dist-skewed" class="px-2.5 py-1 text-[11px] rounded font-semibold bg-slate-800 text-slate-400 hover:text-white">Zwaar Scheef (Exp)</button>
+            <button id="l3-dist-uniform" class="px-2.5 py-1 text-[11px] rounded font-semibold bg-emerald-600 text-white shadow">${tSim("Dobbelsteen (Uniform)", "Fair Die (Uniform)", "Dado (Uniforme)")}</button>
+            <button id="l3-dist-skewed" class="px-2.5 py-1 text-[11px] rounded font-semibold bg-slate-800 text-slate-400 hover:text-white">${tSim("Zwaar Scheef (Exp)", "Heavily Skewed (Exp)", "Muy Sesgada (Exp)")}</button>
           </div>
           <button id="l3-resample-btn" class="px-3 py-1 bg-emerald-600/30 hover:bg-emerald-600 text-emerald-300 hover:text-white rounded text-xs font-bold transition flex items-center gap-1">
-            <span>🎲</span><span>Nieuwe 1.000 Steekproeven</span>
+            <span>🎲</span><span>${tSim("Nieuwe 1.000 Steekproeven", "New 1,000 Samples", "Nuevas 1.000 Muestras")}</span>
           </button>
         </div>
 
@@ -354,13 +368,13 @@ window.StatCharts = (function() {
 
       const shapeEl = document.getElementById("l3-shape-val");
       if (N === 1) {
-        shapeEl.innerText = distType === 'uniform' ? "Plat / Uniform" : "Zwaar Scheef";
+        shapeEl.innerText = distType === 'uniform' ? tSim("Plat / Uniform", "Flat / Uniform", "Plano / Uniforme") : tSim("Zwaar Scheef", "Heavily Skewed", "Muy Sesgada");
         shapeEl.className = "text-xs font-bold text-amber-400";
       } else if (N < 15) {
-        shapeEl.innerText = "Overgangsvorm";
+        shapeEl.innerText = tSim("Overgangsvorm", "Intermediate Shape", "Forma Transitoria");
         shapeEl.className = "text-xs font-bold text-sky-400";
       } else {
-        shapeEl.innerText = "Klokvormig Normaal";
+        shapeEl.innerText = tSim("Klokvormig Normaal", "Bell-shaped Normal", "Normal Acampanada");
         shapeEl.className = "text-xs font-bold text-emerald-400";
       }
 
@@ -382,10 +396,12 @@ window.StatCharts = (function() {
         binCounts[bIdx]++;
       });
 
+      const dsLabel = tSim(`1.000 Steekproefgemiddelden (N=${N})`, `1,000 Sample Means (N=${N})`, `1.000 Medias Muestrales (N=${N})`);
+
       if (currentChart) {
         currentChart.data.labels = binLabels;
         currentChart.data.datasets[0].data = binCounts;
-        currentChart.data.datasets[0].label = `1.000 Steekproefgemiddelden (N=${N})`;
+        currentChart.data.datasets[0].label = dsLabel;
         currentChart.update();
       } else {
         currentChart = new Chart(ctx, {
@@ -393,7 +409,7 @@ window.StatCharts = (function() {
           data: {
             labels: binLabels,
             datasets: [{
-              label: `1.000 Steekproefgemiddelden (N=${N})`,
+              label: dsLabel,
               data: binCounts,
               backgroundColor: '#10b981',
               borderRadius: 3
@@ -403,8 +419,8 @@ window.StatCharts = (function() {
             responsive: true,
             maintainAspectRatio: false,
             scales: {
-              x: { ticks: { color: '#94a3b8' }, title: { display: true, text: 'Steekproefgemiddelde (x̄)', color: '#64748b' } },
-              y: { ticks: { color: '#94a3b8' }, title: { display: true, text: 'Aantal Steekproeven', color: '#64748b' } }
+              x: { ticks: { color: '#94a3b8' }, title: { display: true, text: tSim('Steekproefgemiddelde (x̄)', 'Sample Mean (x̄)', 'Media Muestral (x̄)'), color: '#64748b' } },
+              y: { ticks: { color: '#94a3b8' }, title: { display: true, text: tSim('Aantal Steekproeven', 'Number of Samples', 'Número de Muestras'), color: '#64748b' } }
             }
           }
         });
@@ -432,15 +448,15 @@ window.StatCharts = (function() {
   }
 
   function renderLevel4(container) {
-    container.innerHTML = `<div class="p-4 bg-slate-900/60 rounded-xl text-center"><h3 class="text-sm font-bold text-sky-400 mb-2">95% Betrouwbaarheidsinterval Visualizer</h3><p class="text-xs text-slate-300">95 van de 100 intervallen omvatten de werkelijke populatiewaarde μ (groen); 5 missen de waarheid (rood).</p><div class="relative h-60 mt-3"><canvas id="l4-canvas"></canvas></div></div>`;
+    container.innerHTML = `<div class="p-4 bg-slate-900/60 rounded-xl text-center"><h3 class="text-sm font-bold text-sky-400 mb-2">${tSim("95% Betrouwbaarheidsinterval Visualizer", "95% Confidence Interval Visualizer", "Visualizador de Intervalos de Confianza del 95%")}</h3><p class="text-xs text-slate-300">${tSim("95 van de 100 intervallen omvatten de werkelijke populatiewaarde μ (groen); 5 missen de waarheid (rood).", "95 out of 100 intervals contain the true population value μ (green); 5 miss the truth (red).", "95 de cada 100 intervalos contienen el verdadero valor poblacional μ (verde); 5 no alcanzan la verdad (rojo).")}</p><div class="relative h-60 mt-3"><canvas id="l4-canvas"></canvas></div></div>`;
     const ctx = document.getElementById("l4-canvas").getContext("2d");
     const pts = Array.from({ length: 30 }, (_, i) => ({ x: 74 + (Math.random() - 0.5) * 3, y: i + 1 }));
     currentChart = new Chart(ctx, {
       type: "scatter",
       data: {
         datasets: [
-          { label: "Steekproef Intervallen", data: pts, backgroundColor: pts.map(p => Math.abs(p.x - 75) < 2 ? '#10b981' : '#f43f5e'), pointRadius: 4 },
-          { label: "Populatiewaarde μ = 75", data: [{ x: 75, y: 0 }, { x: 75, y: 31 }], type: "line", borderColor: '#38bdf8', borderDash: [5, 5], pointRadius: 0 }
+          { label: tSim("Steekproef Intervallen", "Sample Intervals", "Intervalos Muestrales"), data: pts, backgroundColor: pts.map(p => Math.abs(p.x - 75) < 2 ? '#10b981' : '#f43f5e'), pointRadius: 4 },
+          { label: tSim("Populatiewaarde μ = 75", "Population Value μ = 75", "Valor Poblacional μ = 75"), data: [{ x: 75, y: 0 }, { x: 75, y: 31 }], type: "line", borderColor: '#38bdf8', borderDash: [5, 5], pointRadius: 0 }
         ]
       },
       options: { responsive: true, maintainAspectRatio: false, scales: { x: { min: 70, max: 80, ticks: { color: '#94a3b8' } }, y: { display: false } } }
@@ -452,26 +468,26 @@ window.StatCharts = (function() {
       <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-700/60">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-3">
           <div>
-            <label class="text-xs text-slate-300 block mb-1">Effectgrootte Cohen's d: <span id="l5-d-val" class="font-bold text-emerald-400">d = 0.50</span></label>
+            <label class="text-xs text-slate-300 block mb-1">${tSim("Effectgrootte Cohen's d:", "Effect Size Cohen's d:", "Tamaño del Efecto d de Cohen:")} <span id="l5-d-val" class="font-bold text-emerald-400">d = 0.50</span></label>
             <input id="l5-d-slider" type="range" min="0.10" max="1.20" step="0.05" value="0.50" class="w-full accent-emerald-500 cursor-pointer">
           </div>
           <div>
-            <label class="text-xs text-slate-300 block mb-1">Steekproefgrootte per groep (N): <span id="l5-n-val" class="font-bold text-sky-400">N = 64</span></label>
+            <label class="text-xs text-slate-300 block mb-1">${tSim("Steekproefgrootte per groep (N):", "Sample Size per Group (N):", "Tamaño Muestral por Grupo (N):")} <span id="l5-n-val" class="font-bold text-sky-400">N = 64</span></label>
             <input id="l5-n-slider" type="range" min="10" max="250" step="5" value="64" class="w-full accent-sky-500 cursor-pointer">
           </div>
         </div>
 
         <div class="grid grid-cols-3 gap-2.5 mb-3 text-center">
           <div class="bg-slate-800/80 p-2 rounded-lg border border-slate-700">
-            <div class="text-[10px] text-slate-400">Significantiedrempel α</div>
+            <div class="text-[10px] text-slate-400">${tSim("Significantiedrempel α", "Significance Level α", "Nivel de Significancia α")}</div>
             <div class="text-sm font-bold text-rose-400 font-mono">α = 0.05 (Type I)</div>
           </div>
           <div class="bg-slate-800/80 p-2 rounded-lg border border-slate-700">
-            <div class="text-[10px] text-slate-400">Statistische Power (1 - β)</div>
+            <div class="text-[10px] text-slate-400">${tSim("Statistische Power (1 - β)", "Statistical Power (1 - β)", "Potencia Estadística (1 - β)")}</div>
             <div id="l5-power-val" class="text-sm font-bold text-emerald-400 font-mono">80.2%</div>
           </div>
           <div class="bg-slate-800/80 p-2 rounded-lg border border-slate-700">
-            <div class="text-[10px] text-slate-400">Kans Type II Fout (β)</div>
+            <div class="text-[10px] text-slate-400">${tSim("Kans Type II Fout (β)", "Type II Error Rate (β)", "Probabilidad Error Tipo II (β)")}</div>
             <div id="l5-beta-val" class="text-sm font-bold text-amber-400 font-mono">19.8%</div>
           </div>
         </div>
@@ -500,10 +516,8 @@ window.StatCharts = (function() {
       document.getElementById("l5-d-val").innerText = `d = ${d.toFixed(2)}`;
       document.getElementById("l5-n-val").innerText = `N = ${N}`;
 
-      // Non-centrality parameter: delta = d * sqrt(N / 2)
       const delta = d * Math.sqrt(N / 2);
       const zCrit = 1.96;
-      // Power = P(Z > zCrit | H1) = 1 - Phi(zCrit - delta)
       const power = (1.0 - normalCdf(zCrit - delta)) * 100;
       const beta = 100 - power;
 
@@ -512,7 +526,6 @@ window.StatCharts = (function() {
       powerEl.className = power >= 80 ? "text-sm font-bold text-emerald-400 font-mono" : "text-sm font-bold text-amber-400 font-mono";
       document.getElementById("l5-beta-val").innerText = `${beta.toFixed(1)}%`;
 
-      // Maak curves
       const pts = 80;
       const xLabels = [];
       const h0Data = [];
@@ -538,15 +551,15 @@ window.StatCharts = (function() {
           data: {
             labels: xLabels,
             datasets: [
-              { label: "Nulhypothese H₀ (Geen Effect, μ=0)", data: h0Data, borderColor: '#94a3b8', fill: true, backgroundColor: 'rgba(148,163,184,0.1)', pointRadius: 0 },
-              { label: "Alternatief H₁ (Ware Effect, μ=δ)", data: h1Data, borderColor: '#10b981', fill: true, backgroundColor: 'rgba(16,185,129,0.2)', pointRadius: 0 }
+              { label: tSim("Nulhypothese H₀ (Geen Effect, μ=0)", "Null Hypothesis H₀ (No Effect, μ=0)", "Hipótesis Nula H₀ (Sin Efecto, μ=0)"), data: h0Data, borderColor: '#94a3b8', fill: true, backgroundColor: 'rgba(148,163,184,0.1)', pointRadius: 0 },
+              { label: tSim("Alternatief H₁ (Ware Effect, μ=δ)", "Alternative H₁ (True Effect, μ=δ)", "Alternativa H₁ (Efecto Real, μ=δ)"), data: h1Data, borderColor: '#10b981', fill: true, backgroundColor: 'rgba(16,185,129,0.2)', pointRadius: 0 }
             ]
           },
           options: {
             responsive: true,
             maintainAspectRatio: false,
             scales: {
-              x: { ticks: { color: '#94a3b8' }, title: { display: true, text: 'Toetsingsgrootheid Z', color: '#64748b' } },
+              x: { ticks: { color: '#94a3b8' }, title: { display: true, text: tSim('Toetsingsgrootheid Z', 'Test Statistic Z', 'Estadístico de Prueba Z'), color: '#64748b' } },
               y: { display: false }
             }
           }
@@ -564,11 +577,11 @@ window.StatCharts = (function() {
       <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-700/60">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-3">
           <div>
-            <label class="text-xs text-slate-300 block mb-1">Helling (Slope β₁): <span id="l6-slope-val" class="font-bold text-sky-400">0.18</span></label>
+            <label class="text-xs text-slate-300 block mb-1">${tSim("Helling (Slope β₁):", "Slope (β₁):", "Pendiente (β₁):")} <span id="l6-slope-val" class="font-bold text-sky-400">0.18</span></label>
             <input id="l6-slope-slider" type="range" min="0.00" max="0.36" step="0.01" value="0.18" class="w-full accent-sky-500 cursor-pointer">
           </div>
           <div>
-            <label class="text-xs text-slate-300 block mb-1">Intercept (β₀): <span id="l6-intercept-val" class="font-bold text-indigo-400">2.70</span></label>
+            <label class="text-xs text-slate-300 block mb-1">${tSim("Intercept (β₀):", "Intercept (β₀):", "Intercepto (β₀):")} <span id="l6-intercept-val" class="font-bold text-indigo-400">2.70</span></label>
             <input id="l6-intercept-slider" type="range" min="1.0" max="5.0" step="0.05" value="2.70" class="w-full accent-indigo-500 cursor-pointer">
           </div>
         </div>
@@ -576,16 +589,16 @@ window.StatCharts = (function() {
         <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
           <div class="flex items-center gap-3">
             <div class="bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700">
-              <span class="text-[10px] text-slate-400">Model: </span>
+              <span class="text-[10px] text-slate-400">${tSim("Model: ", "Model: ", "Modelo: ")}</span>
               <span id="l6-eq-display" class="font-mono text-xs font-bold text-white">Ŷ = 2.70 + 0.18·X</span>
             </div>
             <div class="bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700">
-              <span class="text-[10px] text-slate-400">Kwadratensom der Fouten (SSE): </span>
+              <span class="text-[10px] text-slate-400">${tSim("Kwadratensom der Fouten (SSE): ", "Sum of Squared Errors (SSE): ", "Suma de Cuadrados de los Errores (SSE): ")}</span>
               <span id="l6-sse-display" class="font-mono text-xs font-bold text-emerald-400">0.04</span>
             </div>
           </div>
           <button id="l6-opt-btn" class="px-3 py-1.5 bg-emerald-600/30 hover:bg-emerald-600 text-emerald-300 hover:text-white rounded-lg text-xs font-bold transition">
-            🎯 Reset naar Optimale OLS Lijn
+            🎯 ${tSim("Reset naar Optimale OLS Lijn", "Reset to Optimal OLS Line", "Restablecer a Línea MCO Óptima")}
           </button>
         </div>
 
@@ -610,7 +623,6 @@ window.StatCharts = (function() {
       document.getElementById("l6-intercept-val").innerText = b0.toFixed(2);
       document.getElementById("l6-eq-display").innerText = `Ŷ = ${b0.toFixed(2)} + ${b1.toFixed(2)}·X`;
 
-      // Bereken SSE: sum of (y - (b0 + b1*x))^2
       let sse = 0;
       points.forEach(pt => {
         const yHat = b0 + b1 * pt.x;
@@ -631,16 +643,16 @@ window.StatCharts = (function() {
           type: "scatter",
           data: {
             datasets: [
-              { label: "Studenten (Data)", data: points, backgroundColor: '#38bdf8', pointRadius: 6 },
-              { label: "Regressielijn", data: lineData, type: "line", borderColor: '#10b981', borderWidth: 2.5, pointRadius: 0 }
+              { label: tSim("Studenten (Data)", "Students (Data)", "Estudiantes (Datos)"), data: points, backgroundColor: '#38bdf8', pointRadius: 6 },
+              { label: tSim("Regressielijn", "Regression Line", "Línea de Regresión"), data: lineData, type: "line", borderColor: '#10b981', borderWidth: 2.5, pointRadius: 0 }
             ]
           },
           options: {
             responsive: true,
             maintainAspectRatio: false,
             scales: {
-              x: { ticks: { color: '#94a3b8' }, title: { display: true, text: 'Studie-uren per Week', color: '#64748b' } },
-              y: { min: 2, max: 10, ticks: { color: '#94a3b8' }, title: { display: true, text: 'Tentamencijfer', color: '#64748b' } }
+              x: { ticks: { color: '#94a3b8' }, title: { display: true, text: tSim('Studie-uren per Week', 'Study Hours per Week', 'Horas de Estudio por Semana'), color: '#64748b' } },
+              y: { min: 2, max: 10, ticks: { color: '#94a3b8' }, title: { display: true, text: tSim('Tentamencijfer', 'Exam Grade', 'Calificación del Examen'), color: '#64748b' } }
             }
           }
         });
@@ -659,15 +671,16 @@ window.StatCharts = (function() {
   }
 
   function renderLevel7(container) {
-    container.innerHTML = `<div class="p-4 bg-slate-900/60 rounded-xl text-center"><h3 class="text-sm font-bold text-amber-400 mb-2">R² vs Gecorrigeerde R² bij Ruis</h3><p class="text-xs text-slate-300">Gewone R² stijgt door toeval; Adjusted R² daalt en beschermt tegen overfitting.</p><div class="relative h-60 mt-3"><canvas id="l7-canvas"></canvas></div></div>`;
+    container.innerHTML = `<div class="p-4 bg-slate-900/60 rounded-xl text-center"><h3 class="text-sm font-bold text-amber-400 mb-2">${tSim("R² vs Gecorrigeerde R² bij Ruis", "R² vs Adjusted R² with Noise", "R² vs R² Ajustado con Ruido")}</h3><p class="text-xs text-slate-300">${tSim("Gewone R² stijgt door toeval; Adjusted R² daalt en beschermt tegen overfitting.", "Standard R² rises by chance; Adjusted R² drops to penalize overfitting.", "El R² estándar sube por azar; el R² ajustado cae y previene el sobreajuste.")}</p><div class="relative h-60 mt-3"><canvas id="l7-canvas"></canvas></div></div>`;
     const ctx = document.getElementById("l7-canvas").getContext("2d");
+    const noiseLabel = tSim('(+ruis)', '(+noise)', '(+ruido)');
     currentChart = new Chart(ctx, {
       type: "line",
       data: {
-        labels: ['k=1', 'k=2', 'k=3 (+ruis)', 'k=4 (+ruis)', 'k=5 (+ruis)'],
+        labels: ['k=1', 'k=2', `k=3 ${noiseLabel}`, `k=4 ${noiseLabel}`, `k=5 ${noiseLabel}`],
         datasets: [
-          { label: "Gewone R²", data: [0.65, 0.72, 0.728, 0.732, 0.735], borderColor: '#38bdf8' },
-          { label: "Adjusted R²", data: [0.643, 0.708, 0.702, 0.695, 0.690], borderColor: '#10b981' }
+          { label: tSim("Gewone R²", "Standard R²", "R² Estándar"), data: [0.65, 0.72, 0.728, 0.732, 0.735], borderColor: '#38bdf8' },
+          { label: tSim("Adjusted R²", "Adjusted R²", "R² Ajustado"), data: [0.643, 0.708, 0.702, 0.695, 0.690], borderColor: '#10b981' }
         ]
       },
       options: { responsive: true, maintainAspectRatio: false, scales: { x: { ticks: { color: '#94a3b8' } }, y: { min: 0.6, max: 0.8, ticks: { color: '#94a3b8' } } } }
@@ -675,7 +688,7 @@ window.StatCharts = (function() {
   }
 
   function renderLevel8(container) {
-    container.innerHTML = `<div class="p-4 bg-slate-900/60 rounded-xl text-center"><h3 class="text-sm font-bold text-rose-400 mb-2">Residuendiagnostiek: Heteroscedasticiteit (Trompet)</h3><p class="text-xs text-slate-300">Uitwaaierende spreiding leidt tot vertekende standaardfouten.</p><div class="relative h-60 mt-3"><canvas id="l8-canvas"></canvas></div></div>`;
+    container.innerHTML = `<div class="p-4 bg-slate-900/60 rounded-xl text-center"><h3 class="text-sm font-bold text-rose-400 mb-2">${tSim("Residuendiagnostiek: Heteroscedasticiteit (Trompet)", "Residual Diagnostics: Heteroscedasticity (Funnel)", "Diagnóstico de Residuos: Heterocedasticidad (Embudo)")}</h3><p class="text-xs text-slate-300">${tSim("Uitwaaierende spreiding leidt tot vertekende standaardfouten.", "Fanning spread leads to biased standard errors.", "La dispersión en abanico sesga los errores estándar.")}</p><div class="relative h-60 mt-3"><canvas id="l8-canvas"></canvas></div></div>`;
     const ctx = document.getElementById("l8-canvas").getContext("2d");
     const pts = Array.from({ length: 40 }, (_, i) => {
       const fitted = 10 + i;
@@ -686,8 +699,8 @@ window.StatCharts = (function() {
       type: "scatter",
       data: {
         datasets: [
-          { label: "Residuen", data: pts, backgroundColor: '#f43f5e', pointRadius: 4 },
-          { label: "Nullijn", data: [{ x: 10, y: 0 }, { x: 50, y: 0 }], type: "line", borderColor: '#94a3b8', borderDash: [5, 5], pointRadius: 0 }
+          { label: tSim("Residuen", "Residuals", "Residuos"), data: pts, backgroundColor: '#f43f5e', pointRadius: 4 },
+          { label: tSim("Nullijn", "Zero Line", "Línea Cero"), data: [{ x: 10, y: 0 }, { x: 50, y: 0 }], type: "line", borderColor: '#94a3b8', borderDash: [5, 5], pointRadius: 0 }
         ]
       },
       options: { responsive: true, maintainAspectRatio: false, scales: { x: { ticks: { color: '#94a3b8' } }, y: { ticks: { color: '#94a3b8' } } } }
@@ -695,15 +708,15 @@ window.StatCharts = (function() {
   }
 
   function renderLevel9(container) {
-    container.innerHTML = `<div class="p-4 bg-slate-900/60 rounded-xl text-center"><h3 class="text-sm font-bold text-sky-400 mb-2">Simpson's Paradox (Sport vs Cholesterol)</h3><p class="text-xs text-slate-300">Geaggregeerd stijgend (rood, vertekend) vs binnen leeftijdsgroepen dalend (blauw/geel, gezond).</p><div class="relative h-60 mt-3"><canvas id="l9-canvas"></canvas></div></div>`;
+    container.innerHTML = `<div class="p-4 bg-slate-900/60 rounded-xl text-center"><h3 class="text-sm font-bold text-sky-400 mb-2">${tSim("Simpson's Paradox (Sport vs Cholesterol)", "Simpson's Paradox (Exercise vs Cholesterol)", "Paradoja de Simpson (Ejercicio vs Colesterol)")}</h3><p class="text-xs text-slate-300">${tSim("Geaggregeerd stijgend (rood, vertekend) vs binnen leeftijdsgroepen dalend (blauw/geel, gezond).", "Aggregated trend is positive (red, misleading) vs negative within age groups (blue/yellow, healthy).", "Tendencia agregada ascendente (rojo, sesgado) vs descendente dentro de grupos de edad (azul/amarillo, saludable).")}</p><div class="relative h-60 mt-3"><canvas id="l9-canvas"></canvas></div></div>`;
     const ctx = document.getElementById("l9-canvas").getContext("2d");
     currentChart = new Chart(ctx, {
       type: "scatter",
       data: {
         datasets: [
-          { label: "Jongeren (β = -0.26)", data: [{ x: 2, y: 5.2 }, { x: 4, y: 4.4 }, { x: 6, y: 3.7 }], backgroundColor: '#38bdf8' },
-          { label: "Senioren (β = -0.28)", data: [{ x: 6, y: 7.2 }, { x: 8, y: 6.5 }, { x: 10, y: 5.6 }], backgroundColor: '#fbbf24' },
-          { label: "Geaggregeerd Trend (+0.32)", data: [{ x: 2, y: 4.3 }, { x: 10, y: 6.7 }], type: "line", borderColor: '#f43f5e', borderDash: [6, 4], pointRadius: 0 }
+          { label: tSim("Jongeren (β = -0.26)", "Younger (β = -0.26)", "Jóvenes (β = -0.26)"), data: [{ x: 2, y: 5.2 }, { x: 4, y: 4.4 }, { x: 6, y: 3.7 }], backgroundColor: '#38bdf8' },
+          { label: tSim("Senioren (β = -0.28)", "Seniors (β = -0.28)", "Mayores (β = -0.28)"), data: [{ x: 6, y: 7.2 }, { x: 8, y: 6.5 }, { x: 10, y: 5.6 }], backgroundColor: '#fbbf24' },
+          { label: tSim("Geaggregeerd Trend (+0.32)", "Aggregated Trend (+0.32)", "Tendencia Agregada (+0.32)"), data: [{ x: 2, y: 4.3 }, { x: 10, y: 6.7 }], type: "line", borderColor: '#f43f5e', borderDash: [6, 4], pointRadius: 0 }
         ]
       },
       options: { responsive: true, maintainAspectRatio: false, scales: { x: { ticks: { color: '#94a3b8' } }, y: { ticks: { color: '#94a3b8' } } } }
@@ -715,11 +728,11 @@ window.StatCharts = (function() {
       <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-700/60">
         <div class="flex flex-wrap items-center justify-between gap-4 mb-3">
           <div>
-            <h3 class="text-sm font-bold text-rose-400">Multicollineariteit & VIF Explodeerder</h3>
-            <p class="text-xs text-slate-300">Schuif de correlatie tussen twee predictoren op naar 0.99 en zie de foutmarge exploderen.</p>
+            <h3 class="text-sm font-bold text-rose-400">${tSim("Multicollineariteit & VIF Explodeerder", "Multicollinearity & VIF Exploder", "Multicolinealidad y Explosión de VIF")}</h3>
+            <p class="text-xs text-slate-300">${tSim("Schuif de correlatie tussen twee predictoren op naar 0.99 en zie de foutmarge exploderen.", "Slide correlation between two predictors to 0.99 and watch standard errors explode.", "Desliza la correlación entre dos predictores hacia 0.99 y observa dispararse los errores estándar.")}</p>
           </div>
           <div class="flex items-center gap-2">
-            <label class="text-xs text-slate-300 font-medium">Correlatie (r₁₂):</label>
+            <label class="text-xs text-slate-300 font-medium">${tSim("Correlatie (r₁₂):", "Correlation (r₁₂):", "Correlación (r₁₂):")}</label>
             <input id="l10-r-slider" type="range" min="0.00" max="0.99" step="0.01" value="0.80" class="w-32 sm:w-44 accent-rose-500 cursor-pointer">
             <span id="l10-r-val" class="font-mono text-rose-400 font-bold text-xs">r = 0.80</span>
           </div>
@@ -731,12 +744,12 @@ window.StatCharts = (function() {
             <div id="l10-vif-val" class="text-sm font-bold text-rose-400 font-mono">2.78</div>
           </div>
           <div class="bg-slate-800/80 p-2 rounded-lg border border-slate-700">
-            <div class="text-[10px] text-slate-400">SE Inflatie (√VIF)</div>
-            <div id="l10-se-factor" class="text-sm font-bold text-amber-400 font-mono">1.67x breder</div>
+            <div class="text-[10px] text-slate-400">${tSim("SE Inflatie (√VIF)", "SE Inflation (√VIF)", "Inflación del EE (√VIF)")}</div>
+            <div id="l10-se-factor" class="text-sm font-bold text-amber-400 font-mono">1.67x ${tSim("breder", "wider", "más amplio")}</div>
           </div>
           <div class="bg-slate-800/80 p-2 rounded-lg border border-slate-700">
-            <div class="text-[10px] text-slate-400">Diagnostische Status</div>
-            <div id="l10-status-val" class="text-xs font-bold text-emerald-400">Veilig (VIF < 5)</div>
+            <div class="text-[10px] text-slate-400">${tSim("Diagnostische Status", "Diagnostic Status", "Estado Diagnóstico")}</div>
+            <div id="l10-status-val" class="text-xs font-bold text-emerald-400">${tSim("Veilig (VIF < 5)", "Safe (VIF < 5)", "Seguro (VIF < 5)")}</div>
           </div>
         </div>
 
@@ -756,22 +769,21 @@ window.StatCharts = (function() {
       const vif = 1.0 / (1.0 - r * r);
       const seFactor = Math.sqrt(vif);
 
-      document.getElementById("l10-vif-val").innerText = vif >= 50 ? "> 50 (Extreem!)" : vif.toFixed(2);
-      document.getElementById("l10-se-factor").innerText = `${seFactor.toFixed(2)}x breder`;
+      document.getElementById("l10-vif-val").innerText = vif >= 50 ? tSim("> 50 (Extreem!)", "> 50 (Extreme!)", "> 50 (¡Extremo!)") : vif.toFixed(2);
+      document.getElementById("l10-se-factor").innerText = `${seFactor.toFixed(2)}x ${tSim("breder", "wider", "más amplio")}`;
 
       const statusEl = document.getElementById("l10-status-val");
       if (vif < 5) {
-        statusEl.innerText = "Veilig (VIF < 5)";
+        statusEl.innerText = tSim("Veilig (VIF < 5)", "Safe (VIF < 5)", "Seguro (VIF < 5)");
         statusEl.className = "text-xs font-bold text-emerald-400";
       } else if (vif < 10) {
-        statusEl.innerText = "Matige Collineariteit";
+        statusEl.innerText = tSim("Matige Collineariteit", "Moderate Collinearity", "Colinealidad Moderada");
         statusEl.className = "text-xs font-bold text-amber-400";
       } else {
-        statusEl.innerText = "⚠️ Ernstig (VIF ≥ 10)";
+        statusEl.innerText = tSim("⚠️ Ernstig (VIF ≥ 10)", "⚠️ Severe (VIF ≥ 10)", "⚠️ Grave (VIF ≥ 10)");
         statusEl.className = "text-xs font-bold text-rose-400 animate-pulse";
       }
 
-      // Plot hyperbool
       const rSteps = [0.0, 0.2, 0.4, 0.6, 0.7, 0.8, 0.85, 0.90, 0.95, 0.98, 0.99];
       const curveData = rSteps.map(val => ({ x: val, y: Math.min(55, 1.0 / (1.0 - val * val)) }));
       const currentPoint = [{ x: r, y: Math.min(55, vif) }];
@@ -784,16 +796,16 @@ window.StatCharts = (function() {
           type: "line",
           data: {
             datasets: [
-              { label: "VIF Curve: 1 / (1 - r²)", data: curveData, borderColor: '#f43f5e', fill: true, backgroundColor: 'rgba(244,63,94,0.1)', pointRadius: 0 },
-              { label: "Huidig Punt", data: currentPoint, type: "scatter", backgroundColor: '#38bdf8', borderColor: '#ffffff', borderWidth: 2, pointRadius: 8 }
+              { label: tSim("VIF Curve: 1 / (1 - r²)", "VIF Curve: 1 / (1 - r²)", "Curva VIF: 1 / (1 - r²)"), data: curveData, borderColor: '#f43f5e', fill: true, backgroundColor: 'rgba(244,63,94,0.1)', pointRadius: 0 },
+              { label: tSim("Huidig Punt", "Current Point", "Punto Actual"), data: currentPoint, type: "scatter", backgroundColor: '#38bdf8', borderColor: '#ffffff', borderWidth: 2, pointRadius: 8 }
             ]
           },
           options: {
             responsive: true,
             maintainAspectRatio: false,
             scales: {
-              x: { type: 'linear', min: 0, max: 1.0, ticks: { color: '#94a3b8' }, title: { display: true, text: 'Correlatie tussen Predictoren (r₁₂)', color: '#64748b' } },
-              y: { min: 1, max: 55, ticks: { color: '#94a3b8' }, title: { display: true, text: 'Variance Inflation Factor (VIF)', color: '#64748b' } }
+              x: { type: 'linear', min: 0, max: 1.0, ticks: { color: '#94a3b8' }, title: { display: true, text: tSim('Correlatie tussen Predictoren (r₁₂)', 'Correlation between Predictors (r₁₂)', 'Correlación entre Predictores (r₁₂)'), color: '#64748b' } },
+              y: { min: 1, max: 55, ticks: { color: '#94a3b8' }, title: { display: true, text: tSim('Variance Inflation Factor (VIF)', 'Variance Inflation Factor (VIF)', 'Factor de Inflación de la Varianza (VIF)'), color: '#64748b' } }
             }
           }
         });
@@ -809,47 +821,46 @@ window.StatCharts = (function() {
       <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-700/60">
         <div class="flex flex-wrap items-center justify-between gap-4 mb-3">
           <div>
-            <h3 class="text-sm font-bold text-emerald-400">Logistische S-curve & Live Confusion Matrix</h3>
-            <p class="text-xs text-slate-300">Verschuif de beslisgrens (cutoff) en zie hoe Sensitiviteit en Specificiteit elkaars tegenpolen zijn.</p>
+            <h3 class="text-sm font-bold text-emerald-400">${tSim("Logistische S-curve & Live Confusion Matrix", "Logistic S-Curve & Live Confusion Matrix", "Curva S Logística y Matriz de Confusión en Vivo")}</h3>
+            <p class="text-xs text-slate-300">${tSim("Verschuif de beslisgrens (cutoff) en zie hoe Sensitiviteit en Specificiteit elkaars tegenpolen zijn.", "Shift decision cutoff and see how Sensitivity and Specificity trade off.", "Desplaza el umbral de corte y observa el balance entre Sensibilidad y Especificidad.")}</p>
           </div>
           <div class="flex items-center gap-2">
-            <label class="text-xs text-slate-300 font-medium">Beslisgrens (Cutoff):</label>
+            <label class="text-xs text-slate-300 font-medium">${tSim("Beslisgrens (Cutoff):", "Decision Cutoff:", "Umbral de Decisión (Corte):")}</label>
             <input id="l11-cutoff-slider" type="range" min="0.10" max="0.90" step="0.05" value="0.50" class="w-32 sm:w-44 accent-emerald-500 cursor-pointer">
             <span id="l11-cutoff-val" class="font-mono text-emerald-400 font-bold text-xs">p = 0.50</span>
           </div>
         </div>
 
-        <!-- Live Confusion Matrix Grid -->
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-3 text-center">
           <div class="bg-emerald-950/50 p-2 rounded-lg border border-emerald-500/30">
-            <div class="text-[10px] text-emerald-300 font-semibold">True Positive (TP)</div>
+            <div class="text-[10px] text-emerald-300 font-semibold">${tSim("True Positive (TP)", "True Positive (TP)", "Verdadero Positivo (VP)")}</div>
             <div id="l11-tp" class="text-base font-bold text-emerald-400 font-mono">38</div>
           </div>
           <div class="bg-rose-950/50 p-2 rounded-lg border border-rose-500/30">
-            <div class="text-[10px] text-rose-300 font-semibold">False Positive (FP - Vals Alarm)</div>
+            <div class="text-[10px] text-rose-300 font-semibold">${tSim("False Positive (FP - Vals Alarm)", "False Positive (FP - False Alarm)", "Falso Positivo (FP - Falsa Alarma)")}</div>
             <div id="l11-fp" class="text-base font-bold text-rose-400 font-mono">7</div>
           </div>
           <div class="bg-rose-950/50 p-2 rounded-lg border border-rose-500/30">
-            <div class="text-[10px] text-rose-300 font-semibold">False Negative (FN - Gemist)</div>
+            <div class="text-[10px] text-rose-300 font-semibold">${tSim("False Negative (FN - Gemist)", "False Negative (FN - Missed)", "Falso Negativo (FN - Perdido)")}</div>
             <div id="l11-fn" class="text-base font-bold text-rose-400 font-mono">12</div>
           </div>
           <div class="bg-emerald-950/50 p-2 rounded-lg border border-emerald-500/30">
-            <div class="text-[10px] text-emerald-300 font-semibold">True Negative (TN)</div>
+            <div class="text-[10px] text-emerald-300 font-semibold">${tSim("True Negative (TN)", "True Negative (TN)", "Verdadero Negativo (VN)")}</div>
             <div id="l11-tn" class="text-base font-bold text-emerald-400 font-mono">43</div>
           </div>
         </div>
 
         <div class="grid grid-cols-3 gap-2 mb-3 text-center">
           <div class="bg-slate-800/80 p-1.5 rounded-lg border border-slate-700">
-            <span class="text-[10px] text-slate-400">Sensitiviteit (Recall): </span>
+            <span class="text-[10px] text-slate-400">${tSim("Sensitiviteit (Recall): ", "Sensitivity (Recall): ", "Sensibilidad (Exhaustividad): ")}</span>
             <span id="l11-recall" class="font-mono text-xs font-bold text-emerald-400">76.0%</span>
           </div>
           <div class="bg-slate-800/80 p-1.5 rounded-lg border border-slate-700">
-            <span class="text-[10px] text-slate-400">Specificiteit: </span>
+            <span class="text-[10px] text-slate-400">${tSim("Specificiteit: ", "Specificity: ", "Especificidad: ")}</span>
             <span id="l11-spec" class="font-mono text-xs font-bold text-sky-400">86.0%</span>
           </div>
           <div class="bg-slate-800/80 p-1.5 rounded-lg border border-slate-700">
-            <span class="text-[10px] text-slate-400">F1-Score: </span>
+            <span class="text-[10px] text-slate-400">${tSim("F1-Score: ", "F1-Score: ", "Puntuación F1: ")}</span>
             <span id="l11-f1" class="font-mono text-xs font-bold text-amber-400">0.80</span>
           </div>
         </div>
@@ -863,14 +874,11 @@ window.StatCharts = (function() {
     const ctx = document.getElementById("l11-canvas").getContext("2d");
     const cutoffSlider = document.getElementById("l11-cutoff-slider");
 
-    // 100 synthetische patiënten: 50 werkelijk ziek (1), 50 gezond (0)
     const cohort = [];
     for (let i = 0; i < 50; i++) {
-      // Gezond: p geconcentreerd rond 0.25
       cohort.push({ actual: 0, p: Math.min(0.95, Math.max(0.02, 0.25 + (Math.random() - 0.5) * 0.35)) });
     }
     for (let i = 0; i < 50; i++) {
-      // Ziek: p geconcentreerd rond 0.75
       cohort.push({ actual: 1, p: Math.min(0.98, Math.max(0.05, 0.72 + (Math.random() - 0.5) * 0.35)) });
     }
 
@@ -902,7 +910,6 @@ window.StatCharts = (function() {
       document.getElementById("l11-spec").innerText = `${spec.toFixed(1)}%`;
       document.getElementById("l11-f1").innerText = f1.toFixed(2);
 
-      // S-curve punten
       const sCurve = Array.from({ length: 40 }, (_, i) => {
         const age = 40 + i * 1.0;
         const z = -4.8 + 0.10 * age;
@@ -910,26 +917,27 @@ window.StatCharts = (function() {
       });
 
       const thresholdLine = [{ x: 40, y: cutoff }, { x: 80, y: cutoff }];
+      const cutoffLabel = `${tSim("Beslisgrens (Cutoff", "Cutoff Threshold (p", "Umbral de Decisión (Corte")} = ${cutoff.toFixed(2)})`;
 
       if (currentChart) {
         currentChart.data.datasets[1].data = thresholdLine;
-        currentChart.data.datasets[1].label = `Beslisgrens (Cutoff = ${cutoff.toFixed(2)})`;
+        currentChart.data.datasets[1].label = cutoffLabel;
         currentChart.update();
       } else {
         currentChart = new Chart(ctx, {
           type: "line",
           data: {
             datasets: [
-              { label: "Logistische S-curve (Voorspelde Kans)", data: sCurve, borderColor: '#10b981', borderWidth: 3, pointRadius: 0 },
-              { label: `Beslisgrens (Cutoff = ${cutoff.toFixed(2)})`, data: thresholdLine, borderColor: '#f43f5e', borderDash: [6, 4], borderWidth: 2, pointRadius: 0 }
+              { label: tSim("Logistische S-curve (Voorspelde Kans)", "Logistic S-Curve (Predicted Probability)", "Curva S Logística (Probabilidad Predicha)"), data: sCurve, borderColor: '#10b981', borderWidth: 3, pointRadius: 0 },
+              { label: cutoffLabel, data: thresholdLine, borderColor: '#f43f5e', borderDash: [6, 4], borderWidth: 2, pointRadius: 0 }
             ]
           },
           options: {
             responsive: true,
             maintainAspectRatio: false,
             scales: {
-              x: { type: 'linear', min: 40, max: 80, ticks: { color: '#94a3b8' }, title: { display: true, text: 'Leeftijd / Risicoscore', color: '#64748b' } },
-              y: { min: 0, max: 1, ticks: { color: '#94a3b8', callback: v => (v * 100) + '%' }, title: { display: true, text: 'Kans op Incident p', color: '#64748b' } }
+              x: { type: 'linear', min: 40, max: 80, ticks: { color: '#94a3b8' }, title: { display: true, text: tSim('Leeftijd / Risicoscore', 'Age / Risk Score', 'Edad / Puntuación de Riesgo'), color: '#64748b' } },
+              y: { min: 0, max: 1, ticks: { color: '#94a3b8', callback: v => (v * 100) + '%' }, title: { display: true, text: tSim('Kans op Incident p', 'Probability of Incident p', 'Probabilidad de Incidente p'), color: '#64748b' } }
             }
           }
         });
@@ -941,28 +949,39 @@ window.StatCharts = (function() {
   }
 
   function renderLevel12(container) {
-    container.innerHTML = `<div class="p-4 bg-slate-900/60 rounded-xl text-center"><h3 class="text-sm font-bold text-sky-400 mb-2">Ridge vs Lasso Coëfficiënten Krimp</h3><p class="text-xs text-slate-300">Lasso zet irrelevante variabelen exact op 0 (spaarzaam); Ridge krimpt gelijkmatig.</p><div class="relative h-60 mt-3"><canvas id="l12-canvas"></canvas></div></div>`;
+    container.innerHTML = `<div class="p-4 bg-slate-900/60 rounded-xl text-center"><h3 class="text-sm font-bold text-sky-400 mb-2">${tSim("Ridge vs Lasso Coëfficiënten Krimp", "Ridge vs Lasso Coefficient Shrinkage", "Contracción de Coeficientes Ridge vs Lasso")}</h3><p class="text-xs text-slate-300">${tSim("Lasso zet irrelevante variabelen exact op 0 (spaarzaam); Ridge krimpt gelijkmatig.", "Lasso drives irrelevant coefficients strictly to 0 (sparse); Ridge shrinks continuously.", "Lasso fija variables irrelevantes exactamente en 0 (disperso); Ridge contrae suavemente.")}</p><div class="relative h-60 mt-3"><canvas id="l12-canvas"></canvas></div></div>`;
     const ctx = document.getElementById("l12-canvas").getContext("2d");
+    const l12Labels = [
+      tSim('Klachten', 'Complaints', 'Reclamaciones'),
+      tSim('Contractduur', 'Tenure', 'Antigüedad'),
+      tSim('Dataverbruik', 'Data Usage', 'Uso de Datos'),
+      tSim('Leeftijd', 'Age', 'Edad'),
+      tSim('Ruis 1', 'Noise 1', 'Ruido 1'),
+      tSim('Ruis 2', 'Noise 2', 'Ruido 2')
+    ];
     currentChart = new Chart(ctx, {
       type: "bar",
       data: {
-        labels: ['Klachten', 'Contractduur', 'Dataverbruik', 'Leeftijd', 'Ruis 1', 'Ruis 2'],
-        datasets: [{ label: "Lasso Coëfficiënten", data: [0.72, -0.55, 0.32, 0.0, 0.0, 0.0], backgroundColor: '#10b981' }]
+        labels: l12Labels,
+        datasets: [{ label: tSim("Lasso Coëfficiënten", "Lasso Coefficients", "Coeficientes de Lasso"), data: [0.72, -0.55, 0.32, 0.0, 0.0, 0.0], backgroundColor: '#10b981' }]
       },
       options: { responsive: true, maintainAspectRatio: false, scales: { x: { ticks: { color: '#94a3b8' } }, y: { ticks: { color: '#94a3b8' } } } }
     });
   }
 
   function renderLevel13(container) {
-    container.innerHTML = `<div class="p-4 bg-slate-900/60 rounded-xl text-center"><h3 class="text-sm font-bold text-amber-400 mb-2">Geclusterde Data & Intraclass Correlatie (ICC)</h3><p class="text-xs text-slate-300">Scholen verschillen onderling (ICC = 0.28). Pooled OLS faalt met schijnprecisie.</p><div class="relative h-60 mt-3"><canvas id="l13-canvas"></canvas></div></div>`;
+    container.innerHTML = `<div class="p-4 bg-slate-900/60 rounded-xl text-center"><h3 class="text-sm font-bold text-amber-400 mb-2">${tSim("Geclusterde Data & Intraclass Correlatie (ICC)", "Clustered Data & Intraclass Correlation (ICC)", "Datos Agrupados y Correlación Intraclase (CCI)")}</h3><p class="text-xs text-slate-300">${tSim("Scholen verschillen onderling (ICC = 0.28). Pooled OLS faalt met schijnprecisie.", "Schools differ across clusters (ICC = 0.28). Pooled OLS fails with spurious precision.", "Las escuelas difieren entre sí (CCI = 0.28). El MCO agrupado falla con falsa precisión.")}</p><div class="relative h-60 mt-3"><canvas id="l13-canvas"></canvas></div></div>`;
     const ctx = document.getElementById("l13-canvas").getContext("2d");
+    const schoolA = tSim("School A", "School A", "Escuela A");
+    const schoolB = tSim("School B", "School B", "Escuela B");
+    const schoolC = tSim("School C", "School C", "Escuela C");
     currentChart = new Chart(ctx, {
       type: "scatter",
       data: {
         datasets: [
-          { label: "School A", data: [{ x: 5, y: 7.5 }, { x: 8, y: 8.2 }, { x: 12, y: 9.1 }], backgroundColor: '#38bdf8' },
-          { label: "School B", data: [{ x: 5, y: 6.0 }, { x: 8, y: 6.7 }, { x: 12, y: 7.4 }], backgroundColor: '#fbbf24' },
-          { label: "School C", data: [{ x: 5, y: 4.8 }, { x: 8, y: 5.3 }, { x: 12, y: 6.0 }], backgroundColor: '#f43f5e' }
+          { label: schoolA, data: [{ x: 5, y: 7.5 }, { x: 8, y: 8.2 }, { x: 12, y: 9.1 }], backgroundColor: '#38bdf8' },
+          { label: schoolB, data: [{ x: 5, y: 6.0 }, { x: 8, y: 6.7 }, { x: 12, y: 7.4 }], backgroundColor: '#fbbf24' },
+          { label: schoolC, data: [{ x: 5, y: 4.8 }, { x: 8, y: 5.3 }, { x: 12, y: 6.0 }], backgroundColor: '#f43f5e' }
         ]
       },
       options: { responsive: true, maintainAspectRatio: false, scales: { x: { ticks: { color: '#94a3b8' } }, y: { ticks: { color: '#94a3b8' } } } }
@@ -970,15 +989,18 @@ window.StatCharts = (function() {
   }
 
   function renderLevel14(container) {
-    container.innerHTML = `<div class="p-4 bg-slate-900/60 rounded-xl text-center"><h3 class="text-sm font-bold text-indigo-400 mb-2">Linear Mixed Models I: Random Intercepts</h3><p class="text-xs text-slate-300">Parallelle regressielijnen per school met Empirical Bayes Shrinkage.</p><div class="relative h-60 mt-3"><canvas id="l14-canvas"></canvas></div></div>`;
+    container.innerHTML = `<div class="p-4 bg-slate-900/60 rounded-xl text-center"><h3 class="text-sm font-bold text-indigo-400 mb-2">${tSim("Linear Mixed Models I: Random Intercepts", "Linear Mixed Models I: Random Intercepts", "Modelos Lineales Mixtos I: Interceptos Aleatorios")}</h3><p class="text-xs text-slate-300">${tSim("Parallelle regressielijnen per school met Empirical Bayes Shrinkage.", "Parallel regression slopes per school with Empirical Bayes Shrinkage.", "Líneas de regresión paralelas por escuela con contracción bayesiana empírica.")}</p><div class="relative h-60 mt-3"><canvas id="l14-canvas"></canvas></div></div>`;
     const ctx = document.getElementById("l14-canvas").getContext("2d");
+    const schoolA = tSim("School A (7.4)", "School A (7.4)", "Escuela A (7.4)");
+    const schoolB = tSim("School B (6.2)", "School B (6.2)", "Escuela B (6.2)");
+    const schoolC = tSim("School C (4.9)", "School C (4.9)", "Escuela C (4.9)");
     currentChart = new Chart(ctx, {
       type: "line",
       data: {
         datasets: [
-          { label: "School A (7.4)", data: [{ x: 0, y: 7.4 }, { x: 10, y: 7.4 + 4.0 }], borderColor: '#38bdf8', pointRadius: 0 },
-          { label: "School B (6.2)", data: [{ x: 0, y: 6.2 }, { x: 10, y: 6.2 + 4.0 }], borderColor: '#fbbf24', pointRadius: 0 },
-          { label: "School C (4.9)", data: [{ x: 0, y: 4.9 }, { x: 10, y: 4.9 + 4.0 }], borderColor: '#f43f5e', pointRadius: 0 }
+          { label: schoolA, data: [{ x: 0, y: 7.4 }, { x: 10, y: 7.4 + 4.0 }], borderColor: '#38bdf8', pointRadius: 0 },
+          { label: schoolB, data: [{ x: 0, y: 6.2 }, { x: 10, y: 6.2 + 4.0 }], borderColor: '#fbbf24', pointRadius: 0 },
+          { label: schoolC, data: [{ x: 0, y: 4.9 }, { x: 10, y: 4.9 + 4.0 }], borderColor: '#f43f5e', pointRadius: 0 }
         ]
       },
       options: { responsive: true, maintainAspectRatio: false, scales: { x: { ticks: { color: '#94a3b8' } }, y: { min: 4, max: 12, ticks: { color: '#94a3b8' } } } }
@@ -986,15 +1008,18 @@ window.StatCharts = (function() {
   }
 
   function renderLevel15(container) {
-    container.innerHTML = `<div class="p-4 bg-slate-900/60 rounded-xl text-center"><h3 class="text-sm font-bold text-emerald-400 mb-2">Linear Mixed Models II: Random Slopes & Herhaalde Metingen</h3><p class="text-xs text-slate-300">De Praktische Sweet Spot: individuele herstelsnelheden per patiënt over 6 maanden.</p><div class="relative h-60 mt-3"><canvas id="l15-canvas"></canvas></div></div>`;
+    container.innerHTML = `<div class="p-4 bg-slate-900/60 rounded-xl text-center"><h3 class="text-sm font-bold text-emerald-400 mb-2">${tSim("Linear Mixed Models II: Random Slopes & Herhaalde Metingen", "Linear Mixed Models II: Random Slopes & Repeated Measures", "Modelos Lineales Mixtos II: Pendientes Aleatorias y Medidas Repetidas")}</h3><p class="text-xs text-slate-300">${tSim("De Praktische Sweet Spot: individuele herstelsnelheden per patiënt over 6 maanden.", "The Practical Sweet Spot: individual recovery trajectories per patient across 6 months.", "El Punto Dulce Práctico: trayectorias individuales de recuperación por paciente a 6 meses.")}</p><div class="relative h-60 mt-3"><canvas id="l15-canvas"></canvas></div></div>`;
     const ctx = document.getElementById("l15-canvas").getContext("2d");
+    const p1Label = tSim("Patiënt 1 (Snel: +7.8/mnd)", "Patient 1 (Fast: +7.8/mo)", "Paciente 1 (Rápido: +7.8/mes)");
+    const p2Label = tSim("Patiënt 2 (Traag: +1.9/mnd)", "Patient 2 (Slow: +1.9/mo)", "Paciente 2 (Lento: +1.9/mes)");
+    const p3Label = tSim("Patiënt 3 (Gemiddeld: +4.5/mnd)", "Patient 3 (Moderate: +4.5/mo)", "Paciente 3 (Moderado: +4.5/mes)");
     currentChart = new Chart(ctx, {
       type: "line",
       data: {
         datasets: [
-          { label: "Patiënt 1 (Snel: +7.8/mnd)", data: [{ x: 0, y: 35 }, { x: 6, y: 82 }], borderColor: '#10b981', pointRadius: 3 },
-          { label: "Patiënt 2 (Traag: +1.9/mnd)", data: [{ x: 0, y: 42 }, { x: 6, y: 53 }], borderColor: '#f43f5e', pointRadius: 3 },
-          { label: "Patiënt 3 (Gemiddeld: +4.5/mnd)", data: [{ x: 0, y: 50 }, { x: 6, y: 77 }], borderColor: '#38bdf8', pointRadius: 3 }
+          { label: p1Label, data: [{ x: 0, y: 35 }, { x: 6, y: 82 }], borderColor: '#10b981', pointRadius: 3 },
+          { label: p2Label, data: [{ x: 0, y: 42 }, { x: 6, y: 53 }], borderColor: '#f43f5e', pointRadius: 3 },
+          { label: p3Label, data: [{ x: 0, y: 50 }, { x: 6, y: 77 }], borderColor: '#38bdf8', pointRadius: 3 }
         ]
       },
       options: { responsive: true, maintainAspectRatio: false, scales: { x: { ticks: { color: '#94a3b8' } }, y: { min: 25, max: 90, ticks: { color: '#94a3b8' } } } }
@@ -1009,8 +1034,8 @@ window.StatCharts = (function() {
   function renderLevel16(container) {
     container.innerHTML = `
       <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-700/60">
-        <h3 class="text-sm font-bold text-indigo-400 mb-1">GLMM: Geclusterde Binaire Infectiekansen</h3>
-        <p class="text-xs text-slate-300 mb-3">Elk ziekenhuis heeft een eigen S-curve door de variatie in willekeurig intercept $u_{0j}$ op logit-schaal.</p>
+        <h3 class="text-sm font-bold text-indigo-400 mb-1">${tSim("GLMM: Geclusterde Binaire Infectiekansen", "GLMM: Clustered Binary Infection Odds", "GLMM: Probabilidades Binarias Agrupadas de Infección")}</h3>
+        <p class="text-xs text-slate-300 mb-3">${tSim("Elk ziekenhuis heeft een eigen S-curve door de variatie in willekeurig intercept $u_{0j}$ op logit-schaal.", "Each hospital exhibits its own S-curve due to random intercept variation $u_{0j}$ on the logit scale.", "Cada hospital tiene su propia curva S debido a la variación del intercepto aleatorio $u_{0j}$ en escala logit.")}</p>
         <div class="relative h-64 w-full">
           <canvas id="l16-canvas"></canvas>
         </div>
@@ -1018,14 +1043,15 @@ window.StatCharts = (function() {
     `;
     const ctx = document.getElementById("l16-canvas").getContext("2d");
     const hours = Array.from({ length: 30 }, (_, i) => 1 + i * 0.2);
+    const hourSuffix = tSim('u', 'h', 'h');
     currentChart = new Chart(ctx, {
       type: "line",
       data: {
-        labels: hours.map(h => h.toFixed(1) + 'u'),
+        labels: hours.map(h => h.toFixed(1) + hourSuffix),
         datasets: [
-          { label: "Afdeling Hoog Risico (u₀ = +1.1)", data: hours.map(h => 1 / (1 + Math.exp(-(-2.2 + 1.1 + 0.45 * h)))), borderColor: '#f43f5e', pointRadius: 0 },
-          { label: "Afdeling Gemiddeld (u₀ = 0.0)", data: hours.map(h => 1 / (1 + Math.exp(-(-2.2 + 0.45 * h)))), borderColor: '#38bdf8', borderWidth: 2.5, pointRadius: 0 },
-          { label: "Afdeling Laag Risico (u₀ = -1.2)", data: hours.map(h => 1 / (1 + Math.exp(-(-2.2 - 1.2 + 0.45 * h)))), borderColor: '#10b981', pointRadius: 0 }
+          { label: tSim("Afdeling Hoog Risico (u₀ = +1.1)", "High-Risk Ward (u₀ = +1.1)", "Sala de Alto Riesgo (u₀ = +1.1)"), data: hours.map(h => 1 / (1 + Math.exp(-(-2.2 + 1.1 + 0.45 * h)))), borderColor: '#f43f5e', pointRadius: 0 },
+          { label: tSim("Afdeling Gemiddeld (u₀ = 0.0)", "Average Ward (u₀ = 0.0)", "Sala Promedio (u₀ = 0.0)"), data: hours.map(h => 1 / (1 + Math.exp(-(-2.2 + 0.45 * h)))), borderColor: '#38bdf8', borderWidth: 2.5, pointRadius: 0 },
+          { label: tSim("Afdeling Laag Risico (u₀ = -1.2)", "Low-Risk Ward (u₀ = -1.2)", "Sala de Bajo Riesgo (u₀ = -1.2)"), data: hours.map(h => 1 / (1 + Math.exp(-(-2.2 - 1.2 + 0.45 * h)))), borderColor: '#10b981', pointRadius: 0 }
         ]
       },
       options: { responsive: true, maintainAspectRatio: false, scales: { x: { ticks: { color: '#94a3b8' } }, y: { ticks: { color: '#94a3b8', callback: v => (v * 100).toFixed(0) + '%' } } } }
@@ -1037,10 +1063,10 @@ window.StatCharts = (function() {
     container.innerHTML = `
       <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-700/60">
         <div class="flex items-center justify-between mb-2">
-          <h3 class="text-sm font-bold text-emerald-400">GAM: Niet-Lineaire Spline f(Temperatuur)</h3>
-          <span class="text-xs text-slate-400">U-vormig Energieverbruik</span>
+          <h3 class="text-sm font-bold text-emerald-400">${tSim("GAM: Niet-Lineaire Spline f(Temperatuur)", "GAM: Non-Linear Spline f(Temperature)", "GAM: Spline No Lineal f(Temperatura)")}</h3>
+          <span class="text-xs text-slate-400">${tSim("U-vormig Energieverbruik", "U-Shaped Energy Demand", "Consumo de Energía en U")}</span>
         </div>
-        <p class="text-xs text-slate-300 mb-3">Vrije vorm zonder geforceerde $X^2$ termen. Gladheid gereguleerd door $\\lambda$.</p>
+        <p class="text-xs text-slate-300 mb-3">${tSim("Vrije vorm zonder geforceerde $X^2$ termen. Gladheid gereguleerd door $\\lambda$.", "Flexible non-parametric curve without forced $X^2$ terms. Smoothness governed by $\\lambda$.", "Forma flexible sin términos $X^2$ forzados. Suavidad regulada por $\\lambda$.")}</p>
         <div class="relative h-64 w-full">
           <canvas id="l17-canvas"></canvas>
         </div>
@@ -1054,8 +1080,8 @@ window.StatCharts = (function() {
       data: {
         labels: temps.map(t => `${t}°C`),
         datasets: [
-          { label: "Geobserveerde Data", data: energy, type: "scatter", backgroundColor: '#fbbf24', pointRadius: 5 },
-          { label: "GAM Spline Pasvorm f(X)", data: energy, borderColor: '#10b981', tension: 0.4, borderWidth: 3, pointRadius: 0 }
+          { label: tSim("Geobserveerde Data", "Observed Data", "Datos Observados"), data: energy, type: "scatter", backgroundColor: '#fbbf24', pointRadius: 5 },
+          { label: tSim("GAM Spline Pasvorm f(X)", "GAM Spline Fit f(X)", "Ajuste Spline GAM f(X)"), data: energy, borderColor: '#10b981', tension: 0.4, borderWidth: 3, pointRadius: 0 }
         ]
       },
       options: { responsive: true, maintainAspectRatio: false, scales: { x: { ticks: { color: '#94a3b8' } }, y: { ticks: { color: '#94a3b8' } } } }
@@ -1066,8 +1092,8 @@ window.StatCharts = (function() {
   function renderLevel18(container) {
     container.innerHTML = `
       <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-700/60">
-        <h3 class="text-sm font-bold text-sky-400 mb-1">Kaplan-Meier Overlevingscurven</h3>
-        <p class="text-xs text-slate-300 mb-3">Trapvormige cumulatieve overlevingskans met rechtscensurering. Hazard Ratio = 0.58 (p = 0.003).</p>
+        <h3 class="text-sm font-bold text-sky-400 mb-1">${tSim("Kaplan-Meier Overlevingscurven", "Kaplan-Meier Survival Curves", "Curvas de Supervivencia de Kaplan-Meier")}</h3>
+        <p class="text-xs text-slate-300 mb-3">${tSim("Trapvormige cumulatieve overlevingskans met rechtscensurering. Hazard Ratio = 0.58 (p = 0.003).", "Step-function cumulative survival probability with right-censoring. Hazard Ratio = 0.58 (p = 0.003).", "Probabilidad de supervivencia acumulada escalonada con censura por derecha. Razón de Riesgo = 0.58 (p = 0.003).")}</p>
         <div class="relative h-64 w-full">
           <canvas id="l18-canvas"></canvas>
         </div>
@@ -1077,13 +1103,14 @@ window.StatCharts = (function() {
     const months = [0, 6, 12, 18, 24, 30, 36, 42, 48, 54, 60];
     const survControl = [1.0, 0.90, 0.78, 0.65, 0.52, 0.44, 0.38, 0.31, 0.26, 0.24, 0.22];
     const survTreatment = [1.0, 0.95, 0.89, 0.82, 0.76, 0.69, 0.64, 0.58, 0.54, 0.50, 0.48];
+    const monthSuffix = tSim('mnd', 'mo', 'm');
     currentChart = new Chart(ctx, {
       type: "line",
       data: {
-        labels: months.map(m => `${m} mnd`),
+        labels: months.map(m => `${m} ${monthSuffix}`),
         datasets: [
-          { label: "Nieuwe Therapie (HR = 0.58)", data: survTreatment, borderColor: '#10b981', stepped: true, borderWidth: 2.5 },
-          { label: "Standaardzorg (Controle)", data: survControl, borderColor: '#f43f5e', stepped: true, borderWidth: 2.5 }
+          { label: tSim("Nieuwe Therapie (HR = 0.58)", "New Therapy (HR = 0.58)", "Nueva Terapia (HR = 0.58)"), data: survTreatment, borderColor: '#10b981', stepped: true, borderWidth: 2.5 },
+          { label: tSim("Standaardzorg (Controle)", "Standard Care (Control)", "Cuidado Estándar (Control)"), data: survControl, borderColor: '#f43f5e', stepped: true, borderWidth: 2.5 }
         ]
       },
       options: { responsive: true, maintainAspectRatio: false, scales: { x: { ticks: { color: '#94a3b8' } }, y: { min: 0, max: 1, ticks: { color: '#94a3b8', callback: v => (v * 100) + '%' } } } }
@@ -1094,8 +1121,8 @@ window.StatCharts = (function() {
   function renderLevel19(container) {
     container.innerHTML = `
       <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-700/60">
-        <h3 class="text-sm font-bold text-amber-400 mb-1">Bayesiaanse Update: Prior ➔ Likelihood ➔ Posterior</h3>
-        <p class="text-xs text-slate-300 mb-3">P(θ | Data) ∝ P(Data | θ) · P(θ). De posterior is de gewogen synthese van eerdere kennis en nieuwe data.</p>
+        <h3 class="text-sm font-bold text-amber-400 mb-1">${tSim("Bayesiaanse Update: Prior ➔ Likelihood ➔ Posterior", "Bayesian Update: Prior ➔ Likelihood ➔ Posterior", "Actualización Bayesiana: Previo ➔ Verosimilitud ➔ Posterior")}</h3>
+        <p class="text-xs text-slate-300 mb-3">${tSim("P(θ | Data) ∝ P(Data | θ) · P(θ). De posterior is de gewogen synthese van eerdere kennis en nieuwe data.", "P(θ | Data) ∝ P(Data | θ) · P(θ). The posterior synthesizes prior knowledge and new data.", "P(θ | Datos) ∝ P(Datos | θ) · P(θ). El posterior es la síntesis del conocimiento previo y nuevos datos.")}</p>
         <div class="relative h-64 w-full">
           <canvas id="l19-canvas"></canvas>
         </div>
@@ -1108,9 +1135,9 @@ window.StatCharts = (function() {
       data: {
         labels: theta.map(t => t.toFixed(2)),
         datasets: [
-          { label: "Prior P(θ)", data: theta.map(t => Math.exp(-0.5 * Math.pow((t - 0.2) / 0.1, 2))), borderColor: '#94a3b8', borderDash: [5, 5], pointRadius: 0 },
-          { label: "Likelihood P(Data | θ)", data: theta.map(t => Math.exp(-0.5 * Math.pow((t - 0.55) / 0.08, 2))), borderColor: '#38bdf8', pointRadius: 0 },
-          { label: "Posterior P(θ | Data)", data: theta.map(t => Math.exp(-0.5 * Math.pow((t - 0.42) / 0.06, 2))), borderColor: '#10b981', fill: true, backgroundColor: 'rgba(16,185,129,0.2)', borderWidth: 3, pointRadius: 0 }
+          { label: tSim("Prior P(θ)", "Prior P(θ)", "Previo P(θ)"), data: theta.map(t => Math.exp(-0.5 * Math.pow((t - 0.2) / 0.1, 2))), borderColor: '#94a3b8', borderDash: [5, 5], pointRadius: 0 },
+          { label: tSim("Likelihood P(Data | θ)", "Likelihood P(Data | θ)", "Verosimilitud P(Datos | θ)"), data: theta.map(t => Math.exp(-0.5 * Math.pow((t - 0.55) / 0.08, 2))), borderColor: '#38bdf8', pointRadius: 0 },
+          { label: tSim("Posterior P(θ | Data)", "Posterior P(θ | Data)", "Posterior P(θ | Datos)"), data: theta.map(t => Math.exp(-0.5 * Math.pow((t - 0.42) / 0.06, 2))), borderColor: '#10b981', fill: true, backgroundColor: 'rgba(16,185,129,0.2)', borderWidth: 3, pointRadius: 0 }
         ]
       },
       options: { responsive: true, maintainAspectRatio: false, scales: { x: { ticks: { color: '#94a3b8' } }, y: { display: false } } }
@@ -1121,8 +1148,8 @@ window.StatCharts = (function() {
   function renderLevel20(container) {
     container.innerHTML = `
       <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-700/60">
-        <h3 class="text-sm font-bold text-purple-400 mb-1">Hamiltoniaanse MCMC Traceplot & Sampling</h3>
-        <p class="text-xs text-slate-300 mb-3">Ketting wandelt representatief door het posterior landschap (R̂ = 1.002, stationaire 'harige rups').</p>
+        <h3 class="text-sm font-bold text-purple-400 mb-1">${tSim("Hamiltoniaanse MCMC Traceplot & Sampling", "Hamiltonian MCMC Traceplot & Sampling", "Gráfico de Trazas y Muestreo MCMC Hamiltoniano")}</h3>
+        <p class="text-xs text-slate-300 mb-3">${tSim("Ketting wandelt representatief door het posterior landschap (R̂ = 1.002, stationaire 'harige rups').", "Chain traverses posterior stationary and well-mixed (R̂ = 1.002, 'fuzzy caterpillar').", "La cadena recorre el espacio posterior de forma estacionaria (R̂ = 1.002, 'oruga peluda').")}</p>
         <div class="relative h-64 w-full">
           <canvas id="l20-canvas"></canvas>
         </div>
@@ -1134,9 +1161,9 @@ window.StatCharts = (function() {
       type: "line",
       data: {
         labels: samples.map((_, i) => `${i}`),
-        datasets: [{ label: "Posterior Parameter θ (MCMC Iteratie)", data: samples, borderColor: '#c084fc', borderWidth: 1.5, pointRadius: 2 }]
+        datasets: [{ label: tSim("Posterior Parameter θ (MCMC Iteratie)", "Posterior Parameter θ (MCMC Iteration)", "Parámetro Posterior θ (Iteración MCMC)"), data: samples, borderColor: '#c084fc', borderWidth: 1.5, pointRadius: 2 }]
       },
-      options: { responsive: true, maintainAspectRatio: false, scales: { x: { title: { display: true, text: 'Iteratie', color: '#94a3b8' }, ticks: { color: '#94a3b8' } }, y: { ticks: { color: '#94a3b8' } } } }
+      options: { responsive: true, maintainAspectRatio: false, scales: { x: { title: { display: true, text: tSim('Iteratie', 'Iteration', 'Iteración'), color: '#94a3b8' }, ticks: { color: '#94a3b8' } }, y: { ticks: { color: '#94a3b8' } } } }
     });
   }
 
@@ -1146,15 +1173,15 @@ window.StatCharts = (function() {
       <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-700/60">
         <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
           <div>
-            <h3 class="text-sm font-bold text-sky-400">Gaussiaans Proces (GP): Posterior Onzekerheid</h3>
-            <p class="text-xs text-slate-300">Op elk meetpunt knijpt de band samen naar exact nul; daartussen groeit de onzekerheid.</p>
+            <h3 class="text-sm font-bold text-sky-400">${tSim("Gaussiaans Proces (GP): Posterior Onzekerheid", "Gaussian Process (GP): Posterior Uncertainty", "Proceso Gaussiano (GP): Incertidumbre Posterior")}</h3>
+            <p class="text-xs text-slate-300">${tSim("Op elk meetpunt knijpt de band samen naar exact nul; daartussen groeit de onzekerheid.", "At each observation point uncertainty contracts to zero; in between it expands.", "En cada observación la incertidumbre se contrae a cero; entre medias se expande.")}</p>
           </div>
           <div class="flex items-center gap-2">
             <button id="l21-add-pt-btn" class="px-2.5 py-1 bg-sky-600/30 hover:bg-sky-600 text-sky-300 hover:text-white rounded text-xs font-bold transition flex items-center gap-1">
-              <span>➕</span><span>Voeg Meetpunt Toe</span>
+              <span>➕</span><span>${tSim("Voeg Meetpunt Toe", "Add Observation", "Agregar Punto")}</span>
             </button>
             <button id="l21-reset-btn" class="px-2.5 py-1 bg-slate-800 text-slate-400 hover:text-white rounded text-xs font-semibold transition">
-              Reset
+              ${tSim("Reset", "Reset", "Restablecer")}
             </button>
           </div>
         </div>
@@ -1175,16 +1202,14 @@ window.StatCharts = (function() {
       { x: 8.2, y: 2.2 }
     ];
 
-    // RBF Kernel k(x, x') = sigma_f^2 * exp(-(x - x')^2 / (2 * lengthScale^2))
     const lengthScale = 1.3;
     const sigmaF2 = 3.0;
-    const noiseVar = 0.005; // Bijna 0 ruis zodat de band exact dichtknijpt
+    const noiseVar = 0.005;
 
     function rbfKernel(x1, x2) {
       return sigmaF2 * Math.exp(-Math.pow(x1 - x2, 2) / (2 * lengthScale * lengthScale));
     }
 
-    // Invert small matrix (up to 6x6) via Gauss-Jordan
     function invertMatrix(M) {
       const n = M.length;
       const A = M.map((row, i) => [...row, ...Array.from({ length: n }, (_, j) => i === j ? 1 : 0)]);
@@ -1204,7 +1229,6 @@ window.StatCharts = (function() {
 
     function computeGP() {
       const nObs = obsPoints.length;
-      // Kernel matrix K(X, X) + noise * I
       const K = [];
       for (let i = 0; i < nObs; i++) {
         K[i] = [];
@@ -1215,7 +1239,6 @@ window.StatCharts = (function() {
       const KInv = invertMatrix(K);
       const Y = obsPoints.map(p => p.y);
 
-      // Alpha = KInv * Y
       const alpha = new Array(nObs).fill(0);
       for (let i = 0; i < nObs; i++) {
         for (let j = 0; j < nObs; j++) {
@@ -1223,7 +1246,6 @@ window.StatCharts = (function() {
         }
       }
 
-      // Evalueer over grid x in [0, 10]
       const gridSteps = 50;
       const meanCurve = [];
       const upperBand = [];
@@ -1233,11 +1255,9 @@ window.StatCharts = (function() {
         const xStar = (s / gridSteps) * 10;
         const kStar = obsPoints.map(p => rbfKernel(xStar, p.x));
 
-        // Posterior mean: kStar^T * alpha
         let mu = 0;
         for (let i = 0; i < nObs; i++) mu += kStar[i] * alpha[i];
 
-        // Posterior variance: k(xStar, xStar) - kStar^T * KInv * kStar
         let v = 0;
         for (let i = 0; i < nObs; i++) {
           for (let j = 0; j < nObs; j++) {
@@ -1263,18 +1283,18 @@ window.StatCharts = (function() {
           type: "line",
           data: {
             datasets: [
-              { label: "Metingen (Data)", data: obsPoints, type: "scatter", backgroundColor: '#f43f5e', borderColor: '#ffffff', borderWidth: 2, pointRadius: 7 },
-              { label: "Bovengrens (95% CI)", data: upperBand, borderColor: 'rgba(56,189,248,0.4)', backgroundColor: 'rgba(56,189,248,0.18)', fill: '+1', pointRadius: 0, borderWidth: 1 },
-              { label: "Ondergrens (95% CI)", data: lowerBand, borderColor: 'rgba(56,189,248,0.4)', pointRadius: 0, borderWidth: 1 },
-              { label: "GP Posterior Verwachting", data: meanCurve, borderColor: '#38bdf8', borderWidth: 3, pointRadius: 0 }
+              { label: tSim("Metingen (Data)", "Observations (Data)", "Mediciones (Datos)"), data: obsPoints, type: "scatter", backgroundColor: '#f43f5e', borderColor: '#ffffff', borderWidth: 2, pointRadius: 7 },
+              { label: tSim("Bovengrens (95% CI)", "Upper Bound (95% CI)", "Límite Superior (IC 95%)"), data: upperBand, borderColor: 'rgba(56,189,248,0.4)', backgroundColor: 'rgba(56,189,248,0.18)', fill: '+1', pointRadius: 0, borderWidth: 1 },
+              { label: tSim("Ondergrens (95% CI)", "Lower Bound (95% CI)", "Límite Inferior (IC 95%)"), data: lowerBand, borderColor: 'rgba(56,189,248,0.4)', pointRadius: 0, borderWidth: 1 },
+              { label: tSim("GP Posterior Verwachting", "GP Posterior Mean", "Esperanza Posterior del GP"), data: meanCurve, borderColor: '#38bdf8', borderWidth: 3, pointRadius: 0 }
             ]
           },
           options: {
             responsive: true,
             maintainAspectRatio: false,
             scales: {
-              x: { type: 'linear', min: 0, max: 10, ticks: { color: '#94a3b8' }, title: { display: true, text: 'Input Domein (X)', color: '#64748b' } },
-              y: { min: -4.5, max: 4.5, ticks: { color: '#94a3b8' }, title: { display: true, text: 'GP Functie f(x)', color: '#64748b' } }
+              x: { type: 'linear', min: 0, max: 10, ticks: { color: '#94a3b8' }, title: { display: true, text: tSim('Input Domein (X)', 'Input Domain (X)', 'Dominio de Entrada (X)'), color: '#64748b' } },
+              y: { min: -4.5, max: 4.5, ticks: { color: '#94a3b8' }, title: { display: true, text: tSim('GP Functie f(x)', 'GP Function f(x)', 'Función GP f(x)'), color: '#64748b' } }
             }
           }
         });
@@ -1305,8 +1325,8 @@ window.StatCharts = (function() {
   function renderLevel22(container) {
     container.innerHTML = `
       <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-700/60">
-        <h3 class="text-sm font-bold text-emerald-400 mb-1">Causale do(X) Interventie in Hilbertruimte</h3>
-        <p class="text-xs text-slate-300 mb-3">Vergelijk de vertekende observationele associatie met de zuivere causale interventieverdeling in ℋ.</p>
+        <h3 class="text-sm font-bold text-emerald-400 mb-1">${tSim("Causale do(X) Interventie in Hilbertruimte", "Causal do(X) Intervention in Hilbert Space", "Intervención Causal do(X) en Espacio de Hilbert")}</h3>
+        <p class="text-xs text-slate-300 mb-3">${tSim("Vergelijk de vertekende observationele associatie met de zuivere causale interventieverdeling in ℋ.", "Contrast biased observational association with pure causal intervention distribution in ℋ.", "Compara la asociación observacional sesgada con la distribución de intervención causal en ℋ.")}</p>
         <div class="relative h-64 w-full">
           <canvas id="l22-canvas"></canvas>
         </div>
@@ -1317,7 +1337,7 @@ window.StatCharts = (function() {
       type: "bar",
       data: {
         labels: ['P(Y | X=0)', 'P(Y | X=1)', 'P(Y | do(X=0))', 'P(Y | do(X=1))'],
-        datasets: [{ label: "Effectgrootte", data: [4.2, 7.8, 5.0, 3.8], backgroundColor: ['#94a3b8', '#94a3b8', '#10b981', '#10b981'] }]
+        datasets: [{ label: tSim("Effectgrootte", "Effect Size", "Tamaño del Efecto"), data: [4.2, 7.8, 5.0, 3.8], backgroundColor: ['#94a3b8', '#94a3b8', '#10b981', '#10b981'] }]
       },
       options: { responsive: true, maintainAspectRatio: false, scales: { x: { ticks: { color: '#94a3b8' } }, y: { ticks: { color: '#94a3b8' } } } }
     });
@@ -1329,21 +1349,21 @@ window.StatCharts = (function() {
       <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-700/60">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-3">
           <div>
-            <label class="text-xs text-slate-300 block mb-1">Deterministische Drift (μ): <span id="l23-drift-val" class="font-bold text-amber-400">μ = +0.40</span></label>
+            <label class="text-xs text-slate-300 block mb-1">${tSim("Deterministische Drift (μ):", "Deterministic Drift (μ):", "Deriva Determinista (μ):")} <span id="l23-drift-val" class="font-bold text-amber-400">μ = +0.40</span></label>
             <input id="l23-drift-slider" type="range" min="-0.80" max="1.20" step="0.10" value="0.40" class="w-full accent-amber-500 cursor-pointer">
           </div>
           <div>
-            <label class="text-xs text-slate-300 block mb-1">Stochastische Diffusie (σ): <span id="l23-diff-val" class="font-bold text-sky-400">σ = 0.80</span></label>
+            <label class="text-xs text-slate-300 block mb-1">${tSim("Stochastische Diffusie (σ):", "Stochastic Diffusion (σ):", "Difusión Estocástica (σ):")} <span id="l23-diff-val" class="font-bold text-sky-400">σ = 0.80</span></label>
             <input id="l23-diff-slider" type="range" min="0.10" max="1.80" step="0.10" value="0.80" class="w-full accent-sky-500 cursor-pointer">
           </div>
         </div>
 
         <div class="flex items-center justify-between gap-2 mb-2">
           <div class="text-[11px] font-mono text-slate-300 bg-slate-800/80 px-2.5 py-1 rounded border border-slate-700">
-            Itô SDE: dX_t = μ dt + σ dB_t (Euler-Maruyama met Gaussische ruis)
+            ${tSim("Itô SDE: dX_t = μ dt + σ dB_t (Euler-Maruyama met Gaussische ruis)", "Itô SDE: dX_t = μ dt + σ dB_t (Euler-Maruyama with Gaussian noise)", "SDE de Itô: dX_t = μ dt + σ dB_t (Euler-Maruyama con ruido gaussiano)")}
           </div>
           <button id="l23-resim-btn" class="px-3 py-1 bg-amber-600/30 hover:bg-amber-600 text-amber-300 hover:text-white rounded text-xs font-bold transition flex items-center gap-1">
-            <span>⚡</span><span>Genereer Nieuwe Paden</span>
+            <span>⚡</span><span>${tSim("Genereer Nieuwe Paden", "Simulate New Paths", "Generar Nuevas Trayectorias")}</span>
           </button>
         </div>
 
@@ -1377,12 +1397,11 @@ window.StatCharts = (function() {
         let x = 0;
         const pts = [0];
         for (let i = 1; i < steps; i++) {
-          // Exacte Gaussische Euler-Maruyama stap: mu*dt + sigma*sqrt(dt)*Z
           x += mu * dt + sigma * Math.sqrt(dt) * gaussianRandom();
           pts.push(x);
         }
         pathDatasets.push({
-          label: `Pad ${p + 1}`,
+          label: `${tSim("Pad", "Path", "Trayectoria")} ${p + 1}`,
           data: pts,
           borderColor: colors[p],
           borderWidth: 1.8,
@@ -1390,10 +1409,9 @@ window.StatCharts = (function() {
         });
       }
 
-      // Voeg theoretische driftlijn toe (E[X_t] = mu * t)
       const driftLine = Array.from({ length: steps }, (_, i) => mu * (i * dt));
       pathDatasets.push({
-        label: "Verwachte Drift E[X_t] = μ·t",
+        label: tSim("Verwachte Drift E[X_t] = μ·t", "Expected Drift E[X_t] = μ·t", "Deriva Esperada E[X_t] = μ·t"),
         data: driftLine,
         borderColor: '#ffffff',
         borderDash: [5, 4],
@@ -1416,8 +1434,8 @@ window.StatCharts = (function() {
             responsive: true,
             maintainAspectRatio: false,
             scales: {
-              x: { ticks: { color: '#94a3b8' }, title: { display: true, text: 'Tijd t (seconden)', color: '#64748b' } },
-              y: { ticks: { color: '#94a3b8' }, title: { display: true, text: 'Toestand X_t', color: '#64748b' } }
+              x: { ticks: { color: '#94a3b8' }, title: { display: true, text: tSim('Tijd t (seconden)', 'Time t (seconds)', 'Tiempo t (segundos)'), color: '#64748b' } },
+              y: { ticks: { color: '#94a3b8' }, title: { display: true, text: tSim('Toestand X_t', 'State X_t', 'Estado X_t'), color: '#64748b' } }
             }
           }
         });
@@ -1441,14 +1459,14 @@ window.StatCharts = (function() {
         <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
           <div>
             <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-purple-500/20 text-purple-300 border border-purple-500/40 uppercase">
-              Theoretisch Apex • Manifold ℳ & Hilbertruimte ℋ
+              ${tSim("Theoretisch Apex • Manifold ℳ & Hilbertruimte ℋ", "Theoretical Apex • Manifold ℳ & Hilbert Space ℋ", "Ápex Teórico • Variedad ℳ y Espacio de Hilbert ℋ")}
             </span>
             <h3 class="text-base font-extrabold text-white mt-1">
-              Live SDE Simulatie op Riemannse Manifold met Rough Paths
+              ${tSim("Live SDE Simulatie op Riemannse Manifold met Rough Paths", "Live SDE Simulation on Riemannian Manifold with Rough Paths", "Simulación SDE en Vivo sobre Variedad Riemanniana con Trayectorias Rugosas")}
             </h3>
           </div>
           <div class="flex items-center gap-3">
-            <label class="text-xs text-slate-300">Hurst Roughness (H):</label>
+            <label class="text-xs text-slate-300">${tSim("Hurst Roughness (H):", "Hurst Roughness (H):", "Rugosidad de Hurst (H):")}</label>
             <input id="l24-hurst-slider" type="range" min="0.15" max="0.75" step="0.05" value="0.30" class="w-28 sm:w-36 accent-purple-500 cursor-pointer">
             <span id="l24-hurst-val" class="font-mono text-purple-400 font-bold text-xs">H = 0.30</span>
           </div>
@@ -1456,24 +1474,23 @@ window.StatCharts = (function() {
 
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-3 text-center">
           <div class="bg-slate-950/80 p-2 rounded-xl border border-slate-800">
-            <div class="text-[10px] text-slate-400">Ruimte-Geometrie</div>
-            <div class="text-xs font-bold text-purple-400 font-mono">Manifold ℳ (Kromming)</div>
+            <div class="text-[10px] text-slate-400">${tSim("Ruimte-Geometrie", "Spatial Geometry", "Geometría Espacial")}</div>
+            <div class="text-xs font-bold text-purple-400 font-mono">${tSim("Manifold ℳ (Kromming)", "Manifold ℳ (Curvature)", "Variedad ℳ (Curvatura)")}</div>
           </div>
           <div class="bg-slate-950/80 p-2 rounded-xl border border-slate-800">
-            <div class="text-[10px] text-slate-400">Driftgradiënt</div>
-            <div class="text-xs font-bold text-emerald-400 font-mono">∇_ℳ Φ (Potentiaalveld)</div>
+            <div class="text-[10px] text-slate-400">${tSim("Driftgradiënt", "Drift Gradient", "Gradiente de Deriva")}</div>
+            <div class="text-xs font-bold text-emerald-400 font-mono">${tSim("∇_ℳ Φ (Potentiaalveld)", "∇_ℳ Φ (Potential Field)", "∇_ℳ Φ (Campo Potencial)")}</div>
           </div>
           <div class="bg-slate-950/80 p-2 rounded-xl border border-slate-800">
-            <div class="text-[10px] text-slate-400">Ruisregime (Hurst H)</div>
-            <div id="l24-regime-display" class="text-xs font-bold text-rose-400 font-mono">Ruwe paden (H < 0.5)</div>
+            <div class="text-[10px] text-slate-400">${tSim("Ruisregime (Hurst H)", "Noise Regime (Hurst H)", "Régimen de Ruido (Hurst H)")}</div>
+            <div id="l24-regime-display" class="text-xs font-bold text-rose-400 font-mono">${tSim("Ruwe paden (H < 0.5: Terry Lyons)", "Rough paths (H < 0.5: Terry Lyons)", "Trayectorias rugosas (H < 0.5: Terry Lyons)")}</div>
           </div>
           <div class="bg-slate-950/80 p-2 rounded-xl border border-slate-800">
-            <div class="text-[10px] text-slate-400">Causale Toestand</div>
-            <div class="text-xs font-bold text-sky-400 font-mono">X_t ∈ ℋ (Hilbertruimte)</div>
+            <div class="text-[10px] text-slate-400">${tSim("Causale Toestand", "Causal State", "Estado Causal")}</div>
+            <div class="text-xs font-bold text-sky-400 font-mono">${tSim("X_t ∈ ℋ (Hilbertruimte)", "X_t ∈ ℋ (Hilbert Space)", "X_t ∈ ℋ (Espacio de Hilbert)")}</div>
           </div>
         </div>
 
-        <!-- Canvas voor interactieve stochastische flow op gekromde manifold -->
         <div class="relative w-full h-72 sm:h-80 bg-slate-950 rounded-xl border border-slate-800 overflow-hidden">
           <canvas id="l24-manifold-canvas" class="w-full h-full block"></canvas>
           <div class="absolute bottom-2 left-3 text-[10px] text-slate-400 font-mono bg-slate-900/80 px-2 py-1 rounded border border-slate-800 pointer-events-none">
@@ -1488,7 +1505,6 @@ window.StatCharts = (function() {
     const ctx = canvas.getContext("2d");
     const hurstSlider = document.getElementById("l24-hurst-slider");
 
-    // Stel canvas resolutie in
     function resizeCanvas() {
       const rect = canvas.getBoundingClientRect();
       canvas.width = rect.width * (window.devicePixelRatio || 1);
@@ -1498,23 +1514,22 @@ window.StatCharts = (function() {
     resizeCanvas();
 
     let hurst = 0.30;
-        hurstSlider.addEventListener("input", () => {
+    hurstSlider.addEventListener("input", () => {
       hurst = parseFloat(hurstSlider.value);
       document.getElementById("l24-hurst-val").innerText = `H = ${hurst.toFixed(2)}`;
       const regimeEl = document.getElementById("l24-regime-display");
       if (hurst < 0.48) {
-        regimeEl.innerText = "Ruwe paden (H < 0.5: Terry Lyons)";
+        regimeEl.innerText = tSim("Ruwe paden (H < 0.5: Terry Lyons)", "Rough paths (H < 0.5: Terry Lyons)", "Trayectorias rugosas (H < 0.5: Terry Lyons)");
         regimeEl.className = "text-xs font-bold text-rose-400 font-mono";
       } else if (Math.abs(hurst - 0.5) <= 0.02) {
-        regimeEl.innerText = "Klassiek Brownse (Ito / Markov)";
+        regimeEl.innerText = tSim("Klassiek Brownse (Ito / Markov)", "Classical Brownian (Itô / Markov)", "Browniano clásico (Itô / Markov)");
         regimeEl.className = "text-xs font-bold text-emerald-400 font-mono";
       } else {
-        regimeEl.innerText = "Fractioneel persistent (H > 0.5)";
+        regimeEl.innerText = tSim("Fractioneel persistent (H > 0.5)", "Fractional persistent (H > 0.5)", "Fraccional persistente (H > 0.5)");
         regimeEl.className = "text-xs font-bold text-sky-400 font-mono";
       }
     });
 
-    // 25 stochastische deeltjes die bewegen over een gekromd zadeloppervlak (hyperbolische manifold)
     const numParticles = 30;
     const particles = Array.from({ length: numParticles }, (_, i) => ({
       u: (Math.random() - 0.5) * 3,
@@ -1524,7 +1539,6 @@ window.StatCharts = (function() {
     }));
 
     function project3Dto2D(x, y, z, width, height) {
-      // 3D isometrische projectie van het gekromde oppervlak z = (x^2 - y^2) / 3
       const angle = 0.55;
       const cosA = Math.cos(angle);
       const sinA = Math.sin(angle);
@@ -1547,7 +1561,6 @@ window.StatCharts = (function() {
       ctx.fillStyle = "#070b12";
       ctx.fillRect(0, 0, w, h);
 
-      // 1. Teken het gekromde rooster van de Manifold ℳ (zadelvlak z = x^2 - y^2)
       ctx.strokeStyle = "rgba(168, 85, 247, 0.15)";
       ctx.lineWidth = 1;
 
@@ -1573,16 +1586,12 @@ window.StatCharts = (function() {
         ctx.stroke();
       }
 
-            // 2. Evolueer en teken de deeltjestrajecten volgens dX_t = ∇_ℳ Φ dt + σ dB_t^rough
-      // Hyperbolische zadelmanifold: Phi(u, v) = (u^2 - v^2) * 0.18
-      // Gradient: dPhi/du = +0.36*u (dalend naar 0 in u-as), dPhi/dv = -0.36*v (afglijdend van zadel in v-as)
       const memoryRho = Math.max(-0.6, Math.min(0.6, Math.pow(2, 2 * hurst - 1) - 1));
 
       particles.forEach(pt => {
         const gradU = -0.015 * pt.u;
         const gradV = 0.015 * pt.v;
 
-        // Ruwe ruis met fractionele autocorrelatie (Terry Lyons Rough Path / Fractional Brownian)
         const roughnessFactor = Math.pow(0.08, hurst);
         const rawNoiseU = gaussianRandom() * roughnessFactor;
         const rawNoiseV = gaussianRandom() * roughnessFactor;
@@ -1593,7 +1602,6 @@ window.StatCharts = (function() {
         pt.u += gradU + pt.prevNoiseU;
         pt.v += gradV + pt.prevNoiseV;
 
-        // Wrap around als deeltjes ontsnappen
         if (Math.abs(pt.u) > 3.2 || Math.abs(pt.v) > 3.2) {
           pt.u = (Math.random() - 0.5) * 2;
           pt.v = (Math.random() - 0.5) * 2;
@@ -1606,7 +1614,6 @@ window.StatCharts = (function() {
         pt.history.push(screenPos);
         if (pt.history.length > 25) pt.history.shift();
 
-        // Teken trajectory trail
         if (pt.history.length > 1) {
           ctx.beginPath();
           ctx.strokeStyle = pt.color;
@@ -1618,7 +1625,6 @@ window.StatCharts = (function() {
           ctx.stroke();
         }
 
-        // Deeltjeskop
         ctx.fillStyle = pt.color;
         ctx.beginPath();
         ctx.arc(screenPos.x, screenPos.y, 3.5, 0, Math.PI * 2);

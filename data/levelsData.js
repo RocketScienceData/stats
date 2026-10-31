@@ -1,227 +1,587 @@
-// Statistiek Leerplatform - Level Data & Didactische Inhoud (Levels 1 t/m 24)
-// Van de Fundamenten tot het Ultieme Apex:
-// Infinite-Dimensional Non-parametric Bayesian SDEs on Manifolds with Rough Paths & Causal Hilbert Spaces
+// levelsData.js - Data voor alle 24 niveaus van het statistiek curriculum
+// Bevat casussen, conceptuele theorie, interactieve simulator data en quizzen.
+// Ondersteunt volledige meertaligheid (NL/EN/ES) en adaptieve intake diagnostiek.
 
 window.ADAPTIVE_ASSESSMENT = [
   {
-    id: "q1",
-    question: "Stel: je analyseert de wachttijden van spoedeisende hulp patiënten. De meeste patiënten wachten 10 minuten, maar een paar wachten 6 uur. De directie wil één betrouwbaar centrumgetal rapporteren. Welk getal adviseer je?",
-    question_en: "Suppose you analyze Emergency Room patient wait times. Most patients wait 10 minutes, but a few wait 6 hours. Hospital management wants a single reliable central tendency figure. What metric do you recommend?",
-    question_es: "Supón que analizas los tiempos de espera de pacientes en Urgencias. La mayoría espera 10 minutos, pero unos pocos esperan 6 horas. La dirección solicita una sola métrica de tendencia central fiable. ¿Cuál recomiendas?",
-    options: [
-      { text: "Het rekenkundig gemiddelde, want dat gebruikt alle observaties zonder informatieverlies", score: 0, feedback: "Het rekenkundig gemiddelde wordt enorm opgeblazen door de 6-uur uitschieters en vertekent de typische ervaring." },
-      { text: "De mediaan, omdat deze robuust is tegen extreme asymmetrische uitschieters", score: 2, feedback: "Uitstekend! De mediaan splitst de populatie zuiver op het 50e percentiel, ongeacht de staartlengte." },
-      { text: "De modus, omdat de wachttijd die het vaakst voorkomt (10 min) de hoogste kansdichtheid heeft voor een binnenkomende patiënt", score: 0, feedback: "De modus negeert de gehele spreiding en de levensbedreigende vertragingen in de rechterstaart." }
+    "id": "q1",
+    "question": "Stel: je analyseert de wachttijden van spoedeisende hulp patiënten. De meeste patiënten wachten 10 minuten, maar een paar wachten 6 uur. De directie wil één betrouwbaar centrumgetal rapporteren. Welk getal adviseer je?",
+    "question_en": "Suppose you analyze Emergency Room patient wait times. Most patients wait 10 minutes, but a few wait 6 hours. Hospital management wants a single reliable central tendency figure. What metric do you recommend?",
+    "question_es": "Supón que analizas los tiempos de espera de pacientes en Urgencias. La mayoría espera 10 minutos, pero unos pocos esperan 6 horas. La dirección solicita una sola métrica de tendencia central fiable. ¿Cuál recomiendas?",
+    "options": [
+      {
+        "text": "Het rekenkundig gemiddelde, want dat gebruikt alle observaties zonder informatieverlies",
+        "score": 0,
+        "feedback": "Het rekenkundig gemiddelde wordt enorm opgeblazen door de 6-uur uitschieters en vertekent de typische ervaring."
+      },
+      {
+        "text": "De mediaan, omdat deze robuust is tegen extreme asymmetrische uitschieters",
+        "score": 2,
+        "feedback": "Uitstekend! De mediaan splitst de populatie zuiver op het 50e percentiel, ongeacht de staartlengte."
+      },
+      {
+        "text": "De modus, omdat de wachttijd die het vaakst voorkomt (10 min) de hoogste kansdichtheid heeft voor een binnenkomende patiënt",
+        "score": 0,
+        "feedback": "De modus negeert de gehele spreiding en de levensbedreigende vertragingen in de rechterstaart."
+      }
     ],
-    options_en: [
-      { text: "The arithmetic mean, because it incorporates all data points without information loss", score: 0, feedback: "The mean is heavily distorted by the 6-hour outlier patients and misrepresents typical wait time." },
-      { text: "The median, because it is robust against extreme skewed outliers", score: 2, feedback: "Excellent! The median provides an unskewed 50th percentile view of the typical patient." },
-      { text: "The mode, because the most frequent wait time (10 min) represents peak probability density for an incoming patient", score: 0, feedback: "The mode ignores the overall distribution and the severe clinical delays in the right tail." }
+    "options_en": [
+      {
+        "text": "The arithmetic mean, because it incorporates all data points without information loss",
+        "score": 0,
+        "feedback": "The mean is heavily distorted by the 6-hour outlier patients and misrepresents typical wait time."
+      },
+      {
+        "text": "The median, because it is robust against extreme skewed outliers",
+        "score": 2,
+        "feedback": "Excellent! The median provides an unskewed 50th percentile view of the typical patient."
+      },
+      {
+        "text": "The mode, because the most frequent wait time (10 min) represents peak probability density for an incoming patient",
+        "score": 0,
+        "feedback": "The mode ignores the overall distribution and the severe clinical delays in the right tail."
+      }
     ],
-    options_es: [
-      { text: "La media aritmética, ya que utiliza todas las observaciones sin pérdida de información", score: 0, feedback: "La media aritmética se infla desproporcionadamente por los valores atípicos de 6 horas." },
-      { text: "La mediana, porque es robusta frente a valores atípicos asimétricos extremos", score: 2, feedback: "¡Excelente! La mediana parte la muestra limpiamente en el percentil 50 sin sesgo de cola." },
-      { text: "La moda, porque el tiempo de espera más frecuente (10 min) representa la mayor densidad de probabilidad para un paciente", score: 0, feedback: "La moda descarta toda la dispersión y la gravedad de las esperas prolongadas en la cola derecha." }
+    "options_es": [
+      {
+        "text": "La media aritmética, ya que utiliza todas las observaciones sin pérdida de información",
+        "score": 0,
+        "feedback": "La media aritmética se infla desproporcionadamente por los valores atípicos de 6 horas."
+      },
+      {
+        "text": "La mediana, porque es robusta frente a valores atípicos asimétricos extremos",
+        "score": 2,
+        "feedback": "¡Excelente! La mediana parte la muestra limpiamente en el percentil 50 sin sesgo de cola."
+      },
+      {
+        "text": "La moda, porque el tiempo de espera más frecuente (10 min) representa la mayor densidad de probabilidad para un paciente",
+        "score": 0,
+        "feedback": "La moda descarta toda la dispersión y la gravedad de las esperas prolongadas en la cola derecha."
+      }
     ],
-    domain: "fundamenten"
+    "domain": "fundamenten"
   },
   {
-    id: "q2",
-    question: "Wat gebeurt er met de standaardfout (SE = σ / √N) van een gemiddelde als je de steekproefomvang N verviervoudigt (bv. van 25 naar 100)?",
-    question_en: "What happens to the Standard Error (SE = σ / √N) of a sample mean if you quadruple sample size N (e.g. from 25 to 100)?",
-    question_es: "¿Qué le ocurre al Error Estándar (SE = σ / √N) de una media muestral si cuadruplicas el tamaño de muestra N (ej. de 25 a 100)?",
-    options: [
-      { text: "De foutmarge halveert (wordt 2x zo klein, want √4 = 2)", score: 2, feedback: "Exact! Wet van de afnemende meeropbrengst bij steekproeftrekking." },
-      { text: "De foutmarge wordt 4x zo klein, omdat de precisie recht evenredig toeneemt met de steekproefgrootte", score: 0, feedback: "Klassieke lineaire denkval: vanwege de wortel in de noemer deelt men door √4 = 2, niet door 4." },
-      { text: "De foutmarge wordt 16x zo klein, omdat de variantiereductie kwadratisch schaalt met de steekproefomvang", score: 0, feedback: "Verwarring tussen variantie en standaardafwijking: de standaardfout deelt door √N, niet door N²." }
+    "id": "q2",
+    "question": "Wat gebeurt er met de standaardfout (SE = σ / √N) van een gemiddelde als je de steekproefomvang N verviervoudigt (bv. van 25 naar 100)?",
+    "question_en": "What happens to the Standard Error (SE = σ / √N) of a sample mean if you quadruple sample size N (e.g. from 25 to 100)?",
+    "question_es": "¿Qué le ocurre al Error Estándar (SE = σ / √N) de una media muestral si cuadruplicas el tamaño de muestra N (ej. de 25 a 100)?",
+    "options": [
+      {
+        "text": "De foutmarge halveert (wordt 2x zo klein, want √4 = 2)",
+        "score": 2,
+        "feedback": "Exact! Wet van de afnemende meeropbrengst bij steekproeftrekking."
+      },
+      {
+        "text": "De foutmarge wordt 4x zo klein, omdat de precisie recht evenredig toeneemt met de steekproefgrootte",
+        "score": 0,
+        "feedback": "Klassieke lineaire denkval: vanwege de wortel in de noemer deelt men door √4 = 2, niet door 4."
+      },
+      {
+        "text": "De foutmarge wordt 16x zo klein, omdat de variantiereductie kwadratisch schaalt met de steekproefomvang",
+        "score": 0,
+        "feedback": "Verwarring tussen variantie en standaardafwijking: de standaardfout deelt door √N, niet door N²."
+      }
     ],
-    options_en: [
-      { text: "The margin of error halves (becomes 2x smaller, because √4 = 2)", score: 2, feedback: "Exact! Law of diminishing returns in empirical sampling." },
-      { text: "The margin of error becomes 4x smaller, because precision scales linearly with sample size", score: 0, feedback: "Classic linear trap: due to the square root in the denominator, you divide by √4 = 2, not 4." },
-      { text: "The margin of error becomes 16x smaller, because variance reduction scales quadratically with sample size", score: 0, feedback: "Confusion between variance and standard error: standard error scales with 1/√N, not 1/N²." }
+    "options_en": [
+      {
+        "text": "The margin of error halves (becomes 2x smaller, because √4 = 2)",
+        "score": 2,
+        "feedback": "Exact! Law of diminishing returns in empirical sampling."
+      },
+      {
+        "text": "The margin of error becomes 4x smaller, because precision scales linearly with sample size",
+        "score": 0,
+        "feedback": "Classic linear trap: due to the square root in the denominator, you divide by √4 = 2, not 4."
+      },
+      {
+        "text": "The margin of error becomes 16x smaller, because variance reduction scales quadratically with sample size",
+        "score": 0,
+        "feedback": "Confusion between variance and standard error: standard error scales with 1/√N, not 1/N²."
+      }
     ],
-    options_es: [
-      { text: "El margen de error se reduce a la mitad (2 veces menor, porque √4 = 2)", score: 2, feedback: "¡Exacto! Ley de rendimientos decrecientes en el muestreo empírico." },
-      { text: "El margen de error se reduce 4 veces, porque la precisión escala linealmente con la muestra", score: 0, feedback: "Trampa clásica de proporcionalidad lineal: por la raíz en el denominador, se divide por √4 = 2, no por 4." },
-      { text: "El margen de error se reduce 16 veces, porque la reducción de varianza escala cuadráticamente con la muestra", score: 0, feedback: "Confusión entre varianza y error estándar: el error estándar divide por √N, no por N²." }
+    "options_es": [
+      {
+        "text": "El margen de error se reduce a la mitad (2 veces menor, porque √4 = 2)",
+        "score": 2,
+        "feedback": "¡Exacto! Ley de rendimientos decrecientes en el muestreo empírico."
+      },
+      {
+        "text": "El margen de error se reduce 4 veces, porque la precisión escala linealmente con la muestra",
+        "score": 0,
+        "feedback": "Trampa clásica de proporcionalidad lineal: por la raíz en el denominador, se divide por √4 = 2, no por 4."
+      },
+      {
+        "text": "El margen de error se reduce 16 veces, porque la reducción de varianza escala cuadráticamente con la muestra",
+        "score": 0,
+        "feedback": "Confusión entre varianza y error estándar: el error estándar divide por √N, no por N²."
+      }
     ],
-    domain: "fundamenten"
+    "domain": "fundamenten"
   },
   {
-    id: "q3",
-    question: "Een farmaceutisch onderzoek met N = 200.000 patiënten vindt een bloeddrukdaling van 0.3 mmHg met p = 0.00004. Wat concludeer je?",
-    question_en: "A clinical trial with N = 200,000 patients discovers a blood pressure decrease of 0.3 mmHg with p = 0.00004. What is your conclusion?",
-    question_es: "Un ensayo clínico con N = 200.000 pacientes halla una reducción de presión arterial de 0,3 mmHg con p = 0,00004. ¿Cuál es tu conclusión?",
-    options: [
-      { text: "Het medicijn is een revolutionaire doorbraak omdat p zo minuscuul klein is", score: 0, feedback: "Pas op: p-waarde meet alleen bewijs tegen toeval, niet de praktische relevantie!" },
-      { text: "Het effect is statistisch significant maar klinisch volstrekt verwaarloosbaar (0.3 mmHg is niet merkbaar)", score: 3, feedback: "Heel scherp! Bij gigantische N worden zelfs triviale effecten significant." },
-      { text: "De nulhypothese kan formeel niet verworpen worden omdat het effect onder de biologische ruisgrens van 2 mmHg valt", score: 0, feedback: "Valkuil: H0 (Δ = 0) wordt statistisch wél overtuigend verworpen, maar de effectgrootte mist elke therapeutische waarde." }
+    "id": "q3",
+    "question": "Een farmaceutisch onderzoek met N = 200.000 patiënten vindt een bloeddrukdaling van 0.3 mmHg met p = 0.00004. Wat concludeer je?",
+    "question_en": "A clinical trial with N = 200,000 patients discovers a blood pressure decrease of 0.3 mmHg with p = 0.00004. What is your conclusion?",
+    "question_es": "Un ensayo clínico con N = 200.000 pacientes halla una reducción de presión arterial de 0,3 mmHg con p = 0,00004. ¿Cuál es tu conclusión?",
+    "options": [
+      {
+        "text": "Het medicijn is een revolutionaire doorbraak omdat p zo minuscuul klein is",
+        "score": 0,
+        "feedback": "Pas op: p-waarde meet alleen bewijs tegen toeval, niet de praktische relevantie!"
+      },
+      {
+        "text": "Het effect is statistisch significant maar klinisch volstrekt verwaarloosbaar (0.3 mmHg is niet merkbaar)",
+        "score": 3,
+        "feedback": "Heel scherp! Bij gigantische N worden zelfs triviale effecten significant."
+      },
+      {
+        "text": "De nulhypothese kan formeel niet verworpen worden omdat het effect onder de biologische ruisgrens van 2 mmHg valt",
+        "score": 0,
+        "feedback": "Valkuil: H0 (Δ = 0) wordt statistisch wél overtuigend verworpen, maar de effectgrootte mist elke therapeutische waarde."
+      }
     ],
-    options_en: [
-      { text: "The drug is a revolutionary breakthrough because p is infinitesimally small", score: 0, feedback: "Caution: p-values only measure evidence against chance, not practical relevance!" },
-      { text: "The effect is statistically significant but clinically negligible (0.3 mmHg is unnoticeable)", score: 3, feedback: "Spot on! With massive sample size N, even trivial noise effects become significant." },
-      { text: "The null hypothesis cannot formally be rejected because the effect lies below the 2 mmHg biological noise threshold", score: 0, feedback: "Trap: H0 (Δ = 0) is formally rejected (p < 0.05), yet statistical rejection does not confer clinical importance." }
+    "options_en": [
+      {
+        "text": "The drug is a revolutionary breakthrough because p is infinitesimally small",
+        "score": 0,
+        "feedback": "Caution: p-values only measure evidence against chance, not practical relevance!"
+      },
+      {
+        "text": "The effect is statistically significant but clinically negligible (0.3 mmHg is unnoticeable)",
+        "score": 3,
+        "feedback": "Spot on! With massive sample size N, even trivial noise effects become significant."
+      },
+      {
+        "text": "The null hypothesis cannot formally be rejected because the effect lies below the 2 mmHg biological noise threshold",
+        "score": 0,
+        "feedback": "Trap: H0 (Δ = 0) is formally rejected (p < 0.05), yet statistical rejection does not confer clinical importance."
+      }
     ],
-    options_es: [
-      { text: "El fármaco es un avance revolucionario porque el valor p es diminuto", score: 0, feedback: "Cuidado: el valor p solo mide evidencia contra el azar, no relevancia práctica." },
-      { text: "El efecto es estadísticamente significativo pero clínicamente despreciable (0,3 mmHg no es perceptible)", score: 3, feedback: "¡Muy agudo! Con tamaños de muestra masivos, hasta el ruido más trivial resulta significativo." },
-      { text: "La hipótesis nula no puede rechazarse formalmente porque el efecto está por debajo del umbral biológico de 2 mmHg", score: 0, feedback: "Trampa común: H0 se rechaza con rotundidad estadística (p < 0.05), pero la magnitud carece de impacto terapéutico." }
+    "options_es": [
+      {
+        "text": "El fármaco es un avance revolucionario porque el valor p es diminuto",
+        "score": 0,
+        "feedback": "Cuidado: el valor p solo mide evidencia contra el azar, no relevancia práctica."
+      },
+      {
+        "text": "El efecto es estadísticamente significativo pero clínicamente despreciable (0,3 mmHg no es perceptible)",
+        "score": 3,
+        "feedback": "¡Muy agudo! Con tamaños de muestra masivos, hasta el ruido más trivial resulta significativo."
+      },
+      {
+        "text": "La hipótesis nula no puede rechazarse formalmente porque el efecto está por debajo del umbral biológico de 2 mmHg",
+        "score": 0,
+        "feedback": "Trampa común: H0 se rechaza con rotundidad estadística (p < 0.05), pero la magnitud carece de impacto terapéutico."
+      }
     ],
-    domain: "fundamenten"
+    "domain": "fundamenten"
   },
   {
-    id: "q4",
-    question: "In een regressiemodel voeg je 4 volstrekt willekeurige toevalsgetallen toe als extra voorspellers. Wat gebeurt er gegarandeerd met de gewone R² en de Gecorrigeerde R² (Adjusted R²)?",
-    question_en: "In a regression model, you add 4 completely random noise variables as additional predictors. What is guaranteed to happen to regular R² and Adjusted R²?",
-    question_es: "En un modelo de regresión añades 4 variables aleatorias de puro ruido como predictores. ¿Qué ocurrirá con certeza con el R² ordinario y el R² Ajustado?",
-    options: [
-      { text: "Gewone R² blijft strikt constant omdat de toevalsfactoren populatiecorrelatie nul hebben; Adjusted R² stijgt licht", score: 0, feedback: "Niet juist. OLS modelleert altijd steekproefruis, waardoor de gewone R² gegarandeerd stijgt of gelijk blijft." },
-      { text: "Gewone R² stijgt of blijft gelijk; Adjusted R² daalt omdat toeval wordt bestraft", score: 3, feedback: "Haarscherp! Adjusted R² beschermt tegen schijnverbetering door ruis." },
-      { text: "Zowel de gewone R² als de Adjusted R² stijgen licht, omdat elke extra variabele de residuele kwadratensom (RSS) wiskundig verlaagt", score: 0, feedback: "RSS daalt, maar de strafterm voor vrijheidsgraden in Adjusted R² weegt zwaarder dan de toevallige ruiswinst." }
+    "id": "q4",
+    "question": "In een regressiemodel voeg je 4 volstrekt willekeurige toevalsgetallen toe als extra voorspellers. Wat gebeurt er gegarandeerd met de gewone R² en de Gecorrigeerde R² (Adjusted R²)?",
+    "question_en": "In a regression model, you add 4 completely random noise variables as additional predictors. What is guaranteed to happen to regular R² and Adjusted R²?",
+    "question_es": "En un modelo de regresión añades 4 variables aleatorias de puro ruido como predictores. ¿Qué ocurrirá con certeza con el R² ordinario y el R² Ajustado?",
+    "options": [
+      {
+        "text": "Gewone R² blijft strikt constant omdat de toevalsfactoren populatiecorrelatie nul hebben; Adjusted R² stijgt licht",
+        "score": 0,
+        "feedback": "Niet juist. OLS modelleert altijd steekproefruis, waardoor de gewone R² gegarandeerd stijgt of gelijk blijft."
+      },
+      {
+        "text": "Gewone R² stijgt of blijft gelijk; Adjusted R² daalt omdat toeval wordt bestraft",
+        "score": 3,
+        "feedback": "Haarscherp! Adjusted R² beschermt tegen schijnverbetering door ruis."
+      },
+      {
+        "text": "Zowel de gewone R² als de Adjusted R² stijgen licht, omdat elke extra variabele de residuele kwadratensom (RSS) wiskundig verlaagt",
+        "score": 0,
+        "feedback": "RSS daalt, maar de strafterm voor vrijheidsgraden in Adjusted R² weegt zwaarder dan de toevallige ruiswinst."
+      }
     ],
-    options_en: [
-      { text: "Ordinary R² remains strictly constant because noise features have zero true correlation; Adjusted R² slightly increases", score: 0, feedback: "Incorrect. OLS always fits empirical sample noise, so ordinary R² cannot decrease." },
-      { text: "Ordinary R² increases or stays constant; Adjusted R² decreases because noise is penalized", score: 3, feedback: "Razor sharp! Adjusted R² protects against spurious overfitting from noise." },
-      { text: "Both ordinary R² and Adjusted R² slightly increase, because any extra feature mathematically reduces Residual Sum of Squares (RSS)", score: 0, feedback: "RSS drops, but the degrees-of-freedom penalty in Adjusted R² penalizes uninformative predictors more severely." }
+    "options_en": [
+      {
+        "text": "Ordinary R² remains strictly constant because noise features have zero true correlation; Adjusted R² slightly increases",
+        "score": 0,
+        "feedback": "Incorrect. OLS always fits empirical sample noise, so ordinary R² cannot decrease."
+      },
+      {
+        "text": "Ordinary R² increases or stays constant; Adjusted R² decreases because noise is penalized",
+        "score": 3,
+        "feedback": "Razor sharp! Adjusted R² protects against spurious overfitting from noise."
+      },
+      {
+        "text": "Both ordinary R² and Adjusted R² slightly increase, because any extra feature mathematically reduces Residual Sum of Squares (RSS)",
+        "score": 0,
+        "feedback": "RSS drops, but the degrees-of-freedom penalty in Adjusted R² penalizes uninformative predictors more severely."
+      }
     ],
-    options_es: [
-      { text: "El R² ordinario permanece estrictamente constante porque el ruido tiene correlación nula; el R² Ajustado sube ligeramente", score: 0, feedback: "Incorrecto. MCO siempre captura fluctuaciones del ruido muestral, por lo que el R² ordinario nunca disminuye." },
-      { text: "El R² ordinario aumenta o permanece constante; el R² Ajustado disminuye al penalizar el ruido", score: 3, feedback: "¡Impecable! El R² Ajustado protege contra el sobreajuste espurio por variables sin valor." },
-      { text: "Tanto el R² ordinario como el Ajustado aumentan, pues cualquier predictor reduce matemáticamente la suma de residuos al cuadrado (RSS)", score: 0, feedback: "La RSS disminuye, pero la penalización por pérdida de grados de libertad en el R² Ajustado supera la ganancia espuria." }
+    "options_es": [
+      {
+        "text": "El R² ordinario permanece estrictamente constante porque el ruido tiene correlación nula; el R² Ajustado sube ligeramente",
+        "score": 0,
+        "feedback": "Incorrecto. MCO siempre captura fluctuaciones del ruido muestral, por lo que el R² ordinario nunca disminuye."
+      },
+      {
+        "text": "El R² ordinario aumenta o permanece constante; el R² Ajustado disminuye al penalizar el ruido",
+        "score": 3,
+        "feedback": "¡Impecable! El R² Ajustado protege contra el sobreajuste espurio por variables sin valor."
+      },
+      {
+        "text": "Tanto el R² ordinario como el Ajustado aumentan, pues cualquier predictor reduce matemáticamente la suma de residuos al cuadrado (RSS)",
+        "score": 0,
+        "feedback": "La RSS disminuye, pero la penalización por pérdida de grados de libertad en el R² Ajustado supera la ganancia espuria."
+      }
     ],
-    domain: "regressie"
+    "domain": "regressie"
   },
   {
-    id: "q5",
-    question: "In de 'Residuals vs Fitted' plot van een regressiemodel zie je dat de punten steeds verder uitwaaieren naarmate de voorspelde waarde stijgt (trompetvorm). Wat is het gevaar?",
-    question_en: "In the 'Residuals vs Fitted' plot of an OLS model, the points fan out progressively as fitted values increase (trumpet shape). What is the hazard?",
-    question_es: "En el gráfico de 'Residuos vs Valores Ajustados' de un modelo MCO, los puntos se dispersan cada vez más a medida que sube el valor predicho (forma de trompeta). ¿Cuál es el peligro?",
-    options: [
-      { text: "De OLS-puntschattingen β̂ worden inconsistent en structureel vertekend (biased)", score: 0, feedback: "Grote valkuil! Onder heteroscedasticiteit blijven de OLS-coëfficiënten zuiver, maar hun standaardfouten zijn foutief." },
-      { text: "Heteroscedasticiteit: de standaardfouten zijn vertekend, waardoor p-waarden en betrouwbaarheidsintervallen onbetrouwbaar zijn", score: 3, feedback: "Juist! Pas een log-transformatie of robuuste Huber-White standaardfouten toe." },
-      { text: "Het model is automatisch niet-lineair en moet vervangen worden door een polynoom van de 3e graad", score: 0, feedback: "Niet per se; heteroscedasticiteit slaat op ongelijke residuele variantie, niet noodzakelijk op kromming in het conditionele gemiddelde." }
+    "id": "q5",
+    "question": "In de 'Residuals vs Fitted' plot van een regressiemodel zie je dat de punten steeds verder uitwaaieren naarmate de voorspelde waarde stijgt (trompetvorm). Wat is het gevaar?",
+    "question_en": "In the 'Residuals vs Fitted' plot of an OLS model, the points fan out progressively as fitted values increase (trumpet shape). What is the hazard?",
+    "question_es": "En el gráfico de 'Residuos vs Valores Ajustados' de un modelo MCO, los puntos se dispersan cada vez más a medida que sube el valor predicho (forma de trompeta). ¿Cuál es el peligro?",
+    "options": [
+      {
+        "text": "De OLS-puntschattingen β̂ worden inconsistent en structureel vertekend (biased)",
+        "score": 0,
+        "feedback": "Grote valkuil! Onder heteroscedasticiteit blijven de OLS-coëfficiënten zuiver, maar hun standaardfouten zijn foutief."
+      },
+      {
+        "text": "Heteroscedasticiteit: de standaardfouten zijn vertekend, waardoor p-waarden en betrouwbaarheidsintervallen onbetrouwbaar zijn",
+        "score": 3,
+        "feedback": "Juist! Pas een log-transformatie of robuuste Huber-White standaardfouten toe."
+      },
+      {
+        "text": "Het model is automatisch niet-lineair en moet vervangen worden door een polynoom van de 3e graad",
+        "score": 0,
+        "feedback": "Niet per se; heteroscedasticiteit slaat op ongelijke residuele variantie, niet noodzakelijk op kromming in het conditionele gemiddelde."
+      }
     ],
-    options_en: [
-      { text: "The OLS point estimates β̂ become inconsistent and structurally biased", score: 0, feedback: "Classic trap! Under heteroscedasticity, OLS estimates remain unbiased, but their standard errors are invalid." },
-      { text: "Heteroscedasticity: standard errors are biased, invalidating p-values and confidence intervals", score: 3, feedback: "Correct! Apply a log-transformation or robust Huber-White standard errors." },
-      { text: "The model is automatically non-linear and must be replaced by a 3rd-degree polynomial", score: 0, feedback: "Not necessarily: heteroscedasticity concerns non-constant error variance, not non-linearity in the conditional mean." }
+    "options_en": [
+      {
+        "text": "The OLS point estimates β̂ become inconsistent and structurally biased",
+        "score": 0,
+        "feedback": "Classic trap! Under heteroscedasticity, OLS estimates remain unbiased, but their standard errors are invalid."
+      },
+      {
+        "text": "Heteroscedasticity: standard errors are biased, invalidating p-values and confidence intervals",
+        "score": 3,
+        "feedback": "Correct! Apply a log-transformation or robust Huber-White standard errors."
+      },
+      {
+        "text": "The model is automatically non-linear and must be replaced by a 3rd-degree polynomial",
+        "score": 0,
+        "feedback": "Not necessarily: heteroscedasticity concerns non-constant error variance, not non-linearity in the conditional mean."
+      }
     ],
-    options_es: [
-      { text: "Las estimaciones puntuales MCO β̂ se vuelven inconsistentes y sesgadas estructuralmente", score: 0, feedback: "¡Gran trampa! Con heterocedasticidad, los coeficientes siguen siendo insesgados, pero sus errores estándar quedan invalidados." },
-      { text: "Heterocedasticidad: los errores estándar están sesgados, invalidando valores p e intervalos de confianza", score: 3, feedback: "¡Correcto! Aplica una transformación logarítmica o errores estándar robustos de Huber-White." },
-      { text: "El modelo es necesariamente no lineal y debe reemplazarse por un polinomio de tercer grado", score: 0, feedback: "No necesariamente; la heterocedasticidad concierne a la varianza residual heterogénea, no a la curvatura de la media condicional." }
+    "options_es": [
+      {
+        "text": "Las estimaciones puntuales MCO β̂ se vuelven inconsistentes y sesgadas estructuralmente",
+        "score": 0,
+        "feedback": "¡Gran trampa! Con heterocedasticidad, los coeficientes siguen siendo insesgados, pero sus errores estándar quedan invalidados."
+      },
+      {
+        "text": "Heterocedasticidad: los errores estándar están sesgados, invalidando valores p e intervalos de confianza",
+        "score": 3,
+        "feedback": "¡Correcto! Aplica una transformación logarítmica o errores estándar robustos de Huber-White."
+      },
+      {
+        "text": "El modelo es necesariamente no lineal y debe reemplazarse por un polinomio de tercer grado",
+        "score": 0,
+        "feedback": "No necesariamente; la heterocedasticidad concierne a la varianza residual heterogénea, no a la curvatura de la media condicional."
+      }
     ],
-    domain: "regressie"
+    "domain": "regressie"
   },
   {
-    id: "q6",
-    question: "Twee voorspellers in je regressiemodel correleren met r = 0.98 (VIF = 25.3). Wat is het symptoom in de modeloutput?",
-    question_en: "Two predictors in your regression model correlate with r = 0.98 (VIF = 25.3). What is the classic symptom in your model output?",
-    question_es: "Dos predictores en tu modelo de regresión correlacionan con r = 0,98 (FIV = 25,3). ¿Cuál es el síntoma clásico en la salida del modelo?",
-    options: [
-      { text: "De F-toets voor het totale model is hoog-significant, maar de individuele t-toetsen van beide variabelen zijn plotseling niet-significant (p > 0.05)", score: 4, feedback: "Meesterlijk! Dit is de klassieke handtekening van ernstige multicollineariteit." },
-      { text: "Het model schendt de Gauss-Markov aanname van exogeniteit (E[ε|X] ≠ 0), waardoor OLS-schatters inconsistent worden", score: 0, feedback: "Multicollineariteit is een probleem van correlatie tussen regressoren onderling, geen endogeniteit of correlatie met de foutterm." },
-      { text: "De residuele variantie σ² explodeert, waardoor het verklaringspercentage R² van het totale model instort naar nul", score: 0, feedback: "Onjuist: R² blijft juist hoog; de variantie-inflatiefactor blaast slechts de individuele standaardfouten op." }
+    "id": "q6",
+    "question": "Twee voorspellers in je regressiemodel correleren met r = 0.98 (VIF = 25.3). Wat is het symptoom in de modeloutput?",
+    "question_en": "Two predictors in your regression model correlate with r = 0.98 (VIF = 25.3). What is the classic symptom in your model output?",
+    "question_es": "Dos predictores en tu modelo de regresión correlacionan con r = 0,98 (FIV = 25,3). ¿Cuál es el síntoma clásico en la salida del modelo?",
+    "options": [
+      {
+        "text": "De F-toets voor het totale model is hoog-significant, maar de individuele t-toetsen van beide variabelen zijn plotseling niet-significant (p > 0.05)",
+        "score": 4,
+        "feedback": "Meesterlijk! Dit is de klassieke handtekening van ernstige multicollineariteit."
+      },
+      {
+        "text": "Het model schendt de Gauss-Markov aanname van exogeniteit (E[ε|X] ≠ 0), waardoor OLS-schatters inconsistent worden",
+        "score": 0,
+        "feedback": "Multicollineariteit is een probleem van correlatie tussen regressoren onderling, geen endogeniteit of correlatie met de foutterm."
+      },
+      {
+        "text": "De residuele variantie σ² explodeert, waardoor het verklaringspercentage R² van het totale model instort naar nul",
+        "score": 0,
+        "feedback": "Onjuist: R² blijft juist hoog; de variantie-inflatiefactor blaast slechts de individuele standaardfouten op."
+      }
     ],
-    options_en: [
-      { text: "The overall model F-test is highly significant, yet individual t-tests for both predictors become insignificant (p > 0.05)", score: 4, feedback: "Masterful! This is the textbook signature of severe multicollinearity." },
-      { text: "The model violates Gauss-Markov strict exogeneity (E[ε|X] ≠ 0), rendering OLS estimators inconsistent", score: 0, feedback: "Multicollinearity is sample correlation between regressors, not an endogeneity violation involving the error term." },
-      { text: "Residual variance σ² explodes, causing total model R² to collapse toward zero", score: 0, feedback: "Incorrect: R² remains high and stable; variance inflation inflates only the individual standard errors." }
+    "options_en": [
+      {
+        "text": "The overall model F-test is highly significant, yet individual t-tests for both predictors become insignificant (p > 0.05)",
+        "score": 4,
+        "feedback": "Masterful! This is the textbook signature of severe multicollinearity."
+      },
+      {
+        "text": "The model violates Gauss-Markov strict exogeneity (E[ε|X] ≠ 0), rendering OLS estimators inconsistent",
+        "score": 0,
+        "feedback": "Multicollinearity is sample correlation between regressors, not an endogeneity violation involving the error term."
+      },
+      {
+        "text": "Residual variance σ² explodes, causing total model R² to collapse toward zero",
+        "score": 0,
+        "feedback": "Incorrect: R² remains high and stable; variance inflation inflates only the individual standard errors."
+      }
     ],
-    options_es: [
-      { text: "La prueba F global del modelo es altamente significativa, pero las pruebas t individuales de ambos predictores resultan no significativas (p > 0,05)", score: 4, feedback: "¡Magistral! Es la firma distintiva clásica de la multicolinealidad severa." },
-      { text: "El modelo viola el supuesto de exogeneidad de Gauss-Markov (E[ε|X] ≠ 0), haciendo inconsistentes los estimadores", score: 0, feedback: "La colinealidad es correlación mutua entre covariables, no una correlación con el término de perturbación (endogeneidad)." },
-      { text: "La varianza residual σ² explota, provocando que el R² global del modelo colapse hacia cero", score: 0, feedback: "Incorrecto: el R² se mantiene elevado; el factor de inflación de varianza solo ensancha los errores estándar individuales." }
+    "options_es": [
+      {
+        "text": "La prueba F global del modelo es altamente significativa, pero las pruebas t individuales de ambos predictores resultan no significativas (p > 0,05)",
+        "score": 4,
+        "feedback": "¡Magistral! Es la firma distintiva clásica de la multicolinealidad severa."
+      },
+      {
+        "text": "El modelo viola el supuesto de exogeneidad de Gauss-Markov (E[ε|X] ≠ 0), haciendo inconsistentes los estimadores",
+        "score": 0,
+        "feedback": "La colinealidad es correlación mutua entre covariables, no una correlación con el término de perturbación (endogeneidad)."
+      },
+      {
+        "text": "La varianza residual σ² explota, provocando que el R² global del modelo colapse hacia cero",
+        "score": 0,
+        "feedback": "Incorrecto: el R² se mantiene elevado; el factor de inflación de varianza solo ensancha los errores estándar individuales."
+      }
     ],
-    domain: "regressie"
+    "domain": "regressie"
   },
   {
-    id: "q7",
-    question: "Je onderzoekt toetsscores van 600 leerlingen verdeeld over 20 basisscholen (30 lln per school). Waarom is een standaard OLS regressie hier gevaarlijk?",
-    question_en: "You analyze test scores of 600 pupils distributed across 20 primary schools (30 pupils per school). Why is standard OLS regression hazardous?",
-    question_es: "Analizas las calificaciones de 600 estudiantes distribuidos en 20 colegios (30 alumnos por escuela). ¿Por qué la regresión MCO ordinaria es peligrosa aquí?",
-    options: [
-      { text: "Omdat OLS-puntschattingen bij geclusterde steekproeven inconsistent worden en de regressielijn verdraaien", score: 0, feedback: "De regressiecoëfficiënten zijn vaak nog consistent; het werkelijke gevaar is dat OLS de standaardfouten dramatisch onderschat." },
-      { text: "Omdat leerlingen binnen dezelfde school op elkaar lijken (clustering, ICC > 0), waardoor OLS de standaardfouten dramatisch onderschat en valse significantie rapporteert (schijnprecisie)", score: 4, feedback: "Meesterlijk! Dit is de essentie van intraclass correlatie en pseudo-replicatie." },
-      { text: "Omdat dummy-variabelen voor alle 20 scholen verplicht zijn om selectiebias te neutraliseren volgens Gauss-Markov", score: 0, feedback: "Vaste dummies voor 20 scholen kosten veel vrijheidsgraden en wissen school-niveau variabelen uit; een mixed model biedt superieure partial pooling." }
+    "id": "q7",
+    "question": "Je onderzoekt toetsscores van 600 leerlingen verdeeld over 20 basisscholen (30 lln per school). Waarom is een standaard OLS regressie hier gevaarlijk?",
+    "question_en": "You analyze test scores of 600 pupils distributed across 20 primary schools (30 pupils per school). Why is standard OLS regression hazardous?",
+    "question_es": "Analizas las calificaciones de 600 estudiantes distribuidos en 20 colegios (30 alumnos por escuela). ¿Por qué la regresión MCO ordinaria es peligrosa aquí?",
+    "options": [
+      {
+        "text": "Omdat OLS-puntschattingen bij geclusterde steekproeven inconsistent worden en de regressielijn verdraaien",
+        "score": 0,
+        "feedback": "De regressiecoëfficiënten zijn vaak nog consistent; het werkelijke gevaar is dat OLS de standaardfouten dramatisch onderschat."
+      },
+      {
+        "text": "Omdat leerlingen binnen dezelfde school op elkaar lijken (clustering, ICC > 0), waardoor OLS de standaardfouten dramatisch onderschat en valse significantie rapporteert (schijnprecisie)",
+        "score": 4,
+        "feedback": "Meesterlijk! Dit is de essentie van intraclass correlatie en pseudo-replicatie."
+      },
+      {
+        "text": "Omdat dummy-variabelen voor alle 20 scholen verplicht zijn om selectiebias te neutraliseren volgens Gauss-Markov",
+        "score": 0,
+        "feedback": "Vaste dummies voor 20 scholen kosten veel vrijheidsgraden en wissen school-niveau variabelen uit; een mixed model biedt superieure partial pooling."
+      }
     ],
-    options_en: [
-      { text: "Because OLS point estimates become inconsistent in clustered samples and twist the regression slope", score: 0, feedback: "Point estimates are often consistent; the acute danger is that OLS drastically underestimates standard errors." },
-      { text: "Pupils in the same school correlate (clustering, ICC > 0), causing OLS to drastically underestimate standard errors and produce false significance (spurious precision)", score: 4, feedback: "Masterful! This is the essence of intraclass correlation (ICC) and pseudoreplication." },
-      { text: "Because indicator dummy variables for all 20 schools are mandatory to eliminate selection bias under Gauss-Markov", score: 0, feedback: "School fixed dummies consume 19 degrees of freedom and destroy school-level predictors; multilevel partial pooling is superior." }
+    "options_en": [
+      {
+        "text": "Because OLS point estimates become inconsistent in clustered samples and twist the regression slope",
+        "score": 0,
+        "feedback": "Point estimates are often consistent; the acute danger is that OLS drastically underestimates standard errors."
+      },
+      {
+        "text": "Pupils in the same school correlate (clustering, ICC > 0), causing OLS to drastically underestimate standard errors and produce false significance (spurious precision)",
+        "score": 4,
+        "feedback": "Masterful! This is the essence of intraclass correlation (ICC) and pseudoreplication."
+      },
+      {
+        "text": "Because indicator dummy variables for all 20 schools are mandatory to eliminate selection bias under Gauss-Markov",
+        "score": 0,
+        "feedback": "School fixed dummies consume 19 degrees of freedom and destroy school-level predictors; multilevel partial pooling is superior."
+      }
     ],
-    options_es: [
-      { text: "Porque los coeficientes puntuales MCO se vuelven inconsistentes en datos agrupados y distorsionan la pendiente", score: 0, feedback: "Los coeficientes suelen ser consistentes; el peligro letal es que MCO subestima masivamente los errores estándar." },
-      { text: "Los alumnos de la misma escuela se parecen (clustering, CCI > 0), provocando que MCO subestime drásticamente los errores estándar y reporte significación falsa (precisión ilusoria)", score: 4, feedback: "¡Magistral! Esta es la esencia de la correlación intraclase y la pseudorreplicación." },
-      { text: "Porque incluir variables ficticias fijas para las 20 escuelas es imperativo para neutralizar sesgo de selección según Gauss-Markov", score: 0, feedback: "Las variables ficticias consumen muchos grados de libertad y eliminan factores contextuales; un modelo multinivel aporta contracción óptima." }
+    "options_es": [
+      {
+        "text": "Porque los coeficientes puntuales MCO se vuelven inconsistentes en datos agrupados y distorsionan la pendiente",
+        "score": 0,
+        "feedback": "Los coeficientes suelen ser consistentes; el peligro letal es que MCO subestima masivamente los errores estándar."
+      },
+      {
+        "text": "Los alumnos de la misma escuela se parecen (clustering, CCI > 0), provocando que MCO subestime drásticamente los errores estándar y reporte significación falsa (precisión ilusoria)",
+        "score": 4,
+        "feedback": "¡Magistral! Esta es la esencia de la correlación intraclase y la pseudorreplicación."
+      },
+      {
+        "text": "Porque incluir variables ficticias fijas para las 20 escuelas es imperativo para neutralizar sesgo de selección según Gauss-Markov",
+        "score": 0,
+        "feedback": "Las variables ficticias consumen muchos grados de libertad y eliminan factores contextuales; un modelo multinivel aporta contracción óptima."
+      }
     ],
-    domain: "mixed_models"
+    "domain": "mixed_models"
   },
   {
-    id: "q8",
-    question: "Wat is het fundamentele verschil tussen een Random Intercept model en een Random Slope model?",
-    question_en: "What is the fundamental distinction between a Random Intercept model and a Random Slope model?",
-    question_es: "¿Cuál es la diferencia fundamental entre un modelo de Intercepto Aleatorio y uno de Pendiente Aleatoria?",
-    options: [
-      { text: "Random Intercept varieert het beginniveau per cluster; Random Slope laat ook het effect/de reactiesnelheid per cluster variëren", score: 5, feedback: "Exact! Bij Random Slopes heeft elk cluster een eigen hellingshoek." },
-      { text: "Random Slope introduceert vaste interactie-effecten met clusterlabels, terwijl Random Intercept een zuiver additief error-component model is", score: 0, feedback: "Random Slopes schatten een continue verdeling van hellingsafwijkingen (u₁ⱼ ~ N(0, σ²_u1)), geen vaste interacties." },
-      { text: "Random Intercept dwingt gelijke hellingen af; Random Slope veronderstelt dat helling en intercept strikt ongecorreleerd zijn (Cov(u₀, u₁) = 0)", score: 0, feedback: "Onjuist: Random Slope modellen schatten expliciet de correlatie parameter ρ₀₁ tussen intercept en helling." }
+    "id": "q8",
+    "question": "Wat is het fundamentele verschil tussen een Random Intercept model en een Random Slope model?",
+    "question_en": "What is the fundamental distinction between a Random Intercept model and a Random Slope model?",
+    "question_es": "¿Cuál es la diferencia fundamental entre un modelo de Intercepto Aleatorio y uno de Pendiente Aleatoria?",
+    "options": [
+      {
+        "text": "Random Intercept varieert het beginniveau per cluster; Random Slope laat ook het effect/de reactiesnelheid per cluster variëren",
+        "score": 5,
+        "feedback": "Exact! Bij Random Slopes heeft elk cluster een eigen hellingshoek."
+      },
+      {
+        "text": "Random Slope introduceert vaste interactie-effecten met clusterlabels, terwijl Random Intercept een zuiver additief error-component model is",
+        "score": 0,
+        "feedback": "Random Slopes schatten een continue verdeling van hellingsafwijkingen (u₁ⱼ ~ N(0, σ²_u1)), geen vaste interacties."
+      },
+      {
+        "text": "Random Intercept dwingt gelijke hellingen af; Random Slope veronderstelt dat helling en intercept strikt ongecorreleerd zijn (Cov(u₀, u₁) = 0)",
+        "score": 0,
+        "feedback": "Onjuist: Random Slope modellen schatten expliciet de correlatie parameter ρ₀₁ tussen intercept en helling."
+      }
     ],
-    options_en: [
-      { text: "Random Intercept varies baseline levels across clusters; Random Slope allows the treatment effect/trajectory to vary per cluster as well", score: 5, feedback: "Exact! In Random Slope models, each cluster possesses its own custom slope angle." },
-      { text: "Random Slope introduces fixed interaction parameters with cluster labels, whereas Random Intercept is an additive error model", score: 0, feedback: "Random slopes estimate a continuous stochastic distribution of slope deviations (u₁ⱼ ~ N(0, σ²_u1)), not fixed dummy interactions." },
-      { text: "Random Intercept forces parallel slopes; Random Slope requires intercept and slope to be strictly uncorrelated (Cov(u₀, u₁) = 0)", score: 0, feedback: "Incorrect: Random Slope models explicitly estimate the correlation parameter ρ₀₁ between baseline intercept and slope." }
+    "options_en": [
+      {
+        "text": "Random Intercept varies baseline levels across clusters; Random Slope allows the treatment effect/trajectory to vary per cluster as well",
+        "score": 5,
+        "feedback": "Exact! In Random Slope models, each cluster possesses its own custom slope angle."
+      },
+      {
+        "text": "Random Slope introduces fixed interaction parameters with cluster labels, whereas Random Intercept is an additive error model",
+        "score": 0,
+        "feedback": "Random slopes estimate a continuous stochastic distribution of slope deviations (u₁ⱼ ~ N(0, σ²_u1)), not fixed dummy interactions."
+      },
+      {
+        "text": "Random Intercept forces parallel slopes; Random Slope requires intercept and slope to be strictly uncorrelated (Cov(u₀, u₁) = 0)",
+        "score": 0,
+        "feedback": "Incorrect: Random Slope models explicitly estimate the correlation parameter ρ₀₁ between baseline intercept and slope."
+      }
     ],
-    options_es: [
-      { text: "El Intercepto Aleatorio varía el punto de partida por grupo; la Pendiente Aleatoria permite además que el efecto/trayectoria varíe según cada grupo", score: 5, feedback: "¡Exacto! En modelos de pendiente aleatoria cada clúster tiene su propia inclinación." },
-      { text: "La Pendiente Aleatoria introduce interacciones fijas con las etiquetas de grupo, mientras que el Intercepto Aleatorio es puramente aditivo", score: 0, feedback: "Las pendientes aleatorias modelan una distribución estocástica continua de pendientes (u₁ⱼ ~ N(0, σ²_u1)), no interacciones fijas." },
-      { text: "El Intercepto Aleatorio asume pendientes paralelas; la Pendiente Aleatoria exige que intercepto y pendiente sean incorrelacionados (Cov(u₀, u₁) = 0)", score: 0, feedback: "Falso: los modelos con pendiente aleatoria estiman explícitamente el parámetro de correlación ρ₀₁ entre intercepto y pendiente." }
+    "options_es": [
+      {
+        "text": "El Intercepto Aleatorio varía el punto de partida por grupo; la Pendiente Aleatoria permite además que el efecto/trayectoria varíe según cada grupo",
+        "score": 5,
+        "feedback": "¡Exacto! En modelos de pendiente aleatoria cada clúster tiene su propia inclinación."
+      },
+      {
+        "text": "La Pendiente Aleatoria introduce interacciones fijas con las etiquetas de grupo, mientras que el Intercepto Aleatorio es puramente aditivo",
+        "score": 0,
+        "feedback": "Las pendientes aleatorias modelan una distribución estocástica continua de pendientes (u₁ⱼ ~ N(0, σ²_u1)), no interacciones fijas."
+      },
+      {
+        "text": "El Intercepto Aleatorio asume pendientes paralelas; la Pendiente Aleatoria exige que intercepto y pendiente sean incorrelacionados (Cov(u₀, u₁) = 0)",
+        "score": 0,
+        "feedback": "Falso: los modelos con pendiente aleatoria estiman explícitamente el parámetro de correlación ρ₀₁ entre intercepto y pendiente."
+      }
     ],
-    domain: "mixed_models"
+    "domain": "mixed_models"
   },
   {
-    id: "q9",
-    question: "Wat is in causale inferentie (Judea Pearl) het verschil tussen de passieve observatie P(Y | X) en de causale interventie P(Y | do(X))?",
-    question_en: "In causal inference (Judea Pearl), what is the crucial difference between observational conditional P(Y | X) and interventional P(Y | do(X))?",
-    question_es: "En inferencia causal (Judea Pearl), ¿cuál es la diferencia crucial entre la observación pasiva P(Y | X) y la intervención P(Y | do(X))?",
-    options: [
-      { text: "P(Y | X) kijkt alleen naar natuurlijke associaties inclusief confounders; P(Y | do(X)) 'knipt' alle binnenkomende pijlen naar X door om het zuivere effect van een externe ingreep te modelleren", score: 5, feedback: "Briljant causaal inzicht! Dit scheidt passief observeren van echt beleidsmatig ingrijpen." },
-      { text: "P(Y | do(X)) is identiek aan multivariabele regressie waarin gecontroleerd wordt voor alle beschikbare covariaten", score: 0, feedback: "Grote valkuil: blind controleren voor alle variabelen kan colliders activeren (M-bias / Berkson) of mediatoren blokkeren." },
-      { text: "P(Y | do(X)) conditioneert strikt op alle nakomelingen van X in de graaf om selectie-effecten uit te sluiten", score: 0, feedback: "Conditioneren op nakomelingen van de behandeling (descendants) vertekent juist het causale effect en introduceert bias." }
+    "id": "q9",
+    "question": "Wat is in causale inferentie (Judea Pearl) het verschil tussen de passieve observatie P(Y | X) en de causale interventie P(Y | do(X))?",
+    "question_en": "In causal inference (Judea Pearl), what is the crucial difference between observational conditional P(Y | X) and interventional P(Y | do(X))?",
+    "question_es": "En inferencia causal (Judea Pearl), ¿cuál es la diferencia crucial entre la observación pasiva P(Y | X) y la intervención P(Y | do(X))?",
+    "options": [
+      {
+        "text": "P(Y | X) kijkt alleen naar natuurlijke associaties inclusief confounders; P(Y | do(X)) 'knipt' alle binnenkomende pijlen naar X door om het zuivere effect van een externe ingreep te modelleren",
+        "score": 5,
+        "feedback": "Briljant causaal inzicht! Dit scheidt passief observeren van echt beleidsmatig ingrijpen."
+      },
+      {
+        "text": "P(Y | do(X)) is identiek aan multivariabele regressie waarin gecontroleerd wordt voor alle beschikbare covariaten",
+        "score": 0,
+        "feedback": "Grote valkuil: blind controleren voor alle variabelen kan colliders activeren (M-bias / Berkson) of mediatoren blokkeren."
+      },
+      {
+        "text": "P(Y | do(X)) conditioneert strikt op alle nakomelingen van X in de graaf om selectie-effecten uit te sluiten",
+        "score": 0,
+        "feedback": "Conditioneren op nakomelingen van de behandeling (descendants) vertekent juist het causale effect en introduceert bias."
+      }
     ],
-    options_en: [
-      { text: "P(Y | X) reflects passive observational association including confounders; P(Y | do(X)) severs incoming arrows into X to isolate the pure effect of an external intervention", score: 5, feedback: "Brilliant causal insight! This formalizes the difference between passive prediction and true policy intervention." },
-      { text: "P(Y | do(X)) is mathematically identical to multivariable regression controlling for every available covariate", score: 0, feedback: "Classic trap: blindly adjusting for all variables can open collider paths (Berkson's bias / M-bias) or block intermediate mechanisms." },
-      { text: "P(Y | do(X)) strictly conditions on all descendant nodes of X to eliminate selection effects", score: 0, feedback: "Conditioning on descendants of treatment distorts or completely absorbs the very causal effect you aim to measure." }
+    "options_en": [
+      {
+        "text": "P(Y | X) reflects passive observational association including confounders; P(Y | do(X)) severs incoming arrows into X to isolate the pure effect of an external intervention",
+        "score": 5,
+        "feedback": "Brilliant causal insight! This formalizes the difference between passive prediction and true policy intervention."
+      },
+      {
+        "text": "P(Y | do(X)) is mathematically identical to multivariable regression controlling for every available covariate",
+        "score": 0,
+        "feedback": "Classic trap: blindly adjusting for all variables can open collider paths (Berkson's bias / M-bias) or block intermediate mechanisms."
+      },
+      {
+        "text": "P(Y | do(X)) strictly conditions on all descendant nodes of X to eliminate selection effects",
+        "score": 0,
+        "feedback": "Conditioning on descendants of treatment distorts or completely absorbs the very causal effect you aim to measure."
+      }
     ],
-    options_es: [
-      { text: "P(Y | X) refleja asociación observacional pasiva incluyendo confusores; P(Y | do(X)) corta las flechas entrantes hacia X para aislar el efecto puro de una intervención", score: 5, feedback: "¡Brillante intuición causal! Formaliza la diferencia entre predecir e intervenir activamente." },
-      { text: "P(Y | do(X)) es matemáticamente idéntico a una regresión multivariable ajustando por todas las covariables disponibles", score: 0, feedback: "Trampa clásica: ajustar ciegamente por todas las variables puede activar colisionadores (sesgo de Berkson / M-bias) o bloquear mediadores." },
-      { text: "P(Y | do(X)) condiciona estrictamente en todos los descendientes de X en el grafo para eliminar efectos de selección", score: 0, feedback: "Condicionar en descendientes del tratamiento introduce sesgo colisionador o destruye la transmisión del efecto causal." }
+    "options_es": [
+      {
+        "text": "P(Y | X) refleja asociación observacional pasiva incluyendo confusores; P(Y | do(X)) corta las flechas entrantes hacia X para aislar el efecto puro de una intervención",
+        "score": 5,
+        "feedback": "¡Brillante intuición causal! Formaliza la diferencia entre predecir e intervenir activamente."
+      },
+      {
+        "text": "P(Y | do(X)) es matemáticamente idéntico a una regresión multivariable ajustando por todas las covariables disponibles",
+        "score": 0,
+        "feedback": "Trampa clásica: ajustar ciegamente por todas las variables puede activar colisionadores (sesgo de Berkson / M-bias) o bloquear mediadores."
+      },
+      {
+        "text": "P(Y | do(X)) condiciona estrictamente en todos los descendientes de X en el grafo para eliminar efectos de selección",
+        "score": 0,
+        "feedback": "Condicionar en descendientes del tratamiento introduce sesgo colisionador o destruye la transmisión del efecto causal."
+      }
     ],
-    domain: "apex"
+    "domain": "apex"
   },
   {
-    id: "q10",
-    question: "Waarom faalt klassieke stochastische calculus (Itô/Stratonovich) in de apex-formule dX_t = ∇_ℳ Φ(X_t) dt + σ(X_t) dB_t^rough wanneer de ruis een Hurst exponent H < 1/2 heeft?",
-    question_en: "Why does classical stochastic calculus (Itô/Stratonovich) fail in the apex formula dX_t = ∇_ℳ Φ(X_t) dt + σ(X_t) dB_t^rough when driving noise has Hurst exponent H < 1/2?",
-    question_es: "¿Por qué falla el cálculo estocástico clásico (Itô/Stratonovich) en la fórmula apex dX_t = ∇_ℳ Φ(X_t) dt + σ(X_t) dB_t^rough cuando el ruido tiene un exponente de Hurst H < 1/2?",
-    options: [
-      { text: "Omdat fractional Brownian motion bij H < 1/2 stationaire increments verliest en de Malliavin-calculus ongeldig maakt", score: 0, feedback: "Increments blijven wel stationair, maar het pad is geen semimartingaal meer voor H < 1/2, waardoor de Itô-isometrie instort." },
-      { text: "Omdat de kwadratische variatie divergeert en klassieke Riemann-Stieltjes integratie niet langer continu is in de p-variatie topologie, wat Terry Lyons oploste via geïtereerde integralen (Signatures)", score: 6, feedback: "Fenomenaal inzicht op het niveau van de theoretische fysica en moderne stochastiek!" },
-      { text: "Omdat de Kolmogorov continuïteitsstelling bewijst dat paden met H < 1/2 niet integreerbaar zijn zonder Stratonovich correctie", score: 0, feedback: "Stratonovich calculus vereist nog steeds semimartingalen en faalt evenzeer bij H < 1/2; alleen Terry Lyons' Rough Path theorie biedt continuïteit." }
+    "id": "q10",
+    "question": "Waarom faalt klassieke stochastische calculus (Itô/Stratonovich) in de apex-formule dX_t = ∇_ℳ Φ(X_t) dt + σ(X_t) dB_t^rough wanneer de ruis een Hurst exponent H < 1/2 heeft?",
+    "question_en": "Why does classical stochastic calculus (Itô/Stratonovich) fail in the apex formula dX_t = ∇_ℳ Φ(X_t) dt + σ(X_t) dB_t^rough when driving noise has Hurst exponent H < 1/2?",
+    "question_es": "¿Por qué falla el cálculo estocástico clásico (Itô/Stratonovich) en la fórmula apex dX_t = ∇_ℳ Φ(X_t) dt + σ(X_t) dB_t^rough cuando el ruido tiene un exponente de Hurst H < 1/2?",
+    "options": [
+      {
+        "text": "Omdat fractional Brownian motion bij H < 1/2 stationaire increments verliest en de Malliavin-calculus ongeldig maakt",
+        "score": 0,
+        "feedback": "Increments blijven wel stationair, maar het pad is geen semimartingaal meer voor H < 1/2, waardoor de Itô-isometrie instort."
+      },
+      {
+        "text": "Omdat de kwadratische variatie divergeert en klassieke Riemann-Stieltjes integratie niet langer continu is in de p-variatie topologie, wat Terry Lyons oploste via geïtereerde integralen (Signatures)",
+        "score": 6,
+        "feedback": "Fenomenaal inzicht op het niveau van de theoretische fysica en moderne stochastiek!"
+      },
+      {
+        "text": "Omdat de Kolmogorov continuïteitsstelling bewijst dat paden met H < 1/2 niet integreerbaar zijn zonder Stratonovich correctie",
+        "score": 0,
+        "feedback": "Stratonovich calculus vereist nog steeds semimartingalen en faalt evenzeer bij H < 1/2; alleen Terry Lyons' Rough Path theorie biedt continuïteit."
+      }
     ],
-    options_en: [
-      { text: "Because fractional Brownian motion at H < 1/2 loses stationary increments, invalidating Malliavin calculus", score: 0, feedback: "Increments remain stationary, but the process ceases to be a semimartingale when H < 1/2, collapsing the Itô isometry." },
-      { text: "Quadratic variation diverges and integration is no longer continuous in p-variation topology, solved by Terry Lyons via iterated integrals (Rough Path Signatures)", score: 6, feedback: "Phenomenal insight at the pinnacle of theoretical physics and modern stochastic analysis!" },
-      { text: "Because Kolmogorov continuity guarantees paths with H < 1/2 are unintegrable without Stratonovich correction", score: 0, feedback: "Stratonovich calculus still relies on semimartingales and fails identically for H < 1/2; Terry Lyons' Rough Path theory is strictly required." }
+    "options_en": [
+      {
+        "text": "Because fractional Brownian motion at H < 1/2 loses stationary increments, invalidating Malliavin calculus",
+        "score": 0,
+        "feedback": "Increments remain stationary, but the process ceases to be a semimartingale when H < 1/2, collapsing the Itô isometry."
+      },
+      {
+        "text": "Quadratic variation diverges and integration is no longer continuous in p-variation topology, solved by Terry Lyons via iterated integrals (Rough Path Signatures)",
+        "score": 6,
+        "feedback": "Phenomenal insight at the pinnacle of theoretical physics and modern stochastic analysis!"
+      },
+      {
+        "text": "Because Kolmogorov continuity guarantees paths with H < 1/2 are unintegrable without Stratonovich correction",
+        "score": 0,
+        "feedback": "Stratonovich calculus still relies on semimartingales and fails identically for H < 1/2; Terry Lyons' Rough Path theory is strictly required."
+      }
     ],
-    options_es: [
-      { text: "Porque el movimiento browniano fraccionario con H < 1/2 pierde incrementos estacionarios e invalida el cálculo de Malliavin", score: 0, feedback: "Los incrementos siguen siendo estacionarios, pero deja de ser semimartingala para H < 1/2, colapsando la isometría de Itô." },
-      { text: "La variación cuadrática diverge y la integración ya no es continua en la topología de p-variación, resuelto por Terry Lyons mediante integrales iteradas (Signaturas de Trayectorias Rugosas)", score: 6, feedback: "¡Conocimiento de nivel superior en la vanguardia del análisis estocástico moderno!" },
-      { text: "Porque el teorema de Kolmogorov asegura que trayectorias con H < 1/2 no se integran sin la corrección de Stratonovich", score: 0, feedback: "El cálculo de Stratonovich también depende de semimartingalas y fracasa para H < 1/2; la teoría de trayectorias rugosas de Terry Lyons es indispensable." }
+    "options_es": [
+      {
+        "text": "Porque el movimiento browniano fraccionario con H < 1/2 pierde incrementos estacionarios e invalida el cálculo de Malliavin",
+        "score": 0,
+        "feedback": "Los incrementos siguen siendo estacionarios, pero deja de ser semimartingala para H < 1/2, colapsando la isometría de Itô."
+      },
+      {
+        "text": "La variación cuadrática diverge y la integración ya no es continua en la topología de p-variación, resuelto por Terry Lyons mediante integrales iteradas (Signaturas de Trayectorias Rugosas)",
+        "score": 6,
+        "feedback": "¡Conocimiento de nivel superior en la vanguardia del análisis estocástico moderno!"
+      },
+      {
+        "text": "Porque el teorema de Kolmogorov asegura que trayectorias con H < 1/2 no se integran sin la corrección de Stratonovich",
+        "score": 0,
+        "feedback": "El cálculo de Stratonovich también depende de semimartingalas y fracasa para H < 1/2; la teoría de trayectorias rugosas de Terry Lyons es indispensable."
+      }
     ],
-    domain: "apex"
+    "domain": "apex"
   }
 ];
 
@@ -414,18 +774,22 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "Arithmetic Mean",
+          "value": "€ 7.700",
           "note": "Distorted by the single CEO outlier!"
         },
         {
           "label": "Median",
+          "value": "€ 3.100",
           "note": "Representative of the typical employee"
         },
         {
           "label": "Standard Deviation (SD)",
+          "value": "€ 14.168",
           "note": "Severely inflated dispersion metric"
         },
         {
           "label": "IQR (Q3 - Q1)",
+          "value": "€ 400",
           "note": "True compact dispersion of the middle 50%"
         }
       ]
@@ -436,18 +800,22 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "Media Aritmética",
+          "value": "€ 7.700",
           "note": "¡Completamente distorsionada por el atípico del CEO!"
         },
         {
           "label": "Mediana",
+          "value": "€ 3.100",
           "note": "Representativa del empleado típico"
         },
         {
           "label": "Desviación Estándar (DE)",
+          "value": "€ 14.168",
           "note": "Métrica de dispersión inflada"
         },
         {
           "label": "IQR (Q3 - Q1)",
+          "value": "€ 400",
           "note": "Dispersión compacta real del 50% central"
         }
       ]
@@ -642,19 +1010,23 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "Lower Cutoff (-2 SD)",
-          "note": "116.0 mmHg (P(Z < -2) = 2.28%)"
+          "value": "2.28%)",
+          "note": "116.0 mmHg (P(Z < -2)"
         },
         {
           "label": "Upper Cutoff (+2 SD)",
-          "note": "124.0 mmHg (P(Z > +2) = 2.28%)"
+          "value": "2.28%)",
+          "note": "124.0 mmHg (P(Z > +2)"
         },
         {
           "label": "Total Rejection Rate",
+          "value": "Z = ± 2.00",
           "note": "4.55% of the total batch production"
         },
         {
           "label": "Process Quality (Cp)",
-          "note": "Cp = 1.00 (Standard industrial baseline)"
+          "value": "Cp = 1.00",
+          "note": "Standard industrial baseline"
         }
       ]
     },
@@ -664,19 +1036,23 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "Límite Inferior (-2 DE)",
-          "note": "116,0 mmHg (P(Z < -2) = 2,28%)"
+          "value": "2,28%)",
+          "note": "116,0 mmHg (P(Z < -2)"
         },
         {
           "label": "Límite Superior (+2 DE)",
-          "note": "124,0 mmHg (P(Z > +2) = 2,28%)"
+          "value": "2,28%)",
+          "note": "124,0 mmHg (P(Z > +2)"
         },
         {
           "label": "Tasa Total de Rechazo",
+          "value": "Z = ± 2.00",
           "note": "4,55% de toda la producción del lote"
         },
         {
           "label": "Calidad del Proceso (Cp)",
-          "note": "Cp = 1,00 (Línea de base industrial)"
+          "value": "Cp = 1,00",
+          "note": "Línea de base industrial"
         }
       ]
     },
@@ -864,19 +1240,23 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "Population Skewness (Raw)",
-          "note": "+2.85 (Extreme positive tail)"
+          "value": "+2.85",
+          "note": "Extreme positive tail"
         },
         {
           "label": "Sample Mean Skewness (N=50)",
-          "note": "+0.40 (Virtually symmetric)"
+          "value": "+0.40",
+          "note": "Virtually symmetric"
         },
         {
           "label": "Theoretical SE (σ/√50)",
+          "value": "1.05 minuten",
           "note": "0.85 minutes"
         },
         {
           "label": "Empirical Sampling SD",
-          "note": "0.84 minutes (Flawless match)"
+          "value": "0.84 minutes",
+          "note": "Flawless match"
         }
       ]
     },
@@ -886,19 +1266,23 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "Asimetría Poblacional (Cruda)",
-          "note": "+2,85 (Cola positiva extrema)"
+          "value": "+2,85",
+          "note": "Cola positiva extrema"
         },
         {
           "label": "Asimetría de la Media (N=50)",
-          "note": "+0,40 (Prácticamente simétrica)"
+          "value": "+0,40",
+          "note": "Prácticamente simétrica"
         },
         {
           "label": "EE Teórico (σ/√50)",
+          "value": "1.05 minuten",
           "note": "0,85 minutos"
         },
         {
           "label": "DE Muestral Empírica",
-          "note": "0,84 minutos (Concordancia perfecta)"
+          "value": "0,84 minutos",
+          "note": "Concordancia perfecta"
         }
       ]
     },
@@ -1078,19 +1462,23 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "Point Estimate (x̄)",
+          "value": "74.0",
           "note": "7.40 / 10"
         },
         {
           "label": "Margin of Error (ME)",
-          "note": "± 0.118 (Z* = 1.96)"
+          "value": "± 0.118",
+          "note": "Z* = 1.96"
         },
         {
           "label": "95% Confidence Interval",
+          "value": "> 75.0",
           "note": "[7.28, 7.52]"
         },
         {
           "label": "Benchmark Target (7.00)",
-          "note": "Outside interval (Statistically superior)"
+          "value": "Outside interval",
+          "note": "Statistically superior"
         }
       ]
     },
@@ -1100,19 +1488,23 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "Estimación Puntual (x̄)",
+          "value": "74.0",
           "note": "7,40 / 10"
         },
         {
           "label": "Margen de Error (ME)",
-          "note": "± 0,118 (Z* = 1,96)"
+          "value": "± 0,118",
+          "note": "Z* = 1,96"
         },
         {
           "label": "Intervalo de Confianza al 95%",
+          "value": "> 75.0",
           "note": "[7,28; 7,52]"
         },
         {
           "label": "Meta de Referencia (7,00)",
-          "note": "Fuera del intervalo (Estadísticamente superior)"
+          "value": "Fuera del intervalo",
+          "note": "Estadísticamente superior"
         }
       ]
     },
@@ -1309,19 +1701,23 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "Observed p-value",
-          "note": "p = 0.041 (Statistically significant at α = 0.05)"
+          "value": "p = 0.041",
+          "note": "Statistically significant at α = 0.05"
         },
         {
           "label": "Cohen's d Effect Size",
-          "note": "d = 0.28 (Small clinical effect)"
+          "value": "d = 0.28",
+          "note": "Small clinical effect"
         },
         {
           "label": "95% CI for Difference",
-          "note": "[+1.5 min, +62.5 min] (Wide uncertainty)"
+          "value": "[+1.5 min, +62.5 min]",
+          "note": "Wide uncertainty"
         },
         {
           "label": "Post-hoc Power",
-          "note": "54% (Substantially underpowered trial)"
+          "value": "54%",
+          "note": "Substantially underpowered trial"
         }
       ]
     },
@@ -1331,19 +1727,23 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "Valor p Observado",
-          "note": "p = 0,041 (Significativo con α = 0,05)"
+          "value": "p = 0,041",
+          "note": "Significativo con α = 0,05"
         },
         {
           "label": "Tamaño del Efecto (d)",
-          "note": "d = 0,28 (Efecto clínico pequeño)"
+          "value": "d = 0,28",
+          "note": "Efecto clínico pequeño"
         },
         {
           "label": "IC al 95% de la Diferencia",
-          "note": "[+1,5 min; +62,5 min] (Gran incertidumbre)"
+          "value": "[+1,5 min; +62,5 min]",
+          "note": "Gran incertidumbre"
         },
         {
           "label": "Potencia Obtenida",
-          "note": "54% (Estudio marcadamente falto de potencia)"
+          "value": "54%",
+          "note": "Estudio marcadamente falto de potencia"
         }
       ]
     },
@@ -1536,19 +1936,23 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "Intercept (β₀)",
-          "note": "2.50 (Baseline grade without studying)"
+          "value": "2.50",
+          "note": "Baseline grade without studying"
         },
         {
           "label": "Slope (β₁)",
-          "note": "+0.20 per study hour (p < 0.001)"
+          "value": "+0.20 per study hour",
+          "note": "p < 0.001"
         },
         {
           "label": "R-squared (R²)",
-          "note": "0.64 (64% of grade variance explained)"
+          "value": "0.64",
+          "note": "64% of grade variance explained"
         },
         {
           "label": "Residual Std Error",
-          "note": "0.82 grade points"
+          "value": "0.82 grade points",
+          "note": "Unexplained residual scatter"
         }
       ]
     },
@@ -1558,19 +1962,23 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "Intercepto (β₀)",
-          "note": "2,50 (Calificación basal sin estudiar)"
+          "value": "2,50",
+          "note": "Calificación basal sin estudiar"
         },
         {
           "label": "Pendiente (β₁)",
-          "note": "+0,20 por hora de estudio (p < 0,001)"
+          "value": "+0,20 por hora de estudio",
+          "note": "p < 0,001"
         },
         {
           "label": "Coeficiente R²",
-          "note": "0,64 (64% de la varianza explicada)"
+          "value": "0,64",
+          "note": "64% de la varianza explicada"
         },
         {
           "label": "Error Estándar Residual",
-          "note": "0,82 puntos de calificación"
+          "value": "0,82 puntos de calificación",
+          "note": "Dispersión residual no explicada"
         }
       ]
     },
@@ -1743,19 +2151,23 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "Standard R² (Noise Model)",
-          "note": "0.71 (Deceptive variance capture)"
+          "value": "0.71",
+          "note": "Deceptive variance capture"
         },
         {
           "label": "Adjusted R² (Noise Model)",
-          "note": "0.62 (Severe degree-of-freedom penalty)"
+          "value": "0.62",
+          "note": "Severe degree-of-freedom penalty"
         },
         {
           "label": "Adjusted R² (Parsimonious)",
-          "note": "0.65 (True generalizable fit)"
+          "value": "0.65",
+          "note": "True generalizable fit"
         },
         {
           "label": "F-test p-value for Noise",
-          "note": "p = 0.48 (Insignificant joint contribution)"
+          "value": "p = 0.48",
+          "note": "Insignificant joint contribution"
         }
       ]
     },
@@ -1765,19 +2177,23 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "R² Ordinario (Con Ruido)",
-          "note": "0,71 (Captura engañosa de varianza)"
+          "value": "0,71",
+          "note": "Captura engañosa de varianza"
         },
         {
           "label": "R² Ajustado (Con Ruido)",
-          "note": "0,62 (Severa penalización por grados de libertad)"
+          "value": "0,62",
+          "note": "Severa penalización por grados de libertad"
         },
         {
           "label": "R² Ajustado (Parsimonioso)",
-          "note": "0,65 (Ajuste genuino generalizable)"
+          "value": "0,65",
+          "note": "Ajuste genuino generalizable"
         },
         {
           "label": "Valor p de Prueba F (Ruido)",
-          "note": "p = 0,48 (Aporte conjunto insignificante)"
+          "value": "p = 0,48",
+          "note": "Aporte conjunto insignificante"
         }
       ]
     },
@@ -1945,19 +2361,23 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "Breusch-Pagan Test",
-          "note": "p = 0.0002 (Heteroscedasticity confirmed)"
+          "value": "p = 0.0002",
+          "note": "Heteroscedasticity confirmed"
         },
         {
           "label": "Durbin-Watson Statistic",
-          "note": "1.98 (Residuals are independent)"
+          "value": "1.98",
+          "note": "Residuals are independent"
         },
         {
           "label": "Shapiro-Wilk on Residuals",
-          "note": "W = 0.985, p = 0.18 (Normal residuals)"
+          "value": "W = 0.985, p = 0.18",
+          "note": "Normal residuals"
         },
         {
           "label": "Recommended Remedy",
-          "note": "HC3 Robust SEs or Log-transformation"
+          "value": "HC3 Robust SEs or Log-transformation",
+          "note": "Restores valid hypothesis testing"
         }
       ]
     },
@@ -1967,19 +2387,23 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "Prueba de Breusch-Pagan",
-          "note": "p = 0,0002 (Heterocedasticidad confirmada)"
+          "value": "p = 0,0002",
+          "note": "Heterocedasticidad confirmada"
         },
         {
           "label": "Estadístico Durbin-Watson",
-          "note": "1,98 (Independencia de residuos válida)"
+          "value": "1,98",
+          "note": "Independencia de residuos válida"
         },
         {
           "label": "Shapiro-Wilk en Residuos",
-          "note": "W = 0,985, p = 0,18 (Residuos normales)"
+          "value": "W = 0,985, p = 0,18",
+          "note": "Residuos normales"
         },
         {
           "label": "Remedio Recomendado",
-          "note": "Errores Robustos HC3 o Transformación Log"
+          "value": "Errores Robustos HC3 o Transformación Log",
+          "note": "Restaura la validez de los contrastes"
         }
       ]
     },
@@ -2147,19 +2571,23 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "Bivariate Slope (No Age)",
-          "note": "β₁ = +0.54 (Deceptive aggregation trap)"
+          "value": "β₁ = +0.54",
+          "note": "Deceptive aggregation trap"
         },
         {
           "label": "Multivariable Slope (+Age)",
-          "note": "β₁ = -0.82 (True protective physiological effect)"
+          "value": "β₁ = -0.82",
+          "note": "True protective physiological effect"
         },
         {
           "label": "Age Covariate Slope",
-          "note": "β₂ = +1.45 per year of age (Strong confounder)"
+          "value": "β₂ = +1.45 per year of age",
+          "note": "Strong confounder"
         },
         {
           "label": "Model R² Improvement",
-          "note": "R² climbs from 0.08 to 0.76"
+          "value": "R² climbs from 0.08 to 0.76",
+          "note": "Dramatic bias correction"
         }
       ]
     },
@@ -2169,19 +2597,23 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "Pendiente Bivariada (Sin Edad)",
-          "note": "β₁ = +0,54 (Trampa de agregación espuria)"
+          "value": "β₁ = +0,54",
+          "note": "Trampa de agregación espuria"
         },
         {
           "label": "Pendiente Multivariable (+Edad)",
-          "note": "β₁ = -0,82 (Efecto fisiológico protector real)"
+          "value": "β₁ = -0,82",
+          "note": "Efecto fisiológico protector real"
         },
         {
           "label": "Efecto de la Variable Edad",
-          "note": "β₂ = +1,45 por año de edad (Potente confusor)"
+          "value": "β₂ = +1,45 por año de edad",
+          "note": "Potente confusor"
         },
         {
           "label": "Mejora del R² del Modelo",
-          "note": "R² aumenta de 0,08 a 0,76"
+          "value": "R² aumenta de 0,08 a 0,76",
+          "note": "Corrección drástica del sesgo"
         }
       ]
     },
@@ -2352,19 +2784,23 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "Correlation r(X₁, X₂)",
-          "note": "0.992 (Extreme redundancy)"
+          "value": "0.992",
+          "note": "Extreme redundancy"
         },
         {
           "label": "VIF (Left Leg)",
-          "note": "62.5 (Catastrophic multicollinearity)"
+          "value": "62.5",
+          "note": "Catastrophic multicollinearity"
         },
         {
           "label": "SE Inflation Factor (√VIF)",
+          "value": "Verwijder één variabele",
           "note": "7.9x wider confidence intervals"
         },
         {
           "label": "After Dropping One Leg",
-          "note": "VIF = 1.0, p < 0.0001 (Pristine precision)"
+          "value": "VIF = 1.0, p < 0.0001",
+          "note": "Pristine precision"
         }
       ]
     },
@@ -2374,19 +2810,23 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "Correlación r(X₁, X₂)",
-          "note": "0,992 (Redundancia extrema)"
+          "value": "0,992",
+          "note": "Redundancia extrema"
         },
         {
           "label": "FIV (Pierna Izquierda)",
-          "note": "62,5 (Multicolinealidad catastrófica)"
+          "value": "62,5",
+          "note": "Multicolinealidad catastrófica"
         },
         {
           "label": "Factor de Inflación (√FIV)",
+          "value": "Verwijder één variabele",
           "note": "Intervalos de confianza 7,9 veces más anchos"
         },
         {
           "label": "Tras Eliminar Redundancia",
-          "note": "FIV = 1,0, p < 0,0001 (Precisión máxima)"
+          "value": "FIV = 1,0, p < 0,0001",
+          "note": "Precisión máxima"
         }
       ]
     },
@@ -2562,19 +3002,23 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "Logit Slope β₁ (Prior MI)",
-          "note": "+0.896 (p = 0.002)"
+          "value": "+0.896",
+          "note": "p = 0.002"
         },
         {
           "label": "Odds Ratio (e^0.896)",
-          "note": "OR = 2.45 (145% higher odds of readmission)"
+          "value": "OR = 2.45",
+          "note": "145% higher odds of readmission"
         },
         {
           "label": "Area Under ROC (AUC)",
-          "note": "0.84 (Strong diagnostic discrimination)"
+          "value": "0.84",
+          "note": "Strong diagnostic discrimination"
         },
         {
           "label": "Optimal Cutoff",
-          "note": "p = 0.35 (Sensitivity 82%, Specificity 78%)"
+          "value": "p = 0.35",
+          "note": "Sensitivity 82%, Specificity 78%"
         }
       ]
     },
@@ -2584,19 +3028,23 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "Pendiente Logit β₁ (Infarto)",
-          "note": "+0,896 (p = 0,002)"
+          "value": "+0,896",
+          "note": "p = 0,002"
         },
         {
           "label": "Odds Ratio (e^0,896)",
-          "note": "OR = 2,45 (145% más probabilidades relativas de reingreso)"
+          "value": "OR = 2,45",
+          "note": "145% más probabilidades relativas de reingreso"
         },
         {
           "label": "Área bajo la Curva ROC (AUC)",
-          "note": "0,84 (Elevada capacidad discriminatoria)"
+          "value": "0,84",
+          "note": "Elevada capacidad discriminatoria"
         },
         {
           "label": "Umbral Óptimo",
-          "note": "p = 0,35 (Sensibilidad 82%, Especificidad 78%)"
+          "value": "p = 0,35",
+          "note": "Sensibilidad 82%, Especificidad 78%"
         }
       ]
     },
@@ -2769,19 +3217,23 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "Optimal Penalty (λ)",
-          "note": "0.14 (Selected via 10-fold CV)"
+          "value": "0.14",
+          "note": "Selected via 10-fold CV"
         },
         {
           "label": "Active Predictors in Lasso",
-          "note": "6 out of 50 (44 coefficients zeroed out)"
+          "value": "6 out of 50",
+          "note": "44 coefficients zeroed out"
         },
         {
           "label": "Out-of-Sample R² (OLS)",
-          "note": "-0.42 (Catastrophic overfitting)"
+          "value": "-0.42",
+          "note": "Catastrophic overfitting"
         },
         {
           "label": "Out-of-Sample R² (Lasso)",
-          "note": "+0.68 (Superb generalizability)"
+          "value": "+0.68",
+          "note": "Superb generalizability"
         }
       ]
     },
@@ -2791,19 +3243,23 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "Penalización Óptima (λ)",
-          "note": "0,14 (Seleccionada mediante CV de 10 pliegues)"
+          "value": "0,14",
+          "note": "Seleccionada mediante CV de 10 pliegues"
         },
         {
           "label": "Predictores Activos en Lasso",
-          "note": "6 de 50 (44 coeficientes anulados a 0)"
+          "value": "6 de 50",
+          "note": "44 coeficientes anulados a 0"
         },
         {
           "label": "R² Fuera de Muestra (MCO)",
-          "note": "-0,42 (Sobreajuste catastrófico)"
+          "value": "-0,42",
+          "note": "Sobreajuste catastrófico"
         },
         {
           "label": "R² Fuera de Muestra (Lasso)",
-          "note": "+0,68 (Excelente capacidad de generalización)"
+          "value": "+0,68",
+          "note": "Excelente capacidad de generalización"
         }
       ]
     },
@@ -2967,19 +3423,23 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "Intraclass Correlation (ICC)",
-          "note": "0.32 (High clustering: 32% variance at school level)"
+          "value": "0.32",
+          "note": "High clustering: 32% variance at school level"
         },
         {
           "label": "Design Effect (Deff)",
-          "note": "13.48 (Naive OLS standard errors are 3.67x too small!)"
+          "value": "13.48",
+          "note": "Naive OLS standard errors are 3.67x too small!"
         },
         {
           "label": "Naive OLS p-value",
-          "note": "p = 0.0001 (Spurious precision / false discovery)"
+          "value": "p = 0.0001",
+          "note": "Spurious precision / false discovery"
         },
         {
           "label": "Cluster-Adjusted p-value",
-          "note": "p = 0.12 (Correctly non-significant)"
+          "value": "p = 0.12",
+          "note": "Correctly non-significant"
         }
       ]
     },
@@ -2989,19 +3449,23 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "Correlación Intraclase (CCI)",
-          "note": "0,32 (El 32% de la variabilidad reside entre escuelas)"
+          "value": "0,32",
+          "note": "El 32% de la variabilidad reside entre escuelas"
         },
         {
           "label": "Efecto de Diseño (Deff)",
-          "note": "13,48 (¡Los errores estándar de MCO son 3,67 veces más pequeños de lo real!)"
+          "value": "13,48",
+          "note": "¡Los errores estándar de MCO son 3,67 veces más pequeños de lo real!"
         },
         {
           "label": "Valor p de MCO Ingenuo",
-          "note": "p = 0,0001 (Precisión espuria / falso descubrimiento)"
+          "value": "p = 0,0001",
+          "note": "Precisión espuria / falso descubrimiento"
         },
         {
           "label": "Valor p Ajustado por Clúster",
-          "note": "p = 0,12 (Correctamente no significativo)"
+          "value": "p = 0,12",
+          "note": "Correctamente no significativo"
         }
       ]
     },
@@ -3174,19 +3638,23 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "Fixed Slope β₁ (Hours)",
-          "note": "+0.22 (p = 0.003, Correctly estimated standard error)"
+          "value": "+0.22",
+          "note": "p = 0.003, Correctly estimated standard error"
         },
         {
           "label": "Between-School SD (τ)",
+          "value": "σ²_u₀ = 1.42",
           "note": "0.84 grade points"
         },
         {
           "label": "Residual SD (σ)",
-          "note": "0.58 grade points"
+          "value": "0.58 grade points",
+          "note": "Within-school student variation"
         },
         {
           "label": "AIC Comparison vs OLS",
-          "note": "ΔAIC = -142.6 (Massive statistical superiority)"
+          "value": "ΔAIC = -142.6",
+          "note": "Massive statistical superiority"
         }
       ]
     },
@@ -3196,19 +3664,23 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "Pendiente Fija β₁ (Horas)",
-          "note": "+0,22 (p = 0,003, Error estándar estimado con rigor)"
+          "value": "+0,22",
+          "note": "p = 0,003, Error estándar estimado con rigor"
         },
         {
           "label": "DE Entre Colegios (τ)",
+          "value": "σ²_u₀ = 1.42",
           "note": "0,84 puntos de calificación"
         },
         {
           "label": "DE Residual (σ)",
-          "note": "0,58 puntos de calificación"
+          "value": "0,58 puntos de calificación",
+          "note": "Variación de alumnos intra-colegio"
         },
         {
           "label": "Comparativa AIC vs MCO",
-          "note": "ΔAIC = -142,6 (Superioridad estadística aplastante)"
+          "value": "ΔAIC = -142,6",
+          "note": "Superioridad estadística aplastante"
         }
       ]
     },
@@ -3382,19 +3854,23 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "Population Slope (Fixed β₁)",
-          "note": "+2.40 pts/month (p < 0.001)"
+          "value": "+2.40 pts/month",
+          "note": "p < 0.001"
         },
         {
           "label": "Slope Variance (τ₁)",
-          "note": "0.85 pts/month (Substantial patient heterogeneity)"
+          "value": "0.85 pts/month",
+          "note": "Substantial patient heterogeneity"
         },
         {
           "label": "Intercept-Slope Corr (ρ₀₁)",
-          "note": "-0.42 (Catch-up recovery effect)"
+          "value": "-0.42",
+          "note": "Catch-up recovery effect"
         },
         {
           "label": "Likelihood Ratio vs Random Int",
-          "note": "χ² = 28.4, p < 0.0001 (Random slopes mandatory)"
+          "value": "χ² = 28.4, p < 0.0001",
+          "note": "Random slopes mandatory"
         }
       ]
     },
@@ -3404,19 +3880,23 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "Pendiente Poblacional (β₁)",
-          "note": "+2,40 pts/mes (p < 0,001)"
+          "value": "+2,40 pts/mes",
+          "note": "p < 0,001"
         },
         {
           "label": "Dispersión de Pendientes (τ₁)",
-          "note": "0,85 pts/mes (Elevada heterogeneidad individual)"
+          "value": "0,85 pts/mes",
+          "note": "Elevada heterogeneidad individual"
         },
         {
           "label": "Correlación Intercepto-Pendiente (ρ₀₁)",
-          "note": "-0,42 (Efecto de convergencia o alcance)"
+          "value": "-0,42",
+          "note": "Efecto de convergencia o alcance"
         },
         {
           "label": "Razón de Verosimilitud vs Intercepto",
-          "note": "χ² = 28,4, p < 0,0001 (Pendientes aleatorias indispensables)"
+          "value": "χ² = 28,4, p < 0,0001",
+          "note": "Pendientes aleatorias indispensables"
         }
       ]
     },
@@ -3588,19 +4068,23 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "Fixed Effect OR (Prophylaxis)",
-          "note": "0.42 (p < 0.001, 58% lower odds of infection)"
+          "value": "0.42",
+          "note": "p < 0.001, 58% lower odds of infection"
         },
         {
           "label": "Between-Clinic SD (τ)",
+          "value": "σ²_u = 0.64",
           "note": "0.65 in log-odds scale"
         },
         {
           "label": "Intraclass Correlation (latent)",
-          "note": "ICC_latent = 0.11"
+          "value": "0.11",
+          "note": "ICC_latent"
         },
         {
           "label": "Integration Technique",
-          "note": "Adaptive Gauss-Hermite Quadrature (nAGQ = 7)"
+          "value": "Adaptive Gauss-Hermite Quadrature",
+          "note": "nAGQ = 7"
         }
       ]
     },
@@ -3610,19 +4094,23 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "Efecto Fijo OR (Profilaxis)",
-          "note": "0,42 (p < 0,001, 58% menos chances de infección)"
+          "value": "0,42",
+          "note": "p < 0,001, 58% menos chances de infección"
         },
         {
           "label": "DE Entre Quirófanos (τ)",
+          "value": "σ²_u = 0.64",
           "note": "0,65 en escala log-odds"
         },
         {
           "label": "Correlación Intraclase Latente",
-          "note": "CCI_latente = 0,11"
+          "value": "0,11",
+          "note": "CCI_latente"
         },
         {
           "label": "Método de Integración",
-          "note": "Cuadratura Gauss-Hermite Adaptativa (nAGQ = 7)"
+          "value": "Cuadratura Gauss-Hermite Adaptativa",
+          "note": "nAGQ = 7"
         }
       ]
     },
@@ -3796,19 +4284,23 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "Effective Degrees of Freedom (EDF)",
-          "note": "4.82 (Substantial non-linear U-shape)"
+          "value": "4.82",
+          "note": "Substantial non-linear U-shape"
         },
         {
           "label": "Optimal Smoothing Penalty (λ)",
-          "note": "0.24 (Selected automatically by REML)"
+          "value": "0.24",
+          "note": "Selected automatically by REML"
         },
         {
           "label": "Deviance Explained",
-          "note": "88.4% of total energy variance captured"
+          "value": "88.4% of total energy variance captured",
+          "note": "High spline model fidelity"
         },
         {
           "label": "Comfort Temperature Trough",
-          "note": "18.5°C (Minimum electricity demand)"
+          "value": "18.5°C",
+          "note": "Minimum electricity demand"
         }
       ]
     },
@@ -3818,19 +4310,23 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "Grados de Libertad Efectivos (EDF)",
-          "note": "4,82 (Marcada curvatura no lineal en U)"
+          "value": "4,82",
+          "note": "Marcada curvatura no lineal en U"
         },
         {
           "label": "Penalización Óptima (λ)",
-          "note": "0,24 (Seleccionada automáticamente por REML)"
+          "value": "0,24",
+          "note": "Seleccionada automáticamente por REML"
         },
         {
           "label": "Desviación Explicada",
-          "note": "88,4% de la varianza energética explicada"
+          "value": "88,4% de la varianza energética explicada",
+          "note": "Alta fidelidad del modelo spline"
         },
         {
           "label": "Zona de Confort Mínimo",
-          "note": "18,5 °C (Mínimo consumo eléctrico)"
+          "value": "18,5 °C",
+          "note": "Mínimo consumo eléctrico"
         }
       ]
     },
@@ -4001,19 +4497,23 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "Hazard Ratio (HR)",
-          "note": "0.58 (42% reduction in instantaneous mortality risk)"
+          "value": "0.58",
+          "note": "42% reduction in instantaneous mortality risk"
         },
         {
           "label": "95% Confidence Interval for HR",
-          "note": "[0.41, 0.83] (p = 0.003)"
+          "value": "[0.41, 0.83]",
+          "note": "p = 0.003"
         },
         {
           "label": "Median Survival Gain",
-          "note": "Extended from 14.2 months to 24.8 months (+10.6 mos)"
+          "value": "Extended from 14.2 months to 24.8 months",
+          "note": "+10.6 mos"
         },
         {
           "label": "Schoenfeld Residual Test",
-          "note": "p = 0.62 (Proportional hazards assumption satisfied)"
+          "value": "p = 0.62",
+          "note": "Proportional hazards assumption satisfied"
         }
       ]
     },
@@ -4023,19 +4523,23 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "Hazard Ratio (HR)",
-          "note": "0,58 (42% de reducción en la tasa instantánea de mortalidad)"
+          "value": "0,58",
+          "note": "42% de reducción en la tasa instantánea de mortalidad"
         },
         {
           "label": "IC al 95% para la HR",
-          "note": "[0,41; 0,83] (p = 0,003)"
+          "value": "[0,41; 0,83]",
+          "note": "p = 0,003"
         },
         {
           "label": "Ganancia en Mediana de Supervivencia",
-          "note": "Pasa de 14,2 a 24,8 meses (+10,6 meses)"
+          "value": "Pasa de 14,2 a 24,8 meses",
+          "note": "+10,6 meses"
         },
         {
           "label": "Test de Schoenfeld",
-          "note": "p = 0,62 (Supuesto de proporcionalidad plenamente cumplido)"
+          "value": "p = 0,62",
+          "note": "Supuesto de proporcionalidad plenamente cumplido"
         }
       ]
     },
@@ -4209,19 +4713,23 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "Prior Probability P(Disease)",
-          "note": "0.001 (0.1% base rate)"
+          "value": "0.001",
+          "note": "0.1% base rate"
         },
         {
           "label": "Positive Predictive Value (PPV)",
-          "note": "1.94% (Posterior probability of disease)"
+          "value": "1.94%",
+          "note": "Posterior probability of disease"
         },
         {
           "label": "False Positive Ratio",
-          "note": "50 false positives for every 1 true positive"
+          "value": "50 false positives for every 1 true positive",
+          "note": "Substantially reduced after prior weighting"
         },
         {
           "label": "After 2nd Independent Positive",
-          "note": "Posterior jumps to 98.2% (Diagnostic certainty)"
+          "value": "Posterior jumps to 98.2%",
+          "note": "Diagnostic certainty"
         }
       ]
     },
@@ -4231,19 +4739,23 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "Probabilidad a Priori P(Enfermedad)",
-          "note": "0,001 (Tasa base del 0,1%)"
+          "value": "0,001",
+          "note": "Tasa base del 0,1%"
         },
         {
           "label": "Valor Predictivo Positivo (VPP)",
-          "note": "1,94% (Probabilidad a posteriori real)"
+          "value": "1,94%",
+          "note": "Probabilidad a posteriori real"
         },
         {
           "label": "Proporción de Falsos Positivos",
-          "note": "50 falsos positivos por cada 1 enfermo real"
+          "value": "50 falsos positivos por cada 1 enfermo real",
+          "note": "Reducción notable tras ponderación a priori"
         },
         {
           "label": "Tras 2º Test Positivo Independiente",
-          "note": "La posteriori salta al 98,2% (Certeza diagnóstica)"
+          "value": "La posteriori salta al 98,2%",
+          "note": "Certeza diagnóstica"
         }
       ]
     },
@@ -4407,19 +4919,23 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "Gelman-Rubin (R̂)",
-          "note": "1.002 (Ideal convergence: R̂ < 1.05)"
+          "value": "1.002",
+          "note": "Ideal convergence: R̂ < 1.05"
         },
         {
           "label": "Bulk Effective Sample Size (ESS)",
+          "value": "3.400 samples",
           "note": "2,840 independent draws"
         },
         {
           "label": "Divergent Transitions",
-          "note": "0 (No funnel geometry traps)"
+          "value": "0",
+          "note": "No funnel geometry traps"
         },
         {
           "label": "95% Highest Density Interval (HDI)",
-          "note": "[1.82, 3.44] (Bayesian credible interval)"
+          "value": "[1.82, 3.44]",
+          "note": "Bayesian credible interval"
         }
       ]
     },
@@ -4429,19 +4945,23 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "Gelman-Rubin (R̂)",
-          "note": "1,002 (Convergencia ideal: R̂ < 1,05)"
+          "value": "1,002",
+          "note": "Convergencia ideal: R̂ < 1,05"
         },
         {
           "label": "Tamaño Muestral Efectivo (ESS)",
+          "value": "3.400 samples",
           "note": "2.840 muestras independientes"
         },
         {
           "label": "Transiciones Divergentes",
-          "note": "0 (Sin colapsos geométricos)"
+          "value": "0",
+          "note": "Sin colapsos geométricos"
         },
         {
           "label": "Intervalo de Credibilidad al 95% (HDI)",
-          "note": "[1,82; 3,44] (Rango bayesiano creíble)"
+          "value": "[1,82; 3,44]",
+          "note": "Rango bayesiano creíble"
         }
       ]
     },
@@ -4613,19 +5133,23 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "Optimal Lengthscale (ℓ)",
-          "note": "2.4 km (Spatial correlation range)"
+          "value": "2.4 km",
+          "note": "Spatial correlation range"
         },
         {
           "label": "Output Variance (σ_f²)",
+          "value": "3.20",
           "note": "18.2 ppm²"
         },
         {
           "label": "Uncertainty at Known Sites",
-          "note": "σ_pred = 0.00 ppm (Noise-free interpolation)"
+          "value": "σ_pred = 0.00 ppm",
+          "note": "Noise-free interpolation"
         },
         {
           "label": "Uncertainty in Exploration Gap",
-          "note": "σ_pred = ± 3.8 ppm (High exploration priority)"
+          "value": "σ_pred = ± 3.8 ppm",
+          "note": "High exploration priority"
         }
       ]
     },
@@ -4635,19 +5159,23 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "Escala de Longitud Óptima (ℓ)",
-          "note": "2,4 km (Alcance de correlación espacial)"
+          "value": "2,4 km",
+          "note": "Alcance de correlación espacial"
         },
         {
           "label": "Varianza de Salida (σ_f²)",
+          "value": "3.20",
           "note": "18,2 ppm²"
         },
         {
           "label": "Incertidumbre en Puntos Medidos",
-          "note": "σ_pred = 0,00 ppm (Interpolación sin ruido)"
+          "value": "σ_pred = 0,00 ppm",
+          "note": "Interpolación sin ruido"
         },
         {
           "label": "Incertidumbre en Zonas Desiertas",
-          "note": "σ_pred = ± 3,8 ppm (Prioridad de prospección)"
+          "value": "σ_pred = ± 3,8 ppm",
+          "note": "Prioridad de prospección"
         }
       ]
     },
@@ -4813,19 +5341,23 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "Observational Association",
-          "note": "-0.18 (Spurious harmful appearance)"
+          "value": "-0.18",
+          "note": "Spurious harmful appearance"
         },
         {
           "label": "Causal Average Treatment Effect (ATE)",
-          "note": "+0.30 (True therapeutic benefit)"
+          "value": "+0.30",
+          "note": "True therapeutic benefit"
         },
         {
           "label": "Back-Door Set Conditioned",
-          "note": "{Severity, Age} (Backdoor paths completely blocked)"
+          "value": "{Severity, Age}",
+          "note": "Backdoor paths completely blocked"
         },
         {
           "label": "Maximum Mean Discrepancy (MMD in ℋ)",
-          "note": "0.42 (Statistically validated causal separation)"
+          "value": "0.42",
+          "note": "Statistically validated causal separation"
         }
       ]
     },
@@ -4835,19 +5367,23 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "Asociación Observacional",
-          "note": "-0,18 (Efecto perjudicial espurio)"
+          "value": "-0,18",
+          "note": "Efecto perjudicial espurio"
         },
         {
           "label": "Efecto Causal Promedio (ATE)",
-          "note": "+0,30 (Beneficio terapéutico genuino)"
+          "value": "+0,30",
+          "note": "Beneficio terapéutico genuino"
         },
         {
           "label": "Conjunto de Puerta Trasera",
-          "note": "{Gravedad, Edad} (Caminos espurios neutralizados)"
+          "value": "{Gravedad, Edad}",
+          "note": "Caminos espurios neutralizados"
         },
         {
           "label": "Discrepancia Máxima de Medias (MMD en ℋ)",
-          "note": "0,42 (Separación causal estadísticamente validada)"
+          "value": "0,42",
+          "note": "Separación causal estadísticamente validada"
         }
       ]
     },
@@ -5015,19 +5551,23 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "Deterministic Drift Rate (μ)",
-          "note": "-0.50 (Gradient potential descent)"
+          "value": "-0.50",
+          "note": "Gradient potential descent"
         },
         {
           "label": "Stochastic Volatility (σ)",
-          "note": "1.20 (Thermal Langevin excitation)"
+          "value": "1.20",
+          "note": "Thermal Langevin excitation"
         },
         {
           "label": "Quadratic Variation (dB_t)²",
-          "note": "Exact match: (dB_t)² = dt"
+          "value": "dt",
+          "note": "Exact match: (dB_t)²"
         },
         {
           "label": "Stationary Distribution",
-          "note": "Ornstein-Uhlenbeck Gaussian equilibrium"
+          "value": "Ornstein-Uhlenbeck Gaussian equilibrium",
+          "note": "Asymptotic Gaussian limit"
         }
       ]
     },
@@ -5037,19 +5577,23 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "Tasa de Deriva Determinista (μ)",
-          "note": "-0,50 (Descenso por gradiente de potencial)"
+          "value": "-0,50",
+          "note": "Descenso por gradiente de potencial"
         },
         {
           "label": "Volatilidad Estocástica (σ)",
-          "note": "1,20 (Excitación térmica de Langevin)"
+          "value": "1,20",
+          "note": "Excitación térmica de Langevin"
         },
         {
           "label": "Variación Cuadrática (dB_t)²",
-          "note": "Concordancia exacta: (dB_t)² = dt"
+          "value": "dt",
+          "note": "Concordancia exacta: (dB_t)²"
         },
         {
           "label": "Distribución Estacionaria",
-          "note": "Equilibrio gaussiano de Ornstein-Uhlenbeck"
+          "value": "Equilibrio gaussiano de Ornstein-Uhlenbeck",
+          "note": "Límite gaussiano asintótico"
         }
       ]
     },
@@ -5241,19 +5785,23 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "Manifold Geometry (ℳ)",
+          "value": "R < 0 (Hyperbolisch)",
           "note": "Riemannian Metric Tensor with non-zero sectional curvature"
         },
         {
           "label": "Rough Path Regime",
-          "note": "Hurst H = 0.28 (p-variation index p = 3.57 > 2)"
+          "value": "Hurst H = 0.28",
+          "note": "p-variation index p = 3.57 > 2"
         },
         {
           "label": "Causal Space Metric",
+          "value": "dim(ℋ) = ∞",
           "note": "Infinite-Dimensional RKHS kernel operator in ℋ"
         },
         {
           "label": "Curriculum Status",
-          "note": "Level 24 Apex Mastery Achieved (100% Complete)"
+          "value": "Level 24 Apex Mastery Achieved",
+          "note": "100% Complete"
         }
       ]
     },
@@ -5263,19 +5811,23 @@ window.LEVELS_DATA = [
       "metrics": [
         {
           "label": "Geometría de la Variedad (ℳ)",
+          "value": "R < 0 (Hyperbolisch)",
           "note": "Tensor Métrico Riemanniano con curvatura seccional no nula"
         },
         {
           "label": "Régimen de Trayectoria Rugosa",
-          "note": "Hurst H = 0,28 (Índice de p-variación p = 3,57 > 2)"
+          "value": "Hurst H = 0,28",
+          "note": "Índice de p-variación p = 3,57 > 2"
         },
         {
           "label": "Métrica del Espacio Causal",
+          "value": "dim(ℋ) = ∞",
           "note": "Operador integral de núcleo en RKHS de dimensión infinita ℋ"
         },
         {
           "label": "Estado del Curriculum",
-          "note": "Maestría Cenit Nivel 24 Alcanzada (100% Completado)"
+          "value": "Maestría Cenit Nivel 24 Alcanzada",
+          "note": "100% Completado"
         }
       ]
     },
