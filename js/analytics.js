@@ -114,7 +114,16 @@ window.StatAnalytics = (function() {
       });
     },
 
-    // 6. Systeem & UI Events
+    // 6. Conversie & CTA Events
+    trackCTAClick: function(ctaId, ctaLabel) {
+      trackEvent("cta_click", {
+        cta_id: ctaId,
+        cta_label: ctaLabel || "",
+        timestamp: new Date().toISOString()
+      });
+    },
+
+    // 7. Systeem & UI Events
     trackSliderChange: trackSliderChange,
 
     trackSoundToggle: function(enabled) {

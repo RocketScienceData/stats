@@ -4,1123 +4,1077 @@
 // - Praktijk Dilemma & Besluitvorming
 // - De Valkuil-Detector
 // - Data & Parameter Schatting
+// Alle antwoordopties zijn wetenschappelijk getoetste, realistische statistische concepten (geen triviale afvallers).
 
 window.EXERCISES_DATA = {
-  // LEVEL 1: Beschrijvende Statistiek
-  1: [
+  "1": [
     {
-      id: "l1_ex1",
-      type: "concept",
-      title: "Oefening 1: Centrummaten & Scheefheid",
-      question: "In een landelijke inkomensenquête is het gemiddelde inkomen € 42.000 per jaar, terwijl het mediane inkomen € 31.000 per jaar is. Wat zegt dit onmiddellijk over de vorm van de inkomensverdeling?",
-      options: [
-        "De inkomensverdeling is volkomen symmetrisch",
+      "id": "l1_ex1",
+      "category": "Concept",
+      "title": "Oefening 1: Centrummaten & Scheefheid",
+      "question": "In een landelijke inkomensenquête is het gemiddelde inkomen € 42.000 per jaar, terwijl het mediane inkomen € 31.000 per jaar is. Wat zegt dit onmiddellijk over de vorm van de inkomensverdeling?",
+      "options": [
+        "De inkomensverdeling is volkomen symmetrisch rond € 36.500",
         "De verdeling is rechtsscheef (positief scheef): een kleine groep topinkomens trekt het gemiddelde omhoog",
-        "De verdeling is linksscheef: de meeste mensen verdienen extreem veel",
-        "Er is sprake van een meetfout, want gemiddelde en mediaan moeten altijd identiek zijn"
+        "De verdeling is linksscheef (negatief scheef): de overgrote meerderheid verdient meer dan het gemiddelde",
+        "De verdeling is bimodaal met identieke pieken op € 31.000 en € 42.000"
       ],
-      correctIndex: 1,
-      explanation: "Juist! Wanneer Gemiddelde > Mediaan, trekken hoge uitschieters (de topinkomens) het rekenkundig gemiddelde naar rechts. De mediaan geeft de zuivere middelste burger weer."
+      "correctIndex": 1,
+      "explanation": "Juist! Wanneer Gemiddelde > Mediaan, trekken hoge uitschieters (de topinkomens) het rekenkundig gemiddelde naar rechts. De mediaan geeft de zuivere middelste burger weer."
     },
     {
-      id: "l1_ex2",
-      type: "dilemma",
-      title: "Oefening 2: Praktijk Dilemma bij een E-Commerce Platform",
-      question: "Je meet de laadtijden van een mobiele app. Bij 95% van de gebruikers laadt de pagina in 0.5 seconde. Bij 5% van de gebruikers met een haperende verbinding duurt het 45 seconden. De marketingdirecteur wil 'de gemiddelde laadtijd van 2.7 seconden' in een persbericht zetten. Wat adviseer je?",
-      options: [
-        "Mee eens, het gemiddelde is de enige officiële ISO-maatstaf",
+      "id": "l1_ex2",
+      "category": "Dilemma",
+      "title": "Oefening 2: Praktijk Dilemma bij een E-Commerce Platform",
+      "question": "Je meet de laadtijden van een mobiele app. Bij 95% van de gebruikers laadt de pagina in 0.5 seconde. Bij 5% van de gebruikers met een haperende verbinding duurt het 45 seconden. De marketingdirecteur wil 'de gemiddelde laadtijd van 2.7 seconden' in een persbericht zetten. Wat adviseer je?",
+      "options": [
+        "Mee eens: het rekenkundig gemiddelde van 2.7s integreert immers alle ervaringen in één onvertekende verwachtingswaarde",
         "Niet mee eens: rapporteer de mediaan (0.5s) én de 95e percentiel (p95 = 45s). Het gemiddelde van 2.7s beschrijft noch de typische gebruiker, noch de zwaarst getroffen groep",
-        "Verwijder simpelweg alle metingen boven de 1 seconde zodat het gemiddelde naar 0.5s daalt",
-        "Gebruik de standaardafwijking als het centrumgetal"
+        "Bereken het getrimde gemiddelde (5% trimmed mean) door de traagste 5% weg te laten, omdat die metingen als toevallige verbindingsfouten beschouwd moeten worden",
+        "Rapporteer uitsluitend de standaardafwijking (SD = 10.2s) omdat spreiding belangrijker is dan centrum bij internetdiensten"
       ],
-      correctIndex: 1,
-      explanation: "Uitstekend besluit! In latency- en prestatiemetingen is het gemiddelde waardeloos. Men rapporteert altijd mediaan (typische ervaring) én p95 of p99 (tail latency)."
+      "correctIndex": 1,
+      "explanation": "Uitstekend besluit! In latency- en prestatiemetingen is het gemiddelde misleidend. Men rapporteert altijd mediaan (typische ervaring) én p95 of p99 (tail latency)."
     },
     {
-      id: "l1_ex3",
-      type: "trap",
-      title: "Oefening 3: De Valkuil-Detector van Spreiding",
-      question: "Waarom is de Interkwartielafstand (IQR = Q3 - Q1) veel betrouwbaarder dan het Bereik (Range = Max - Min) bij data met mogelijke meetfouten?",
-      options: [
-        "Omdat de IQR altijd gelijk is aan de standaardafwijking",
-        "Omdat de Range afhankelijk is van slechts 2 getallen (het absolute minimum en maximum) en dus explodeert bij één enkele typfout of outlier, terwijl de IQR de middelste 50% meet",
-        "Omdat de IQR alleen berekend kan worden bij normale verdelingen",
-        "Omdat het Bereik altijd nul is bij grote datasets"
+      "id": "l1_ex3",
+      "category": "Valkuil",
+      "title": "Oefening 3: De Valkuil-Detector van Spreiding",
+      "question": "Waarom is de Interkwartielafstand (IQR = Q3 - Q1) veel betrouwbaarder dan het Bereik (Range = Max - Min) bij data met mogelijke meetfouten?",
+      "options": [
+        "Omdat de IQR een parametrische toets is die de variantie van uitschieters compenseert via Bessel's correctie",
+        "Omdat het Bereik afhankelijk is van slechts 2 extremen en explodeert bij één enkele typfout of outlier, terwijl de IQR de middelste 50% van de data omvat",
+        "Omdat de IQR alleen berekend kan worden bij perfect symmetrische normale verdelingen",
+        "Omdat het Bereik asymptotisch convergeert naar de standaarddeviatie bij grotere steekproeven, terwijl de IQR onafhankelijk blijft"
       ],
-      correctIndex: 1,
-      explanation: "Spot-on! Eén foute invoer (bv. leeftijd 999 ipv 99) ruïneert de Range en SD compleet, maar laat de IQR volkomen koud."
+      "correctIndex": 1,
+      "explanation": "Spot-on! Eén foute invoer (bv. leeftijd 999 ipv 99) ruïneert de Range en SD compleet, maar laat de IQR volkomen koud."
     }
   ],
-
-  // LEVEL 2: Normale Verdeling
-  2: [
+  "2": [
     {
-      id: "l2_ex1",
-      type: "concept",
-      title: "Oefening 1: Z-score Berekening & Positie",
-      question: "Een toetsscore volgt een normale verdeling met μ = 70 en σ = 10. Een student scoort 90 punten. Wat is de Z-score van deze student en welk percentage studenten scoort lager?",
-      options: [
-        "Z = +1.0, ongeveer 68% scoort lager",
-        "Z = +2.0, ongeveer 97.7% scoort lager (slechts 2.3% scoort nog hoger)",
-        "Z = +0.5, ongeveer 50% scoort lager",
-        "Z = -2.0, student scoort ondermaats"
+      "id": "l2_ex1",
+      "category": "Berekening",
+      "title": "Oefening 1: Z-score Berekening & Positie",
+      "question": "Een toetsscore volgt een normale verdeling met μ = 70 en σ = 10. Een student scoort 90 punten. Wat is de Z-score van deze student en welk percentage studenten scoort lager?",
+      "options": [
+        "Z = +2.0, precies 95.4% scoort lager (volgens de tweezijdige 2-sigma regel)",
+        "Z = +2.0, ongeveer 97.7% scoort lager (slechts 2.3% scoort nog hoger in de rechterstaart)",
+        "Z = +1.96, precies 95.0% van alle studenten scoort lager",
+        "Z = +1.0, ongeveer 84.1% van de studenten scoort lager"
       ],
-      correctIndex: 1,
-      explanation: "Exact! Z = (90 - 70) / 10 = +2.0. Volgens de empirische regel ligt 95.4% binnen ±2 SD, dus 2.3% in elke staart. 50% + 47.7% = 97.7% scoort lager."
+      "correctIndex": 1,
+      "explanation": "Exact! Z = (90 - 70) / 10 = +2.0. Binnen ±2 SD ligt 95.4% van de verdeling. In de twee staarten resteert 4.6% (2.3% links en 2.3% rechts). Dus lager dan Z = +2.0 scoort 100% - 2.3% = 97.7%."
     },
     {
-      id: "l2_ex2",
-      type: "trap",
-      title: "Oefening 2: De Normaliteits-Aanname Valkuil",
-      question: "Mag je de 68-95-99.7 vuistregel toepassen op het aantal volgers van accounts op Twitter/X?",
-      options: [
-        "Ja, want alle grote datasets worden vanzelf normaal verdeeld",
+      "id": "l2_ex2",
+      "category": "Valkuil",
+      "title": "Oefening 2: De Normaliteits-Aanname Valkuil",
+      "question": "Mag je de 68-95-99.7 vuistregel toepassen op het aantal volgers van accounts op Twitter/X?",
+      "options": [
+        "Ja, zolang de steekproefomvang N maar groter is dan 30, want de Centrale Limietstelling maakt de populatieverdeling normaal",
         "Nee! Volgersaantallen volgen een power-law / zwaar scheve Pareto-verdeling (enkele accounts hebben miljoenen volgers, de meesten <100). De normale verdeling slaat hier de plank volkomen mis",
-        "Ja, mits je de Z-score met 2 vermenigvuldigt",
-        "Alleen als het account geverifieerd is"
+        "Ja, mits je eerst de Z-scores standaardiseert met de mediaan in plaats van het rekenkundig gemiddelde",
+        "Ja, omdat het aantal volgers een som is van onafhankelijke binaire beslissingen en dus een Gaussische klokvorm benadert"
       ],
-      correctIndex: 1,
-      explanation: "Essentieel inzicht! Veel sociale en economische fenomenen zijn power-laws, geen Gauss-krommen. De empirische regel toepassen op power-laws leidt tot catastrofale onderschatting van risico's."
+      "correctIndex": 1,
+      "explanation": "Spot-on! De normale verdeling mag je NOOIT blind aannemen. Veel data in de echte wereld (volgers, inkomen, webverkeer) volgt zware machtswetten (power laws)."
     },
     {
-      id: "l2_ex3",
-      type: "dilemma",
-      title: "Oefening 3: Fabrieks-Tolerantiegrenzen",
-      question: "Een productiemachine vult flessen frisdrank met μ = 500 ml en σ = 5 ml. Flessen onder 490 ml (onder -2 SD) mogen wettelijk niet verkocht worden. Wat is de snelste manier om het afkeurpercentage te verlagen?",
-      options: [
-        "Het gemiddelde verlagen naar 495 ml",
-        "De precisie van de doseerklep verbeteren zodat de spreiding σ daalt van 5 ml naar 2.5 ml",
-        "De steekproefgrootte verkleinen",
-        "Vaker meten op hetzelfde flesje"
+      "id": "l2_ex3",
+      "category": "Dilemma",
+      "title": "Oefening 3: Fabrieks-Tolerantiegrenzen",
+      "question": "Een productiemachine vult flessen frisdrank met μ = 500 ml en σ = 5 ml. Flessen onder 490 ml (onder -2 SD) mogen wettelijk niet verkocht worden. Wat is de effectiefste manier om het afkeurpercentage structureel te verlagen zonder productverspilling?",
+      "options": [
+        "Het vulgemiddelde verhogen naar 510 ml om de linkerstaart volledig boven 490 ml te tillen",
+        "De precisie van de doseerklep verbeteren zodat de proces-spreiding σ daalt van 5 ml naar 2.5 ml",
+        "De steekproef van de kwaliteitsmeting vergroten naar N = 10.000 om de tolerantiegrenzen smaller te maken",
+        "Een niet-lineaire Box-Cox transformatie toepassen op de vulmetingen zodat de linkerstaart mathematisch krimpt"
       ],
-      correctIndex: 1,
-      explanation: "Helemaal juist! Door de procesvariantie σ te verkleinen (Six Sigma principe), schuift de afkeurgrens van 2 SD naar 4 SD en daalt de uitval van 2.3% naar minder dan 0.003%."
+      "correctIndex": 1,
+      "explanation": "Briljant inzicht in Six Sigma kwaliteitsbeheersing! Door de variantie σ te verkleinen wordt de curve smaller en steiler, waardoor de staarten buiten de grenzen verdwijnen."
     }
   ],
-
-  // LEVEL 3: Centrale Limietstelling (CLT)
-  3: [
+  "3": [
     {
-      id: "l3_ex1",
-      type: "concept",
-      title: "Oefening 1: Het Gedrag van het Steekproefgemiddelde",
-      question: "We gooien 100 keer met een zuivere dobbelsteen (elk getal 1 t/m 6 heeft 1/6 kans; een perfect platte/uniforme verdeling). Wat is de vorm van de verdeling van het GEMIDDELDE van deze 100 worpen als we dit experiment 1.000 keer herhalen?",
-      options: [
-        "Volkomen plat en uniform tussen 1 en 6",
-        "Een prachtige klokvormige normale verdeling met piek rond 3.5, dankzij de Centrale Limietstelling",
-        "Een exponentiële verdeling",
-        "Een U-vormige verdeling"
+      "id": "l3_ex1",
+      "category": "Concept",
+      "title": "Oefening 1: Het Gedrag van het Steekproefgemiddelde",
+      "question": "We gooien 100 keer met een zuivere dobbelsteen (elk getal 1 t/m 6 heeft 1/6 kans; een perfect platte/uniforme verdeling). Wat is de vorm van de verdeling van het GEMIDDELDE van deze 100 worpen als we dit experiment 1.000 keer herhalen?",
+      "options": [
+        "Een volkomen platte uniforme verdeling tussen 1 en 6, conform de wet van behoud van verdelingsvorm",
+        "Een klokvormige normale verdeling gecentreerd rond 3.5 met sterk verminderde variantie, dankzij de Centrale Limietstelling",
+        "Een Cauchy-verdeling met zware staarten door de grilligheid van individuele toevalsworpen",
+        "Een Poisson-verdeling met parameter λ = 3.5 omdat dobbelsteenogen gehele getallen zijn"
       ],
-      correctIndex: 1,
-      explanation: "Meesterlijk! Hoewel individuele dobbelsteenworpen volstrekt uniform verdeeld zijn, convergeert de som en het gemiddelde bij N=100 onverbiddelijk naar een normale verdeling."
+      "correctIndex": 1,
+      "explanation": "Juist! Dit is het wonder van de CLT: ongeacht hoe de oorspronkelijke data verdeeld is (zelfs kurkdroog uniform), de som of het gemiddelde van voldoende onafhankelijke waarnemingen wordt altijd normaal verdeeld."
     },
     {
-      id: "l3_ex2",
-      type: "trap",
-      title: "Oefening 2: De Grote Misvatting over Data-Transformatie",
-      question: "Een junior onderzoeker zegt: 'Mijn patiëntendata is zwaar scheef. Maar omdat ik N = 500 patiënten heb, is mijn data nu vanzelf normaal verdeeld!' Waarom heeft hij ongelijk?",
-      options: [
-        "Omdat 500 te klein is; het moet minstens N = 100.000 zijn",
-        "Omdat de CLT alleen zegt dat de verdeling van het GEMIDDELDE normaal wordt bij herhaalde steekproeven; de ruwe patiëntendata zelf blijft net zo scheef als hij altijd was!",
-        "Omdat alleen bloeddruk normaal verdeeld kan zijn",
-        "Hij heeft wel gelijk, grote datasets worden automatisch klokvormig"
+      "id": "l3_ex2",
+      "category": "Valkuil",
+      "title": "Oefening 2: De Grote Misvatting over Data-Transformatie",
+      "question": "Een junior onderzoeker zegt: 'Mijn patiëntendata is zwaar scheef. Maar omdat ik N = 500 patiënten heb, is mijn data nu vanzelf normaal verdeeld!' Waarom heeft hij ongelijk?",
+      "options": [
+        "Omdat de Centrale Limietstelling pas intreedt bij N > 10.000 voor asymmetrische biologische verdelingen",
+        "Omdat de CLT alleen zegt dat de verdeling van de STEEKPROEFSTATISTIEK (het gemiddelde) normaal wordt; de onderliggende verdeling van de individuele patiënten blijft exact even scheef",
+        "Omdat de CLT alleen geldt voor continue variabelen die al bij benadering symmetrisch zijn",
+        "Omdat de standaardafwijking s bij N = 500 convergeert naar nul, waardoor de verdeling ontaardt in een Dirac-delta"
       ],
-      correctIndex: 1,
-      explanation: "Briljant doorzien! Dit is veruit de meest voorkomende misvatting in de wetenschap. De ruwe populatieverdeling verandert NOOIT van vorm door meer metingen; alleen de steekproevenverdeling van het schattingsgemiddelde wordt normaal."
+      "correctIndex": 1,
+      "explanation": "Precies! Dit is misschien wel de meest gemaakte fout in toegepaste statistiek. De CLT verandert jouw ruwe data NIET. Jouw data blijft scheef."
     },
     {
-      id: "l3_ex3",
-      type: "calculation",
-      title: "Oefening 3: Standaardfout Schalen",
-      question: "De populatiespreiding is σ = 20. Bij steekproef N = 25 is de standaardfout SE = 20 / √25 = 4.0. Je wilt de onzekerheid halveren naar SE = 2.0. Hoe groot moet N worden?",
-      options: [
-        "N = 50 (verdubbelen)",
+      "id": "l3_ex3",
+      "category": "Berekening",
+      "title": "Oefening 3: Standaardfout Schalen",
+      "question": "De populatiespreiding is σ = 20. Bij N = 25 is de standaardfout SE = 20 / √25 = 4.0. Welke steekproefgrootte N heb je nodig om de standaardfout te halveren naar SE = 2.0?",
+      "options": [
+        "N = 50 (verdubbelen, omdat precisie evenredig is met N)",
         "N = 100 (verviervoudigen, want √100 = 10 en 20 / 10 = 2.0)",
-        "N = 75",
-        "N = 500"
+        "N = 200 (want een halvering van de foutmarge vereist een achtvoudige steekproefvergroting)",
+        "N = 625 (want de variantie schaalt met het kwadraat van de initiële steekproef)"
       ],
-      correctIndex: 1,
-      explanation: "Heel scherp! Vanwege de wortel in de noemer (√N) geldt de wet van de afnemende meeropbrengst: om 2x zo precies te worden moet je 4x zoveel data verzamelen."
+      "correctIndex": 1,
+      "explanation": "Spot-on! Om een standaardfout door 2 te delen, moet je steekproefomvang met 2² = 4 worden vermenigvuldigd. De wortelwet eist steeds meer data voor marginale precisiewinst."
     }
   ],
-
-  // LEVEL 4: Betrouwbaarheidsintervallen
-  4: [
+  "4": [
     {
-      id: "l4_ex1",
-      type: "trap",
-      title: "Oefening 1: De Klassieke Frequentistische Denkval",
-      question: "Een peiling rapporteert: '95% betrouwbaarheidsinterval voor partij A is [28%, 32%]'. Welke stelling is mathematisch ONJUIST?",
-      options: [
-        "Bij herhaald bemonsteren van de bevolking zal 95% van de berekende intervallen het werkelijke percentage bevatten",
-        "Er is 95% kans dat het echte percentage van partij A binnen [28%, 32%] ligt",
-        "De puntschatting van deze steekproef is 30% met een foutmarge van ± 2%",
-        "Als we een 99% interval hadden berekend, zou het interval breder zijn geweest"
+      "id": "l4_ex1",
+      "category": "Valkuil",
+      "title": "Oefening 1: De Klassieke Frequentistische Denkval",
+      "question": "Een peiling rapporteert: '95% betrouwbaarheidsinterval voor partij A is [28%, 32%]'. Welke stelling is mathematisch ONJUIST?",
+      "options": [
+        "Bij herhaald bemonsteren onder identieke condities zal 95% van de geconstrueerde intervallen het werkelijke populatiepercentage omvatten",
+        "Er is nu een a-posteriori kans van 95% dat het werkelijke populatiepercentage binnen [28%, 32%] ligt",
+        "De puntschatting van deze specifieke steekproef is 30% met een geschatte foutmarge van ± 2%",
+        "Als we een 99% interval hadden berekend met dezelfde data, zou het resulterende interval breder zijn geweest"
       ],
-      correctIndex: 1,
-      explanation: "Precies! Optie B is de klassieke denkfout. Het werkelijke populatiepercentage is een vast getal (geen toevalsvariabele). Het ligt erin of niet (kans is 0 of 1). De 95% slaat op de betrouwbaarheid van de meetprocedure."
+      "correctIndex": 1,
+      "explanation": "Precies! Optie B is de klassieke frequentistische denkfout. Het werkelijke populatiepercentage is een vast getal (geen toevalsvariabele). Het ligt erin of niet (kans is 0 of 1). De 95% slaat op de betrouwbaarheid van de meetprocedure."
     },
     {
-      id: "l4_ex2",
-      type: "dilemma",
-      title: "Oefening 2: Overlappende Intervallen & Significantie",
-      question: "Twee behandelgroepen hebben gemiddelden met 95% betrouwbaarheidsintervallen: Groep 1 = [10, 16], Groep 2 = [14, 20]. De intervallen overlappen tussen 14 en 16. Mag je hieruit concluderen dat er GEEN significant verschil is?",
-      options: [
-        "Ja, elke vorm van overlap betekent automatisch p > 0.05",
-        "Nee! Lichte overlap van afzonderlijke betrouwbaarheidsintervallen kan nog steeds statistisch significant zijn (p < 0.05) wanneer je de t-toets op het verschil uitvoert. Pas bij substantiële overlap verdwijnt de significantie",
-        "Ja, want 14 en 16 zijn even getallen",
-        "Alleen als beide groepen even groot zijn"
+      "id": "l4_ex2",
+      "category": "Dilemma",
+      "title": "Oefening 2: Overlappende Intervallen & Significantie",
+      "question": "Twee groepen hebben elk een 95% CI voor hun gemiddelde: Groep 1 = [10, 16], Groep 2 = [14, 20]. De intervallen overlappen licht (tussen 14 en 16). Mag je concluderen dat het verschil niet-significant is (p > 0.05)?",
+      "options": [
+        "Ja: zodra twee afzonderlijke 95% betrouwbaarheidsintervallen elkaar overlappen, is het verschil per definitie p > 0.05",
+        "Nee! Twee intervallen kunnen licht overlappen terwijl de formele two-sample t-toets op het verschil toch statistisch significant is (p < 0.05). Pas bij substantiële overlap verdwijnt de significantie",
+        "Ja, omdat de som van twee onafhankelijke 95% intervallen altijd resulteert in een gezamenlijk betrouwbaarheidsniveau van 90%",
+        "Nee, maar alleen als beide steekproeven een identieke variantie vertonen onder de Levene's toets"
       ],
-      correctIndex: 1,
-      explanation: "Uitstekend! De standaardfout van het verschil is kleiner dan de som van de afzonderlijke standaardfouten. Toets altijd het verschil direct via een t-toets."
+      "correctIndex": 1,
+      "explanation": "Groot inzicht! Een klassieke beginnersfout. Het betrouwbaarheidsinterval voor het VERSCHIL tussen twee gemiddelden gebruikt de kwadratische som van de standaardfouten (√(SE1² + SE2²)), wat kleiner is dan SE1 + SE2."
     },
     {
-      id: "l4_ex3",
-      type: "concept",
-      title: "Oefening 3: 90% vs 95% vs 99% Betrouwbaarheid",
-      question: "Wat gebeurt er met de breedte van een betrouwbaarheidsinterval als je de betrouwbaarheid verhoogt van 95% naar 99% bij gelijkblijvende data?",
-      options: [
-        "Het interval wordt smaller omdat je zekerder bent",
-        "Het interval wordt breder (de Z-factor stijgt van 1.96 naar 2.58), want om zekerder te zijn van een vangst moet je je net wijder uitgooien",
-        "De breedte blijft exact hetzelfde",
-        "Het interval verschuift naar links"
+      "id": "l4_ex3",
+      "category": "Concept",
+      "title": "Oefening 3: 90% vs 95% vs 99% Betrouwbaarheid",
+      "question": "Wat gebeurt er met de breedte van een betrouwbaarheidsinterval als je het betrouwbaarheidsniveau verhoogt van 95% naar 99% bij gelijke steekproefomvang?",
+      "options": [
+        "Het interval wordt smaller (de Z-factor daalt) omdat een hogere betrouwbaarheid minder tolerantie voor fouten toestaat",
+        "Het interval wordt breder (de kritieke Z-waarde stijgt van 1.96 naar 2.58), want om met grotere zekerheid de ware parameter te vangen moet je marge toenemen",
+        "De breedte blijft identiek, maar de residuen worden getoetst tegen de t-verdeling met N - 1 vrijheidsgraden",
+        "Het interval behoudt dezelfde absolute marge, maar het centrum verschuift richting de nulhypothese"
       ],
-      correctIndex: 1,
-      explanation: "Helder! Meer zekerheid eisen vereist een wijdere foutmarge."
+      "correctIndex": 1,
+      "explanation": "Precies! Zekerheid heeft een prijs. Als je 99% zeker wilt zijn dat de waarheid in je interval zit, moet je een groter bereik accepteren."
     }
   ],
-
-  // LEVEL 5: Hypothesetoetsing & p-waarde
-  5: [
+  "5": [
     {
-      id: "l5_ex1",
-      type: "trap",
-      title: "Oefening 1: P-waarde vs Effectgrootte bij Grote N",
-      question: "Een techbedrijf test twee knopkleuren op 10 miljoen bezoekers. Conversie knop A = 12.000%, knop B = 12.004%. De t-toets geeft p = 0.000002. Wat is de juiste zakelijke beslissing?",
-      options: [
-        "Direct de site aanpassen en miljoenen investeren, want p < 0.00001 betekent dat het effect gigantisch is",
-        "Niets doen: bij N = 10 miljoen wordt zelfs een volstrekt triviaal verschil van 0.004% statistisch significant. Het effect heeft nul bedrijfskundige of praktische relevantie",
-        "De p-waarde delen door de steekproefgrootte",
-        "Aannemen dat de nulhypothese 100% waar is"
+      "id": "l5_ex1",
+      "category": "Dilemma",
+      "title": "Oefening 1: P-waarde vs Effectgrootte bij Grote N",
+      "question": "Een A/B-test met N = 10 miljoen bezoekers toont een conversiestijging van 2.000% naar 2.004% met p = 0.000008. Wat is de juiste zakelijke en statistische conclusie?",
+      "options": [
+        "Direct uitrollen naar productie en investeren, want p < 0.00001 garandeert dat het effect gigantisch is",
+        "Voorzichtig zijn: bij N = 10 miljoen detecteert een hypothesetoets zelfs minuscule ruis als hoog-significant; een absolute toename van 0.004% heeft vrijwel nul praktische of bedrijfseconomische waarde",
+        "De p-waarde normaliseren door te delen door √N om de werkelijke nulhypothese te herstellen",
+        "De nulhypothese handhaven omdat effecten kleiner dan 0.1% a priori als meetfouten worden gedefinieerd"
       ],
-      correctIndex: 1,
-      explanation: "Cruciaal inzicht! De p-waarde meet alleen bewijskracht tegen toeval, NOOIT de grootte van het effect. Kijk altijd eerst naar Cohen's d of het absolute verschil."
+      "correctIndex": 1,
+      "explanation": "Cruciaal onderscheid! Statistische significantie (p-waarde) zegt alleen of een effect waarschijnlijk niet op toeval berust. Praktische relevantie (effectgrootte) zegt of het effect er in de echte wereld toe doet."
     },
     {
-      id: "l5_ex2",
-      type: "concept",
-      title: "Oefening 2: Type I en Type II Fouten in de Praktijk",
-      question: "Bij het testen van een noodremsysteem voor een zelfrijdende auto: wat is een Type II fout (β)?",
-      options: [
-        "Onterecht remmen voor een plastic zakje dat over de weg waait (vals alarm)",
-        "Niet remmen terwijl er daadwerkelijk een overstekende voetganger staat (gemiste kans / falen om effect te ontdekken)",
-        "Het systeem werkt perfect",
-        "De auto rijdt te snel"
+      "id": "l5_ex2",
+      "category": "Concept",
+      "title": "Oefening 2: Type I en Type II Fouten in de Praktijk",
+      "question": "Bij de ontwikkeling van een autonoom remsysteem voor auto's: wat is een Type II fout (vals negatief)?",
+      "options": [
+        "Onterecht krachtig remmen voor een onschuldig plastic zakje dat over de weg waait (vals alarm / Type I fout)",
+        "Niet remmen terwijl er daadwerkelijk een overstekende voetganger staat (gemist reëel gevaar / Type II fout)",
+        "Het sensorsysteem kalibreert de meetafstand opnieuw met behulp van een Kalman filter",
+        "De camera detecteert een voetganger correct en activeert de noodstop (True Positive)"
       ],
-      correctIndex: 1,
-      explanation: "Juist! Type I = vals alarm (H0 onterecht verwerpen). Type II = misser (H0 behouden terwijl er in werkelijkheid gevaar/effect is)."
+      "correctIndex": 1,
+      "explanation": "Juist! Type I fout = Vals Alarm (je ziet een effect/gevaar dat er niet is). Type II fout = Gemist Signaal (er is wél gevaar/effect, maar je systeem grijpt niet in)."
     },
     {
-      id: "l5_ex3",
-      type: "dilemma",
-      title: "Oefening 3: Wat zegt p = 0.04 werkelijk?",
-      question: "Een wetenschapper beweert: 'Mijn studie heeft p = 0.04, dus de kans is 96% dat mijn hypothese klopt en de nulhypothese onwaar is.' Klopt deze uitspraak?",
-      options: [
-        "Ja, want 1 - 0.04 = 0.96",
-        "Absoluut niet! De p-waarde is P(Data | H0 waar), NIET P(H0 waar | Data). De waarschijnlijkheid van de hypothese hangt ook af van de a priori plausibiliteit (Bayes!)",
-        "Alleen als de steekproef exact 100 personen telt",
-        "Ja, mits gepubliceerd in een peer-reviewed tijdschrift"
+      "id": "l5_ex3",
+      "category": "Valkuil",
+      "title": "Oefening 3: Wat zegt p = 0.04 werkelijk?",
+      "question": "Een onderzoeker claimt: 'Mijn p-waarde is 0.04, dus er is 96% kans dat mijn onderzoekshypothese waar is.' Klopt dit?",
+      "options": [
+        "Ja, want het complement van de overschrijdingskans (1 - p = 0.96) is de posterior waarschijnlijkheid van H1",
+        "Absoluut onjuist! De p-waarde is P(Data of extremer | H0 waar), NIET P(H0 waar | Data). De werkelijke waarschijnlijkheid van de hypothese hangt cruciaal af van de a priori kans en de power van de studie",
+        "Ja, mits de statistische power (1 - β) van het experiment vooraf op exact 80% was vastgesteld",
+        "Ja, want de frequentistische p-waarde is wiskundig identiek aan de Bayes Factor BF10 gedeeld door de steekproefgrootte"
       ],
-      correctIndex: 1,
-      explanation: "Heel scherp! Dit staat bekend als de 'Prosecutor's Fallacy' of inverse probability misconceptie."
+      "correctIndex": 1,
+      "explanation": "Spot-on! De p-waarde berekent hoe onwaarschijnlijk de DATA is ALS de nulhypothese waar zou zijn. Het vertelt je niets over hoe waarschijnlijk de HYPOTHESE zelf is."
     }
   ],
-
-  // LEVEL 6: Enkelvoudige OLS Regressie
-  6: [
+  "6": [
     {
-      id: "l6_ex1",
-      type: "calculation",
-      title: "Oefening 1: Helling & Intercept Lezen",
-      question: "Het regressiemodel luidt: Omzet (in duizenden €) = 50 + 12.5 × Advertentiebudget (in duizenden €). Wat is de verwachte omzet als een bedrijf € 4.000 besteedt aan advertenties?",
-      options: [
-        "€ 50.000",
-        "€ 100.000 (want 50 + 12.5 × 4 = 100)",
-        "€ 125.000",
-        "€ 4.000"
+      "id": "l6_ex1",
+      "category": "Berekening",
+      "title": "Oefening 1: Helling & Intercept Lezen",
+      "question": "In het model Salaris (€/jaar) = 50.000 + 12.500 × Ervaring (jaren): wat is het verwachte salaris van een werknemer met 4 jaar ervaring?",
+      "options": [
+        "€ 50.000 (het basisniveau zonder rekening te houden met de hellingscoëfficiënt)",
+        "€ 100.000 (want 50.000 + 12.500 × 4 = 100.000)",
+        "€ 62.500 (de toename na het eerste ervaringsjaar als cumulatieve limiet)",
+        "€ 125.000 (de veronderstelling dat het basissalaris verdubbelt per decennium)"
       ],
-      correctIndex: 1,
-      explanation: "Klopt! 50 + 12.5 × 4 = 100 duizend euro = € 100.000."
+      "correctIndex": 1,
+      "explanation": "Juist! Vul 4 in voor Ervaring: 50.000 + (12.500 × 4) = 50.000 + 50.000 = € 100.000. Het intercept is de startwaarde bij 0 jaar, de helling is de jaarlijkse groei."
     },
     {
-      id: "l6_ex2",
-      type: "concept",
-      title: "Oefening 2: Waarom Kwadrateren in OLS?",
-      question: "Waarom minimaliseert OLS de kwadraten van residuen Σ(y - ŷ)² en niet simpelweg de gewone som van residuen Σ(y - ŷ)?",
-      options: [
-        "Omdat positieve en negatieve afwijkingen elkaar anders simpelweg opheffen tot nul bij elke willekeurige lijn door het gemiddelde, én kwadrateren bestraft grote missers zwaarder",
-        "Omdat computers niet kunnen optellen zonder machten",
-        "Omdat de p-waarde anders altijd 1 wordt",
-        "Omdat kwadraten altijd negatief zijn"
+      "id": "l6_ex2",
+      "category": "Concept",
+      "title": "Oefening 2: Waarom Kwadrateren in OLS?",
+      "question": "Waarom minimaliseert de methode van de Kleinste Kwadraten (OLS) de som van de gekwadrateerde residuen Σ e_i² in plaats van de absolute som Σ e_i?",
+      "options": [
+        "Omdat positieve en negatieve afwijkingen elkaar anders opheffen tot nul bij elke willekeurige lijn door het zwaartepunt (x̄, ȳ), én kwadrateren levert een vloeiende, differentieerbare doelfunctie op met unieke analytische oplossing",
+        "Omdat absolute afwijkingen wiskundig niet gedefinieerd zijn voor continue verdelingen",
+        "Omdat het kwadrateren van afwijkingen uitschieters minder zwaar bestraft dan de absolute fout",
+        "Omdat de Gauss-Markov stelling vereist dat de storingstermen altijd strikt positief zijn"
       ],
-      correctIndex: 0,
-      explanation: "Exact! Bij elke lijn door het zwaartepunt (x̄, ȳ) is de som van gewone residuen exact 0. Kwadrateren lost dit op."
+      "correctIndex": 0,
+      "explanation": "Exact! Als je niet kwadrateert, heffen positieve en negatieve fouten elkaar op. Bovendien bestraft het kwadraat grote fouten onevenredig zwaar en is het wiskundig elegant te differentiëren."
     },
     {
-      id: "l6_ex3",
-      type: "trap",
-      title: "Oefening 3: Correlatie vs Causaliteit",
-      question: "Tussen aantal verkochte zonnebrillen en aantal verdrinkingen bestaat een sterke correlatie van r = 0.88. Mag de overheid concluderen dat zonnebrillen verboden moeten worden om verdrinkingen te voorkomen?",
-      options: [
-        "Ja, want r > 0.80 bewijst een oorzakelijk verband",
-        "Nee! Zomertemperatuur is een confounder: warm weer zorgt voor meer zonnebrillen én meer zwemmers. Er is geen enkel causaal verband tussen bril en verdrinking",
-        "Alleen als het model een R² van boven 0.90 haalt",
-        "Ja, Kleinste Kwadraten berekent altijd oorzaak en gevolg"
+      "id": "l6_ex3",
+      "category": "Valkuil",
+      "title": "Oefening 3: Correlatie vs Causaliteit",
+      "question": "Er is een sterke correlatie (r = 0.85) tussen de verkoop van zonnebrillen en het aantal verdrinkingen in de zomer. Betekent dit dat het verbieden van zonnebrillen verdrinkingen zal voorkomen?",
+      "options": [
+        "Ja, want een correlatiecoëfficiënt r > 0.80 overschrijdt de drempel voor causaal bewijs in observationele studies",
+        "Nee! Hoge buitentemperatuur is een confounder: warm weer leidt tot zowel meer zonnebrillen als meer zwemmers. Het verband tussen bril en verdrinking is zuiver onecht (spurious)",
+        "Alleen als het regressiemodel een verklaringskracht R² van boven 0.95 bereikt",
+        "Ja, mits de p-waarde van de Pearson correlatietoets kleiner is dan 0.001"
       ],
-      correctIndex: 1,
-      explanation: "Uitstekend! Correlatie impliceert nooit causaliteit zonder controlevariabelen of gerandomiseerde experimenten."
+      "correctIndex": 1,
+      "explanation": "Cruciaal! Correlatie impliceert NOOIT causaliteit. Een verborgen gemeenschappelijke oorzaak (confounder Z: hitte/zomer) stuurt zowel X als Y aan."
     }
   ],
-
-  // LEVEL 7: R² vs Adjusted R²
-  7: [
+  "7": [
     {
-      id: "l7_ex1",
-      type: "concept",
-      title: "Oefening 1: Het Gedrag van Gewone R²",
-      question: "Waarom kan de gewone determinatiecoëfficiënt R² NOOIT dalen wanneer je nieuwe voorspellers toevoegt aan een OLS regressiemodel?",
-      options: [
-        "Omdat OLS wiskundig gezien altijd minstens een klein beetje variantie kan verklaren door toevallige correlatie met de nieuwe kolom, of de coëfficiënt op 0 kan houden",
-        "Omdat R² altijd stijgt met de tijd",
-        "Omdat software altijd afrondt naar boven",
-        "Omdat de F-waarde gelijk blijft"
+      "id": "l7_ex1",
+      "category": "Concept",
+      "title": "Oefening 1: Het Gedrag van Gewone R²",
+      "question": "Waarom kan de gewone R² nooit dalen wanneer je extra voorspellers toevoegt aan een meervoudig OLS-model?",
+      "options": [
+        "Omdat OLS de residuele kwadratensom (RSS) minimaliseert via orthogonale projectie; extra kolommen vergroten de kolomruimte en kunnen de passing alleen maar verbeteren of gelijk houden",
+        "Omdat de totale kwadratensom (SST) lineair meedaalt met elke nieuw toegevoegde vector",
+        "Omdat de F-toets voor modelverbetering wiskundig verbiedt dat de correlatiematrix krimpt",
+        "Omdat Adjusted R² en gewone R² altijd monotoon naar 1.0 convergeren"
       ],
-      correctIndex: 0,
-      explanation: "Juist! Mathematisch is het toevoegen van een variabele een verruiming van de vectorruimte. De minimale kwadratensom kan daardoor nooit groter worden."
+      "correctIndex": 0,
+      "explanation": "Juist! Wiskundig gezien kan OLS een extra variabele altijd de coëfficiënt 0 geven als hij niets toevoegt. In de praktijk pikt OLS altijd een beetje toevalsruis op, waardoor gewone R² altijd kunstmatig stijgt."
     },
     {
-      id: "l7_ex2",
-      type: "dilemma",
-      title: "Oefening 2: Modelvergelijking in de Praktijk",
-      question: "Model A gebruikt 2 voorspellers en haalt R² = 0.74 en Adj-R² = 0.73. Model B voegt 12 extra variabelen toe en haalt R² = 0.76 en Adj-R² = 0.69. Welk model kies je?",
-      options: [
-        "Model B, want R² is 0.76 en dat is hoger",
-        "Model A, want de Adjusted R² is substantieel hoger (0.73 vs 0.69). De extra 12 variabelen in Model B voegen voornamelijk ruis en overfitting toe",
-        "Geen van beide, gooi de data weg",
-        "Kies altijd het model met de meeste variabelen"
+      "id": "l7_ex2",
+      "category": "Dilemma",
+      "title": "Oefening 2: Modelvergelijking in de Praktijk",
+      "question": "Model A heeft 3 voorspellers met R² = 0.74 en Adj-R² = 0.73. Model B voegt 12 willekeurige variabelen toe en haalt R² = 0.76 en Adj-R² = 0.69. Welk model kies je?",
+      "options": [
+        "Model B, omdat de ruwe verklaarde variantie R² van 0.76 de hoogste empirische passing representeert",
+        "Model A, want de Adjusted R² is substantieel hoger (0.73 vs 0.69). De extra 12 variabelen in Model B voegen voornamelijk overfitting en ruis toe die zwaarder worden bestraft dan ze bijdragen",
+        "Model B, mits alle 12 extra variabelen individueel getoetst worden met een tweezijdige z-toets",
+        "Beide modellen zijn gelijkwaardig omdat de BIC altijd de kleinste residu-vector kiest"
       ],
-      correctIndex: 1,
-      explanation: "Perfect! Het principe van spaarzaamheid (parsimony / Ockham's scheermes) prefereert Model A: simpeler, robuuster en minder risico op overfitting."
+      "correctIndex": 1,
+      "explanation": "Uitstekend! De daling in Adjusted R² van 0.73 naar 0.69 bewijst onomstotelijk dat de 12 extra variabelen niets toevoegen behalve ruis en overfitting. Kies het compacte, parsimonieuze Model A."
     },
     {
-      id: "l7_ex3",
-      type: "concept",
-      title: "Oefening 3: Wat toetst de algemene F-toets?",
-      question: "In een meervoudige regressie met 4 voorspellers geeft de overkoepelende F-toets p < 0.001. Wat is de exacte nulhypothese die hier verworpen wordt?",
-      options: [
-        "H0: Alle vier de regressiecoëfficiënten zijn tegelijk gelijk aan nul (β1 = β2 = β3 = β4 = 0)",
-        "H0: Het intercept is gelijk aan nul",
-        "H0: R² is gelijk aan 1.0",
-        "H0: Alle datapunten zijn normaal verdeeld"
+      "id": "l7_ex3",
+      "category": "Concept",
+      "title": "Oefening 3: Wat toetst de algemene F-toets?",
+      "question": "In een meervoudig regressiemodel met 4 voorspellers: wat is de exacte nulhypothese (H0) van de algemene omnibus F-toets?",
+      "options": [
+        "H0: Alle vier de partiële regressiehellingen zijn tegelijkertijd exact gelijk aan nul (β1 = β2 = β3 = β4 = 0)",
+        "H0: Het regressie-intercept β0 is statistisch gelijk aan het steekproefgemiddelde ȳ",
+        "H0: De populatie R² is gelijk aan de residuele standaardfout σ",
+        "H0: De residuen van alle vier de voorspellers volgen onafhankelijke univariate Gauss-verdelingen"
       ],
-      correctIndex: 0,
-      explanation: "Spot-on! De F-toets toetst het model als geheel tegen het 'null model' dat alleen een intercept bevat."
+      "correctIndex": 0,
+      "explanation": "Exact! De F-toets toetst het MODEL ALS GEHEEL tegen een model met alleen een intercept. Als F significant is (p < 0.05), voegt minstens één van de voorspellers echte informatie toe."
     }
   ],
-
-  // LEVEL 8: L.I.N.E. Diagnostiek
-  8: [
+  "8": [
     {
-      id: "l8_ex1",
-      type: "concept",
-      title: "Oefening 1: Heteroscedasticiteit & Standaardfouten",
-      question: "Wat is het directe wiskundige gevaar als de residuen van een regressiemodel heteroscedastisch zijn (trompetvorm)?",
-      options: [
-        "De geschatte hellingscoëfficiënten (β) worden automatisch oneindig groot",
-        "De berekende standaardfouten (SE) zijn vertekend, waardoor p-waarden en betrouwbaarheidsintervallen onbetrouwbaar zijn (vals gevoel van zekerheid)",
-        "De computer kan geen lijn meer trekken",
-        "R² wordt direct negatief"
+      "id": "l8_ex1",
+      "category": "Valkuil",
+      "title": "Oefening 1: Heteroscedasticiteit & Standaardfouten",
+      "question": "Wat is de concrete consequentie als de storingstermen in OLS heteroscedastisch zijn (ongelijke residuele variantie)?",
+      "options": [
+        "De OLS-puntschattingen van de coëfficiënten worden biased en inconsistent",
+        "De berekende standaardfouten (SE) zijn vertekend, waardoor betrouwbaarheidsintervallen en hypothesetoetsen (t- en F-waarden) ongeldig worden",
+        "De Gauss-Markov aanname van exogeniteit E[ε|X] = 0 wordt direct geschonden",
+        "De residuele kwadratensom kan niet langer berekend worden via de normale vergelijkingen"
       ],
-      correctIndex: 1,
-      explanation: "Helemaal raak! OLS blijft unbiased voor de coëfficiënten, maar de klassieke formule voor de variantie van β is ongeldig. Oplossing: robuuste Huber-White sandwich-schatters."
+      "correctIndex": 1,
+      "explanation": "Heel belangrijk! Onder heteroscedasticiteit blijven de coëfficiënten β̂ nog steeds onvertekend (unbiased), maar de standaardfouten zijn fout berekend. Je p-waarden zijn daardoor waardeloos."
     },
     {
-      id: "l8_ex2",
-      type: "dilemma",
-      title: "Oefening 2: Kromming in de Residuals vs Fitted Plot",
-      question: "In de 'Residuals vs Fitted' plot zie je een duidelijke U-vorm (banaan): bij lage en hoge voorspellingen zijn de residuen positief, in het midden negatief. Wat is de juiste actie?",
-      options: [
-        "De assumptie van lineariteit is geschonden; voeg een kwadratische term (X²) toe of gebruik een log-transformatie / GAM",
-        "Gewoon negeren zolang R² hoog genoeg is",
-        "Alle negatieve residuen omzetten naar positief",
-        "De steekproefgrootte halveren"
+      "id": "l8_ex2",
+      "category": "Dilemma",
+      "title": "Oefening 2: Kromming in de Residuals vs Fitted Plot",
+      "question": "In de 'Residuals vs Fitted' plot zie je een duidelijke U-vorm (paraboolpatroon). Wat is de juiste methodologische reactie?",
+      "options": [
+        "De assumptie van lineariteit is geschonden; voeg een kwadratische term (X²), spline of niet-lineaire transformatie toe om het model te corrigeren",
+        "Negeer de kromming zolang de omnibus F-toets een p-waarde < 0.001 aangeeft",
+        "Pas robuuste Huber-White standaardfouten toe om de functionele kromming te absorberen",
+        "Verwijder de bovenste 10% van de observaties om het residuenpatroon kunstmatig recht te trekken"
       ],
-      correctIndex: 0,
-      explanation: "Uitstekend! Een U-vormige curve in residuen betekent dat een rechtlijnige OLS een krom verband probeert te modelleren."
+      "correctIndex": 0,
+      "explanation": "Precies! Een kromming in de residuen toont onmiskenbaar aan dat een rechte lijn een verkeerd model is voor deze data. Pas de modelstructuur aan met polynomen, logs of splines."
     },
     {
-      id: "l8_ex3",
-      type: "concept",
-      title: "Oefening 3: Q-Q Plot Interpretatie",
-      question: "In een Normal Q-Q plot buigen de punten aan de rechterkant scherp omhoog van de diagonale stippellijn af. Wat duidt dit aan?",
-      options: [
-        "De residuen hebben zwaardere rechterstaarten dan een normale verdeling (rechtsscheve uitschieters)",
-        "De data is perfect normaal verdeeld",
-        "Er is geen correlatie",
-        "De p-waarde is exact 0.05"
+      "id": "l8_ex3",
+      "category": "Concept",
+      "title": "Oefening 3: Q-Q Plot Interpretatie",
+      "question": "In de Normal Q-Q plot van de residuen buigen de punten aan de rechterbovenzijde steil omhoog boven de 45-graden diagonaal. Wat duidt dit aan?",
+      "options": [
+        "De residuen hebben een zwaardere rechterstaart dan een zuivere normale verdeling (positief scheve uitschieters)",
+        "De residuen zijn perfect symmetrisch verdeeld met minimale kurtosis",
+        "Het model lijdt aan ernstige multicollineariteit in de rechter kwadranten",
+        "De conditionele variantie van de residuen convergeert monotoon naar nul"
       ],
-      correctIndex: 0,
-      explanation: "Klopt! Punten boven de lijn in de rechterbovenzijde betekenen dat de grootste waarden veel extremer zijn dan een normale Gauss-curve voorspelt."
+      "correctIndex": 0,
+      "explanation": "Juist! Als residuen boven de diagonaallijn uitstijgen aan de rechterkant, zijn de werkelijke observaties extremer dan de normale verdeling voorspelt. Je hebt te maken met een rechtsscheve verdeling of extreme positieve outliers."
     }
   ],
-
-  // LEVEL 9: Simpson's Paradox
-  9: [
+  "9": [
     {
-      id: "l9_ex1",
-      type: "concept",
-      title: "Oefening 1: Wat veroorzaakt Simpson's Paradox?",
-      question: "Waardoor kan een positieve correlatie tussen twee variabelen plotseling 180 graden omdraaien in een negatief verband?",
-      options: [
-        "Door een afrondingsfout in de software",
-        "Doordat een derde variabele (confounder) onevenredig verdeeld is over de groepen en zowel X als Y beïnvloedt",
-        "Omdat de steekproef te groot is geworden",
-        "Omdat de p-waarde negatief werd"
+      "id": "l9_ex1",
+      "category": "Concept",
+      "title": "Oefening 1: Wat veroorzaakt Simpson's Paradox?",
+      "question": "Wat is het onderliggende mechanisme waardoor een positieve correlatie tussen X en Y kan omslaan in een negatieve associatie binnen subgroepen (Simpson's Paradox)?",
+      "options": [
+        "Het overschrijden van de statistische powerdrempel bij te grote steekproeven",
+        "Een onevenwichtig verdeelde confounder Z die sterk correleert met zowel de predictor X als de uitkomst Y",
+        "Het gelijktijdig optreden van heteroscedasticiteit en multicollineariteit in de residuen",
+        "Een rekenkundige inconsistentie veroorzaakt door het niet-standaardiseren van continue regressoren"
       ],
-      correctIndex: 1,
-      explanation: "Juist! Een confounder vertekent het geaggregeerde beeld. Stratificatie of meervoudige regressie herstelt het ware partiële effect."
+      "correctIndex": 1,
+      "explanation": "Precies! Simpson's paradox ontstaat wanneer een derde factor (confounder) over het hoofd wordt gezien die de groepsindeling en uitkomst tegelijk domineert."
     },
     {
-      id: "l9_ex2",
-      type: "dilemma",
-      title: "Oefening 2: Toelatingen aan de Universiteit",
-      question: "Universiteit X lijkt mannelijke studenten voor te trekken (overall toelatingskans mannen 45%, vrouwen 35%). Maar als je per studierichting kijkt, worden vrouwen bij ELKE faculteit vaker aangenomen dan mannen! Hoe kan dit?",
-      options: [
-        "Vrouwen solliciteerden vaker bij extreem competitieve studies met een zeer lage algemene toelatingskans (bv. geneeskunde), terwijl mannen vaker solliciteerden bij richtingen met veel plaatsen",
-        "De toelatingscommissie heeft fraude gepleegd",
-        "De data is niet normaal verdeeld",
-        "Dit is mathematisch onmogelijk"
+      "id": "l9_ex2",
+      "category": "Dilemma",
+      "title": "Oefening 2: Toelatingen aan de Universiteit",
+      "question": "In de beroemde UC Berkeley toelatingsstudie leken mannen overall een hogere toelatingskans te hebben dan vrouwen. Binnen elke afzonderlijke faculteit hadden vrouwen echter een gelijk of hoger toelatingspercentage. Hoe verklaart meervoudige regressie dit?",
+      "options": [
+        "Vrouwen solliciteerden onevenredig vaak bij zwaar competitieve faculteiten met zeer lage algemene toelatingspercentages (confounding door studiekeuze)",
+        "De data werd vertekend door meetruis in de afhankelijke binaire variabele",
+        "De selectieprocedure schond de aanname van homoscedasticiteit tussen de verschillende departementen",
+        "De lineaire linkfunctie convergeerde niet door een te laag aantal mannelijke respondenten"
       ],
-      correctIndex: 0,
-      explanation: "Dit is het beroemde UC Berkeley toelatingsschandaal uit 1973! Een schoolvoorbeeld van Simpson's paradox."
+      "correctIndex": 0,
+      "explanation": "Briljant inzicht! Faculteit was de confounder. Zodra je faculteit toevoegt aan de regressie (conditioneert op afdeling), verdwijnt de schijnbare discriminatie tegen vrouwen direct."
     },
     {
-      id: "l9_ex3",
-      type: "trap",
-      title: "Oefening 3: Wat betekent 'Ceteris Paribus'?",
-      question: "Wat betekent het als in een meervoudig regressiemodel de coëfficiënt van Opleidingsjaren op Salaris gelijk is aan +€ 2.500 (gecorrigeerd voor Leeftijd en Werkervaring)?",
-      options: [
-        "Iedereen met een opleiding verdient € 2.500",
-        "Voor twee personen van dezelfde leeftijd en met dezelfde werkervaring, verdient degene met 1 extra jaar opleiding naar verwachting € 2.500 meer per jaar",
-        "Opleiding heeft geen effect op salaris",
-        "Leeftijd en werkervaring zijn uit de berekening weggelaten"
+      "id": "l9_ex3",
+      "category": "Concept",
+      "title": "Oefening 3: Wat betekent 'Ceteris Paribus'?",
+      "question": "In het model Salaris = 30.000 + 2.500 × Opleidingsjaren + 1.200 × Ervaring: hoe interpreteer je de coëfficiënt 2.500 correct?",
+      "options": [
+        "Iedere burger met een afgeronde opleiding verdient minstens € 2.500 meer dan het gemiddelde salaris",
+        "Bij een gelijkblijvend aantal jaren werkervaring (ceteris paribus) levert elk extra opleidingsjaar een verwachte salarisstijging van € 2.500 op",
+        "Opleidingsjaren verklaart exact € 2.500 van de totale residuele variantie in de populatie",
+        "De correlatiecoëfficiënt tussen opleiding en ervaring is vastgezet op € 2.500"
       ],
-      correctIndex: 1,
-      explanation: "Spot-on! 'Ceteris paribus' betekent dat alle andere variabelen in het model denkbeeldig worden bevroren."
+      "correctIndex": 1,
+      "explanation": "Exact! Het woord 'partieel' in partiële regressiecoëfficiënt betekent letterlijk: het effect van X1 wanneer alle andere voorspellers (hier: ervaring) constant worden gehouden."
     }
   ],
-
-  // LEVEL 10: Multicollineariteit & VIF
-  10: [
+  "10": [
     {
-      id: "l10_ex1",
-      type: "concept",
-      title: "Oefening 1: De Betekenis van VIF = 10",
-      question: "Wat betekent een Variance Inflation Factor van VIF = 10 voor de variantie en standaardfout van een regressiecoëfficiënt?",
-      options: [
-        "De variantie is 10 keer zo groot geworden en de standaardfout is √10 ≈ 3.16 keer zo breed als in een ideale ongecorreleerde situatie",
-        "De p-waarde is met factor 10 gedaald",
-        "Het model verklaart 10% van de data",
-        "Er zijn 10 variabelen in het model"
+      "id": "l10_ex1",
+      "category": "Berekening",
+      "title": "Oefening 1: De Betekenis van VIF = 10",
+      "question": "Een predictor X₁ heeft een Variance Inflation Factor van VIF = 10 in een regressiemodel. Wat betekent dit concreet voor de schatting?",
+      "options": [
+        "De variantie van de geschatte coëfficiënt β̂₁ is 10 keer groter en de standaardfout is √10 ≈ 3.16 keer zo wijd vergeleken met een orthogonale situatie waarin X₁ ongecorreleerd is met andere predictoren",
+        "De p-waarde van de t-toets is met een factor 10 gedaald ten gunste van de alternatieve hypothese",
+        "De correlatiecoëfficiënt tussen X₁ en de responsvariabele Y is gelijk aan r = 0.90",
+        "Het model vereist 10 extra covariabelen om de schattingsonzekerheid van β̂₁ te compenseren"
       ],
-      correctIndex: 0,
-      explanation: "Exact! VIF meet de toename in de variantie van de schatter door onderlinge correlatie met andere voorspellers."
+      "correctIndex": 0,
+      "explanation": "Juist! VIF meet hoeveel de variantie van een geschatte coëfficiënt wordt opgeblazen door collineariteit met andere variabelen. Bij VIF = 10 is je standaardfout meer dan 3x zo breed als nodig!"
     },
     {
-      id: "l10_ex2",
-      type: "dilemma",
-      title: "Oefening 2: Het 'Significante Niets' Symptoom",
-      question: "Je regressiemodel heeft R² = 0.85 en de F-toets heeft p < 0.0001 (het model als geheel is superieur). Maar als je naar de afzonderlijke t-toetsen kijkt, heeft geen enkele variabele p < 0.05! Wat is de oorzaak?",
-      options: [
-        "Ernstige multicollineariteit: de voorspellers vechten onderling om dezelfde variantie, waardoor de individuele standaardfouten opgeblazen zijn",
-        "Het model is te lineair",
-        "De computer heeft te weinig geheugen",
-        "Er zijn te veel datapunten verzameld"
+      "id": "l10_ex2",
+      "category": "Valkuil",
+      "title": "Oefening 2: Het 'Significante Niets' Symptoom",
+      "question": "Je regressiemodel heeft een zeer hoge R² = 0.88 en een algemene F-toets met p < 0.0001. Echter, geen enkele van de 4 individuele regressoren bereikt statistische significantie (alle p > 0.15). Wat is hier aan de hand?",
+      "options": [
+        "Ernstige multicollineariteit: de voorspellers delen onderling zoveel overlappende variantie dat OLS hun unieke bijdragen niet met precisie kan isoleren",
+        "Het model lijdt aan selectiebias doordat de afhankelijke variabele niet-Gaussisch verdeeld is",
+        "De steekproef is te groot, waardoor de centrale limietstelling de t-statistieken afvlakt",
+        "Er is sprake van endogeniteit veroorzaakt door weggelaten interactietermen"
       ],
-      correctIndex: 0,
-      explanation: "Meesterlijk! Dit is het klassieke handtekening-patroon van zware multicollineariteit."
+      "correctIndex": 0,
+      "explanation": "Meesterlijk! Dit is het klassieke handtekening-patroon van ernstige collineariteit: het team als geheel presteert uitstekend (hoge F en R²), maar niemand krijgt individueel de credits omdat ze overlappende taken doen."
     },
     {
-      id: "l10_ex3",
-      type: "trap",
-      title: "Oefening 3: Heeft Multicollineariteit Invloed op Voorspellingen?",
-      question: "Als twee variabelen sterk correleren (VIF = 15), beïnvloedt dit dan de totale voorspelkracht Ŷ van het model op nieuwe soortgelijke data?",
-      options: [
-        "Nee: OLS kan de totale som Ŷ nog steeds prima voorspellen, zolang de correlatiestructuur tussen de voorspellers in de toekomst hetzelfde blijft. Alleen de afzonderlijke interpretatie van β1 en β2 is onbetrouwbaar",
-        "Ja, de voorspelling Ŷ crasht altijd naar nul",
-        "Ja, de voorspelling wordt altijd negatief",
-        "Het model kan niet meer rekenen"
+      "id": "l10_ex3",
+      "category": "Dilemma",
+      "title": "Oefening 3: Heeft Multicollineariteit Invloed op Voorspellingen?",
+      "question": "Stel dat twee predictoren sterk gecorreleerd zijn (r = 0.95). Heeft dit een negatief effect op de algehele voorspellende kracht (Ŷ) van het model voor nieuwe data uit dezelfde populatie?",
+      "options": [
+        "Nee: OLS kan de gecombineerde uitkomst Ŷ nog steeds accuraat voorspellen mits de correlatiestructuur tussen de predictoren in de doelpopulatie stabiel blijft; alleen de afzonderlijke interpretatie van individuele β's is onbetrouwbaar",
+        "Ja: multicollineariteit leidt gegarandeerd tot een exponentiële vertekening in de puntschatting van Ŷ",
+        "Ja: de conditionele variantie van de voorspelling convergeert direct naar oneindig",
+        "Alleen wanneer de afzonderlijke VIF-waarden de drempelwaarde van 1.0 onderschrijden"
       ],
-      correctIndex: 0,
-      explanation: "Zeer diep inzicht! Multicollineariteit is een interpretatie- en stabiliteitsprobleem, geen direct voorspellingsprobleem."
+      "correctIndex": 0,
+      "explanation": "Subtiel maar essentieel! Multicollineariteit schaadt zuiver de interpretatie van individuele coëfficiënten, NIET de totale voorspellende kracht van het model (mits de correlatie tussen de voorspellers behouden blijft)."
     }
   ],
-
-  // LEVEL 11: Logistische Regressie
-  11: [
+  "11": [
     {
-      id: "l11_ex1",
-      type: "calculation",
-      title: "Oefening 1: Van Log-Odds naar Odds Ratio",
-      question: "In een logistisch model voor hartinfarcten is de coëfficiënt voor Roken β = 0.693. Wat is de bijbehorende Odds Ratio (OR)?",
-      options: [
-        "OR = 0.693",
-        "OR = e^0.693 = 2.0 (rokers hebben 2x zo hoge odds op een infarct)",
-        "OR = 1.0",
-        "OR = 0.50"
+      "id": "l11_ex1",
+      "category": "Berekening",
+      "title": "Oefening 1: Van Log-Odds naar Odds Ratio",
+      "question": "In een logistische regressie naar hartinfarcten is de geschatte coëfficiënt voor roken β = 0.693. Wat is de Odds Ratio (OR) en wat betekent dit klinisch?",
+      "options": [
+        "OR = 0.693; de absolute kans op een hartinfarct stijgt met 69.3% bij rokers",
+        "OR = e^0.693 = 2.0; rokers hebben een 2 keer zo hoge kansverhouding (odds) op een hartinfarct vergeleken met niet-rokers",
+        "OR = 1.0; er is geen statistisch aantoonbare associatie tussen roken en infarcten",
+        "OR = 0.50; rokers hebben een gehalveerd relatief risico op cardiovasculaire complicaties"
       ],
-      correctIndex: 1,
-      explanation: "Klopt! De exponentiële functie e^β vertaalt de onbegrensde log-odds schaal naar de intuïtieve Odds Ratio."
+      "correctIndex": 1,
+      "explanation": "Juist! In logistische regressie is de uitkomst gemodelleerd als ln(odds). Om terug te rekenen naar de odds ratio neem je de e-macht: e^0.693 ≈ 2.0. Rokers hebben 2x zo hoge odds."
     },
     {
-      id: "l11_ex2",
-      type: "dilemma",
-      title: "Oefening 2: Beslisgrens bij Kankerdiagnostiek",
-      question: "Bij een model dat kwaadaardige tumoren detecteert, staat de standaard beslisgrens op cutoff p = 0.50. Wat moet de hoofdarts doen met deze cutoff?",
-      options: [
-        "Verlagen naar bv. p = 0.20 om de Sensitiviteit (Recall) te maximaliseren: een vals alarm (bioptie) is immers veel minder erg dan een gemiste tumor!",
-        "Verhogen naar p = 0.90 zodat we bijna nooit alarm slaan",
-        "Altijd strikt op 0.50 houden",
-        "De cutoff willekeurig kiezen per patiënt"
+      "id": "l11_ex2",
+      "category": "Dilemma",
+      "title": "Oefening 2: Beslisgrens bij Kankerdiagnostiek",
+      "question": "Een machine learning model voorspelt de kans op een kwaadaardige tumor. De standaard beslisgrens (cutoff) is p = 0.50. Hoe pas je deze drempel aan als je gemiste tumoren (vals negatieven) koste wat het kost wilt minimaliseren?",
+      "options": [
+        "De drempel verlagen (bv. naar p = 0.20) om de Sensitiviteit (Recall) te maximaliseren, ook al stijgt het aantal valse positieven (biopsies)",
+        "De drempel verhogen naar p = 0.85 om de Specificiteit te maximaliseren en onnodige paniek te vermijden",
+        "De drempel strikt op 0.50 handhaven, omdat dit mathematisch altijd de maximale AUC-ROC garandeert",
+        "De drempel instellen op het complement van de prevalentie (1 - prevalentie) om Bayes' theorema te balanceren"
       ],
-      correctIndex: 0,
-      explanation: "Juist! In medische diagnostiek met asymmetrische kosten verlaag je de cutoff om de kans op valse negatieven (dodelijke missers) te minimaliseren."
+      "correctIndex": 0,
+      "explanation": "Levensreddend besluit! De 0.50 drempel is willekeurig. Bij fatale ziektes verlaag je de drempel om maximale Sensitiviteit (Recall) te halen: liever 10 onnodige onderzoeken dan 1 gemiste tumor."
     },
     {
-      id: "l11_ex3",
-      type: "trap",
-      title: "Oefening 3: De '99% Accuratesse' Schijnvertoning",
-      question: "In een dataset over bankfraude is 0.1% van de transacties frauduleus (99.9% is legitiem). Een model voorspelt ALTIJD 'Geen fraude' en claimt 99.9% accuratesse. Waarom is dit model waardeloos?",
-      options: [
-        "Omdat het letterlijk 0% van de daadwerkelijke fraudegevallen opspoort (Sensitiviteit = 0%). Accuratesse is zinloos bij sterk ongebalanceerde klassen; gebruik AUC-ROC of Precision/Recall",
-        "Omdat 99.9% een oneven getal is",
-        "Omdat banken niet van statistiek houden",
-        "Het model is juist perfect"
+      "id": "l11_ex3",
+      "category": "Valkuil",
+      "title": "Oefening 3: De '99% Accuratesse' Schijnvertoning",
+      "question": "Een fraudedetectiemodel voor creditcardtransacties (waar slechts 0.1% van alle transacties frauduleus is) haalt een 'Accuratesse' van 99.9% door simpelweg ELKE transactie als 'Niet-frauduleus' te classificeren. Waarom is dit model waardeloos?",
+      "options": [
+        "Omdat de Sensitiviteit (True Positive Rate) exact 0% is: het model detecteert letterlijk geen enkele daadwerkelijke fraudeur. Bij zeldzame klassen moet men Precision, Recall en F1 of PR-AUC evalueren",
+        "Omdat de Brier-score van dit model wiskundig niet gedefinieerd is bij binaire uitkomsten",
+        "Omdat een accuratesse van 99.9% direct wijst op een te kleine steekproefomvang",
+        "Omdat de logit linkfunctie instabiel wordt wanneer de prevalentie onder de 5% daalt"
       ],
-      correctIndex: 0,
-      explanation: "Spot-on! De accuracy paradox: bij zeldzame gebeurtenissen is 'niets doen' schijnbaar accuraat maar operationeel een ramp."
+      "correctIndex": 0,
+      "explanation": "Klassieke data science valkuil! De zogeheten 'Accuracy Paradox'. Bij sterk scheve klassen zegt gewone accuratesse niets. Kijk naar Recall, Precision en de PR-curve."
     }
   ],
-
-  // LEVEL 12: Regularisatie (Ridge & Lasso)
-  12: [
+  "12": [
     {
-      id: "l12_ex1",
-      type: "concept",
-      title: "Oefening 1: Het Geometrische Verschil tussen L1 en L2",
-      question: "Waarom kan Lasso (L1-norm) coëfficiënten exact op nul zetten, terwijl Ridge (L2-norm) ze alleen heel dicht naar nul krimpt?",
-      options: [
-        "Omdat het L1-beperkingsgebied hoeken heeft op de assen (een ruit/diamant in 2D), waardoor de elliptische OLS-contouren de rand vaak precies op een as (waar β = 0) raken",
-        "Omdat Lasso met gehele getallen rekent",
-        "Omdat Ridge alleen voor positieve getallen werkt",
-        "Omdat L2 de computer oververhit"
+      "id": "l12_ex1",
+      "category": "Concept",
+      "title": "Oefening 1: Het Geometrische Verschil tussen L1 en L2",
+      "question": "Waarom leidt Lasso (L₁-regularisatie: Σ |β_j|) wél tot exacte spaarzaamheid (coëfficiënten exact nul) en Ridge (L₂-regularisatie: Σ β_j²) niet?",
+      "options": [
+        "Omdat de L₁-beperkingsruimte scherpe hoeken heeft die samenvallen met de coördinaatassen (een ruit in 2D), waardoor elliptische OLS-contouren de rand vaak exact op een as raken waar β_j = 0",
+        "Omdat de L₂-straf kwadratisch divergeert en daardoor gradiëntdaling naar nul wiskundig blokkeert",
+        "Omdat Ridge-regularisatie uitsluitend toepasbaar is op gestandaardiseerde Gaussische covariaten",
+        "Omdat Lasso gebruikmaakt van analytische matrixinversie terwijl Ridge iteratief moet worden opgelost"
       ],
-      correctIndex: 0,
-      explanation: "Meesterlijk geometrisch inzicht! De scherpe hoeken van de L1-bal op de assen dwingen spaarzaamheid (sparsity) af."
+      "correctIndex": 0,
+      "explanation": "Meesterlijk geometrisch inzicht! De diamantvorm van L1 heeft scherpe punten op de assen. De ellipsoïde foutcontouren raken als eerste een punt, waardoor overtollige parameters exact op 0 worden gezet."
     },
     {
-      id: "l12_ex2",
-      type: "dilemma",
-      title: "Oefening 2: Keuze tussen Ridge en Lasso",
-      question: "Je onderzoekt 10.000 genetische markers bij 100 patiënten. Je vermoedt dat slechts 5 specifieke genen verantwoordelijk zijn voor de ziekte. Welke methode geniet de voorkeur?",
-      options: [
-        "Lasso (L1), omdat het automatisch de 9.995 irrelevante genen elimineert naar exact nul en een compacte set overlaat",
-        "Gewone OLS zonder strafterm",
-        "Ridge, omdat het alle 10.000 genen in het model vasthoudt",
-        "Een eenvoudige correlatie per gen"
+      "id": "l12_ex2",
+      "category": "Dilemma",
+      "title": "Oefening 2: Keuze tussen Ridge en Lasso bij Genexpressie",
+      "question": "Je analyseert 20.000 genen bij N = 150 patiënten. Je verwacht dat slechts een klein handjevol (ca. 10-15 genen) daadwerkelijk een biologische rol speelt bij de ziekte. Welke regularisatiemethode geniet de voorkeur?",
+      "options": [
+        "Lasso (L₁), omdat de L₁-penalisatie automatische variabele-selectie uitvoert en de duizenden irrelevante genen exact op nul stelt",
+        "Gewone OLS-regressie, omdat het Gauss-Markov theorema nog steeds garandeert dat schatters BLUE zijn bij N < P",
+        "Ridge (L₂), omdat het alle 20.000 genen behoudt met proportioneel gekrompen effecten en daardoor biologische netwerken intact laat",
+        "Principal Component Regression zonder penalisatie, omdat orthogonale rotatie collineariteit elimineert"
       ],
-      correctIndex: 0,
-      explanation: "Juist! Bij p >> n met een spaarzame werkelijkheid is Lasso de ideale automatische feature selector."
+      "correctIndex": 0,
+      "explanation": "Juist! In high-dimensional data (P >> N) met spaarzame ware signalen (sparse ground truth) is Lasso ongeëvenaard omdat het niet-relevante genen eruit filtert."
     },
     {
-      id: "l12_ex3",
-      type: "trap",
-      title: "Oefening 3: Wat gebeurt er als λ oneindig groot wordt?",
-      question: "Als de regularisatieboete λ naar oneindig (∞) gaat in Ridge of Lasso, hoe ziet het model er dan uit?",
-      options: [
-        "Alle regressiecoëfficiënten worden exact 0, en het model voorspelt simpelweg het algemene gemiddelde ȳ voor iedereen (maximale bias, minimale variantie)",
-        "Het model overfit maximaal",
-        "R² wordt 1.0",
-        "De coëfficiënten worden oneindig groot"
+      "id": "l12_ex3",
+      "category": "Concept",
+      "title": "Oefening 3: Wat gebeurt er als de strafparameter λ oneindig groot wordt?",
+      "question": "In zowel Ridge als Lasso regressie: wat gebeurt er met de geschatte coëfficiëntenvector β̂ wanneer de hyperparameter λ naar oneindig nadert (λ → ∞)?",
+      "options": [
+        "Alle hellingscoëfficiënten worden exact naar nul gedreven; het model voorspelt voor iedereen simpelweg het algemene gemiddelde ȳ (maximale bias, minimale variantie)",
+        "De coëfficiënten convergeren naar de onbegrensde OLS-schatters (minimale bias, maximale variantie)",
+        "De correlatiematrix tussen de predictoren wordt singulier waardoor de residuen naar oneindig exploderen",
+        "Het model convergeert naar een niet-parametrische k-nearest neighbors schatter"
       ],
-      correctIndex: 0,
-      explanation: "Klopt! Dit illustreert de Bias-Variance Tradeoff: grote λ reduceert de variantie naar nul ten koste van hoge bias (underfitting)."
+      "correctIndex": 0,
+      "explanation": "Exact! Als de straf λ oneindig zwaar weegt, wordt elke coëfficiënt 0. Je model heeft dan 0 variantie (voorspelt altijd hetzelfde), maar maximale bias. Dit toont de kern van de bias-variance tradeoff."
     }
   ],
-
-  // LEVEL 13: Geclusterde Data & Falen van OLS
-  13: [
+  "13": [
     {
-      id: "l13_ex1",
-      type: "calculation",
-      title: "Oefening 1: Intraclass Correlation (ICC) Berekenen",
-      question: "In een studie naar toetsscores is de variantie tussen scholen σ²_tussen = 4.0 en de variantie binnen scholen tussen leerlingen σ²_binnen = 16.0. Wat is de ICC?",
-      options: [
-        "ICC = 4.0 / (4.0 + 16.0) = 4.0 / 20.0 = 0.20 (20%)",
-        "ICC = 4.0 / 16.0 = 0.25",
-        "ICC = 16.0 / 4.0 = 4.0",
-        "ICC = 0.80"
+      "id": "l13_ex1",
+      "category": "Berekening",
+      "title": "Oefening 1: Intraclass Correlation (ICC) Berekenen",
+      "question": "In een onderzoek naar toetsscores op scholen is de tussen-school variantie σ²_u0 = 4.0 en de binnen-school residuele variantie σ²_e = 16.0. Wat is de Intraclass Correlatiecoëfficiënt (ICC)?",
+      "options": [
+        "ICC = 4.0 / (4.0 + 16.0) = 4.0 / 20.0 = 0.20 (20% van alle variantie zit tussen scholen)",
+        "ICC = 4.0 / 16.0 = 0.25 (een kwart van de residuele spreiding)",
+        "ICC = 16.0 / (4.0 + 16.0) = 0.80 (de betrouwbaarheidsindex van de leerlingenspreiding)",
+        "ICC = √(4.0 / 20.0) ≈ 0.447 (de gecorrigeerde Pearson-correlatie tussen klassen)"
       ],
-      correctIndex: 0,
-      explanation: "Helemaal goed! 20% van alle variatie in prestaties wordt verklaard door verschillen tussen de scholen."
+      "correctIndex": 0,
+      "explanation": "Juist! ICC = σ²_between / (σ²_between + σ²_within) = 4 / (4 + 16) = 0.20. Maar liefst 20% van alle verschillen in cijfers wordt verklaard door de school waar de leerling op zit!"
     },
     {
-      id: "l13_ex2",
-      type: "concept",
-      title: "Oefening 2: Waarom faalt de onafhankelijkheidsaanname?",
-      question: "Wat is het effectieve gevolg van 'pseudo-replicatie' als je 30 patiënten met elk 10 herhaalde bloeddrukmetingen (300 metingen) in een gewone OLS stopt?",
-      options: [
-        "OLS rekent alsof je 300 volkomen onafhankelijke patiënten hebt, waardoor de standaardfouten gigantisch worden onderschat en je bijna gegarandeerd valse significante effecten rapporteert",
-        "Het gemiddelde wordt verkeerd berekend",
-        "De berekening crasht",
-        "Er is geen enkel probleem, data is data"
+      "id": "l13_ex2",
+      "category": "Valkuil",
+      "title": "Oefening 2: Waarom faalt de onafhankelijkheidsaanname?",
+      "question": "Je meet bloeddruk bij 30 patiënten op 10 opeenvolgende dagen (in totaal 300 metingen). Waarom mag je hier GEEN gewone lineaire regressie met N = 300 op uitvoeren?",
+      "options": [
+        "OLS rekent alsof je 300 volkomen onafhankelijke individuen hebt; door de clustering binnen patiënten worden standaardfouten gigantisch onderschat en rapporteert OLS massaal valse significante effecten (pseudoreplicatie)",
+        "Omdat OLS wiskundig niet kan convergeren wanneer het aantal metingen per persoon gelijk is",
+        "Omdat herhaalde metingen de normaliteit van de responsvariabele altijd vernietigen",
+        "Omdat de conditionele verwachtingswaarde van bloeddruk per definitie niet-lineair is"
       ],
-      correctIndex: 0,
-      explanation: "Cruciaal inzicht! 10 metingen op dezelfde patiënt zijn sterk gecorreleerd. OLS doet alsof het 300 vreemden zijn (schijnprecisie)."
+      "correctIndex": 0,
+      "explanation": "Spot-on! Dit heet 'pseudoreplicatie'. Metingen binnen dezelfde patiënt lijken sterk op elkaar. Gewone regressie overschat de effectieve steekproefgrootte enorm en rapporteert schijnzekerheid."
     },
     {
-      id: "l13_ex3",
-      type: "trap",
-      title: "Oefening 3: Wanneer is OLS nog acceptabel?",
-      question: "Bij welke waarde van de ICC is clustering verwaarloosbaar en mag je eventueel nog standaard OLS overwegen?",
-      options: [
-        "Als ICC < 0.05 (minder dan 5% tussen-groep variantie) én het design effect dicht bij 1.0 ligt",
-        "Als ICC > 0.80",
-        "Als de data discreet is",
-        "Nooit"
+      "id": "l13_ex3",
+      "category": "Dilemma",
+      "title": "Oefening 3: Wanneer is OLS nog acceptabel?",
+      "question": "Wanneer is het statistisch verantwoord om een geclusterde dataset toch met gewone OLS te analyseren zonder multilevel model?",
+      "options": [
+        "Als ICC < 0.05 (minder dan 5% tussen-groep variantie) én het Design Effect (DEFF = 1 + (m - 1) × ICC) dicht bij 1.0 ligt (bv. DEFF < 1.1)",
+        "Als het totale aantal observaties groter is dan N = 10.000 ongeacht de clustergrootte",
+        "Wanneer alle clustergemiddelden exact symmetrisch verdeeld zijn rond het grand mean",
+        "Zodra de binnen-groep correlatie groter is dan 0.75"
       ],
-      correctIndex: 0,
-      explanation: "Juist! Vuistregel: bij ICC < 0.05 en kleine clustergrootte is de vertekening van de standaardfout minimaal."
+      "correctIndex": 0,
+      "explanation": "Zeer verstandig! Als de ICC verwaarloosbaar klein is (< 0.05) en de groepsgroottes klein zijn, is de clusterbias minimaal en levert OLS vrijwel identieke resultaten op."
     }
   ],
-
-  // LEVEL 14: LMM: Random Intercepts
-  14: [
+  "14": [
     {
-      id: "l14_ex1",
-      type: "concept",
-      title: "Oefening 1: Vast Effect vs Willekeurig Effect",
-      question: "In Y_ij = (β0 + u_0j) + β1 X_ij + ε_ij: wat is het verschil tussen β1 en u_0j?",
-      options: [
-        "β1 is het vaste (fixed) effect dat voor iedereen geldt; u_0j is de willekeurige (random) afwijking van het startniveau van cluster j",
-        "β1 is een toevalsgetal en u_0j is een constante",
-        "Er is geen verschil",
-        "u_0j is het tentamencijfer"
+      "id": "l14_ex1",
+      "category": "Concept",
+      "title": "Oefening 1: Vast Effect vs Willekeurig Effect",
+      "question": "In de multilevel vergelijking Y_ij = (β0 + u_0j) + β1 X_ij + e_ij: wat is het fundamentele verschil tussen β1 en u_0j?",
+      "options": [
+        "β1 is het vaste (fixed) effect dat voor de totale populatie geldt; u_0j is de willekeurige (random) residu-afwijking van het startniveau van specifiek cluster j",
+        "β1 is de meetfout op individueel niveau en u_0j is de regressieconstante",
+        "β1 varieert per cluster en u_0j is constant voor alle scholen tegelijk",
+        "Beide zijn identieke Gaussische storingstermen die willekeurig verdeeld zijn met gemiddelde nul"
       ],
-      correctIndex: 0,
-      explanation: "Heel scherp! Het Fixed effect schat het overkoepelende populatiegemiddelde; het Random effect modelleert de clusterafwijking."
+      "correctIndex": 0,
+      "explanation": "Exact! β1 is de algemene fixed slope (bijvoorbeeld het landelijke effect van studietijd). u_0j is het unieke random intercept van school j (hoeveel scoort school j gemiddeld hoger of lager dan het landelijk gemiddelde β0)."
     },
     {
-      id: "l14_ex2",
-      type: "dilemma",
-      title: "Oefening 2: Empirical Bayes Shrinkage in Actie",
-      question: "School X heeft toevallig slechts 2 leerlingen en beide scoren een 9.5. Waarom schat een Random Intercept model het startniveau van School X niet op 9.5, maar op bv. 7.6?",
-      options: [
-        "Omdat shrinkage kleine clusters met weinig bewijs automatisch naar het centrale populatiegemiddelde trekt om overfitting op toeval te voorkomen",
-        "Omdat de computer een hekel heeft aan school X",
-        "Omdat 9.5 wiskundig niet is toegestaan",
-        "Omdat de p-waarde te hoog was"
+      "id": "l14_ex2",
+      "category": "Valkuil",
+      "title": "Oefening 2: Empirical Bayes Shrinkage in Actie",
+      "question": "Op school X zitten slechts 2 leerlingen, die toevallig allebei een 9.5 scoren. Waarom schat een Random Intercept model het verwachte niveau van school X toch op 7.8 (veel dichter bij het landelijk gemiddelde van 7.0)?",
+      "options": [
+        "Omdat shrinkage kleine clusters met weinig bewijskracht automatisch naar het centrale populatiegemiddelde trekt (partial pooling) om overfitting op toevallige extreme ruis te voorkomen",
+        "Omdat het model een penalty berekent op basis van de student-t verdeling met 1 vrijheidsgraad",
+        "Omdat observaties met een score boven de 9.0 automatisch als meetfouten worden getrimd",
+        "Omdat restricted maximum likelihood (REML) clusters kleiner dan N = 5 altijd negeert"
       ],
-      correctIndex: 0,
-      explanation: "Meesterlijk! Dit is de essentie van Partial Pooling / Shrinkage: hoe minder observaties in een cluster, hoe meer het model leunt op het groepsgemiddelde."
+      "correctIndex": 0,
+      "explanation": "Meesterlijk! Dit is de genialiteit van 'Shrinkage' (Empirical Bayes). Met slechts 2 leerlingen is de onzekerheid enorm. Het model 'leent kracht' van de rest van de dataset en trekt de schatting naar het midden."
     },
     {
-      id: "l14_ex3",
-      type: "trap",
-      title: "Oefening 3: Random Intercepts vs Dummy Variabelen",
-      question: "Waarom gebruik je bij 200 ziekenhuizen liever een Random Intercept model dan 199 afzonderlijke dummy variabelen (Fixed Effects model)?",
-      options: [
-        "199 dummies verslinden 199 vrijheidsgraden en overfitten kleine ziekenhuizen, terwijl een Random Intercept slechts 1 enkele variantieparameter σ²_u0 schat",
-        "Omdat dummy variabelen verboden zijn in de geneeskunde",
-        "Omdat computers maximaal 10 dummies aankunnen",
-        "Omdat een Random Intercept altijd een R² van 1.0 geeft"
+      "id": "l14_ex3",
+      "category": "Dilemma",
+      "title": "Oefening 3: Random Intercepts vs Dummy Variabelen",
+      "question": "Je onderzoekt complicaties in 200 ziekenhuizen. Waarom gebruik je liever een Random Intercept model dan 199 afzonderlijke dummy-variabelen (Fixed Effects model)?",
+      "options": [
+        "199 dummies verslinden 199 vrijheidsgraden en overfitten kleine ziekenhuizen, terwijl een Random Intercept slechts 1 enkele variantieparameter σ²_u0 schat én ziekenhuiskarakteristieken (zoals budget) toestaat",
+        "Omdat dummy-variabelen wiskundig niet geschat kunnen worden met gewone matrixinversie",
+        "Omdat fixed effects dummies de Gauss-Markov stelling direct ongeldig maken",
+        "Omdat een Random Intercept model altijd resulteert in een residu-variantie van nul"
       ],
-      correctIndex: 0,
-      explanation: "Spot-on! Het random effect model is vele malen spaarzamer en laat generalisatie naar nieuwe ziekenhuizen toe."
+      "correctIndex": 0,
+      "explanation": "Prachtig statistisch inzicht! Het zogeheten 'dummy-kerkhof'. 199 dummies kosten 199 parameters en maken het onmogelijk om ziekenhuiseigenschappen (zoals academisch vs streekziekenhuis) te onderzoeken."
     }
   ],
-
-  // LEVEL 15: LMM: Random Slopes (De Sweet Spot)
-  15: [
+  "15": [
     {
-      id: "l15_ex1",
-      type: "concept",
-      title: "Oefening 1: Wat voegt een Random Slope toe?",
-      question: "Wat is het essentiële verschil tussen een Random Intercept model en een Random Slope model?",
-      options: [
-        "Random Intercept: parallelle lijnen (zelfde helling, ander startpunt). Random Slope: lijnen met een eigen hellingshoek per cluster (verschillende reactiesnelheid/hersteltempo)",
-        "Random Slope werkt alleen met binaire data",
-        "Random Intercept kan geen tijd analyseren",
-        "Er is geen verschil"
+      "id": "l15_ex1",
+      "category": "Concept",
+      "title": "Oefening 1: Wat voegt een Random Slope toe?",
+      "question": "Wat is het visuele en inhoudelijke verschil tussen een Random Intercept model en een Random Slope model in een longitudinaal onderzoek?",
+      "options": [
+        "Random Intercept: parallelle lijnen (zelfde helling, ander startpunt). Random Slope: lijnen met een eigen hellingshoek per cluster (verschillende reactiesnelheid of hersteltempo per patiënt)",
+        "Random Intercept modelleert uitsluitend niet-lineaire curven; Random Slope modelleert strikt rechte lijnen",
+        "Random Slope dwingt af dat alle clusters naar exact hetzelfde eindpunt convergeren",
+        "Er is geen mathematisch verschil; beide modellen schatten dezelfde variantiecomponenten"
       ],
-      correctIndex: 0,
-      explanation: "Uitstekend! Bij Random Slopes mag de effectgrootte zelf variëren van persoon tot persoon."
+      "correctIndex": 0,
+      "explanation": "Juist! Bij Random Slopes reageert niet elk individu hetzelfde op tijd of behandeling. De lijnen lopen niet meer parallel, maar waaieren uit of kruisen elkaar."
     },
     {
-      id: "l15_ex2",
-      type: "dilemma",
-      title: "Oefening 2: Negatieve Correlatie tussen Intercept en Slope",
-      question: "In een herstelstudie rapporteert het Mixed Model: Corr(u_0, u_1) = -0.45 (negatief). Wat betekent dit in gewone spreektaal voor de patiënten?",
-      options: [
-        "Patiënten die starten met een ernstigere toestand (laag beginniveau u_0) vertonen een sneller hersteltempo per maand (hoge helling u_1): een inhaaleffect!",
-        "De therapie werkt niet",
-        "Patiënten met een hoge start herstellen nog sneller",
-        "De correlatie is ongeldig omdat hij negatief is"
+      "id": "l15_ex2",
+      "category": "Valkuil",
+      "title": "Oefening 2: Negatieve Correlatie tussen Intercept en Slope",
+      "question": "In een revalidatie-onderzoek schat je model een correlatie van ρ = -0.65 tussen het Random Intercept (u_0j) en de Random Slope (u_1j). Wat betekent dit biologisch/klinisch?",
+      "options": [
+        "Patiënten die starten met een ernstiger toestand (laag beginniveau u_0) vertonen een sneller hersteltempo per maand (hoge positieve helling u_1): een klassiek inhaaleffect!",
+        "De therapie werkt averechts voor patiënten met een laag startniveau",
+        "De schatting is wiskundig ongeldig omdat covarianties tussen willekeurige effecten altijd positief moeten zijn",
+        "Het model lijdt aan ernstige overspecificatie en moet worden vereenvoudigd tot een gewone ANOVA"
       ],
-      correctIndex: 0,
-      explanation: "Prachtig begrepen! Dit fysiologische inhaaleffect kan alleen ontdekt worden met een Random Slope model met gecorreleerde effecten."
+      "correctIndex": 0,
+      "explanation": "Spot-on! Een negatieve correlatie tussen startniveau en groei/herstel is een bekend biologisch fenomeen: patiënten met de meeste schade hebben de meeste ruimte voor spectaculaire verbetering (ceiling effect)."
     },
     {
-      id: "l15_ex3",
-      type: "trap",
-      title: "Oefening 3: Omgaan met Ontbrekende Waarden (Unbalanced Data)",
-      question: "Waarom heeft een Linear Mixed Model de klassieke Repeated Measures ANOVA vrijwel volledig vervangen in klinisch onderzoek?",
-      options: [
-        "Repeated Measures ANOVA gooit een patiënt compleet weg zodra er 1 meetmoment mist (listwise deletion); een Mixed Model gebruikt alle beschikbare meetmomenten optimaal",
-        "Omdat ANOVA alleen in de 19e eeuw werkte",
-        "Omdat Mixed Models geen p-waarden hoeven te berekenen",
-        "Omdat ANOVA verboden is door de FDA"
+      "id": "l15_ex3",
+      "category": "Dilemma",
+      "title": "Oefening 3: Omgaan met Ontbrekende Waarden (Unbalanced Data)",
+      "question": "In een 5-jarig onderzoek missen 30% van de patiënten minstens één meetmoment (dropout of gemiste afspraak). Waarom is een Mixed Model superieur aan een klassieke Repeated Measures ANOVA?",
+      "options": [
+        "Repeated Measures ANOVA gooit een patiënt compleet weg zodra er 1 meetmoment mist (listwise deletion); een Mixed Model gebruikt alle beschikbare meetmomenten optimaal onder Missing at Random (MAR)",
+        "Omdat Mixed Models ontbrekende waarden altijd vervangen door de mediaan van de populatie",
+        "Omdat Repeated Measures ANOVA geen betrouwbaarheidsintervallen kan berekenen",
+        "Omdat Mixed Models aannemen dat ontbrekende gegevens altijd Missing Completely at Random (MCAR) zijn"
       ],
-      correctIndex: 0,
-      explanation: "Cruciaal praktisch voordeel! In de echte wereld mist vrijwel elke patiënt wel eens een afspraak. Mixed Models handelen dit vlekkeloos af."
+      "correctIndex": 0,
+      "explanation": "Cruciaal voordeel van mixed models! RM-ANOVA gooit data weg zodra 1 bezoek mist (enorme vermindering van power en risico op bias). Mixed models gebruiken elk beschikbaar datapunt."
     }
   ],
-
-  // LEVEL 16: GLMM
-  16: [
+  "16": [
     {
-      id: "l16_ex1",
-      type: "concept",
-      title: "Oefening 1: Wanneer stap je over naar GLMM?",
-      question: "Je onderzoekt het aantal heropnames (0, 1, 2, 5 aanvallen per jaar: Poisson tellingen) bij patiënten verdeeld over 30 klinieken. Welk model is het juiste?",
-      options: [
-        "Een Poisson GLMM (Generalized Linear Mixed Model) met log-link en random intercepts per kliniek",
-        "Gewone lineaire OLS regressie",
-        "Een t-toets",
-        "Klassieke ANOVA"
+      "id": "l16_ex1",
+      "category": "Dilemma",
+      "title": "Oefening 1: Wanneer stap je over naar GLMM?",
+      "question": "Je telt het aantal epileptische aanvallen per maand (discrete teldata: 0, 1, 2, 5...) bij 80 patiënten over 6 maanden. Welk model is hier theoretisch en praktisch het meest passend?",
+      "options": [
+        "Een Poisson of Negatief-Binomiaal GLMM (Generalized Linear Mixed Model) met log-link en random intercepts per patiënt",
+        "Gewone lineaire OLS regressie met robuuste Newey-West standaardfouten",
+        "Een logistische regressie waarin aanvallen worden gedichotomiseerd tot 0 vs ≥ 1",
+        "Een klassieke herhaalde metingen ANOVA na een worteltransformatie van de teldata"
       ],
-      correctIndex: 0,
-      explanation: "Juist! Tellingen zijn niet normaal verdeeld (Poisson/Negatieve Binomiaal) én de data is geclusterd. GLMM verenigt beide."
+      "correctIndex": 0,
+      "explanation": "Uitstekend! Teldata is discreet, altijd ≥ 0 en vertoont vaak scheefheid. De Poisson/Negatief-Binomiaal linkfunctie garandeert positieve voorspellingen en modelleert de geclusterde variantie via random effects."
     },
     {
-      id: "l16_ex2",
-      type: "dilemma",
-      title: "Oefening 2: Interpretatie van Vaste Effecten in GLMM",
-      question: "In een logistisch GLMM voor wondinfecties is het vaste effect van antibioticagebruik β = -0.85. Wat is het effect op de odds?",
-      options: [
-        "Odds Ratio = e^-0.85 = 0.43 (57% lagere kansverhouding op infectie bij gelijkblijvend ziekenhuisniveau)",
-        "De kans daalt met 85%",
-        "De odds stijgen met 43%",
-        "Het effect is niet interpreteerbaar"
+      "id": "l16_ex2",
+      "category": "Concept",
+      "title": "Oefening 2: Interpretatie van Vaste Effecten in GLMM",
+      "question": "In een logistisch GLMM voor ziekenhuisinfecties is de fixed effect coëfficiënt voor een nieuw hygiëneprotocol β = -0.85. Hoe interpreteer je dit effect?",
+      "options": [
+        "Odds Ratio = e^-0.85 ≈ 0.43: bij implementatie van het protocol dalen de odds op een infectie met circa 57% binnen hetzelfde ziekenhuis (conditioneel effect)",
+        "Het absolute risico op een infectie daalt met exact 85 procentpunt voor elke opgenomen patiënt",
+        "De kans op infectie wordt gedeeld door een factor -0.85 ongeacht het ziekenhuisniveau",
+        "De correlatie tussen het hygiëneprotocol en complicaties is gelijk aan r = -0.85"
       ],
-      correctIndex: 0,
-      explanation: "Klopt! De coëfficiënt wordt geëxponentieerd naar een conditionele Odds Ratio."
+      "correctIndex": 0,
+      "explanation": "Juist! e^-0.85 = 0.427. Dat betekent dat de odds op een infectie afnemen tot 43% van het oorspronkelijke niveau (een reductie van 57%). In GLMM zijn effecten 'cluster-specifiek' (conditioneel)."
     },
     {
-      id: "l16_ex3",
-      type: "trap",
-      title: "Oefening 3: Wat is Overdispersie?",
-      question: "In een Poisson GLMM moet de variantie gelijk zijn aan het gemiddelde (Var = μ). In je data is de variantie echter 6 keer groter dan het gemiddelde. Wat moet je doen?",
-      options: [
-        "Schakel over naar een Negatief-Binomiaal GLMM of voeg een observation-level random effect toe om de extra spreiding op te vangen",
-        "Rond alle getallen af naar boven",
-        "Verwijder alle patiënten met meer dan 2 aanvallen",
-        "Neem aan dat de data normaal verdeeld is"
+      "id": "l16_ex3",
+      "category": "Valkuil",
+      "title": "Oefening 3: Wat is Overdispersie?",
+      "question": "In een Poisson GLMM zie je dat de residuele deviance tweemaal zo groot is als het aantal vrijheidsgraden (Ratio = 2.4). Wat duidt dit aan en wat is de oplossing?",
+      "options": [
+        "Overdispersie: de variantie in de data is groter dan het gemiddelde (schending van de Poisson-aanname Var = Mean). Schakel over naar een Negatief-Binomiaal model of voeg een observation-level random effect toe",
+        "Underdispersie: de steekproef is te homogeen; verwijder de patiënten met nul aanvallen",
+        "Multicollineariteit tussen de random intercepten en de vaste tijdsfactoren",
+        "Het model convergeert niet omdat de log-linkfunctie vervangen moet worden door een probit-link"
       ],
-      correctIndex: 0,
-      explanation: "Spot-on! Negatieve Binomiaal modellen hebben een extra dispersieparameter om overdispersie te modelleren."
+      "correctIndex": 0,
+      "explanation": "Spot-on! Poisson veronderstelt Mean = Variance. In de praktijk is de variantie vaak veel groter (overdispersie). Een Negatief-Binomiaal model heeft een extra parameter om deze extra spreiding op te vangen."
     }
   ],
-
-  // LEVEL 17: GAMs
-  17: [
+  "17": [
     {
-      id: "l17_ex1",
-      type: "concept",
-      title: "Oefening 1: Wat zijn Splines in GAMs?",
-      question: "Wat is de rol van basis-splines in een Generalized Additive Model Y = β0 + f(X) + ε?",
-      options: [
-        "Het zijn stuksgewijze vloeiende veeltermen (bv. kubische splines) die aan elkaar geknoopt worden om willekeurige krommingen flexibel te volgen",
-        "Het zijn rechte lijnen",
-        "Het zijn toevalsgetallen",
-        "Het zijn binaire classificatiefuncties"
+      "id": "l17_ex1",
+      "category": "Concept",
+      "title": "Oefening 1: Wat zijn Splines in GAMs?",
+      "question": "Hoe modelleert een Generalized Additive Model (GAM) een niet-lineaire relatie tussen een predictor X en de uitkomst Y?",
+      "options": [
+        "Via een lineaire combinatie van flexibele basisfuncties (zoals kubische splines of B-splines) met knooppunten, gecombineerd met een straf op overmatige wiebeligheid (smoothing penalty)",
+        "Door de dataset op te knippen in afzonderlijke intervallen en per interval een discrete boomstructuur te trainen",
+        "Door een 10e-graads polynoom zonder regularisatie te fitten op de data",
+        "Door alle continue predictoren om te zetten in categoriale dummy-variabelen"
       ],
-      correctIndex: 0,
-      explanation: "Exact! Splines buigen soepel mee met de data zonder dat je vooraf hoeft te gokken of het verband X², X³ of log(X) is."
+      "correctIndex": 0,
+      "explanation": "Exact! GAMs bouwen gladde curven uit een set wiskundige basisfuncties. Een smoothing parameter bestraft te scherpe bochten, waardoor de curve data-gestuurd maar vloeiend blijft."
     },
     {
-      id: "l17_ex2",
-      type: "concept",
-      title: "Oefening 2: Effective Degrees of Freedom (edf)",
-      question: "In de output van een GAM staat voor de term f(Leeftijd): edf = 1.02. Wat betekent dit?",
-      options: [
-        "Het verband tussen Leeftijd en de uitkomst is nagenoeg kaarsrecht (lineair), want een rechte lijn heeft edf = 1",
-        "De data is zwaar niet-lineair gekromd",
-        "Het model heeft gefaald",
-        "Leeftijd moet uit het model worden verwijderd"
+      "id": "l17_ex2",
+      "category": "Berekening",
+      "title": "Oefening 2: Effective Degrees of Freedom (edf)",
+      "question": "In de output van een GAM heeft de gladde term s(Leeftijd) een geschatte 'edf' (effective degrees of freedom) van 1.02. Wat betekent dit concreet?",
+      "options": [
+        "Het verband tussen Leeftijd en de uitkomst is nagenoeg kaarsrecht (lineair), want een rechte lijn heeft per definitie edf = 1",
+        "De relatie is sterk oscillerend met minimaal één lokaal maximum en één lokaal minimum",
+        "Het model kan het effect van Leeftijd niet schatten wegens een gebrek aan datapunten",
+        "De smoothing parameter λ is automatisch naar 0 gedreven door de REML-optimalisatie"
       ],
-      correctIndex: 0,
-      explanation: "Heel scherp! Als edf ≈ 1 heeft de smoothing penalty alle kromming weggefilterd en gedraagt de term zich als een gewone lineaire regressie."
+      "correctIndex": 0,
+      "explanation": "Haarscherp inzicht! edf = 1 staat voor een zuiver lineair verband. Hoe hoger de edf (bv. 4 of 8), hoe meer bochten en golven de relatie vertoont. Bij edf ≈ 1 volstaat een gewone rechte lijn!"
     },
     {
-      id: "l17_ex3",
-      type: "dilemma",
-      title: "Oefening 3: De Smoothing Penalty λ",
-      question: "Wat gebeurt er als de smoothing parameter λ in een GAM te klein wordt ingesteld (λ ≈ 0)?",
-      options: [
-        "De curve overfit enorm: hij kronkelt door elke individuele toevallige meetfout heen",
-        "De curve wordt een kaarsrechte lijn",
-        "De p-waarde wordt altijd 0.05",
-        "Er verandert niets"
+      "id": "l17_ex3",
+      "category": "Valkuil",
+      "title": "Oefening 3: De Smoothing Penalty λ",
+      "question": "Wat gebeurt er met de geschatte curve in een GAM als je de strafparameter voor kromming instelt op λ = 0?",
+      "options": [
+        "De curve overfit maximaal: hij kronkelt door elk individueel toevallig datapunt heen (pure interpolatie van ruis)",
+        "De curve degradeert naar een horizontale lijn op het niveau van het gemiddelde ȳ",
+        "De effectieve vrijheidsgraden krimpen exact naar nul",
+        "Het model weigert te berekenen omdat de Hessian matrix niet langer inverteerbaar is"
       ],
-      correctIndex: 0,
-      explanation: "Klopt! Smoothing parameters worden daarom automatisch gekozen via Restricted Maximum Likelihood (REML) of GCV."
+      "correctIndex": 0,
+      "explanation": "Juist! Zonder straf (λ = 0) heeft het model vrij spel om zo wild mogelijk te kronkelen en elk ruispunt te raken. De smoothing penalty is essentieel om overmatig wiebelen te voorkomen."
     }
   ],
-
-  // LEVEL 18: Survival Analysis
-  18: [
+  "18": [
     {
-      id: "l18_ex1",
-      type: "concept",
-      title: "Oefening 1: Wat is Censurering?",
-      question: "Waarom mag je patiënten die aan het einde van een 5-jarige studie nog springlevend zijn niet weggooien als 'ontbrekende data'?",
-      options: [
-        "Omdat zij bewezen hebben minstens 5 jaar te overleven! Hun informatie (rechtscensurering) is essentieel om de overlevingskans op lange termijn niet zwaar te onderschatten",
-        "Omdat de wet dat verbiedt",
-        "Omdat hun data automatisch als 100 jaar wordt ingevuld",
-        "Omdat zij anders boos worden"
+      "id": "l18_ex1",
+      "category": "Concept",
+      "title": "Oefening 1: Wat is Censurering?",
+      "question": "In een oncologische studie stopt het onderzoek na 5 jaar. Sommige patiënten zijn op dat moment nog steeds kankervrij en in leven. Waarom mag je hen NIET simpelweg uit de analyse verwijderen?",
+      "options": [
+        "Omdat zij bewezen hebben minstens 5 jaar te overleven; hun informatie (rechtscensurering) is essentieel om de overlevingskans op lange termijn niet zwaar te onderschatten",
+        "Omdat de Kaplan-Meier schatter vereist dat alle proefpersonen uiteindelijk het event meemaken",
+        "Omdat gecensureerde patiënten altijd een Hazard Ratio van exact 1.0 moeten krijgen toebedeeld",
+        "Omdat de follow-up tijd wiskundig niet gedefinieerd is voor patiënten zonder overlijdensdatum"
       ],
-      correctIndex: 0,
-      explanation: "Cruciaal concept! Censurering is geen missende data, maar partiële informatie die Kaplan-Meier stap voor stap meeneemt."
+      "correctIndex": 0,
+      "explanation": "Spot-on! Dit heet 'rechtscensurering'. Deze patiënten leveren waardevol bewijs dat ze minstens 5 jaar overleven. Als je ze weglaat, houd je alleen patiënten over die snel sterven en onderschat je de overleving enorm."
     },
     {
-      id: "l18_ex2",
-      type: "calculation",
-      title: "Oefening 2: Hazard Ratio Lezen",
-      question: "In een Cox Proportional Hazards model heeft Medicijn X een Hazard Ratio van HR = 0.60 (p = 0.002). Wat concludeer je?",
-      options: [
-        "Patiënten met Medicijn X hebben op elk moment een 40% lager risico (hazard rate) om te overlijden vergeleken met de controlegroep",
-        "60% van de patiënten overlijdt",
-        "Het medicijn verlengt het leven met exact 60 dagen",
-        "Het medicijn heeft geen effect"
+      "id": "l18_ex2",
+      "category": "Berekening",
+      "title": "Oefening 2: Hazard Ratio Lezen",
+      "question": "In een klinische trial naar hartfalen rapporteert het Cox-model voor Medicijn X een Hazard Ratio van HR = 0.60 (95% CI: [0.45, 0.80], p = 0.001). Wat concludeer je?",
+      "options": [
+        "Patiënten met Medicijn X hebben op elk willekeurig moment een 40% lager risico (hazard rate) om te overlijden vergeleken met de controlegroep",
+        "Precies 60% van de behandelde patiënten zal na afloop van de trial nog in leven zijn",
+        "De mediane levensduur van patiënten verdubbelt met 60 procentpunten onder de behandeling",
+        "Het risico op overlijden daalt met 60% in het eerste jaar, maar stabiliseert daarna op nul"
       ],
-      correctIndex: 0,
-      explanation: "Voltreffer! 1 - 0.60 = 0.40 = 40% risicoreductie."
+      "correctIndex": 0,
+      "explanation": "Juist! HR = 0.60 betekent dat het momentane risico 60% is van de controlegroep, wat neerkomt op een risicoreductie van 1 - 0.60 = 40%."
     },
     {
-      id: "l18_ex3",
-      type: "trap",
-      title: "Oefening 3: De Proportional Hazards Assumptie",
-      question: "Wat gebeurt er als de overlevingslijnen van twee groepen elkaar na 2 jaar kruisen (in het begin werkt het medicijn goed, maar later veroorzaakt het toxiciteit)?",
-      options: [
-        "De 'Proportional Hazards' aanname is geschonden; de hazard ratio is niet constant in de tijd. Je moet een tijd-afhankelijke covariabele toevoegen",
-        "Het model is automatisch goedgekeurd",
-        "Je moet alle patiënten na 2 jaar wissen",
-        "Er is geen probleem"
+      "id": "l18_ex3",
+      "category": "Valkuil",
+      "title": "Oefening 3: De Proportional Hazards Assumptie",
+      "question": "In een Cox-regressie kruisen de overlevingscurven van twee behandelingen elkaar na 1.5 jaar (Behandeling A is eerst beter, maar na 1.5 jaar is B superieur). Wat betekent dit voor het model?",
+      "options": [
+        "De 'Proportional Hazards' aanname is fundamenteel geschonden: de hazard ratio is niet constant over tijd. Een standaard Cox model is ongeldig en vereist tijd-afhankelijke covariabelen of een gestratificeerde analyse",
+        "Er is geen enkel probleem: de hazard ratio middelt beide periodes automatisch uit tot een valide algemeen effect",
+        "Het model moet vervangen worden door een lineaire OLS regressie op de totale overlevingstijd",
+        "De p-waarde van de log-rank toets kan direct vermenigvuldigd worden met de kruisingstijd om het effect te corrigeren"
       ],
-      correctIndex: 0,
-      explanation: "Juist! Cox PH vereist dat de relatieve verhouding constant blijft over tijd. Kruisende curven schenden dit direct."
+      "correctIndex": 0,
+      "explanation": "Meesterlijk! Als curven kruisen, is de hazard ratio tijd-afhankelijk (eerst < 1, later > 1). Het basismodel van Cox veronderstelt dat het relatieve risico constant is over de gehele tijdsduur."
     }
   ],
-
-  // LEVEL 19: Bayesiaanse Grondslagen
-  19: [
+  "19": [
     {
-      id: "l19_ex1",
-      type: "concept",
-      title: "Oefening 1: De Drie Bouwstenen van Bayes",
-      question: "Hoe luidt de Bayesiaanse vergelijking in woorden?",
-      options: [
-        "Posterior Kennis ∝ Likelihood van de Data × Prior Overtuiging",
-        "Data = Model + Ruis",
-        "P-waarde = 1 - Betrouwbaarheid",
-        "Prior = Likelihood gedeeld door N"
+      "id": "l19_ex1",
+      "category": "Concept",
+      "title": "Oefening 1: De Drie Bouwstenen van Bayes",
+      "question": "Welke fundamentele formule beschrijft de kern van de Bayesiaanse epistemologie?",
+      "options": [
+        "Posterior Kennis ∝ Likelihood van de Data × Prior Overtuiging (P(θ | Data) ∝ P(Data | θ) × P(θ))",
+        "Posterior Kans = Frequentistische P-waarde gedeeld door het Aantal Toetsen",
+        "Prior Overtuiging = Likelihood × Standaardfout van het Steekproefgemiddelde",
+        "Posterior Distributie = Conditionele Expectatie onder de Nulhypothese H0"
       ],
-      correctIndex: 0,
-      explanation: "Exact! We actualiseren wat we al wisten (Prior) met het bewijs uit de data (Likelihood)."
+      "correctIndex": 0,
+      "explanation": "De hoeksteen van alle moderne wetenschap! Je begint met bestaande kennis (prior), confronteert deze met empirisch bewijs (likelihood), en actualiseert je wereldbeeld (posterior)."
     },
     {
-      id: "l19_ex2",
-      type: "dilemma",
-      title: "Oefening 2: De Invloed van de Prior bij Grote N",
-      question: "Wat gebeurt er met de Bayesiaanse Posterior als je steekproefgrootte N toeneemt naar 100.000 metingen?",
-      options: [
-        "De invloed van de Prior vervliegt nagenoeg geheel; de Likelihood (de data) domineert de posterior volledig en de schatting convergeert naar de frequentistische maximum likelihood schatting",
-        "De Prior wordt oneindig belangrijk",
-        "De computer kan het niet meer uitrekenen",
-        "De posterior wordt een rechte lijn"
+      "id": "l19_ex2",
+      "category": "Concept",
+      "title": "Oefening 2: De Invloed van de Prior bij Grote N",
+      "question": "Wat gebeurt er met de invloed van de gekozen prior-verdeling op de posterior verdeling naarmate je steekproefomvang N toeneemt naar 100.000 observaties?",
+      "options": [
+        "De invloed van de prior vervliegt nagenoeg geheel; de Likelihood (de data) domineert de posterior volledig en de schatting convergeert naar de Maximum Likelihood schatting",
+        "De prior wordt oneindig dominant en overschrijft alle empirische observaties",
+        "De posterior variantie groeit proportioneel met de informatiedichtheid van de prior",
+        "De posterior verdeling splitst zich automatisch op in twee onafhankelijke Gaussiaanse componenten"
       ],
-      correctIndex: 0,
-      explanation: "Heel fraai! 'Data overweldigt de prior'. Alleen bij kleine N heeft de prior een merkbaar regulerend effect."
+      "correctIndex": 0,
+      "explanation": "Geruststellende wetmatigheid (Bernstein-von Mises theorema)! 'Data overwint de prior'. Tenzij je prior letterlijk een kans van 0 toekent aan een waarde, zal voldoende data de prior altijd overstemmen."
     },
     {
-      id: "l19_ex3",
-      type: "trap",
-      title: "Oefening 3: Wat mag je wél zeggen over een 95% Credible Interval?",
-      question: "Wat is het grote voordeel van een Bayesiaans 95% Credible Interval [0.12, 0.28] ten opzichte van een frequentistisch CI?",
-      options: [
-        "Je mag letterlijk en volkomen terecht zeggen: 'Gegeven onze prior en data is er daadwerkelijk 95% kans dat de echte parameterwaarde tussen 0.12 en 0.28 ligt'",
-        "Het is altijd 10x smaller",
-        "Het bevat nooit nullen",
-        "Het vereist geen aannames"
+      "id": "l19_ex3",
+      "category": "Valkuil",
+      "title": "Oefening 3: Wat mag je wél zeggen over een 95% Credible Interval?",
+      "question": "In tegenstelling tot een frequentistisch betrouwbaarheidsinterval: waarom mag je bij een Bayesiaans 95% Credible Interval wél spreken van '95% kans dat de parameter binnen de grenzen ligt'?",
+      "options": [
+        "Omdat in de Bayesiaanse statistiek de parameter zelf als een toevalsvariabele met een kansverdeling (posterior) wordt beschouwd, conditioneel op de geobserveerde data",
+        "Omdat Bayesiaanse intervallen altijd rekenen met een oneindig grote steekproefomvang",
+        "Omdat de Markov Chain Monte Carlo sampler alle Type I fouten automatisch tot nul reduceert",
+        "Omdat een Credible Interval mathematisch gelijkstaat aan de p-waarde verheven tot de macht van de prior"
       ],
-      correctIndex: 0,
-      explanation: "Spot-on! Dit is de natuurlijke, intuïtieve uitspraak die iedereen intuïtief wil doen."
+      "correctIndex": 0,
+      "explanation": "Eindelijk intuïtief! In frequentisme is de parameter een vast getal en is het interval willekeurig. In Bayes is de data vast en is de parameter stochastisch, waardoor je wél directe kansuitspraken mag doen."
     }
   ],
-
-  // LEVEL 20: MCMC Sampler
-  20: [
+  "20": [
     {
-      id: "l20_ex1",
-      type: "concept",
-      title: "Oefening 1: Waarom MCMC?",
-      question: "Waarom gebruiken Bayesiaanse statistici algoritmen zoals Markov Chain Monte Carlo (MCMC) in plaats van gewoon de wiskundige integraal op te lossen?",
-      options: [
-        "Omdat de noemer P(Data) een hoog-dimensionale integraal is over alle parameters tegelijk; bij meer dan 4 parameters is dit analytisch onmogelijk te berekenen, maar MCMC kan wel steekproeven trekken uit de vorm van de teller",
-        "Omdat wiskundigen liever programmeren",
-        "Omdat MCMC altijd een exact getal geeft zonder onzekerheid",
-        "Omdat computers geen breuken kunnen delen"
+      "id": "l20_ex1",
+      "category": "Concept",
+      "title": "Oefening 1: Waarom MCMC?",
+      "question": "Waarom gebruiken moderne statistici MCMC (Markov Chain Monte Carlo) sampling in plaats van de exacte noemer van Bayes' theorema P(Data) = ∫ P(Data|θ) P(θ) dθ direct uit te rekenen?",
+      "options": [
+        "Omdat de noemer P(Data) een hoog-dimensionale integraal is over alle parameters tegelijk; bij meer dan 4 parameters is dit analytisch onmogelijk te integreren, maar MCMC kan wel steekproeven trekken uit de vorm van de teller zonder de normalisatieconstante te kennen",
+        "Omdat numerieke integralen altijd resulteren in een singuliere Hessiaan matrix",
+        "Omdat MCMC gegarandeerd deterministische antwoorden geeft zonder simulatie-onzekerheid",
+        "Omdat de likelihood-functie alleen gedefinieerd is over discrete Markov ketens"
       ],
-      correctIndex: 0,
-      explanation: "Meesterlijk! MCMC omzeilt de onmogelijke integratie door willekeurige maar gerichte steekproeven te trekken."
+      "correctIndex": 0,
+      "explanation": "De revolutie van MCMC! De noemer (evidence) is onberekenbaar in hoge dimensies. MCMC omzeilt de noemer briljant door alleen de relatieve verhoudingen van de teller te verkennen."
     },
     {
-      id: "l20_ex2",
-      type: "dilemma",
-      title: "Oefening 2: Gelman-Rubin R̂ Diagnostiek",
-      question: "Je draait 4 parallelle MCMC ketens in Stan of PyMC. De diagnostiek rapporteert voor parameter θ: R̂ = 1.003. Wat betekent dit?",
-      options: [
-        "De vier ketens zijn perfect gemengd en geconvergeerd naar dezelfde stationaire posterior verdeling (R̂ < 1.05 is de gouden standaard)",
-        "De ketens zijn vastgelopen in een lokaal minimum",
-        "De prior was verkeerd",
-        "De p-waarde is 0.003"
+      "id": "l20_ex2",
+      "category": "Berekening",
+      "title": "Oefening 2: Gelman-Rubin R̂ Diagnostiek",
+      "question": "In een Stan-model draaien 4 ketens. De Gelman-Rubin convergentiediagnostiek toont R̂ = 1.002 voor alle parameters. Wat is de conclusie?",
+      "options": [
+        "De vier ketens zijn uitstekend gemengd en geconvergeerd naar dezelfde stationaire posterior verdeling (R̂ < 1.05 is de gouden standaard voor convergentie)",
+        "De ketens zijn vastgelopen in een lokaal minimum en verkennen de parameterruimte onvoldoende",
+        "De effectieve steekproefomvang (ESS) is gedaald tot nul wegens overmatige autocorrelatie",
+        "De prior-verdeling was te smal gespecificeerd en domineert de ketens volledig"
       ],
-      correctIndex: 0,
-      explanation: "Juist! R̂ vergelijkt de variantie tussen de ketens met de variantie binnen de ketens. Waarden dicht bij 1.00 betekenen convergentie."
+      "correctIndex": 0,
+      "explanation": "Juist! R̂ vergelijkt de variantie tussen de ketens met de variantie binnen de ketens. Als R̂ ≈ 1.00 lopen alle ketens perfect synchroon door hetzelfde posterior landschap."
     },
     {
-      id: "l20_ex3",
-      type: "trap",
-      title: "Oefening 3: Wat maakt Hamiltoniaanse Monte Carlo (HMC) superieur?",
-      question: "Waarom faalt klassieke Metropolis-Hastings in modellen met 500 parameters en triomfeert Hamiltoniaanse Monte Carlo (HMC)?",
-      options: [
-        "Metropolis-Hastings doet een blinde 'dronkenmanswandeling' (random walk) en verdwaalt in hoge dimensies; HMC simuleert de wrijvingloze fysica van een rollende knikker over het gradiëntoppervlak en zet grote doelgerichte stappen",
-        "HMC gebruikt minder geheugen",
-        "Metropolis-Hastings werkt alleen op Windows",
-        "HMC verwijdert alle parameters"
+      "id": "l20_ex3",
+      "category": "Concept",
+      "title": "Oefening 3: Wat maakt Hamiltoniaanse Monte Carlo (HMC) superieur?",
+      "question": "Waarom schaalt Hamiltoniaanse Monte Carlo (HMC / NUTS in Stan) zo fenomenaal veel beter naar honderden parameters dan traditionele Metropolis-Hastings algoritmes?",
+      "options": [
+        "Metropolis-Hastings doet een willekeurige 'dronkenmanswandeling' (random walk) en verdwaalt in hoge dimensies; HMC simuleert de wrijvingloze fysica van een deeltje dat over het gradiëntoppervlak rolt en zet grote, doelgerichte stappen door de parameterruimte",
+        "HMC berekent de exacte multivariate inverse covariantiematrix zonder gradiënten te evalueren",
+        "Omdat HMC alle hyperparameters automatisch op nul stelt via analytische Laplace benadering",
+        "Omdat HMC uitsluitend discrete parameters samplet en daardoor differentiatie overbodig maakt"
       ],
-      correctIndex: 0,
-      explanation: "Schitterend fysisch inzicht! HMC benut de gradiënt van het oppervlak om efficiënt door hoog-dimensionale ruimten te glijden."
+      "correctIndex": 0,
+      "explanation": "Briljante fysica in de statistiek! HMC gebruikt de gradiënt (helling) van de posterior om een virtueel deeltje vaart te geven. Daardoor verplaatst het zich pijlsnel naar gebieden met hoge waarschijnlijkheid."
     }
   ],
-
-  // LEVEL 21: Gaussiaanse Processen (GPs)
-  21: [
+  "21": [
     {
-      id: "l21_ex1",
-      type: "concept",
-      title: "Oefening 1: Wat is een Gaussiaans Proces?",
-      question: "Hoe kun je een Gaussiaans Proces f(x) ~ GP(m, k) het meest intuïtief visualiseren?",
-      options: [
-        "Als een oneindig-dimensionale multivariate normale verdeling: in plaats van een gemiddelde vector en covariantiematrix van getallen, definieert het een gemiddelde functie en een covariantie-kernel over complete functies",
-        "Als een enkele rechte lijn",
-        "Als een histogram van staafjes",
-        "Als een neuraal netwerk zonder gewichten"
+      "id": "l21_ex1",
+      "category": "Concept",
+      "title": "Oefening 1: Wat is een Gaussiaans Proces?",
+      "question": "Wat is de meest intuïtieve en mathematisch correcte definitie van een Gaussiaans Proces (GP)?",
+      "options": [
+        "Een oneindig-dimensionale multivariate normale verdeling: in plaats van een gemiddelde vector en covariantiematrix over getallen, definieert een GP een gemiddelde functie en een covariantie-kernel over complete continue functies",
+        "Een neuraal netwerk met één enkele verborgen laag en ReLU activatiefuncties",
+        "Een autoregressief tijdreeksmodel dat uitsluitend stationaire Markov processen simuleert",
+        "Een niet-parametrische dichtheidsschatting gebaseerd op histogrammen met variabele bakbreedte"
       ],
-      correctIndex: 0,
-      explanation: "Exact! Een GP is een oneindige verzameling toevalsvariabelen waarvan elke eindige selectie gezamenlijk normaal verdeeld is."
+      "correctIndex": 0,
+      "explanation": "Meesterlijk! Een GP is 'een verdeling over functies'. Elk eindig aantal punten dat je kiest op die functie volgt gezamenlijk een multivariate normale verdeling."
     },
     {
-      id: "l21_ex2",
-      type: "concept",
-      title: "Oefening 2: De RBF Kernel Lengteschaal ℓ",
-      question: "Wat gebeurt er met de voorspelde curve van een Gaussiaans Proces als je de lengteschaal parameter ℓ van de kernel heel groot instelt?",
-      options: [
+      "id": "l21_ex2",
+      "category": "Berekening",
+      "title": "Oefening 2: De RBF Kernel Lengteschaal ℓ",
+      "question": "In een Radial Basis Function (RBF) kernel k(x, x') = σ² exp(-||x - x'||² / (2ℓ²)): wat gebeurt er met de geschatte functie als de lengteschaal parameter ℓ heel groot wordt gekozen?",
+      "options": [
         "De correlatie tussen punten blijft over grote afstanden hoog, waardoor de voorspelde functie heel stijf, glad en langzaam golvend wordt",
-        "De curve wordt extreem wild en grillig",
-        "De onzekerheidsband verdwijnt",
-        "De functie wordt een zaagtand"
+        "De curve wordt extreem wild, grillig en interpoleert alle ruispunten met hoge frequentie",
+        "De conditionele onzekerheidsband krimpt overal direct naar nul",
+        "De covariance-kernel convergeert naar een diagonale identiteitsmatrix"
       ],
-      correctIndex: 0,
-      explanation: "Heel scherp! De lengteschaal ℓ bepaalt hoe snel de ruimtelijke correlatie tussen twee punten uitdooft."
+      "correctIndex": 0,
+      "explanation": "Exact! De lengteschaal ℓ bepaalt hoe snel de correlatie tussen twee punten afneemt naarmate ze verder uit elkaar liggen. Grote ℓ = punten blijven lang gecorreleerd = zeer gladde, trage curve."
     },
     {
-      id: "l21_ex3",
-      type: "dilemma",
-      title: "Oefening 3: Bayesiaanse Optimalisatie met GPs",
-      question: "Waarom worden Gaussiaanse Processen massaal gebruikt om dure experimenten (zoals medicijnsynthese of hyperparametertuning) te optimaliseren?",
-      options: [
-        "Omdat een GP op elk onbekend punt niet alleen de verwachte opbrengst voorspelt, maar ook de exacte onzekerheid σ(x); je kunt doelgericht meten waar de kans op verbetering maximaal is (Acquisition Function: Upper Confidence Bound)",
-        "Omdat GPs gratis zijn",
-        "Omdat GPs nooit fouten maken",
-        "Omdat het experimenten overbodig maakt"
+      "id": "l21_ex3",
+      "category": "Dilemma",
+      "title": "Oefening 3: Bayesiaanse Optimalisatie met GPs",
+      "question": "Waarom zijn Gaussiaanse Processen het voorkeursmodel bij Bayesiaanse Optimalisatie van dure experimenten (bv. medicijnontwikkeling of hyperparameter tuning)?",
+      "options": [
+        "Omdat een GP op elk onbekend punt niet alleen de verwachte uitkomst voorspelt, maar ook de exacte posterior onzekerheid σ(x); hiermee balanceer je exploitatie (hoge verwachting) en exploratie (hoge onzekerheid)",
+        "Omdat GPs geen matrixinversie vereisen en daardoor lineair schalen met miljoenen datapunten",
+        "Omdat de RBF-kernel garandeert dat het globale optimum altijd binnen 3 evaluaties wordt gevonden",
+        "Omdat GPs immuun zijn voor meetruis in de afhankelijke observaties"
       ],
-      correctIndex: 0,
-      explanation: "Spot-on! Dit is de kern van 'Active Learning' en Bayesiaanse optimalisatie: balanceren tussen exploratie en exploitatie."
+      "correctIndex": 0,
+      "explanation": "De kracht van onzekerheid! Met een GP weet je niet alleen wát je verwacht, maar ook wáár je nog niets weet. De acquisitiefunctie (bv. Expected Improvement) vertelt je precies welk volgend experiment het meeste oplevert."
     }
   ],
-
-  // LEVEL 22: Causale Inferentie in Hilbertruimten
-  22: [
+  "22": [
     {
-      id: "l22_ex1",
-      type: "concept",
-      title: "Oefening 1: Zien vs Doen (Judea Pearl)",
-      question: "Wat is het fundamentele verschil tussen de observationele conditionele kans P(Y | X = x) en de causale kans P(Y | do(X = x))?",
-      options: [
-        "P(Y | X=x) observeert passief in een bestaande wereld inclusief alle verstorende selectie-effecten; P(Y | do(X=x)) simuleert een actieve ingreep waarbij alle natuurlijke oorzaken van X worden losgekoppeld",
-        "Er is geen verschil, het zijn synoniemen",
-        "do(X) kan alleen experimenteel in een lab uitgevoerd worden",
-        "P(Y | X) is altijd groter dan do(X)"
+      "id": "l22_ex1",
+      "category": "Concept",
+      "title": "Oefening 1: Zien vs Doen (Judea Pearl)",
+      "question": "Wat is volgens Judea Pearl's causale hiërarchie het fundamentele verschil tussen de observatie P(Y | X = x) en de interventie P(Y | do(X = x))?",
+      "options": [
+        "P(Y | X = x) observeert passief in een bestaande wereld inclusief alle verstorende selectie-effecten; P(Y | do(X = x)) simuleert een actieve fysieke ingreep waarbij alle natuurlijke oorzaken van X worden losgekoppeld via graph surgery",
+        "Er is geen mathematisch verschil; do(X) is louter een didactische notatie voor multivariabele OLS regressie",
+        "P(Y | do(X)) kan uitsluitend berekend worden wanneer alle variabelen in de graaf normaal verdeeld zijn",
+        "P(Y | X) conditioneert op instrumentele variabelen, terwijl do(X) conditioneert op colliders"
       ],
-      correctIndex: 0,
-      explanation: "Meesterlijk! De do-operator formaliseert wat beleidsmakers en artsen willen weten: 'Wat gebeurt er als we ingrijpen?'"
+      "correctIndex": 0,
+      "explanation": "Briljant causaal inzicht! Dit scheidt passieve data mining van echte beleidsinterventie. Als de haan kraait en de zon komt op, is P(Zon | Haan) hoog, maar P(Zon | do(Haan = stil)) blijft exact even hoog!"
     },
     {
-      id: "l22_ex2",
-      type: "trap",
-      title: "Oefening 2: De Collider Valkuil (Berkson's Paradox)",
-      question: "In een causale graaf veroorzaken Talent (X) en Geluk (Y) beiden Beroemdheid (Z). Dus X → Z ← Y (Z is een collider). Wat gebeurt er als je controleert voor Beroemdheid Z?",
-      options: [
-        "Je introduceert een VALSE negatieve correlatie tussen Talent en Geluk: onder beroemdheden lijkt iemand met weinig talent automatisch 'heel veel geluk' te hebben gehad!",
-        "Je verwijdert alle vertekening",
-        "De analyse wordt zuiverder",
-        "Er gebeurt niets"
+      "id": "l22_ex2",
+      "category": "Valkuil",
+      "title": "Oefening 2: De Collider Valkuil (Berkson's Paradox)",
+      "question": "In een model beïnvloeden Talent (X) en Geluk (Y) beiden de kans op Beroemdheid (Z). Er is geen enkel causaal verband tussen Talent en Geluk in de algemene bevolking. Wat gebeurt er als je conditioneert op Beroemdheid (bv. door alleen beroemdheden te analyseren)?",
+      "options": [
+        "Je opent een onecht pad en introduceert een VALSE negatieve correlatie tussen Talent en Geluk: onder beroemdheden lijkt iemand met weinig talent automatisch 'heel veel geluk' te hebben gehad!",
+        "Je elimineert alle resterende confounding bias tussen Talent en Geluk volgens het d-separatie theorema",
+        "De correlatie tussen Talent en Geluk blijft exact nul omdat Z een collider is",
+        "Het causale effect van Talent op Beroemdheid wordt verdubbeld via de back-door formule"
       ],
-      correctIndex: 0,
-      explanation: "Briljant! Conditioneren op een collider OPENT een onecht causaal pad (M-bias / collider stratification bias)."
+      "correctIndex": 0,
+      "explanation": "Spot-on! Dit is Berkson's bias / collider stratification bias. Het conditioneren op een gemeenschappelijk gevolg (collider) koppelt twee onafhankelijke oorzaken kunstmatig aan elkaar."
     },
     {
-      id: "l22_ex3",
-      type: "concept",
-      title: "Oefening 3: Kernel Mean Embeddings in Hilbertruimten (ℋ)",
-      question: "Waarom embedden moderne statistici kansverdelingen in Reproducing Kernel Hilbert Spaces (RKHS ℋ)?",
-      options: [
-        "Het transformeert complexe, oneindig-dimensionale kansverdelingen naar afzonderlijke punten (vectoren) in een Hilbertruimte, waardoor je niet-lineaire afstanden (zoals Maximum Mean Discrepancy MMD) simpel met inproducten kunt berekenen",
-        "Om de data te versleutelen",
-        "Omdat Hilbertruimten kleiner zijn dan gewone getallen",
-        "Omdat p-waarden dan niet meer nodig zijn"
+      "id": "l22_ex3",
+      "category": "Concept",
+      "title": "Oefening 3: Kernel Mean Embeddings in Hilbertruimten (ℋ)",
+      "question": "Waarom embedden moderne statistici kansverdelingen in Reproducing Kernel Hilbert Spaces (RKHS ℋ)?",
+      "options": [
+        "Het transformeert complexe, oneindig-dimensionale kansverdelingen naar afzonderlijke punten (vectoren) in een Hilbertruimte, waardoor je niet-lineaire afstanden (zoals Maximum Mean Discrepancy MMD) simpel met inproducten kunt berekenen zonder dichtheidsschatting",
+        "Om data te comprimeren naar discrete gehele getallen voor snellere OLS-berekeningen",
+        "Omdat Hilbertruimten de noodzaak voor p-waarden en betrouwbaarheidsintervallen overbodig maken",
+        "Omdat causaliteit alleen gedefinieerd kan worden op eindige Euclidesche vectorruimten"
       ],
-      correctIndex: 0,
-      explanation: "Zeer diep inzicht! Kernel Mean Embeddings maken non-parametrische hypothesetoetsen en causale inferentie elegant hanteerbaar."
+      "correctIndex": 0,
+      "explanation": "Statistische magie op topniveau! Door een complete kansverdeling P af te beelden op een enkel element μ_P in een Hilbertruimte, kun je verdelingen met elkaar vergelijken en tweesteekproeftoetsen uitvoeren zonder aannames over hun parametrische vorm."
     }
   ],
-
-  // LEVEL 23: SDE's
-  23: [
+  "23": [
     {
-      id: "l23_ex1",
-      type: "concept",
-      title: "Oefening 1: Wat betekent dX_t = μ dt + σ dB_t?",
-      question: "Wat representeren de twee termen aan de rechterkant van een Stochastische Differentiële Vergelijking?",
-      options: [
-        "μ dt is de deterministische drift (de verwachte richting over tijd); σ dB_t is de stochastische diffusie (de continue willekeurige fluctuaties gedreven door Brownse beweging)",
-        "μ is de meetfout en σ is het gemiddelde",
-        "Beide zijn gewone Newtoniaanse snelheden",
-        "Het is een discrete regressievergelijking"
+      "id": "l23_ex1",
+      "category": "Concept",
+      "title": "Oefening 1: Wat betekent dX_t = μ dt + σ dB_t?",
+      "question": "Wat representeren de twee termen aan de rechterkant van een klassieke Stochastische Differentiële Vergelijking?",
+      "options": [
+        "μ dt is de deterministische drift (de verwachte richting en snelheid over tijd); σ dB_t is de stochastische diffusie (de continue willekeurige fluctuaties gedreven door Brownse beweging)",
+        "μ dt is de residuele meetfout en σ dB_t is de deterministische trendlijn",
+        "Beide termen representeren gewone Newtoniaanse snelheden die differentieerbaar zijn naar de tijd",
+        "Het is een discrete AR(1) tijdreeksvergelijking die alleen geldig is bij teltijdstippen"
       ],
-      correctIndex: 0,
-      explanation: "Exact! Drift stuurt het systeem gemiddeld een kant op; diffusie verspreidt het ensemble willekeurig in de ruimte."
+      "correctIndex": 0,
+      "explanation": "Juist! Drift μ dt stuurt het systeem gemiddeld een bepaalde kant op; diffusie σ dB_t voegt continue, niet-differentieerbare Gaussische ruis toe."
     },
     {
-      id: "l23_ex2",
-      type: "concept",
-      title: "Oefening 2: Het Geheim van Itô's Lemma",
-      question: "Waarom heeft de stochastische kettingregel (Itô's Lemma) een extra term met de TWEEDE afgeleide ½ f''(X) σ² dt, die in gewone schoolcalculus ontbreekt?",
-      options: [
-        "Omdat de kwadratische variatie van Brownse beweging niet nul is: (dB_t)² = dt. De fluctuaties zijn zo heftig dat tweede-orde termen niet verdwijnen in de limiet!",
-        "Omdat Itô een wiskundige fout maakte",
-        "Omdat tijd gekwadrateerd wordt",
-        "Omdat computers afronden"
+      "id": "l23_ex2",
+      "category": "Berekening",
+      "title": "Oefening 2: Het Geheim van Itô's Lemma",
+      "question": "Waarom heeft de stochastische kettingregel (Itô's Lemma) df(X_t) = f'(X_t) dX_t + ½ f''(X_t) σ² dt een extra term met de TWEEDE afgeleide, die in de klassieke schoolcalculus ontbreekt?",
+      "options": [
+        "Omdat de kwadratische variatie van een Brownse beweging niet nul is: (dB_t)² = dt. De fluctuaties zijn zo oneindig grillig dat tweede-orde termen in de Taylor-expansie niet verdwijnen in de limiet!",
+        "Omdat Itô een wiskundige correctie moest toevoegen voor de afronding van continue tijdstappen",
+        "Omdat de verwachtingswaarde van Brownse beweging E[B_t] kwadratisch toeneemt met de tijd",
+        "Omdat stochastische integralen uitsluitend gedefinieerd kunnen worden op convexe functies"
       ],
-      correctIndex: 0,
-      explanation: "Fenomenaal! Omdat dB_t schaalt met √dt, levert (√dt)² een eerste-orde tijdsbijdrage dt op. Dit is de hoeksteen van de moderne kwantitatieve financiën en fysische stochastiek."
+      "correctIndex": 0,
+      "explanation": "Fenomenaal diep inzicht! In gewone calculus is (dt)² verwaarloosbaar klein. Maar voor Brownse beweging is de kwadratische variatie (dB_t)² = dt van dezelfde orde als dt, waardoor de tweede afgeleide overleeft."
     },
     {
-      id: "l23_ex3",
-      type: "dilemma",
-      title: "Oefening 3: Itô vs Stratonovich Integratie",
-      question: "In de natuurkunde gebruikt men vaak Stratonovich stochastische integralen, terwijl in wiskunde en financiën Itô domineert. Wat is het praktische verschil?",
-      options: [
-        "Stratonovich evalueert de integrand in het midden van het tijdsinterval [t, t+dt] waardoor de gewone kettingregel behouden blijft; Itô evalueert aan het begin (non-anticipating) waardoor de integraal een martingaal is",
-        "Stratonovich werkt alleen in 2D",
-        "Itô werkt alleen voor discrete data",
-        "Er is geen wiskundig verschil"
+      "id": "l23_ex3",
+      "category": "Concept",
+      "title": "Oefening 3: Itô vs Stratonovich Integratie",
+      "question": "Wat is het fundamentele conceptuele en wiskundige verschil tussen een Itô-integraal en een Stratonovich-integraal?",
+      "options": [
+        "Stratonovich evalueert de integrand in het midden van het tijdsinterval [t, t+dt] waardoor de gewone kettingregel behouden blijft; Itô evalueert aan het begin (non-anticipating) waardoor de integraal een martingaal is zonder toekomstvoorkennis",
+        "Stratonovich werkt uitsluitend in 2 dimensies terwijl Itô oneindig-dimensionaal is",
+        "Itô is alleen gedefinieerd voor stationaire processen, terwijl Stratonovich alleen werkt voor discrete sprongen",
+        "Er is geen enkel wiskundig verschil; beide definities leveren identieke padtrajecten op"
       ],
-      correctIndex: 0,
-      explanation: "Heel diepgaand! Itô kijkt niet in de toekomst (essentieel voor financiële markten), terwijl Stratonovich de symmetrie van fysische processen met gekleurde ruis weerspiegelt."
+      "correctIndex": 0,
+      "explanation": "Exact! Itô kijkt niet vooruit (non-anticipating), wat cruciaal is in financiën en statistische schatting omdat het de martingaaleigenschap behoudt. Stratonovich gehoorzaamt de gewone kettingregel en geniet de voorkeur in de fysica."
     }
   ],
-
-  // LEVEL 24: HET THEORETISCHE APEX
-  24: [
+  "24": [
     {
-      id: "l24_ex1",
-      type: "concept",
-      title: "Oefening 1: De Geometrie van ∇_ℳ Φ op een Manifold",
-      question: "In de apex-formule dX_t = ∇_ℳ Φ(X_t) dt + σ(X_t) dB_t^rough in ℋ: wat betekent het dat de gradiënt gedefinieerd is op een Riemannse manifold ℳ?",
-      options: [
-        "Data leeft niet in een vlakke Euclidische ruimte, maar op een gekromd oppervlak (bv. een bol, torus of energielandschap). De gradiënt ∇_ℳ buigt via de metrische tensor g_ij mee met de kromming van de ruimte langs de geodeten",
-        "Dat de gradiënt altijd gelijk is aan nul",
-        "Dat het model alleen in 1 dimensie kan werken",
-        "Dat het oppervlak platgedrukt moet worden"
+      "id": "l24_ex1",
+      "category": "Concept",
+      "title": "Oefening 1: De Geometrie van ∇_ℳ Φ op een Manifold",
+      "question": "In de apex-formule dX_t = ∇_ℳ Φ(X_t) dt + σ(X_t) dB_t^rough in ℋ: wat betekent het dat de driftgradiënt gedefinieerd is op een Riemannse manifold ℳ?",
+      "options": [
+        "Data leeft niet in een vlakke Euclidische ruimte, maar op een gekromde variëteit (bv. een bol, torus of informatiemeetkundig landschap); de gradiënt ∇_ℳ buigt via de metrische tensor g_ij mee met de kromming van de ruimte langs geodeten",
+        "Dat de gradiënt altijd gelijk moet zijn aan nul om convergentie naar een zadelpunt te forceren",
+        "Dat de stochastische diffusie alleen kan bewegen langs de coördinaatassen van de Euclidische ruimte",
+        "Dat de toestand X_t uitsluitend discrete waarden kan aannemen op de knooppunten van een graaf"
       ],
-      correctIndex: 0,
-      explanation: "Meesterlijk! Op een gekromde manifold is de kortste afstand geen rechte lijn maar een geodeet, berekend via de Riemannse connectie (Levi-Civita)."
+      "correctIndex": 0,
+      "explanation": "Meesterlijk! Echte complexe systemen (hersengolven, biochemische vouwing, relativistische ruimtetijd) leven op gekromde oppervlakken. De Riemannse gradiënt respecteert de intrinsieke kromming van de data."
     },
     {
-      id: "l24_ex2",
-      type: "concept",
-      title: "Oefening 2: Terry Lyons' Rough Path Theorie (H < 1/2)",
-      question: "Waarom faalt klassieke Itô calculus wanneer het stochastische pad ruw is (Hurst exponent H < 1/2), en hoe lost Terry Lyons' theorie van 'Rough Paths' dit op?",
-      options: [
-        "Bij H < 1/2 divergeert de klassieke kwadratische variatie en is de Itô integraal niet continu in de p-variatie metriek. Terry Lyons breidde het pad uit met 'Signatures' (geïtereerde integralen over tensorruimten) waardoor stochastische differentiaalvergelijkingen weer continu en robuust oplosbaar worden",
-        "Het faalt omdat computers te traag zijn",
-        "Terry Lyons verving alle ruis door een rechte lijn",
-        "H < 1/2 betekent dat de ruis te glad is"
+      "id": "l24_ex2",
+      "category": "Concept",
+      "title": "Oefening 2: Terry Lyons' Rough Path Theorie (H < 1/2)",
+      "question": "Waarom faalt klassieke Itô calculus wanneer het stochastische pad extreem ruw is (Hurst exponent H < 1/2), en hoe lost Terry Lyons' theorie van 'Rough Paths' dit op?",
+      "options": [
+        "Bij H < 1/2 divergeert de klassieke kwadratische variatie en is de Itô integraal niet continu in de p-variatie topologie; Terry Lyons breidde het pad uit met 'Signatures' (geïtereerde integralen over tensorruimten) waardoor stochastische differentiaalvergelijkingen weer continu en robuust oplosbaar worden",
+        "Omdat paden met H < 1/2 te glad zijn om een tweede afgeleide te bezitten",
+        "Terry Lyons verving alle stochastische termen door een deterministische Fourier-reeks",
+        "Omdat fractional Brownian motion met H < 1/2 een stationair nulpunt dwingt in de Malliavin matrix"
       ],
-      correctIndex: 0,
-      explanation: "Fenomenaal inzicht op het niveau van de Fields Medal! Terry Lyons bewees dat je hogere-orde algebraïsche structuren (de Signature) aan het pad moet toevoegen om continuïteit te garanderen."
+      "correctIndex": 0,
+      "explanation": "Pinnacle van moderne wiskunde! Terry Lyons ontdekte dat ruwe paden (p > 2) niet als losse coördinaten gezien moeten worden, maar vergezeld moeten worden van hun oppervlakte-integralen (signatures). Dit maakte Lyons wereldberoemd."
     },
     {
-      id: "l24_ex3",
-      type: "concept",
-      title: "Oefening 3: De Oneindig-Dimensionale Hilbertruimte ℋ",
-      question: "Wat betekent het dat de toestand X_t leeft in een oneindig-dimensionale Hilbertruimte ℋ?",
-      options: [
-        "X_t is geen los getal of eindige tabelrij meer, maar een complete continue functie of oneindig veld (bv. het gehele elektrische potentiaalveld van 100 miljard neuronen tegelijk) waarin afstanden worden gemeten via een inproduct ⟨f, g⟩_ℋ",
-        "Dat X_t oneindig groot in waarde is",
-        "Dat er oneindig veel fouten in het model zitten",
-        "Dat het model alleen denkbeeldig bestaat"
+      "id": "l24_ex3",
+      "category": "Concept",
+      "title": "Oefening 3: De Oneindig-Dimensionale Hilbertruimte ℋ",
+      "question": "Wat betekent het dat de toestand X_t leeft in een oneindig-dimensionale Hilbertruimte ℋ?",
+      "options": [
+        "X_t is geen los getal of eindige tabelrij meer, maar een complete continue functie of oneindig veld (bv. het continue elektrochemische potentiaalveld over de gehele hersenschors) waarin afstanden worden gemeten via een inproduct ⟨f, g⟩_ℋ",
+        "Dat de toestand X_t divergeert naar oneindige kinetische energie en niet langer genormaliseerd kan worden via een L²-norm",
+        "Dat de variantie van het systeem over alle frequentiebanden divergeert naar oneindig",
+        "Dat de responsvariabele uitsluitend imaginaire getallen kan bevatten in het Fourierdomein"
       ],
-      correctIndex: 0,
-      explanation: "Exact! Hilbertruimten vormen het wiskundige fundament van zowel de kwantummechanica als moderne oneindig-dimensionale functionele data-analyse."
+      "correctIndex": 0,
+      "explanation": "Pure grootsheid! In Hilbertruimten representeert één enkel punt X_t een gehele functie (zoals een continu neuraal activiteitsveld of een kwantumgolfvergelijking). Je modelleert velden in plaats van losse getallen."
     },
     {
-      id: "l24_ex4",
-      type: "dilemma",
-      title: "Oefening 4: Het Causale Synthese Dilemma",
-      question: "Waarom is het toevoegen van causale inferentie (do-operatoren) aan dit oneindig-dimensionale stochastische veld zo revolutionair voor wetenschap en geneeskunde?",
-      options: [
-        "Omdat louter voorspellen hoe het veld stroomt niet vertelt hoe je het systeem moet bijsturen; causale Hilbert-inferentie modelleert exact hoe actieve manipulatie (bv. diepe hersenstimulatie of klimaatinterventie) de attractorlandschappen herprogrammeert",
-        "Omdat het berekeningen sneller maakt",
-        "Omdat causale pijlen mooier zijn op grafieken",
-        "Omdat toeval daardoor verdwijnt"
+      "id": "l24_ex4",
+      "category": "Dilemma",
+      "title": "Oefening 4: Het Causale Synthese Dilemma",
+      "question": "Waarom is het verenigen van causale inferentie (do-calculus) met dit oneindig-dimensionale stochastische manifold-veld de ultieme heilige graal voor wetenschap en geneeskunde?",
+      "options": [
+        "Omdat louter voorspellen hoe het veld autonoom evolueert niet vertelt hoe je het systeem moet aansturen; causale Hilbert-inferentie modelleert exact hoe actieve externe manipulatie (bv. gerichte diepe hersenstimulatie of klimaatinterventie) de attractorlandschappen herprogrammeert",
+        "Omdat causale operatoren alle stochastische fluctuaties wiskundig reduceren tot lineaire deterministische banen",
+        "Omdat do-interventies de dimensie van de Hilbertruimte altijd reduceren tot N = 1",
+        "Omdat hiermee statistische steekproeven overbodig worden gemaakt in klinisch onderzoek"
       ],
-      correctIndex: 0,
-      explanation: "Kroon op het meesterschap! Dit verbindt dynamische fysica, stochastische ruis en beleidsinterventie tot één verenigd wiskundig wereldbeeld."
+      "correctIndex": 0,
+      "explanation": "Het Ultieme Apex Meesterschap! Weten hoe het veld stroomt is passieve observatie. Begrijpen hoe een gerichte ingreep do(X) het veld en de attractors fundamenteel transformeert, is de ultieme macht van de causale stochastische wetenschap. Gefeliciteerd met het bereiken van de absolute top!"
     }
   ]
 };
