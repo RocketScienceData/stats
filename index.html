@@ -267,7 +267,7 @@
   </header>
 
   <!-- ========================================================================= -->
-  <!-- PRIMARY VIEW 1: MODERN CONVERTING LANDING PAGE (ENGLISH FIRST) -->
+  <!-- PRIMARY VIEW 1: MODERN HIGH-CONVERTING LANDING PAGE (ENGLISH FIRST) -->
   <!-- ========================================================================= -->
   <section id="view-landing" class="block w-full">
     
@@ -305,7 +305,7 @@
         </div>
 
         <!-- Key Metrics Cards -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-4xl mx-auto pt-4 border-t border-slate-800/60">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-4xl mx-auto pt-4 border-t border-slate-800/60 mb-12">
           <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 text-center">
             <div class="text-2xl sm:text-3xl font-extrabold text-emerald-400 font-mono" data-i18n="stat_levels">24 Levels</div>
             <div class="text-xs text-slate-400 mt-1" data-i18n="stat_levels_desc">From Zero to Apex</div>
@@ -324,6 +324,134 @@
           </div>
         </div>
 
+        <!-- Live Interactive Teaser Sandbox Mount Point -->
+        <div id="landing-teaser-mount" class="max-w-4xl mx-auto text-left">
+          <!-- Dynamically populated via StatCharts.renderLandingTeaser() -->
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Section 1.5: The Pain vs. The Breakthrough (High-Converting Copy) -->
+    <div class="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h2 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight" data-i18n="pain_title">
+          Why Traditional Statistics Education Fails (And How We Fix It)
+        </h2>
+        <p class="text-sm sm:text-base text-slate-400 mt-3" data-i18n="pain_subtitle">
+          Stop wasting 80% of your energy debugging package syntax and missing commas. Focus on what truly matters: scientific judgment.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- The Old Way -->
+        <div class="p-6 sm:p-8 rounded-3xl bg-rose-950/20 border border-rose-500/30 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center text-xl font-bold">✕</div>
+              <h3 class="text-lg font-bold text-white" data-i18n="pain_trad_title">The Old, Frustrating Way</h3>
+            </div>
+            <ul class="space-y-4 text-xs sm:text-sm text-slate-300">
+              <li class="flex items-start gap-2.5">
+                <span class="text-rose-400 font-bold mt-0.5">•</span>
+                <span data-i18n="pain_trad_1">Endless syntax debugging in R or Python instead of understanding underlying model mechanics.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-rose-400 font-bold mt-0.5">•</span>
+                <span data-i18n="pain_trad_2">Blindly memorizing Greek formulas and reporting p &lt; 0.05 without inspecting residual assumptions (L.I.N.E.).</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-rose-400 font-bold mt-0.5">•</span>
+                <span data-i18n="pain_trad_3">Ignoring clustering and dependencies, yielding dramatically deflated standard errors and false discoveries.</span>
+              </li>
+            </ul>
+          </div>
+          <div class="mt-6 pt-4 border-t border-rose-900/40 text-[11px] text-rose-300 font-mono">
+            Result: Impostor syndrome, p-hacking, and broken research models.
+          </div>
+        </div>
+
+        <!-- The Statistical Journey Way -->
+        <div class="p-6 sm:p-8 rounded-3xl bg-emerald-950/20 border border-emerald-500/30 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl font-bold">✓</div>
+              <h3 class="text-lg font-bold text-white" data-i18n="pain_our_title">The Statistical Journey Method</h3>
+            </div>
+            <ul class="space-y-4 text-xs sm:text-sm text-slate-300">
+              <li class="flex items-start gap-2.5">
+                <span class="text-emerald-400 font-bold mt-0.5">•</span>
+                <span data-i18n="pain_our_1">100% conceptual mastery through interactive parameter sliders, instant visual feedback, and real-world cases.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-emerald-400 font-bold mt-0.5">•</span>
+                <span data-i18n="pain_our_2">Spot dangerous traps instantly: p-hacking, Simpson's paradox, multicollinearity, and heteroscedasticity.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-emerald-400 font-bold mt-0.5">•</span>
+                <span data-i18n="pain_our_3">Master the Practical Sweet Spot (Mixed Models L13–19) up to the mathematical Zenith (Apex L24).</span>
+              </li>
+            </ul>
+          </div>
+          <div class="mt-6 pt-4 border-t border-emerald-900/40 text-[11px] text-emerald-300 font-mono">
+            Result: Confident scientific reasoning and unshakeable statistical intuition.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 1.8: Target Personas (Who Is This Built For?) -->
+    <div class="py-16 px-4 sm:px-6 lg:px-8 bg-slate-950/60 border-y border-slate-800/80">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight" data-i18n="target_title">
+            Built for Serious Researchers, Data Scientists & Analysts
+          </h2>
+          <p class="text-sm sm:text-base text-slate-400 mt-3" data-i18n="target_subtitle">
+            Whether you publish in top journals or make high-stakes business bets: pure statistical intuition is your highest-leverage asset.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="p-6 rounded-3xl bg-slate-900/90 border border-slate-800 flex flex-col justify-between">
+            <div>
+              <div class="text-3xl mb-3">🎓</div>
+              <h3 class="text-base font-bold text-white mb-2" data-i18n="target_1_title">PhD Candidates & Academic Researchers</h3>
+              <p class="text-xs text-slate-400 leading-relaxed" data-i18n="target_1_desc">
+                Confidently model repeated measures, hierarchical clustering (ICC), and survival curves for peer-reviewed papers.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] font-mono text-indigo-400">
+              Focus: Mixed Models & Power
+            </div>
+          </div>
+
+          <div class="p-6 rounded-3xl bg-slate-900/90 border border-slate-800 flex flex-col justify-between">
+            <div>
+              <div class="text-3xl mb-3">💻</div>
+              <h3 class="text-base font-bold text-white mb-2" data-i18n="target_2_title">Data Scientists & Machine Learning Engineers</h3>
+              <p class="text-xs text-slate-400 leading-relaxed" data-i18n="target_2_desc">
+                Look deeper than 'model.fit()'. Master causal diagrams (DAGs), Bayesian priors, and curved manifold structures.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] font-mono text-sky-400">
+              Focus: Causality & Manifolds
+            </div>
+          </div>
+
+          <div class="p-6 rounded-3xl bg-slate-900/90 border border-slate-800 flex flex-col justify-between">
+            <div>
+              <div class="text-3xl mb-3">📊</div>
+              <h3 class="text-base font-bold text-white mb-2" data-i18n="target_3_title">Analysts & Strategic Decision Makers</h3>
+              <p class="text-xs text-slate-400 leading-relaxed" data-i18n="target_3_desc">
+                Spot misleading dashboards, unmask hidden confounders, and avoid costly strategic blunders caused by flawed assumptions.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] font-mono text-emerald-400">
+              Focus: Diagnostics & Pitfalls
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -339,7 +467,7 @@
       </div>
 
       <!-- Roadmap Grid (4 Phases) -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
         
         <!-- Phase 1 Card -->
         <div class="bg-slate-900/90 border border-emerald-500/30 rounded-3xl p-6 shadow-xl flex flex-col justify-between hover:border-emerald-500/60 transition group">
@@ -451,6 +579,26 @@
         </div>
 
       </div>
+
+      <!-- Spotlight Feature Card: Practical Sweet Spot -->
+      <div class="bg-gradient-to-r from-indigo-950/80 via-slate-900 to-emerald-950/80 border border-indigo-500/40 rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl">
+        <div class="max-w-2xl">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-xs font-extrabold uppercase tracking-wider text-amber-300 bg-amber-500/20 px-2.5 py-1 rounded-md border border-amber-500/30">Practical Sweet Spot</span>
+            <span class="text-xs text-slate-400">Levels 13–19</span>
+          </div>
+          <h3 class="text-xl sm:text-2xl font-bold text-white mb-2" data-i18n="sweetspot_spotlight_title">
+            The Practical Sweet Spot: Linear Mixed Models (Levels 13–19)
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed" data-i18n="sweetspot_spotlight_desc">
+            Over 90% of empirical data in medicine, biology, psychology, and commerce is clustered or longitudinal. Standard OLS severely underestimates standard errors, generating spurious precision. Levels 13 to 19 teach you exactly when and how to deploy Random Intercepts and Random Slopes.
+          </p>
+        </div>
+        <button onclick="StatApp.jumpToLevel(13)" class="shrink-0 px-6 py-3.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl text-sm shadow-xl transition" data-i18n="sweetspot_spotlight_cta">
+          🎯 Jump to Mixed Models (L13)
+        </button>
+      </div>
+
     </div>
 
     <!-- Section 3: Why This Platform Works (Features) -->
@@ -466,7 +614,7 @@
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           <div class="p-6 rounded-2xl bg-slate-900/90 border border-slate-800">
             <div class="w-12 h-12 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-2xl font-bold mb-4">
               🧠
@@ -506,6 +654,28 @@
               Master Level 24 and earn an official printable certificate in Infinite-Dimensional Non-parametric Bayesian SDEs on Manifolds.
             </p>
           </div>
+        </div>
+
+        <!-- Spotlight Feature Card: Apex Certificate Preview -->
+        <div class="bg-gradient-to-r from-purple-950/80 via-slate-900 to-indigo-950/80 border border-purple-500/40 rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl">
+          <div class="max-w-2xl">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-xs font-extrabold uppercase tracking-wider text-purple-300 bg-purple-500/20 px-2.5 py-1 rounded-md border border-purple-500/30">Theoretical Apex</span>
+              <span class="text-xs text-slate-400">Level 24 • Verified Mastery</span>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-bold text-white mb-2" data-i18n="cert_spotlight_title">
+              The Theoretical Apex: Level 24 & Verified Completion
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-3" data-i18n="cert_spotlight_desc">
+              For those who want to venture to the absolute mathematical frontier: Infinite-Dimensional Non-parametric Bayesian SDEs on Manifolds with Rough Paths & Causal Hilbert Spaces. Complete all 24 levels and claim your official certificate.
+            </p>
+            <div class="inline-block p-2.5 bg-slate-950/70 rounded-xl border border-purple-500/30 text-xs font-mono text-purple-300">
+              dX_t = ∇_ℳ Φ(X_t) dt + σ(X_t) dB_t^rough in ℋ
+            </div>
+          </div>
+          <button onclick="StatApp.jumpToLevel(24)" class="shrink-0 px-6 py-3.5 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold rounded-xl text-sm shadow-xl transition" data-i18n="cert_spotlight_cta">
+            🏆 Explore Level 24 Apex
+          </button>
         </div>
 
       </div>
@@ -561,19 +731,19 @@
         </div>
       </div>
 
-      <!-- Bottom CTA Banner in FAQ -->
-      <div class="mt-12 bg-gradient-to-r from-indigo-900/60 via-purple-900/50 to-emerald-950/60 border border-indigo-500/40 rounded-3xl p-8 text-center shadow-xl">
-        <h3 class="text-xl sm:text-2xl font-extrabold text-white mb-2">
-          Ready to begin your statistical journey?
+      <!-- Bottom High-Converting CTA Banner in FAQ -->
+      <div class="mt-12 bg-gradient-to-r from-indigo-900/60 via-purple-900/50 to-emerald-950/60 border border-indigo-500/40 rounded-3xl p-8 sm:p-10 text-center shadow-2xl">
+        <h3 class="text-2xl sm:text-3xl font-extrabold text-white mb-3" data-i18n="final_cta_title">
+          Ready to Transform How You Think About Data?
         </h3>
-        <p class="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto mb-6">
-          Start immediately with Level 1 or take the 2-minute adaptive level scan for a personalized learning pathway.
+        <p class="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto mb-6" data-i18n="final_cta_subtitle">
+          No registration required. No credit card. 100% free and open access. Start with Level 1 or take the 2-minute diagnostic intake.
         </p>
         <div class="flex flex-wrap items-center justify-center gap-3">
-          <button onclick="StatApp.startAdaptiveScan()" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl text-xs sm:text-sm shadow-lg transition">
-            🧠 Start Level Scan
+          <button onclick="StatApp.startAdaptiveScan()" class="px-6 py-3.5 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 hover:from-indigo-500 hover:to-pink-500 text-white font-bold rounded-xl text-xs sm:text-sm shadow-xl transition transform hover:scale-105">
+            🧠 Take Free Level Scan
           </button>
-          <button onclick="StatApp.switchView('studio')" class="px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-white font-bold rounded-xl text-xs sm:text-sm transition">
+          <button onclick="StatApp.switchView('studio')" class="px-6 py-3.5 bg-slate-800 hover:bg-slate-700 text-white font-bold rounded-xl text-xs sm:text-sm transition">
             🚀 Open Course Studio
           </button>
         </div>

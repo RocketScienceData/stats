@@ -57,6 +57,47 @@ const dict = {
     phase4_subtitle: "Levels 20 t/m 24",
     phase4_desc: "MCMC inferentie, survival curves, causaal redeneren met DAGs, manifold geometrie en oneindig-dimensionale SDEs.",
 
+    // Live Teaser Demo
+    teaser_badge: "⚡ Live Intuïtie Preview",
+    teaser_title: "Ervaar het 'Aha!' Moment: Simpson's Paradox in Actie",
+    teaser_subtitle: "Ontdek in 3 seconden hoe samengevoegde data kan liegen en waarom Mixed Models onmisbaar zijn.",
+    teaser_pooled_btn: "Gepoolde OLS (Vertekend Totaal)",
+    teaser_mixed_btn: "Mixed Model (Cluster Scheiding)",
+    teaser_explanation_pooled: "⚠️ <strong>Gepoolde OLS tekent een negatieve lijn (β = -0.42):</strong> het lijkt alsof sporten cholesterol <em>verhoogt</em>! Dit is de klassieke aggregatievalkuil.",
+    teaser_explanation_mixed: "✨ <strong>Binnen elke leeftijdscategorie daalt cholesterol krachtig (β = -0.78):</strong> sporten is juist enorm gezond! In 3 seconden begrijp je waarom Linear Mixed Models bestaan.",
+
+    // Pijn vs Doorbraak
+    pain_title: "Waarom Klassiek Statistiekonderwijs Faalt (En Hoe Wij Dit Oplossen)",
+    pain_subtitle: "Stop met 80% van je tijd verspillen aan package syntax en missing commas. Focus op wat er écht toe doet: wetenschappelijke en analytische scherpte.",
+    pain_trad_title: "De Oude, Frustrerende Manier",
+    pain_trad_1: "Eindeloos syntax-fouten debuggen in R of Python in plaats van modelmechanica begrijpen.",
+    pain_trad_2: "Blindelings formules stampen en p < 0.05 rapporteren zonder residu-aannames (L.I.N.E.) te controleren.",
+    pain_trad_3: "Clustering en afhankelijkheden in data negeren, wat leidt tot dramatisch onderschatte standaardfouten en foute conclusies.",
+    pain_our_title: "De Statistical Journey Methode",
+    pain_our_1: "100% conceptuele intuïtie met interactieve sliders, directe visualisaties en tastbare datasets.",
+    pain_our_2: "Valkuilen direct ontmaskeren: p-hacking, Simpson's paradox, multicollineariteit en heteroscedasticiteit.",
+    pain_our_3: "Meesterschap in de Praktische Sweet Spot (Mixed Models L13–19) tot het wiskundige Zenith (Apex L24).",
+
+    // Doelgroepen
+    target_title: "Gebouwd voor Onderzoekers, Data Scientists & Analisten",
+    target_subtitle: "Of je nu publiceert in toptijdschriften of strategische keuzes onderbouwt: zuivere statistische intuïtie is je grootste hefboom.",
+    target_1_title: "Promovendi & Academische Onderzoekers",
+    target_1_desc: "Modelleer herhaalde metingen, patiënt-clusters en survivaldata vol zelfvertrouwen voor peer-reviewed papers.",
+    target_2_title: "Data Scientists & Machine Learning Engineers",
+    target_2_desc: "Kijk dieper dan 'model.fit()'. Begrijp causale DAGs, Bayesiaanse priors, en manifold-structuren.",
+    target_3_title: "Analisten & Strategische Beslissers",
+    target_3_desc: "Herken misleidende dashboards, ontmasker p-hacking en voorkom kostbare bedrijfsfouten door foute data-aannames.",
+
+    // Spotlights
+    sweetspot_spotlight_title: "De Praktische Sweet Spot: Linear Mixed Models (Levels 13–19)",
+    sweetspot_spotlight_desc: "Meer dan 90% van alle reële data in geneeskunde, biologie, psychologie en e-commerce is geclusterd of longitudinaal. Standaard OLS onderschat standaardfouten dramatisch. Levels 13 t/m 19 leren je exact wanneer en hoe je Random Intercepts en Random Slopes inzet.",
+    sweetspot_spotlight_cta: "🎯 Spring Direct naar Mixed Models (L13)",
+    cert_spotlight_title: "Het Theoretische Apex: Level 24 & Geverifieerd Certificaat",
+    cert_spotlight_desc: "Voor wie de uiterste grenzen wil verkennen: Infinite-Dimensional Non-parametric Bayesian SDEs on Manifolds with Rough Paths & Causal Hilbert Spaces. Voltooi alle 24 niveaus en download je geverifieerde certificaat.",
+    cert_spotlight_cta: "🏆 Bekijk Level 24 Apex",
+    final_cta_title: "Klaar om Jouw Kijk op Data Voorgoed te Veranderen?",
+    final_cta_subtitle: "Geen account verplicht. Geen creditcard. 100% gratis en open access. Begin direct bij Level 1 of doe de 2-minuten intake.",
+
     // Waarom Deze Training
     features_title: "Waarom Deze Aanpak Werkt",
     features_subtitle: "Traditioneel onderwijs dwingt je te vechten met syntax. Wij trainen je wiskundige en conceptuele denkvermogen.",
@@ -193,6 +234,47 @@ const dict = {
     phase4_title: "Phase 4: Advanced Frontiers & Apex",
     phase4_subtitle: "Levels 20 to 24",
     phase4_desc: "MCMC inference, survival analysis, causal reasoning with DAGs, manifold geometry, and infinite-dimensional SDEs.",
+
+    // Live Teaser Demo
+    teaser_badge: "⚡ Live Intuition Preview",
+    teaser_title: "Experience the 'Aha!' Moment: Simpson's Paradox in Real-Time",
+    teaser_subtitle: "Discover in 3 seconds how aggregated data can mislead, and why Linear Mixed Models are essential.",
+    teaser_pooled_btn: "Pooled OLS (Deceptive Aggregate)",
+    teaser_mixed_btn: "Mixed Model (Cluster Separation)",
+    teaser_explanation_pooled: "⚠️ <strong>Pooled OLS produces a negative slope (β = -0.42):</strong> it suggests exercise <em>increases</em> cholesterol! This is the classical aggregation trap.",
+    teaser_explanation_mixed: "✨ <strong>Within each age group, exercise sharply reduces cholesterol (β = -0.78):</strong> physical activity is protective! In 3 seconds, you intuitively grasped why Linear Mixed Models exist.",
+
+    // Pain vs Breakthrough
+    pain_title: "Why Traditional Statistics Education Fails (And How We Fix It)",
+    pain_subtitle: "Stop wasting 80% of your energy debugging package syntax and missing commas. Focus on what truly matters: scientific judgment.",
+    pain_trad_title: "The Old, Frustrating Way",
+    pain_trad_1: "Endless syntax debugging in R or Python instead of understanding underlying model mechanics.",
+    pain_trad_2: "Blindly memorizing Greek formulas and reporting p < 0.05 without inspecting residual assumptions (L.I.N.E.).",
+    pain_trad_3: "Ignoring clustering and dependencies, yielding dramatically deflated standard errors and false discoveries.",
+    pain_our_title: "The Statistical Journey Method",
+    pain_our_1: "100% conceptual mastery through interactive parameter sliders, instant visual feedback, and real-world cases.",
+    pain_our_2: "Spot dangerous traps instantly: p-hacking, Simpson's paradox, multicollinearity, and heteroscedasticity.",
+    pain_our_3: "Master the Practical Sweet Spot (Mixed Models L13–19) up to the mathematical Zenith (Apex L24).",
+
+    // Target Personas
+    target_title: "Built for Serious Researchers, Data Scientists & Analysts",
+    target_subtitle: "Whether you publish in top journals or make high-stakes business bets: pure statistical intuition is your highest-leverage asset.",
+    target_1_title: "PhD Candidates & Academic Researchers",
+    target_1_desc: "Confidently model repeated measures, hierarchical clustering (ICC), and survival curves for peer-reviewed papers.",
+    target_2_title: "Data Scientists & Machine Learning Engineers",
+    target_2_desc: "Look deeper than 'model.fit()'. Master causal diagrams (DAGs), Bayesian priors, and curved manifold structures.",
+    target_3_title: "Analysts & Strategic Decision Makers",
+    target_3_desc: "Spot misleading dashboards, unmask hidden confounders, and avoid costly strategic blunders caused by flawed assumptions.",
+
+    // Spotlights
+    sweetspot_spotlight_title: "The Practical Sweet Spot: Linear Mixed Models (Levels 13–19)",
+    sweetspot_spotlight_desc: "Over 90% of empirical data in medicine, biology, psychology, and commerce is clustered or longitudinal. Standard OLS severely underestimates standard errors, generating spurious precision. Levels 13 to 19 teach you exactly when and how to deploy Random Intercepts and Random Slopes.",
+    sweetspot_spotlight_cta: "🎯 Jump to Mixed Models (L13)",
+    cert_spotlight_title: "The Theoretical Apex: Level 24 & Verified Completion",
+    cert_spotlight_desc: "For those who want to venture to the absolute mathematical frontier: Infinite-Dimensional Non-parametric Bayesian SDEs on Manifolds with Rough Paths & Causal Hilbert Spaces. Complete all 24 levels and claim your official certificate.",
+    cert_spotlight_cta: "🏆 Explore Level 24 Apex",
+    final_cta_title: "Ready to Transform How You Think About Data?",
+    final_cta_subtitle: "No registration required. No credit card. 100% free and open access. Start with Level 1 or take the 2-minute diagnostic intake.",
 
     // Why This Platform
     features_title: "Why This Approach Works",

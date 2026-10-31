@@ -868,6 +868,196 @@ window.StatCharts = (function() {
     renderLoop();
   }
 
+  // =========================================================================
+  // LANDING PAGE INTERACTIVE TEASER (SIMPSON'S PARADOX & MIXED MODEL REVEAL)
+  // =========================================================================
+  let landingTeaserChart = null;
+
+  function renderLandingTeaser(container) {
+    if (!container) return;
+    const t = (k) => window.I18N ? window.I18N.t(k) : k;
+
+    container.innerHTML = `
+      <div class="bg-slate-900/90 border border-indigo-500/30 rounded-3xl p-5 sm:p-7 shadow-2xl backdrop-blur-md">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-400 block mb-0.5" data-i18n="teaser_badge">⚡ Live Intuition Preview</span>
+            <h3 class="text-base sm:text-lg font-bold text-white" data-i18n="teaser_title">Simpson's Paradox in Real-Time</h3>
+            <p class="text-xs text-slate-400" data-i18n="teaser_subtitle">Discover in 3 seconds how aggregated data can mislead, and why Linear Mixed Models are essential.</p>
+          </div>
+          <div class="flex items-center gap-1.5 bg-slate-950 p-1.5 rounded-xl border border-slate-800 self-start sm:self-auto">
+            <button id="teaser-btn-pooled" onclick="StatCharts.setTeaserMode('pooled')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-rose-600 text-white shadow transition" data-i18n="teaser_pooled_btn">
+              Pooled OLS (Deceptive Aggregate)
+            </button>
+            <button id="teaser-btn-mixed" onclick="StatCharts.setTeaserMode('mixed')" class="px-3 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white transition" data-i18n="teaser_mixed_btn">
+              Mixed Model (Cluster Separation)
+            </button>
+          </div>
+        </div>
+
+        <div class="relative h-64 sm:h-80 w-full">
+          <canvas id="landing-teaser-canvas"></canvas>
+        </div>
+
+        <div id="landing-teaser-explanation" class="mt-4 p-3.5 rounded-xl text-xs sm:text-sm bg-rose-950/40 border border-rose-500/40 text-rose-200">
+          ${t('teaser_explanation_pooled')}
+        </div>
+      </div>
+    `;
+
+    updateLandingTeaserChart('pooled');
+  }
+
+  function setTeaserMode(mode) {
+    const pooledBtn = document.getElementById("teaser-btn-pooled");
+    const mixedBtn = document.getElementById("teaser-btn-mixed");
+    const explBox = document.getElementById("landing-teaser-explanation");
+
+    if (mode === 'pooled') {
+      if (pooledBtn) pooledBtn.className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-rose-600 text-white shadow transition";
+      if (mixedBtn) mixedBtn.className = "px-3 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white transition";
+      if (explBox) {
+        explBox.className = "mt-4 p-3.5 rounded-xl text-xs sm:text-sm bg-rose-950/40 border border-rose-500/40 text-rose-200";
+        explBox.innerHTML = window.I18N ? window.I18N.t('teaser_explanation_pooled') : 'Pooled OLS error';
+      }
+    } else {
+      if (pooledBtn) pooledBtn.className = "px-3 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white transition";
+      if (mixedBtn) mixedBtn.className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-600 text-white shadow transition";
+      if (explBox) {
+        explBox.className = "mt-4 p-3.5 rounded-xl text-xs sm:text-sm bg-emerald-950/40 border border-emerald-500/40 text-emerald-200";
+        explBox.innerHTML = window.I18N ? window.I18N.t('teaser_explanation_mixed') : 'Mixed Model correct';
+      }
+    }
+
+    updateLandingTeaserChart(mode);
+  }
+
+  function updateLandingTeaserChart(mode) {
+    const canvas = document.getElementById("landing-teaser-canvas");
+    if (!canvas || typeof Chart === 'undefined') return;
+
+    if (landingTeaserChart) {
+      landingTeaserChart.destroy();
+      landingTeaserChart = null;
+    }
+
+    const cluster1 = [{x: 6, y: 175}, {x: 7, y: 168}, {x: 8, y: 155}, {x: 9, y: 148}, {x: 10, y: 142}];
+    const cluster2 = [{x: 3.5, y: 205}, {x: 4.5, y: 195}, {x: 5.5, y: 188}, {x: 6.5, y: 180}, {x: 7.5, y: 172}];
+    const cluster3 = [{x: 1.5, y: 245}, {x: 2.2, y: 235}, {x: 3.0, y: 228}, {x: 3.8, y: 220}, {x: 4.5, y: 210}];
+
+    let datasets = [];
+
+    if (mode === 'pooled') {
+      const allPoints = [...cluster1, ...cluster2, ...cluster3];
+      datasets = [
+        {
+          label: window.I18N && window.I18N.currentLang === 'en' ? 'All Patients (Pooled OLS)' : 'Alle Patiënten (Gepooled OLS)',
+          data: allPoints,
+          backgroundColor: '#f43f5e',
+          borderColor: '#fda4af',
+          pointRadius: 6,
+          type: 'scatter'
+        },
+        {
+          label: window.I18N && window.I18N.currentLang === 'en' ? 'Deceptive Pooled Trend (Simpson\'s Trap)' : 'Vertekende Lijn (Aggregatievalkuil)',
+          data: [{x: 1.5, y: 240}, {x: 10, y: 145}],
+          borderColor: '#f43f5e',
+          borderWidth: 3,
+          type: 'line',
+          pointRadius: 0,
+          borderDash: [6, 6]
+        }
+      ];
+    } else {
+      datasets = [
+        {
+          label: window.I18N && window.I18N.currentLang === 'en' ? 'Young Cohort (20–35)' : 'Jongeren (20–35)',
+          data: cluster1,
+          backgroundColor: '#10b981',
+          borderColor: '#34d399',
+          pointRadius: 6,
+          type: 'scatter'
+        },
+        {
+          label: window.I18N && window.I18N.currentLang === 'en' ? 'Middle-Aged (36–50)' : 'Middelbaar (36–50)',
+          data: cluster2,
+          backgroundColor: '#38bdf8',
+          borderColor: '#7dd3fc',
+          pointRadius: 6,
+          type: 'scatter'
+        },
+        {
+          label: window.I18N && window.I18N.currentLang === 'en' ? 'Seniors (51–70)' : 'Senioren (51–70)',
+          data: cluster3,
+          backgroundColor: '#a855f7',
+          borderColor: '#c084fc',
+          pointRadius: 6,
+          type: 'scatter'
+        },
+        {
+          label: 'Slope Young',
+          data: [{x: 5.5, y: 180}, {x: 10.5, y: 138}],
+          borderColor: '#10b981',
+          borderWidth: 2,
+          type: 'line',
+          pointRadius: 0
+        },
+        {
+          label: 'Slope Middle',
+          data: [{x: 3, y: 210}, {x: 8, y: 167}],
+          borderColor: '#38bdf8',
+          borderWidth: 2,
+          type: 'line',
+          pointRadius: 0
+        },
+        {
+          label: 'Slope Senior',
+          data: [{x: 1.2, y: 250}, {x: 5, y: 205}],
+          borderColor: '#a855f7',
+          borderWidth: 2,
+          type: 'line',
+          pointRadius: 0
+        }
+      ];
+    }
+
+    landingTeaserChart = new Chart(canvas, {
+      data: { datasets },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: window.I18N && window.I18N.currentLang === 'en' ? 'Weekly Physical Exercise (Hours)' : 'Wekelijkse Beweging (Uren)',
+              color: '#94a3b8'
+            },
+            grid: { color: 'rgba(255,255,255,0.06)' },
+            ticks: { color: '#94a3b8' }
+          },
+          y: {
+            title: {
+              display: true,
+              text: window.I18N && window.I18N.currentLang === 'en' ? 'Serum Cholesterol (mg/dL)' : 'Serum Cholesterol (mg/dL)',
+              color: '#94a3b8'
+            },
+            grid: { color: 'rgba(255,255,255,0.06)' },
+            ticks: { color: '#94a3b8' }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: {
+              color: '#cbd5e1',
+              filter: (item) => !item.text.startsWith('Slope')
+            }
+          }
+        }
+      }
+    });
+  }
+
   // Publieke render methode
   return {
     render: function(levelId, container) {
@@ -904,6 +1094,8 @@ window.StatCharts = (function() {
           container.innerHTML = `<div class="p-4 text-slate-400">Geen simulatie beschikbaar voor level ${levelId}.</div>`;
       }
     },
+    renderLandingTeaser: renderLandingTeaser,
+    setTeaserMode: setTeaserMode,
     destroy: destroyCharts
   };
 })();

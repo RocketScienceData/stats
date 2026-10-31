@@ -126,6 +126,13 @@ window.StatApp = (function() {
         landingTabBtn.className = "px-3 py-1.5 rounded-lg text-xs font-semibold bg-indigo-600 text-white shadow transition";
         studioTabBtn.className = "px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition";
       }
+
+      setTimeout(() => {
+        const teaserMount = document.getElementById("landing-teaser-mount");
+        if (teaserMount && window.StatCharts && typeof window.StatCharts.renderLandingTeaser === 'function') {
+          window.StatCharts.renderLandingTeaser(teaserMount);
+        }
+      }, 50);
     } else {
       if (landingEl) landingEl.classList.add("hidden");
       if (studioEl) studioEl.classList.remove("hidden");
@@ -159,6 +166,11 @@ window.StatApp = (function() {
     updateProgressHeader();
     if (currentView === 'studio') {
       renderLevelContent(state.currentLevel);
+    } else {
+      const teaserMount = document.getElementById("landing-teaser-mount");
+      if (teaserMount && window.StatCharts && typeof window.StatCharts.renderLandingTeaser === 'function') {
+        window.StatCharts.renderLandingTeaser(teaserMount);
+      }
     }
   }
 
