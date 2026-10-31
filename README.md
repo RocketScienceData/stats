@@ -52,6 +52,11 @@ The platform offers a seamless trilingual learning experience (**English 🇬�
   - Explains why Linear Mixed Models are essential for 90% of empirical data (longitudinal cohorts, nested students, multi-store retail).
 * **Spotlight on the Theoretical Apex & Certificate (Level 24):**
   - Preview of the verified certificate for mastering all 24 levels.
+* **The 100% Free & Open Access Guarantee ($2,500+ Value Stack):**
+  - Demonstrates why this platform is 100% free forever: zero paywalls, no credit cards, no trial traps, and zero registration friction.
+  - Honest value comparison against expensive university graduate programs and commercial bootcamps.
+* **Uncluttered Full-Width Studio Experience:**
+  - Lessons do not crowd the workspace; curriculum is accessible on-demand via a sleek offcanvas drawer `[ 📚 All 24 Lessons ▾ ]` and quick steppers `[ ◀ Prev ] [ Next ▶ ]`.
 
 ---
 

@@ -52,6 +52,11 @@ La plataforma ofrece una experiencia de aprendizaje totalmente localizada en tre
   - Explica por qué los Modelos Lineales Mixtos son indispensables en el 90% de los datos reales (estudios longitudinales, pacientes en hospitales, estudiantes en aulas).
 * **Enfoque en el Apex Teórico y Certificado (Nivel 24):**
   - Vista previa interactiva del certificado verificado al culminar todos los niveles.
+* **La Garantía 100% Gratuita y de Libre Acceso (Valorado en 2.500€+):**
+  - Demuestra por qué la plataforma es y seguirá siendo gratuita para siempre: cero muros de pago, sin tarjetas de crédito, sin períodos de prueba y sin registro obligatorio.
+  - Comparativa honesta de valor frente a programas de máster y bootcamps comerciales de alto coste.
+* **Estudio de Aprendizaje Despejado a Pantalla Completa:**
+  - Los 24 niveles no quedan anclados ocupando espacio lateral permanentemente; el temario se despliega a petición mediante un panel deslizante `[ 📚 Los 24 Niveles ▾ ]` o con el selector rápido `[ ◀ Anterior ] [ Siguiente ▶ ]`.
 
 ---
 

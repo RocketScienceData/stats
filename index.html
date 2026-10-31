@@ -215,6 +215,10 @@
           <button id="nav-tab-studio-btn" onclick="StatApp.switchView('studio')" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition" data-i18n="nav_tab_studio">
             🔬 Course Studio
           </button>
+          <button id="studio-curriculum-btn" onclick="StatApp.toggleSidebar()" class="hidden items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-indigo-300 hover:text-white hover:bg-slate-800 transition" title="Curriculum">
+            <span>📚</span>
+            <span data-i18n="nav_curriculum_btn">Curriculum (1–24)</span>
+          </button>
         </div>
       </div>
 
@@ -332,6 +336,130 @@
         <!-- Live Interactive Teaser Sandbox Mount Point -->
         <div id="landing-teaser-mount" class="max-w-4xl mx-auto text-left">
           <!-- Dynamically populated via StatCharts.renderLandingTeaser() -->
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Section 1.3: Irresistible 100% Free Value Stack & Comparison -->
+    <div id="free-guarantee" class="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-slate-950 via-[#0d1527] to-slate-950 border-b border-slate-800">
+      <div class="max-w-6xl mx-auto">
+        
+        <div class="text-center max-w-3xl mx-auto mb-12">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs sm:text-sm font-bold mb-4 shadow-sm">
+            <span data-i18n="free_section_badge">💎 The 100% Free Guarantee</span>
+          </div>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight" data-i18n="free_section_title">
+            Quality of a $2,500+ Graduate Program. 100% Free & Open Access.
+          </h2>
+          <p class="text-sm sm:text-base text-slate-300 mt-3 leading-relaxed" data-i18n="free_section_subtitle">
+            What universities and commercial bootcamps charge thousands for behind paywalls, we deliver open-access to everyone worldwide. No paywalls, no credit cards, no hidden traps.
+          </p>
+        </div>
+
+        <!-- 4 Pillars Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-12">
+          
+          <div class="p-6 rounded-2xl bg-slate-900/90 border border-emerald-500/30 hover:border-emerald-500/60 transition shadow-lg flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-2xl font-bold mb-4">
+                🔓
+              </div>
+              <h3 class="text-base font-bold text-white mb-2" data-i18n="free_pillar_1_title">
+                All 24 Levels 100% Unlocked
+              </h3>
+              <p class="text-xs text-slate-400 leading-relaxed" data-i18n="free_pillar_1_desc">
+                No "freemium" bait-and-switch where advanced modules require payment. Jump straight to Mixed Models (L13) or Apex (L24).
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] font-semibold text-emerald-400">
+              ✓ 100% Instant Access
+            </div>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-slate-900/90 border border-sky-500/30 hover:border-sky-500/60 transition shadow-lg flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-sky-500/20 text-sky-400 flex items-center justify-center text-2xl font-bold mb-4">
+                💳
+              </div>
+              <h3 class="text-base font-bold text-white mb-2" data-i18n="free_pillar_2_title">
+                Zero Credit Card, No "Trial"
+              </h3>
+              <p class="text-xs text-slate-400 leading-relaxed" data-i18n="free_pillar_2_desc">
+                You will never be asked for billing details. No trial periods that quietly transition into recurring monthly subscriptions.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] font-semibold text-sky-400">
+              ✓ No Billing Trap
+            </div>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-slate-900/90 border border-indigo-500/30 hover:border-indigo-500/60 transition shadow-lg flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-2xl font-bold mb-4">
+                ⚡
+              </div>
+              <h3 class="text-base font-bold text-white mb-2" data-i18n="free_pillar_3_title">
+                Instant Start Without Sign-Up
+              </h3>
+              <p class="text-xs text-slate-400 leading-relaxed" data-i18n="free_pillar_3_desc">
+                No mandatory forms, no passwords, no spam in your inbox. You start literally within 2 seconds inside your browser.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] font-semibold text-indigo-400">
+              ✓ 0 Seconds Sign-Up Friction
+            </div>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-slate-900/90 border border-purple-500/30 hover:border-purple-500/60 transition shadow-lg flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-2xl font-bold mb-4">
+                📜
+              </div>
+              <h3 class="text-base font-bold text-white mb-2" data-i18n="free_pillar_4_title">
+                Free Verified Certificate
+              </h3>
+              <p class="text-xs text-slate-400 leading-relaxed" data-i18n="free_pillar_4_desc">
+                Complete Level 24 and download your official digital certificate as a PDF free of charge. Zero fees to claim your credential.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] font-semibold text-purple-400">
+              ✓ Official Credential Included
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Honest Value Comparison Box -->
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 max-w-4xl mx-auto shadow-2xl">
+          <h3 class="text-lg sm:text-xl font-bold text-white text-center mb-6" data-i18n="free_compare_title">
+            The Honest Value Comparison:
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+            
+            <div class="p-5 rounded-2xl bg-slate-950/80 border border-slate-800">
+              <div class="text-xs uppercase font-mono text-slate-400" data-i18n="free_compare_trad_label">University Course or Commercial Bootcamp</div>
+              <div class="text-2xl sm:text-3xl font-extrabold text-rose-400 font-mono my-2" data-i18n="free_compare_trad_price">$2,000 – $5,000</div>
+              <p class="text-xs text-slate-400 leading-relaxed" data-i18n="free_compare_trad_desc">
+                Often dominated by debugging package syntax in R/Python and rigid theory without real-time visual labs.
+              </p>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-gradient-to-br from-indigo-950/70 to-emerald-950/50 border-2 border-emerald-500/60 shadow-xl relative overflow-hidden">
+              <div class="text-xs uppercase font-mono text-emerald-300 font-bold" data-i18n="free_compare_our_label">Statistical Journey Platform</div>
+              <div class="text-2xl sm:text-3xl font-extrabold text-emerald-300 font-mono my-2" data-i18n="free_compare_our_price">$0 (Free Forever & Open Access)</div>
+              <p class="text-xs text-slate-200 leading-relaxed" data-i18n="free_compare_our_desc">
+                24 real-time simulators, 80+ empirical cases, adaptive level diagnostic, and verified certificate included.
+              </p>
+            </div>
+
+          </div>
+
+          <div class="mt-6 text-center">
+            <button onclick="StatApp.startAdaptiveScan()" class="px-7 py-3.5 bg-gradient-to-r from-emerald-600 via-teal-600 to-indigo-600 hover:from-emerald-500 hover:to-indigo-500 text-white font-extrabold rounded-xl text-sm shadow-xl transition transform hover:scale-105">
+              <span data-i18n="hero_cta_scan">🧠 Start Free Level Scan (2 min)</span>
+            </button>
+          </div>
         </div>
 
       </div>
@@ -763,14 +891,17 @@
   <!-- ========================================================================= -->
   <section id="view-studio" class="hidden flex-1 flex max-w-7xl w-full mx-auto relative">
 
-    <!-- Mobile Drawer Overlay -->
-    <div id="sidebar-overlay" onclick="StatApp.toggleSidebar()" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 hidden lg:hidden"></div>
+    <!-- Slide-over Drawer Overlay (Backdrop for both desktop & mobile) -->
+    <div id="sidebar-overlay" onclick="StatApp.toggleSidebar()" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 hidden transition-opacity"></div>
 
-    <!-- Sidebar with all 24 Levels -->
-    <aside id="sidebar-drawer" class="fixed lg:sticky top-[53px] left-0 bottom-0 z-50 lg:z-10 w-72 bg-[#0c121e] border-r border-slate-800/80 p-4 overflow-y-auto transform -translate-x-full lg:translate-x-0 transition-transform duration-200 ease-in-out shrink-0 h-[calc(100vh-53px)]">
-      <div class="flex items-center justify-between pb-3 border-b border-slate-800 mb-2">
-        <span class="text-xs font-bold uppercase tracking-wider text-slate-400" data-i18n="sidebar_title">Statistical Journey (1–24)</span>
-        <button onclick="StatApp.toggleSidebar()" class="lg:hidden text-slate-400 hover:text-white" aria-label="Close sidebar">✕</button>
+    <!-- Off-Canvas Drawer with all 24 Levels (Hidden by default, slides out on demand) -->
+    <aside id="sidebar-drawer" class="fixed top-0 left-0 bottom-0 z-50 w-80 max-w-[85vw] bg-[#0c121e] border-r border-slate-800 p-4 overflow-y-auto transform -translate-x-full transition-transform duration-300 ease-in-out shadow-2xl">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-800 mb-3">
+        <div class="flex items-center gap-2">
+          <span class="text-base font-extrabold text-white">📚</span>
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-300" data-i18n="sidebar_title">Statistical Journey (1–24)</span>
+        </div>
+        <button onclick="StatApp.toggleSidebar()" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition" aria-label="Close sidebar">✕</button>
       </div>
       
       <!-- Dynamic Level Navigation List (24 levels) -->

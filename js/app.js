@@ -116,11 +116,13 @@ window.StatApp = (function() {
     const landingTabBtn = document.getElementById("nav-tab-landing-btn");
     const studioTabBtn = document.getElementById("nav-tab-studio-btn");
     const mobileSidebarBtn = document.getElementById("mobile-sidebar-btn");
+    const studioCurriculumBtn = document.getElementById("studio-curriculum-btn");
 
     if (mode === 'landing') {
       if (landingEl) landingEl.classList.remove("hidden");
       if (studioEl) studioEl.classList.add("hidden");
       if (mobileSidebarBtn) mobileSidebarBtn.classList.add("hidden");
+      if (studioCurriculumBtn) studioCurriculumBtn.classList.add("hidden");
 
       if (landingTabBtn && studioTabBtn) {
         landingTabBtn.className = "px-3 py-1.5 rounded-lg text-xs font-semibold bg-indigo-600 text-white shadow transition";
@@ -137,6 +139,7 @@ window.StatApp = (function() {
       if (landingEl) landingEl.classList.add("hidden");
       if (studioEl) studioEl.classList.remove("hidden");
       if (mobileSidebarBtn) mobileSidebarBtn.classList.remove("hidden");
+      if (studioCurriculumBtn) studioCurriculumBtn.classList.remove("hidden");
 
       if (landingTabBtn && studioTabBtn) {
         landingTabBtn.className = "px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition";
@@ -226,7 +229,7 @@ window.StatApp = (function() {
 
         btn.onclick = () => {
           selectLevel(lvl.id);
-          if (window.innerWidth < 1024) toggleSidebar();
+          toggleSidebar(false);
         };
 
         list.appendChild(btn);
@@ -279,6 +282,36 @@ window.StatApp = (function() {
     const t = (k) => window.I18N ? window.I18N.t(k) : k;
 
     mainContainer.innerHTML = `
+      <!-- Compact Top Level Navigation & Curriculum Toolbar (No permanent left sidebar) -->
+      <div class="flex flex-wrap items-center justify-between gap-3 mb-5 bg-[#0f172a]/90 backdrop-blur border border-slate-800 rounded-2xl p-3 sm:px-5 shadow-lg">
+        <button onclick="StatApp.toggleSidebar()" class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-indigo-600/25 hover:bg-indigo-600 border border-indigo-500/40 text-indigo-200 hover:text-white text-xs font-bold transition shadow-sm">
+          <span>📚</span>
+          <span>${t('curriculum_open_btn')} (1–24) ▾</span>
+        </button>
+
+        <div class="flex items-center gap-1.5 sm:gap-2">
+          <button 
+            onclick="StatApp.prevLevel()" 
+            ${levelId === 1 ? 'disabled class="opacity-40 cursor-not-allowed text-xs text-slate-500 py-1.5 px-3 rounded-xl bg-slate-800 border border-slate-700/50"' : 'class="text-xs text-slate-300 hover:text-white py-1.5 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 transition font-medium flex items-center gap-1"'}
+          >
+            <span>◀</span>
+            <span class="hidden sm:inline">${t('btn_prev_level_short')}</span>
+          </button>
+          
+          <div class="px-3 py-1.5 rounded-xl bg-slate-950 border border-slate-800 text-xs font-mono font-bold text-slate-300">
+            <span class="text-emerald-400">L${levelId}</span> / 24
+          </div>
+
+          <button 
+            onclick="StatApp.nextLevel()" 
+            ${levelId === 24 ? 'disabled class="opacity-40 cursor-not-allowed text-xs text-slate-500 py-1.5 px-3 rounded-xl bg-slate-800 border border-slate-700/50"' : 'class="text-xs text-slate-300 hover:text-white py-1.5 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 transition font-medium flex items-center gap-1"'}
+          >
+            <span class="hidden sm:inline">${t('btn_next_level_short')}</span>
+            <span>▶</span>
+          </button>
+        </div>
+      </div>
+
       <!-- Level Header Banner -->
       <div class="bg-gradient-to-br ${isApex ? 'from-purple-950 via-slate-900 to-indigo-950 border-purple-500/40 shadow-purple-950/50' : 'from-slate-900 via-slate-850 to-slate-900 border-slate-800'} border rounded-2xl p-6 sm:p-8 shadow-xl mb-6 relative overflow-hidden">
         <div class="absolute -right-12 -top-12 w-56 h-56 ${isApex ? 'bg-purple-500/20' : 'bg-emerald-500/10'} rounded-full blur-3xl pointer-events-none"></div>
@@ -791,6 +824,14 @@ window.StatApp = (function() {
   function prevLevel() {
     if (state.currentLevel > 1) {
       selectLevel(state.currentLevel - 1);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+
+  function nextLevel() {
+    if (state.currentLevel < 24) {
+      selectLevel(state.currentLevel + 1);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }
 
@@ -805,11 +846,21 @@ window.StatApp = (function() {
     }
   }
 
-  function toggleSidebar() {
+  function toggleSidebar(forceState) {
     const sidebar = document.getElementById("sidebar-drawer");
     const overlay = document.getElementById("sidebar-overlay");
-    if (sidebar) sidebar.classList.toggle("-translate-x-full");
-    if (overlay) overlay.classList.toggle("hidden");
+    if (!sidebar) return;
+
+    const isCurrentlyOpen = !sidebar.classList.contains("-translate-x-full");
+    const shouldOpen = (typeof forceState === 'boolean') ? forceState : !isCurrentlyOpen;
+
+    if (shouldOpen) {
+      sidebar.classList.remove("-translate-x-full");
+      if (overlay) overlay.classList.remove("hidden");
+    } else {
+      sidebar.classList.add("-translate-x-full");
+      if (overlay) overlay.classList.add("hidden");
+    }
   }
 
   // =========================================================================
@@ -1210,6 +1261,7 @@ window.StatApp = (function() {
     setLanguage,
     selectLevel,
     prevLevel,
+    nextLevel,
     renderLevelExerciseStep,
     jumpToExercise,
     prevExercise,

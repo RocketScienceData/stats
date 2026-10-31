@@ -52,6 +52,11 @@ Het platform ondersteunt volledige meertaligheid (**Engels 🇬🇧, Nederlands 
   - Waarom Linear Mixed Models 90% van reële wetenschappelijke data dekken.
 * **Spotlight op het Theoretisch Apex & Certificaat (Level 24):**
   - Preview van het officiële certificaat voor het voltooien van alle 24 niveaus.
+* **De 100% Gratis & Open Access Garantie (Waardestack t.w.v. €2.500+):**
+  - Laat zien waarom het platform altijd kosteloos blijft: geen paywalls, geen creditcards, geen abonnementen en 0 seconden registratiedrempel.
+  - Eerlijke waardevergelijking ten opzichte van dure universitaire mastervakken en bootcamps.
+* **Rustige, Ruime Studio Zonder Storende Lessenbalk Links:**
+  - De 24 lessen staan niet langer permanent links in beeld; het curriculum opent soepel via een offcanvas drawer `[ 📚 Alle 24 Lessen ▾ ]` of de snelle levelstepper `[ ◀ Vorig ] [ Volgend ▶ ]`.
 
 ---
 
