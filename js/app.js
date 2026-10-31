@@ -175,6 +175,18 @@ window.StatApp = (function() {
         window.StatCharts.renderLandingTeaser(teaserMount);
       }
     }
+    const arenaModal = document.getElementById("modal-practice-arena");
+    if (arenaModal && !arenaModal.classList.contains("hidden")) {
+      loadNextArenaQuestion(true);
+    }
+    const scanModal = document.getElementById("modal-adaptive-scan");
+    if (scanModal && !scanModal.classList.contains("hidden")) {
+      renderAdaptiveScanStep();
+    }
+    const certModal = document.getElementById("modal-certificate");
+    if (certModal && !certModal.classList.contains("hidden")) {
+      openCertificateModal();
+    }
   }
 
   // Render Sidebar
@@ -242,8 +254,11 @@ window.StatApp = (function() {
     const completedCount = state.completedLevels.length;
     const progressPercent = Math.round((completedCount / totalLevels) * 100);
 
+    const isEs = window.I18N && window.I18N.currentLang === 'es';
+    const isEn = window.I18N && window.I18N.currentLang === 'en';
+
     const levelBadge = document.getElementById("header-current-level");
-    if (levelBadge) levelBadge.innerText = `Level ${state.currentLevel} / ${totalLevels}`;
+    if (levelBadge) levelBadge.innerText = `${isEs ? 'Nivel' : 'Level'} ${state.currentLevel} / ${totalLevels}`;
 
     const xpBadge = document.getElementById("header-xp-badge");
     if (xpBadge) xpBadge.innerText = `${state.xp} XP`;
@@ -252,7 +267,13 @@ window.StatApp = (function() {
     if (progBar) progBar.style.width = `${progressPercent}%`;
 
     const coachStatus = document.getElementById("header-coach-status");
-    if (coachStatus) coachStatus.innerText = state.competenceLevel;
+    if (coachStatus) {
+      if (!state.scanCompleted) {
+        coachStatus.innerText = isEs ? "Aún no evaluado" : (isEn ? "Not yet scanned" : "Nog niet gescand");
+      } else {
+        coachStatus.innerText = state.competenceLevel;
+      }
+    }
   }
 
   function getLevelExercises(levelId) {
@@ -279,7 +300,14 @@ window.StatApp = (function() {
     const levelBadge = window.I18N ? window.I18N.getLevelBadge(lvl) : lvl.badge;
     const phaseTitle = window.I18N ? window.I18N.getPhaseTitle(lvl.phase) : lvl.phaseTitle;
 
+    const c = window.I18N ? window.I18N.getLevelCase(lvl) : lvl.case;
+    const th = window.I18N ? window.I18N.getLevelTheory(lvl) : lvl.theory;
+    const sim = window.I18N ? window.I18N.getLevelSimulation(lvl) : lvl.simulation;
+    const interp = window.I18N ? window.I18N.getLevelInterpretation(lvl) : lvl.interpretation;
+
     const t = (k) => window.I18N ? window.I18N.t(k) : k;
+    const isEs = window.I18N && window.I18N.currentLang === 'es';
+    const isEn = window.I18N && window.I18N.currentLang === 'en';
 
     mainContainer.innerHTML = `
       <!-- Compact Top Level Navigation & Curriculum Toolbar (No permanent left sidebar) -->
@@ -330,7 +358,7 @@ window.StatApp = (function() {
         </div>
 
         <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mt-1">
-          Level ${lvl.id}: ${levelTitle}
+          ${isEs ? 'Nivel' : 'Level'} ${lvl.id}: ${levelTitle}
         </h1>
         <p class="text-sm sm:text-base text-slate-300 mt-2 max-w-4xl leading-relaxed">
           ${levelSubtitle}
@@ -375,11 +403,11 @@ window.StatApp = (function() {
           <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 shadow-lg">
             <div class="flex items-center gap-2.5 mb-3">
               <div class="w-7 h-7 rounded-lg bg-sky-500/20 text-sky-400 flex items-center justify-center text-sm font-bold">📋</div>
-              <h2 class="text-base font-bold text-white">${lvl.case.title}</h2>
+              <h2 class="text-base font-bold text-white">${c.title}</h2>
             </div>
             
             <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
-              ${lvl.case.context}
+              ${c.context}
             </p>
 
             <!-- Datatabel -->
@@ -406,7 +434,7 @@ window.StatApp = (function() {
               <span class="text-base mt-[-2px]">❓</span>
               <div>
                 <span class="font-bold">${t('research_question')}</span>
-                <p class="mt-0.5">${lvl.case.question}</p>
+                <p class="mt-0.5">${c.question}</p>
               </div>
             </div>
           </div>
@@ -419,7 +447,7 @@ window.StatApp = (function() {
             </div>
 
             <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
-              ${lvl.theory.summary}
+              ${th.summary}
             </p>
 
             <!-- Formule Kaart -->
@@ -428,19 +456,19 @@ window.StatApp = (function() {
                 ${isApex ? 'THEORETICAL APEX FORMULA' : t('key_formula')}
               </div>
               <div class="text-sm sm:text-base ${isApex ? 'text-purple-300 font-extrabold text-base sm:text-lg' : 'text-emerald-300'} font-mono py-1 overflow-x-auto">
-                $$${lvl.theory.mathFormula}$$
+                $$${th.mathFormula || lvl.theory.mathFormula}$$
               </div>
               <p class="text-[11px] text-slate-400 mt-1 italic">
-                ${lvl.theory.formulaExplain}
+                ${th.formulaExplain}
               </p>
             </div>
 
             <!-- Sleutelbegrippen -->
             <div class="space-y-2">
-              ${lvl.theory.keyConcepts.map(c => `
+              ${th.keyConcepts.map(kc => `
                 <div class="p-2.5 rounded-lg bg-slate-950/60 border border-slate-800/80 text-xs">
-                  <span class="font-bold ${isApex ? 'text-purple-400' : 'text-sky-400'}">${c.term}:</span>
-                  <span class="text-slate-300 ml-1">${c.desc}</span>
+                  <span class="font-bold ${isApex ? 'text-purple-400' : 'text-sky-400'}">${kc.term}:</span>
+                  <span class="text-slate-300 ml-1">${kc.desc}</span>
                 </div>
               `).join('')}
             </div>
@@ -457,8 +485,8 @@ window.StatApp = (function() {
               <div class="flex items-center gap-2.5">
                 <div class="w-7 h-7 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-sm font-bold">🔬</div>
                 <div>
-                  <h2 class="text-base font-bold text-white">${lvl.simulation.name}</h2>
-                  <span class="text-xs text-slate-400">${lvl.simulation.description}</span>
+                  <h2 class="text-base font-bold text-white">${sim.name}</h2>
+                  <span class="text-xs text-slate-400">${sim.description}</span>
                 </div>
               </div>
               <span class="text-[10px] px-2 py-0.5 rounded bg-indigo-950/80 text-indigo-300 border border-indigo-800">
@@ -475,11 +503,11 @@ window.StatApp = (function() {
           <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 shadow-lg">
             <div class="flex items-center gap-2.5 mb-3">
               <div class="w-7 h-7 rounded-lg bg-teal-500/20 text-teal-400 flex items-center justify-center text-sm font-bold">📊</div>
-              <h2 class="text-base font-bold text-white">${lvl.interpretation.title}</h2>
+              <h2 class="text-base font-bold text-white">${interp.title}</h2>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-4">
-              ${lvl.interpretation.metrics.map(m => `
+              ${interp.metrics.map(m => `
                 <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800/80">
                   <div class="text-[11px] text-slate-400">${m.label}</div>
                   <div class="text-sm font-bold text-white font-mono mt-0.5">${m.value}</div>
@@ -494,9 +522,10 @@ window.StatApp = (function() {
                 <span>${t('recommendations_title')}:</span>
               </div>
               <p class="leading-relaxed text-emerald-100/90">
-                ${lvl.interpretation.recommendation}
+                ${interp.recommendation}
               </p>
             </div>
+          </div>
           </div>
 
           <!-- Blok 5: Uitgebreide Oefeningen & Diagnostische Uitdagingen -->
@@ -537,8 +566,10 @@ window.StatApp = (function() {
     if (!card) return;
 
     const exercises = getLevelExercises(levelId);
-    const ex = exercises[currentExerciseIndex];
-    if (!ex) return;
+    const rawEx = exercises[currentExerciseIndex];
+    if (!rawEx) return;
+
+    const ex = window.I18N ? window.I18N.getExercise(rawEx) : rawEx;
 
     const completedInLevel = exercises.filter(e => state.completedExercises[e.id]).length;
     const allDone = completedInLevel === exercises.length;
@@ -555,7 +586,7 @@ window.StatApp = (function() {
           </div>
         </div>
         <div class="flex items-center gap-2">
-          <span class="text-xs font-semibold text-amber-400 font-mono">+50 XP per vraag</span>
+          <span class="text-xs font-semibold text-amber-400 font-mono">${t('xp_per_question')}</span>
         </div>
       </div>
 
@@ -564,6 +595,7 @@ window.StatApp = (function() {
         ${exercises.map((e, idx) => {
           const isDone = !!state.completedExercises[e.id];
           const isCurrent = idx === currentExerciseIndex;
+          const catLabel = window.I18N ? window.I18N.translateCategory(e.category) : (e.category || 'Vraag');
           return `
             <button 
               onclick="StatApp.jumpToExercise(${idx})" 
@@ -576,7 +608,7 @@ window.StatApp = (function() {
               }"
             >
               <span>${isDone ? '✓' : idx + 1}</span>
-              <span class="hidden sm:inline text-[11px] opacity-80">${e.category || 'Vraag'}</span>
+              <span class="hidden sm:inline text-[11px] opacity-80">${catLabel}</span>
             </button>
           `;
         }).join('')}
@@ -586,9 +618,9 @@ window.StatApp = (function() {
       <div class="mb-4">
         <div class="flex items-center gap-2 mb-1.5">
           <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${
-            ex.category === 'Valkuil' ? 'bg-rose-500/20 text-rose-300 border border-rose-500/40' :
-            ex.category === 'Dilemma' ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40' :
-            ex.category === 'Berekening' ? 'bg-sky-500/20 text-sky-300 border border-sky-500/40' :
+            rawEx.category === 'Valkuil' ? 'bg-rose-500/20 text-rose-300 border border-rose-500/40' :
+            rawEx.category === 'Dilemma' ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40' :
+            rawEx.category === 'Berekening' ? 'bg-sky-500/20 text-sky-300 border border-sky-500/40' :
             'bg-indigo-500/20 text-indigo-300 border border-indigo-500/40'
           }">
             ${ex.category || 'Concept'}
@@ -640,9 +672,7 @@ window.StatApp = (function() {
           onclick="StatApp.completeAndNext(${levelId})"
           class="${allDone ? '' : 'hidden'} py-2 px-4 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold rounded-xl text-xs sm:text-sm shadow-lg transition"
         >
-          ${levelId === 24 
-            ? (window.I18N && window.I18N.currentLang === 'es' ? '🎉 ¡Completa el Nivel 24 y Reclama la Maestría Apex!' : (window.I18N && window.I18N.currentLang === 'en' ? '🎉 Complete Level 24 & Claim Apex Mastery!' : '🎉 Rond Level 24 Af & Claim Apex Meesterschap!')) 
-            : (window.I18N && window.I18N.currentLang === 'es' ? 'Completar Nivel y Siguiente ➔' : (window.I18N && window.I18N.currentLang === 'en' ? 'Complete Level & Next ➔' : 'Rond Level Af & Naar Volgend Level ➔'))}
+          ${levelId === 24 ? t('complete_apex') : t('complete_and_next')}
         </button>
       </div>
     `;
@@ -672,8 +702,11 @@ window.StatApp = (function() {
 
   function handleExerciseAnswer(levelId, selectedIdx) {
     const exercises = getLevelExercises(levelId);
-    const ex = exercises[currentExerciseIndex];
-    if (!ex) return;
+    const rawEx = exercises[currentExerciseIndex];
+    if (!rawEx) return;
+
+    const ex = window.I18N ? window.I18N.getExercise(rawEx) : rawEx;
+    const t = (k) => window.I18N ? window.I18N.t(k) : k;
 
     const buttons = document.querySelectorAll(".ex-option-btn");
     const feedbackBox = document.getElementById("exercise-feedback-box");
@@ -682,7 +715,7 @@ window.StatApp = (function() {
     buttons.forEach((btn, idx) => {
       btn.disabled = true;
       const check = btn.querySelector(".ex-check");
-      if (idx === ex.correctIndex) {
+      if (idx === rawEx.correctIndex) {
         btn.classList.add("bg-emerald-950/70", "border-emerald-500", "text-emerald-200");
         if (check) check.innerText = "✓";
       } else if (idx === selectedIdx) {
@@ -692,17 +725,17 @@ window.StatApp = (function() {
     });
 
     feedbackBox.classList.remove("hidden");
-    const isCorrect = (selectedIdx === ex.correctIndex);
+    const isCorrect = (selectedIdx === rawEx.correctIndex);
 
     // Diepe GA4 Analytics tracking voor oefeningen
     if (window.StatAnalytics) {
-      window.StatAnalytics.trackExerciseAnswer(levelId, ex.id, isCorrect, isCorrect ? 50 : 0);
+      window.StatAnalytics.trackExerciseAnswer(levelId, rawEx.id, isCorrect, isCorrect ? 50 : 0);
     }
 
     if (isCorrect) {
       playSuccessSound();
-      if (!state.completedExercises[ex.id]) {
-        state.completedExercises[ex.id] = true;
+      if (!state.completedExercises[rawEx.id]) {
+        state.completedExercises[rawEx.id] = true;
         state.xp += 50;
         saveState();
         updateProgressHeader();
@@ -712,7 +745,7 @@ window.StatApp = (function() {
       feedbackBox.innerHTML = `
         <div class="font-bold mb-1 flex items-center gap-1.5">
           <span>✨</span>
-          <span>${window.I18N && window.I18N.currentLang === 'es' ? '¡Respuesta correcta! (+50 XP)' : (window.I18N && window.I18N.currentLang === 'en' ? 'Correctly answered! (+50 XP)' : 'Uitstekend beantwoord! (+50 XP)')}</span>
+          <span>${t('feedback_correct')}</span>
         </div>
         <p class="leading-relaxed">${ex.explanation}</p>
       `;
@@ -728,11 +761,11 @@ window.StatApp = (function() {
       feedbackBox.innerHTML = `
         <div class="font-bold mb-1 flex items-center gap-1.5">
           <span>💡</span>
-          <span>${window.I18N && window.I18N.currentLang === 'es' ? 'Aún no es del todo correcto:' : (window.I18N && window.I18N.currentLang === 'en' ? 'Not quite right yet:' : 'Nog niet helemaal juist:')}</span>
+          <span>${t('feedback_wrong')}</span>
         </div>
         <p class="leading-relaxed">${ex.explanation}</p>
         <button onclick="StatApp.retryExercise()" class="mt-2 text-rose-300 underline font-semibold text-xs">
-          ${window.I18N && window.I18N.currentLang === 'es' ? 'Intentar de nuevo' : (window.I18N && window.I18N.currentLang === 'en' ? 'Try again' : 'Probeer opnieuw')}
+          ${t('btn_retry_exercise')}
         </button>
       `;
     }
@@ -1038,48 +1071,55 @@ window.StatApp = (function() {
     loadNextArenaQuestion();
   }
 
-  function loadNextArenaQuestion() {
+  function loadNextArenaQuestion(preserveCurrent = false) {
     const container = document.getElementById("arena-question-container");
     if (!container || !window.EXERCISES_DATA) return;
 
-    let pool = [];
-    Object.keys(window.EXERCISES_DATA).forEach(lvlId => {
-      const id = parseInt(lvlId, 10);
-      let match = false;
-      if (arenaFilter === "all") match = true;
-      else if (arenaFilter === "fase1" && id <= 5) match = true;
-      else if (arenaFilter === "fase2" && id >= 6 && id <= 12) match = true;
-      else if (arenaFilter === "fase3" && id >= 13 && id <= 18) match = true;
-      else if (arenaFilter === "fase4" && id >= 19) match = true;
+    if (!preserveCurrent || !arenaCurrentQuestion) {
+      let pool = [];
+      Object.keys(window.EXERCISES_DATA).forEach(lvlId => {
+        const id = parseInt(lvlId, 10);
+        let match = false;
+        if (arenaFilter === "all") match = true;
+        else if (arenaFilter === "fase1" && id <= 5) match = true;
+        else if (arenaFilter === "fase2" && id >= 6 && id <= 12) match = true;
+        else if (arenaFilter === "fase3" && id >= 13 && id <= 18) match = true;
+        else if (arenaFilter === "fase4" && id >= 19) match = true;
 
-      if (match) {
-        window.EXERCISES_DATA[lvlId].forEach(ex => {
-          pool.push({ ...ex, levelId: id });
-        });
-      }
-    });
+        if (match) {
+          window.EXERCISES_DATA[lvlId].forEach(ex => {
+            pool.push({ ...ex, levelId: id });
+          });
+        }
+      });
 
-    if (pool.length === 0) return;
-    const randomIdx = Math.floor(Math.random() * pool.length);
-    arenaCurrentQuestion = pool[randomIdx];
+      if (pool.length === 0) return;
+      const randomIdx = Math.floor(Math.random() * pool.length);
+      arenaCurrentQuestion = pool[randomIdx];
+    }
 
-    const lvlData = window.LEVELS_DATA.find(l => l.id === arenaCurrentQuestion.levelId);
+    const rawQ = arenaCurrentQuestion;
+    const q = window.I18N ? window.I18N.getExercise(rawQ) : rawQ;
+    const lvlData = window.LEVELS_DATA.find(l => l.id === rawQ.levelId);
     const lvlTitle = lvlData ? (window.I18N ? window.I18N.getLevelTitle(lvlData) : lvlData.title) : '';
+    const t = (k) => window.I18N ? window.I18N.t(k) : k;
+    const isEs = window.I18N && window.I18N.currentLang === 'es';
+    const isEn = window.I18N && window.I18N.currentLang === 'en';
 
     container.innerHTML = `
       <div class="flex items-center justify-between mb-3 text-xs">
         <span class="px-2.5 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 font-bold">
-          Level ${arenaCurrentQuestion.levelId}: ${lvlTitle}
+          ${isEs ? 'Nivel' : 'Level'} ${rawQ.levelId}: ${lvlTitle}
         </span>
-        <span class="text-amber-400 font-mono font-bold">Streak: 🔥 ${state.arenaStreak}</span>
+        <span class="text-amber-400 font-mono font-bold">${t('streak_label')}: 🔥 ${state.arenaStreak}</span>
       </div>
 
       <h3 class="text-sm sm:text-base font-bold text-white mb-2 leading-relaxed">
-        ${arenaCurrentQuestion.title || 'Oefening'}: ${arenaCurrentQuestion.question}
+        ${q.title || (isEs ? 'Ejercicio' : (isEn ? 'Exercise' : 'Oefening'))}: ${q.question}
       </h3>
 
       <div id="arena-options-container" class="space-y-2 mt-4">
-        ${arenaCurrentQuestion.options.map((opt, idx) => `
+        ${q.options.map((opt, idx) => `
           <button onclick="StatApp.handleArenaAnswer(${idx})" class="arena-opt-btn w-full text-left p-3.5 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-emerald-500/50 text-xs sm:text-sm text-slate-200 transition flex items-center justify-between">
             <span>${opt}</span>
             <span class="arena-check text-slate-500 font-bold ml-2">○</span>
@@ -1091,7 +1131,7 @@ window.StatApp = (function() {
 
       <div class="mt-4 pt-3 border-t border-slate-800 flex justify-end">
         <button id="arena-next-btn" onclick="StatApp.loadNextArenaQuestion()" class="hidden px-4 py-2 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold rounded-xl text-xs shadow transition">
-          ${window.I18N && window.I18N.currentLang === 'es' ? 'Siguiente Pregunta ➔' : (window.I18N && window.I18N.currentLang === 'en' ? 'Next Question ➔' : 'Volgende Vraag ➔')}
+          ${t('arena_btn_next')}
         </button>
       </div>
     `;
@@ -1101,16 +1141,19 @@ window.StatApp = (function() {
 
   function handleArenaAnswer(selectedIdx) {
     if (!arenaCurrentQuestion) return;
+    const rawQ = arenaCurrentQuestion;
+    const q = window.I18N ? window.I18N.getExercise(rawQ) : rawQ;
     const buttons = document.querySelectorAll(".arena-opt-btn");
     const feedbackBox = document.getElementById("arena-feedback-box");
     const nextBtn = document.getElementById("arena-next-btn");
+    const t = (k) => window.I18N ? window.I18N.t(k) : k;
 
-    const isCorrect = (selectedIdx === arenaCurrentQuestion.correctIndex);
+    const isCorrect = (selectedIdx === rawQ.correctIndex);
 
     // Diepe GA4 Analytics tracking voor de Oefen-Arena
     if (window.StatAnalytics) {
       window.StatAnalytics.trackArenaAnswer(
-        arenaCurrentQuestion.levelId,
+        rawQ.levelId,
         arenaFilter,
         isCorrect,
         isCorrect ? state.arenaStreak + 1 : 0
@@ -1120,7 +1163,7 @@ window.StatApp = (function() {
     buttons.forEach((btn, idx) => {
       btn.disabled = true;
       const check = btn.querySelector(".arena-check");
-      if (idx === arenaCurrentQuestion.correctIndex) {
+      if (idx === rawQ.correctIndex) {
         btn.classList.add("bg-emerald-950/70", "border-emerald-500", "text-emerald-200");
         if (check) check.innerText = "✓";
       } else if (idx === selectedIdx) {
@@ -1139,8 +1182,8 @@ window.StatApp = (function() {
 
       feedbackBox.className = "p-3.5 rounded-xl text-xs mt-4 bg-emerald-950/60 border border-emerald-500/40 text-emerald-200";
       feedbackBox.innerHTML = `
-        <div class="font-bold mb-1">${window.I18N && window.I18N.currentLang === 'es' ? `✨ ¡Respuesta correcta! (+50 XP, Racha: 🔥 ${state.arenaStreak})` : (window.I18N && window.I18N.currentLang === 'en' ? `✨ Correctly answered! (+50 XP, Streak: 🔥 ${state.arenaStreak})` : `✨ Juist beantwoord! (+50 XP, Streak: 🔥 ${state.arenaStreak})`)}</div>
-        <p class="leading-relaxed">${arenaCurrentQuestion.explanation}</p>
+        <div class="font-bold mb-1">${t('feedback_correct')} (${t('streak_label')}: 🔥 ${state.arenaStreak})</div>
+        <p class="leading-relaxed">${q.explanation}</p>
       `;
     } else {
       playWrongSound();
@@ -1150,8 +1193,8 @@ window.StatApp = (function() {
 
       feedbackBox.className = "p-3.5 rounded-xl text-xs mt-4 bg-rose-950/60 border border-rose-500/40 text-rose-200";
       feedbackBox.innerHTML = `
-        <div class="font-bold mb-1">${window.I18N && window.I18N.currentLang === 'es' ? '💡 Esa no era la respuesta correcta (Racha reiniciada)' : (window.I18N && window.I18N.currentLang === 'en' ? '💡 That was not the right answer (Streak reset)' : '💡 Helaas niet juist (Streak gereset)')}</div>
-        <p class="leading-relaxed">${arenaCurrentQuestion.explanation}</p>
+        <div class="font-bold mb-1">${t('feedback_wrong')} (${t('streak_label')}: 🔥 0)</div>
+        <p class="leading-relaxed">${q.explanation}</p>
       `;
     }
 
@@ -1196,11 +1239,7 @@ window.StatApp = (function() {
 
   function resetProgress() {
     const currentLang = (window.I18N && window.I18N.currentLang) || 'en';
-    const confirmMsg = currentLang === 'es'
-      ? "¿Estás seguro de que deseas restablecer todo el progreso, XP y rachas al Nivel 1?"
-      : (currentLang === 'en'
-          ? "Are you sure you want to reset all progress, XP, and streaks back to Level 1?"
-          : "Weet je zeker dat je alle voortgang, XP en streaks wilt resetten naar Level 1?");
+    const confirmMsg = window.I18N ? window.I18N.t('confirm_reset') : "Weet je zeker dat je alle voortgang, XP en streaks wilt resetten naar Level 1?";
 
     if (confirm(confirmMsg)) {
       if (window.StatAnalytics) {

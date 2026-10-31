@@ -1867,6 +1867,10 @@ window.StatCharts = (function() {
         default:
           container.innerHTML = `<div class="p-4 text-slate-400">Geen simulatie beschikbaar voor level ${levelId}.</div>`;
       }
+
+      if (window.I18N && typeof window.I18N.translateContainer === 'function') {
+        window.I18N.translateContainer(container);
+      }
     },
     renderLandingTeaser: renderLandingTeaser,
     setTeaserMode: setTeaserMode,
