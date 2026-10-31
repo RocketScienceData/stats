@@ -7,8 +7,9 @@ window.StatCharts = (function() {
     return (window.I18N && window.I18N.currentLang) || 'nl';
   }
 
-  function tSim(nl, en, es) {
+  function tSim(nl, en, es, de) {
     const l = getSimLang();
+    if (l === 'de') return (de !== undefined ? de : (en !== undefined ? en : nl));
     if (l === 'es') return (es !== undefined ? es : (en !== undefined ? en : nl));
     if (l === 'en') return (en !== undefined ? en : nl);
     return nl;

@@ -926,27 +926,28 @@ window.StatApp = (function() {
     const lang = (window.I18N && window.I18N.currentLang) || 'en';
     const isEn = lang === 'en';
     const isEs = lang === 'es';
+    const isDe = lang === 'de';
 
     if (adaptiveCurrentStep >= totalSteps) {
       // Bereken eindoordeel
       let recommendedLevel = 1;
-      let competenceName = isEs ? "Explorador de Fundamentos" : (isEn ? "Foundations Explorer" : "Fundamenten Leerling");
+      let competenceName = isDe ? "Entdecker der Grundlagen" : (isEs ? "Explorador de Fundamentos" : (isEn ? "Foundations Explorer" : "Fundamenten Leerling"));
 
       if (adaptiveUserScore >= 20) {
         recommendedLevel = 24;
-        competenceName = isEs ? "Cosmólogo del Apex" : (isEn ? "Apex Cosmologist" : "Apex Kosmoloog");
+        competenceName = isDe ? "Apex-Kosmologe" : (isEs ? "Cosmólogo del Apex" : (isEn ? "Apex Cosmologist" : "Apex Kosmoloog"));
       } else if (adaptiveUserScore >= 16) {
         recommendedLevel = 19;
-        competenceName = isEs ? "Experto Bayesiano" : (isEn ? "Bayesian Expert" : "Bayesiaans Expert");
+        competenceName = isDe ? "Bayes-Experte" : (isEs ? "Experto Bayesiano" : (isEn ? "Bayesian Expert" : "Bayesiaans Expert"));
       } else if (adaptiveUserScore >= 11) {
         recommendedLevel = 13;
-        competenceName = isEs ? "Virtuoso de Modelos Mixtos" : (isEn ? "Mixed Models Virtuoso" : "Mixed Models Virtuoos");
+        competenceName = isDe ? "Mixed-Models-Virtuose" : (isEs ? "Virtuoso de Modelos Mixtos" : (isEn ? "Mixed Models Virtuoso" : "Mixed Models Virtuoos"));
       } else if (adaptiveUserScore >= 6) {
         recommendedLevel = 6;
-        competenceName = isEs ? "Analista de Regresión" : (isEn ? "Regression Analyst" : "Regressie Analist");
+        competenceName = isDe ? "Regressions-Analyst" : (isEs ? "Analista de Regresión" : (isEn ? "Regression Analyst" : "Regressie Analist"));
       } else {
         recommendedLevel = 1;
-        competenceName = isEs ? "Explorador de Fundamentos" : (isEn ? "Foundations Explorer" : "Fundamenten Verkenner");
+        competenceName = isDe ? "Entdecker der Grundlagen" : (isEs ? "Explorador de Fundamentos" : (isEn ? "Foundations Explorer" : "Fundamenten Verkenner"));
       }
 
       state.competenceKey = adaptiveUserScore >= 20 ? 'apex' : (adaptiveUserScore >= 16 ? 'bayesian' : (adaptiveUserScore >= 11 ? 'mixed' : (adaptiveUserScore >= 6 ? 'regression' : 'foundations')));
@@ -961,15 +962,15 @@ window.StatApp = (function() {
         window.StatAnalytics.trackScanComplete(adaptiveUserScore, competenceName, recommendedLevel);
       }
 
-      const scanResultTitle = isEs ? '¡Evaluación Completada!' : (isEn ? 'Assessment Complete!' : 'Intake Analyse Voltooid!');
-      const scorePrefix = isEs ? 'Según tu puntuación diagnóstica de' : (isEn ? 'Based on your diagnostic score of' : 'Op basis van je diagnostische score van');
-      const detectedLabel = isEs ? 'Nivel de Competencia Detectado:' : (isEn ? 'Detected Competence Level:' : 'Gedetecteerd Competentieniveau:');
-      const recommendedLabel = isEs ? 'Nivel de Inicio Recomendado:' : (isEn ? 'Recommended Start Level:' : 'Geadviseerd Startlevel:');
+      const scanResultTitle = isDe ? 'Einstufungstest Abgeschlossen!' : (isEs ? '¡Evaluación Completada!' : (isEn ? 'Assessment Complete!' : 'Intake Analyse Voltooid!'));
+      const scorePrefix = isDe ? 'Basierend auf deinem diagnostischen Score von' : (isEs ? 'Según tu puntuación diagnóstica de' : (isEn ? 'Based on your diagnostic score of' : 'Op basis van je diagnostische score van'));
+      const detectedLabel = isDe ? 'Erkanntes Kompetenzniveau:' : (isEs ? 'Nivel de Competencia Detectado:' : (isEn ? 'Detected Competence Level:' : 'Gedetecteerd Competentieniveau:'));
+      const recommendedLabel = isDe ? 'Empfohlenes Startlevel:' : (isEs ? 'Nivel de Inicio Recomendado:' : (isEn ? 'Recommended Start Level:' : 'Geadviseerd Startlevel:'));
       const adviceText = recommendedLevel === 1
-        ? (isEs ? 'Comienza en el Nivel 1 para construir una base sólida e inquebrantable.' : (isEn ? 'Start at Level 1 to build an unbreakable rock-solid foundation.' : 'Start bij Level 1 om een onwrikbare basis op te bouwen.'))
-        : (isEs ? `Cuentas con los conocimientos previos para avanzar directamente al Nivel ${recommendedLevel}.` : (isEn ? `You have sufficient prior knowledge to jump straight to Level ${recommendedLevel}.` : `Je beschikt over voldoende voorkennis om direct bij Level ${recommendedLevel} aan te haken.`));
-      const ctaBtnText = isEs ? `Ir Directamente al Nivel ${recommendedLevel}` : (isEn ? `Go Directly to Level ${recommendedLevel}` : `Ga Direct naar Level ${recommendedLevel}`);
-      const closeBtnText = isEs ? 'Cerrar' : (isEn ? 'Close' : 'Sluiten');
+        ? (isDe ? 'Starte bei Level 1, um ein unerschütterliches statistisches Fundament aufzubauen.' : (isEs ? 'Comienza en el Nivel 1 para construir una base sólida e inquebrantable.' : (isEn ? 'Start at Level 1 to build an unbreakable rock-solid foundation.' : 'Start bij Level 1 om een onwrikbare basis op te bouwen.')))
+        : (isDe ? `Du verfügst über genügend Vorwissen, um direkt bei Level ${recommendedLevel} einzusteigen.` : (isEs ? `Cuentas con los conocimientos previos para avanzar directamente al Nivel ${recommendedLevel}.` : (isEn ? `You have sufficient prior knowledge to jump straight to Level ${recommendedLevel}.` : `Je beschikt over voldoende voorkennis om direct bij Level ${recommendedLevel} aan te haken.`)));
+      const ctaBtnText = isDe ? `Direkt zu Level ${recommendedLevel} starten` : (isEs ? `Ir Directamente al Nivel ${recommendedLevel}` : (isEn ? `Go Directly to Level ${recommendedLevel}` : `Ga Direct naar Level ${recommendedLevel}`));
+      const closeBtnText = isDe ? 'Schließen' : (isEs ? 'Cerrar' : (isEn ? 'Close' : 'Sluiten'));
 
       container.innerHTML = `
         <div class="text-center py-4">
@@ -1008,9 +1009,9 @@ window.StatApp = (function() {
     }
 
     const q = window.ADAPTIVE_ASSESSMENT[adaptiveCurrentStep];
-    const questionText = (isEs && q.question_es) ? q.question_es : ((isEn && q.question_en) ? q.question_en : q.question);
-    const currentOptions = (isEs && q.options_es) ? q.options_es : ((isEn && q.options_en) ? q.options_en : q.options);
-    const stepLabel = isEs ? 'Pregunta' : (isEn ? 'Question' : 'Vraag');
+    const questionText = (isDe && q.question_de) ? q.question_de : ((isEs && q.question_es) ? q.question_es : ((isEn && q.question_en) ? q.question_en : q.question));
+    const currentOptions = (isDe && q.options_de) ? q.options_de : ((isEs && q.options_es) ? q.options_es : ((isEn && q.options_en) ? q.options_en : q.options));
+    const stepLabel = isDe ? 'Frage' : (isEs ? 'Pregunta' : (isEn ? 'Question' : 'Vraag'));
 
     container.innerHTML = `
       <div class="flex items-center justify-between text-xs text-slate-400 mb-2 font-mono">
@@ -1043,7 +1044,8 @@ window.StatApp = (function() {
     const lang = (window.I18N && window.I18N.currentLang) || 'en';
     const isEn = lang === 'en';
     const isEs = lang === 'es';
-    const currentOptions = (isEs && q.options_es) ? q.options_es : ((isEn && q.options_en) ? q.options_en : q.options);
+    const isDe = lang === 'de';
+    const currentOptions = (isDe && q.options_de) ? q.options_de : ((isEs && q.options_es) ? q.options_es : ((isEn && q.options_en) ? q.options_en : q.options));
     const opt = currentOptions[optionIndex] || q.options[optionIndex];
     adaptiveUserScore += (opt.score || 0);
 
@@ -1108,6 +1110,7 @@ window.StatApp = (function() {
     const t = (k) => window.I18N ? window.I18N.t(k) : k;
     const isEs = window.I18N && window.I18N.currentLang === 'es';
     const isEn = window.I18N && window.I18N.currentLang === 'en';
+    const isDe = window.I18N && window.I18N.currentLang === 'de';
 
     container.innerHTML = `
       <div class="flex items-center justify-between mb-3 text-xs">
@@ -1118,7 +1121,7 @@ window.StatApp = (function() {
       </div>
 
       <h3 class="text-sm sm:text-base font-bold text-white mb-2 leading-relaxed">
-        ${q.title || (isEs ? 'Ejercicio' : (isEn ? 'Exercise' : 'Oefening'))}: ${q.question}
+        ${q.title || (isDe ? 'Übung' : (isEs ? 'Ejercicio' : (isEn ? 'Exercise' : 'Oefening')))}: ${q.question}
       </h3>
 
       <div id="arena-options-container" class="space-y-2 mt-4">

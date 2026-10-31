@@ -1,6 +1,6 @@
 // levelsData.js - Data voor alle 24 niveaus van het statistiek curriculum
 // Bevat casussen, conceptuele theorie, interactieve simulator data en quizzen.
-// Ondersteunt volledige meertaligheid (NL/EN/ES) en adaptieve intake diagnostiek.
+// Ondersteunt volledige meertaligheid (NL/EN/ES/DE) en adaptieve intake diagnostiek.
 
 window.ADAPTIVE_ASSESSMENT = [
   {
@@ -59,7 +59,22 @@ window.ADAPTIVE_ASSESSMENT = [
         "feedback": "La moda descarta toda la dispersión y la gravedad de las esperas prolongadas en la cola derecha."
       }
     ],
-    "domain": "fundamenten"
+    "domain": "fundamenten",
+    "question_de": "Angenommen, du analysierst Wartezeiten in einer Notaufnahme. Die meisten Patienten warten 10 Minuten, aber einige wenige warten 6 Stunden. Das Management will eine einzige repräsentative Kennzahl. Was empfiehlst du?",
+    "options_de": [
+      {
+        "text": "Das arithmetische Mittel, weil es alle Beobachtungen exakt gewichtet",
+        "score": 0
+      },
+      {
+        "text": "Den Median, weil er robust gegenüber extremen Schiefen und Ausreißern ist",
+        "score": 4
+      },
+      {
+        "text": "Die Standardabweichung geteilt durch die Stichprobengröße",
+        "score": 0
+      }
+    ]
   },
   {
     "id": "q2",
@@ -117,7 +132,22 @@ window.ADAPTIVE_ASSESSMENT = [
         "feedback": "Confusión entre varianza y error estándar: el error estándar divide por √N, no por N²."
       }
     ],
-    "domain": "fundamenten"
+    "domain": "fundamenten",
+    "question_de": "Eine klinische Studie an 50.000 Patienten zeigt eine Blutdrucksenkung von 0.1 mmHg (p < 0.001, Cohen's d = 0.02). Was schließt du?",
+    "options_de": [
+      {
+        "text": "Das Medikament ist hochwirksam und sollte sofort zugelassen werden",
+        "score": 0
+      },
+      {
+        "text": "Statistisch signifikant durch hohes N, aber klinisch irrelevant",
+        "score": 4
+      },
+      {
+        "text": "Der Typ-I-Fehler α war zu hoch gewählt",
+        "score": 0
+      }
+    ]
   },
   {
     "id": "q3",
@@ -175,7 +205,22 @@ window.ADAPTIVE_ASSESSMENT = [
         "feedback": "Trampa común: H0 se rechaza con rotundidad estadística (p < 0.05), pero la magnitud carece de impacto terapéutico."
       }
     ],
-    "domain": "fundamenten"
+    "domain": "fundamenten",
+    "question_de": "In einem multiplen Regressionsmodell fügst du 15 irrelevante Rauschvariablen hinzu. Was geschieht mit R² und korrigiertem R²?",
+    "options_de": [
+      {
+        "text": "R² steigt oder bleibt gleich; das korrigierte R² sinkt",
+        "score": 4
+      },
+      {
+        "text": "Beide Kennzahlen sinken proportional",
+        "score": 0
+      },
+      {
+        "text": "Beide Kennzahlen steigen unweigerlich an",
+        "score": 0
+      }
+    ]
   },
   {
     "id": "q4",
@@ -233,7 +278,22 @@ window.ADAPTIVE_ASSESSMENT = [
         "feedback": "La RSS disminuye, pero la penalización por pérdida de grados de libertad en el R² Ajustado supera la ganancia espuria."
       }
     ],
-    "domain": "regressie"
+    "domain": "regressie",
+    "question_de": "Du untersuchst 2.000 Patienten aus 40 Kliniken. Ein OLS-Modell meldet p = 0.01. Warum warnt der leitende Biostatistiker vor 'Pseudoreplikation'?",
+    "options_de": [
+      {
+        "text": "Weil Patienten innerhalb derselben Klinik korreliert sind (ICC > 0), was OLS-Standardfehler künstlich verengt",
+        "score": 4
+      },
+      {
+        "text": "Weil OLS nur für Stichproben mit N < 100 zulässig ist",
+        "score": 0
+      },
+      {
+        "text": "Weil das Modell an Endogenität und simultaner Kausalität leidet",
+        "score": 0
+      }
+    ]
   },
   {
     "id": "q5",
@@ -291,7 +351,22 @@ window.ADAPTIVE_ASSESSMENT = [
         "feedback": "No necesariamente; la heterocedasticidad concierne a la varianza residual heterogénea, no a la curvatura de la media condicional."
       }
     ],
-    "domain": "regressie"
+    "domain": "regressie",
+    "question_de": "Wann ist ein Linear Mixed Model (LMM) einer wiederholten ANOVA (RM-ANOVA) überlegen?",
+    "options_de": [
+      {
+        "text": "Nur bei streng balancierten Daten ohne Messzeitpunkt-Variationen",
+        "score": 0
+      },
+      {
+        "text": "Bei unbalancierten Daten, ungleichen Messabständen und Missing-at-Random (MAR) Ausfällen",
+        "score": 4
+      },
+      {
+        "text": "Wenn die abhängige Variable streng multinomial verteilt ist",
+        "score": 0
+      }
+    ]
   },
   {
     "id": "q6",
@@ -349,7 +424,22 @@ window.ADAPTIVE_ASSESSMENT = [
         "feedback": "Incorrecto: el R² se mantiene elevado; el factor de inflación de varianza solo ensancha los errores estándar individuales."
       }
     ],
-    "domain": "regressie"
+    "domain": "regressie",
+    "question_de": "Zwei Prädiktoren in deinem Regressionsmodell korrelieren mit r = 0.98 (VIF = 25.3). Was ist das klassische Symptom?",
+    "options_de": [
+      {
+        "text": "Der F-Test ist hochsignifikant, aber die t-Tests beider Variablen sind einzeln nicht-signifikant",
+        "score": 4
+      },
+      {
+        "text": "Die Schätzer werden verzerrt (biased) und inkonsistent",
+        "score": 0
+      },
+      {
+        "text": "Das Gesamt-R² bricht auf null zusammen",
+        "score": 0
+      }
+    ]
   },
   {
     "id": "q7",
@@ -407,7 +497,22 @@ window.ADAPTIVE_ASSESSMENT = [
         "feedback": "Las variables ficticias consumen muchos grados de libertad y eliminan factores contextuales; un modelo multinivel aporta contracción óptima."
       }
     ],
-    "domain": "mixed_models"
+    "domain": "mixed_models",
+    "question_de": "Was bewirkt die L1-Penalisierung bei Lasso-Regression im Gegensatz zu L2-Ridge?",
+    "options_de": [
+      {
+        "text": "Lasso schrumpft Koeffizienten exakt auf null und führt automatische Variablenselektion durch",
+        "score": 4
+      },
+      {
+        "text": "Lasso verteilt Gewichte gleichmäßig auf alle korrelierten Prädiktoren",
+        "score": 0
+      },
+      {
+        "text": "Lasso schützt vor Heteroskedastizität in den Residuen",
+        "score": 0
+      }
+    ]
   },
   {
     "id": "q8",
@@ -465,7 +570,22 @@ window.ADAPTIVE_ASSESSMENT = [
         "feedback": "Falso: los modelos con pendiente aleatoria estiman explícitamente el parámetro de correlación ρ₀₁ entre intercepto y pendiente."
       }
     ],
-    "domain": "mixed_models"
+    "domain": "mixed_models",
+    "question_de": "Was unterscheidet Judea Pearls do-Operator do(X = x) von klassischer statistischer Konditionierung P(Y | X = x)?",
+    "options_de": [
+      {
+        "text": "do(X) simuliert eine aktive Intervention und schneidet Confounder-Kanten in der DAG durch",
+        "score": 4
+      },
+      {
+        "text": "do(X) ist lediglich eine Bayes'sche Posterior-Aktualisierung mit uninformativem Prior",
+        "score": 0
+      },
+      {
+        "text": "do(X) berechnet lineare Korrelationen nach Normalisierung",
+        "score": 0
+      }
+    ]
   },
   {
     "id": "q9",
@@ -523,7 +643,22 @@ window.ADAPTIVE_ASSESSMENT = [
         "feedback": "Condicionar en descendientes del tratamiento introduce sesgo colisionador o destruye la transmisión del efecto causal."
       }
     ],
-    "domain": "apex"
+    "domain": "apex",
+    "question_de": "Warum schrumpft das Unsicherheitsband eines Gauß-Prozesses ohne Messrauschen an den Messpunkten auf null?",
+    "options_de": [
+      {
+        "text": "Weil die multivariate Normalverteilung konditioniert auf exakte Beobachtungen Varianz 0 hat",
+        "score": 4
+      },
+      {
+        "text": "Weil der RBF-Kernel bei identischen Koordinaten divergiert",
+        "score": 0
+      },
+      {
+        "text": "Weil die Likelihood gegen minus unendlich strebt",
+        "score": 0
+      }
+    ]
   },
   {
     "id": "q10",
@@ -581,7 +716,22 @@ window.ADAPTIVE_ASSESSMENT = [
         "feedback": "El cálculo de Stratonovich también depende de semimartingalas y fracasa para H < 1/2; la teoría de trayectorias rugosas de Terry Lyons es indispensable."
       }
     ],
-    "domain": "apex"
+    "domain": "apex",
+    "question_de": "Warum erfordert die Apex-Gleichung dX_t = -∇_ℳ Φ dt + σ dB_t^rough Terry Lyons' Rough Path Theorie bei Hurst H < 1/2?",
+    "options_de": [
+      {
+        "text": "Weil p-Variationsindizes p > 2 die klassische Itô-Integration diskontinuierlich machen und Tensor-Signatures erfordern",
+        "score": 4
+      },
+      {
+        "text": "Weil Riemannsche Mannigfaltigkeiten keine negativen Krümmungen zulassen",
+        "score": 0
+      },
+      {
+        "text": "Weil Markov-Ketten bei kontinuierlicher Zeit zusammenbrechen",
+        "score": 0
+      }
+    ]
   }
 ];
 
@@ -839,6 +989,73 @@ window.LEVELS_DATA = [
         "Nunca, porque la media aritmética siempre minimiza la suma de desviaciones absolutas con mayor precisión"
       ],
       "explanation": "¡Correcto! La mediana es un estimador robusto (punto de ruptura del 50%) inmune a colas pesadas o asimetrías severas."
+    },
+    "case_de": {
+      "title": "Fallstudie: Das 'durchschnittliche' Gehalt beim Startup NovaData",
+      "context": "Du berätst den Betriebsrat eines Tech-Startups mit 10 Mitarbeitern. Die Geschäftsführung behauptet: 'Unser Durchschnittsgehalt beträgt 7.700 € im Monat!' Die Mitarbeiter verdienen jedoch tatsächlich zwischen 2.800 € und 3.200 €.",
+      "question": "Was geschieht hier statistisch und welche Lage- und Streumaße liefern ein ehrliches Bild?"
+    },
+    "theory_de": {
+      "summary": "Das arithmetische Mittel reagiert extrem empfindlich auf Ausreißer. Ein einziges massives Gehalt zieht das Mittel nach oben. Der Median (der mittlere Wert) und der Interquartilsabstand (IQR) sind robust.",
+      "formulaExplain": "Bei schiefen Verteilungen gilt Median ≠ x̄. Berichte in solchen Fällen stets Median und IQR.",
+      "keyConcepts": [
+        {
+          "term": "Mittelwert (x̄)",
+          "desc": "Summe aller Werte geteilt durch N. Äußerst anfällig für Ausreißer."
+        },
+        {
+          "term": "Median",
+          "desc": "Das 50. Perzentil: 50% liegen darunter, 50% darüber. Robust gegenüber Extremwerten."
+        },
+        {
+          "term": "Standardabweichung (SD)",
+          "desc": "Mittlerer Abstand zum Mittelwert. Explodiert bei extremen Ausreißern."
+        },
+        {
+          "term": "Interquartilsabstand (IQR)",
+          "desc": "Differenz zwischen dem 75. und 25. Perzentil (Q3 - Q1)."
+        }
+      ]
+    },
+    "simulation_de": {
+      "name": "Ausreißer-Simulator: CEO-Gehalt & Robuste Statistik",
+      "description": "Verändere das Gehalt des CEO von 48.000 € auf 3.000 € und beobachte, wie das arithmetische Mittel kollabiert, während der Median stabil bleibt!"
+    },
+    "interpretation_de": {
+      "title": "Statistischer Befund & Beratung",
+      "metrics": [
+        {
+          "label": "Arithmetisches Mittel (x̄)",
+          "value": "7.700 €",
+          "note": "Verzerrt durch CEO-Gehalt"
+        },
+        {
+          "label": "Median (Zentralwert)",
+          "value": "3.100 €",
+          "note": "Echtes typisches Gehalt"
+        },
+        {
+          "label": "Standardabweichung",
+          "value": "14.167 €",
+          "note": "Künstlich aufgebläht"
+        },
+        {
+          "label": "Interquartilsabstand (IQR)",
+          "value": "400 €",
+          "note": "Reale Kernstreuung"
+        }
+      ],
+      "recommendation": "Verwende für Tarifverhandlungen und Mitarbeiterberichte ausschließlich den Median (3.100 €) und IQR (400 €). Das arithmetische Mittel liefert ein irreführendes Bild."
+    },
+    "quiz_de": {
+      "question": "Wann bevorzugt man den Median gegenüber dem arithmetischen Mittel als Lagemaß?",
+      "options": [
+        "Wenn die Daten exakt symmetrisch verteilt sind und minimale Schätzvarianz gefordert ist",
+        "Bei schiefen Verteilungen oder extremen Ausreißern (robuster Bruchpunkt von 50%)",
+        "Wenn diskrete Zähldaten über einen Poisson-Prozess modelliert werden",
+        "Niemals, weil das arithmetische Mittel die Summe der absoluten Abweichungen effizienter minimiert"
+      ],
+      "explanation": "Richtig! Der Median ist ein robuster Schätzer mit einem 50%-Bruchpunkt, völlig unberührt von extremen Randwerten."
     }
   },
   {
@@ -1075,6 +1292,69 @@ window.LEVELS_DATA = [
         "El intervalo de confianza de la muestra tiene un ancho total de 1,96 errores estándar"
       ],
       "explanation": "¡Excelente! La puntuación Z expresa cuántas desviaciones estándar dista una observación de la media. En Z = -1,96, exactamente el 2,5% de la masa de probabilidad reside en la cola inferior."
+    },
+    "case_de": {
+      "title": "Fallstudie: Kalibrierung von Präzisions-Sensoren",
+      "context": "Eine Medizintechnik-Fabrik stellt Blutzuckermessgeräte her. Die Toleranzgrenze beträgt [116, 124] mg/dL. Der Qualitätsleiter fragt: 'Wie viel Prozent unserer Produktion fällt durch die Endkontrolle?'",
+      "question": "Wie berechnen wir mithilfe der Standardnormalverteilung und Z-Scores die genaue Ausschussquote?"
+    },
+    "theory_de": {
+      "summary": "Die Gaußsche Normalverteilung ist symmetrisch und wird durch μ und σ bestimmt. Durch Transformation zu Z = (X - μ) / σ lassen sich Wahrscheinlichkeiten direkt über Standardnormal-Tabellen berechnen.",
+      "formulaExplain": "Mit Z = +2.0 liegt der Messwert 2 Standardabweichungen über dem Mittelwert. Außerhalb von ±2 SD liegen etwa 4.55% aller Geräte.",
+      "keyConcepts": [
+        {
+          "term": "Z-Score",
+          "desc": "Z = (X - μ) / σ. Gibt den Abstand zum Mittelwert in Standardabweichungen an."
+        },
+        {
+          "term": "68-95-99.7 Regel",
+          "desc": "68.27% innerhalb ±1 SD, 95.45% innerhalb ±2 SD, 99.73% innerhalb ±3 SD."
+        },
+        {
+          "term": "Kritischer Bereich",
+          "desc": "Fläche unter den Verteilungsenden, die außerhalb der Toleranzgrenzen liegt."
+        }
+      ]
+    },
+    "simulation_de": {
+      "name": "Gauss-Kurve & Z-Score Rechner",
+      "description": "Passe Mittelwert, Standardabweichung und Ausschussgrenzen interaktiv an, um Wahrscheinlichkeiten live zu berechnen."
+    },
+    "interpretation_de": {
+      "title": "Qualitätskontrolle & Risikoanalyse",
+      "metrics": [
+        {
+          "label": "Innerhalb Toleranz [116, 124]",
+          "value": "95.45%",
+          "note": "Innerhalb ±2 Standardabweichungen"
+        },
+        {
+          "label": "Ausschussquote gesamt",
+          "value": "4.55%",
+          "note": "2.28% oben + 2.27% unten"
+        },
+        {
+          "label": "Kritischer Z-Wert",
+          "value": "Z = ±2.00",
+          "note": "Grenze für Qualitätsfreigabe"
+        },
+        {
+          "label": "Erwarteter täglicher Ausschuss",
+          "value": "45 Geräte / 1.000",
+          "note": "Bei stabiler Prozessvarianz"
+        }
+      ],
+      "recommendation": "Bei einer Tagesproduktion von 1.000 Geräten muss die Fertigung mit etwa 45 Ausfällen rechnen."
+    },
+    "quiz_de": {
+      "question": "Was bedeutet ein Z-Score von -1.96 in einer Normalverteilung?",
+      "options": [
+        "Die Beobachtung liegt 1.96 Einheiten unter dem Median in der Originalskala",
+        "Der Wert liegt 1.96 Standardabweichungen unter dem Populationsmittelwert (exakt 2.5% der Fläche liegen darunter)",
+        "Die kumulative Wahrscheinlichkeit im rechten Randbereich P(Z > -1.96) beträgt exakt 2.5%",
+        "Das 95%-Konfidenzintervall der Stichprobe hat eine Gesamtbreite von 1.96 Standardfehlern"
+      ],
+      "explanation": "Exakt! Der Z-Score drückt den Abstand zum Mittelwert in Standardabweichungen aus. Bei Z = -1.96 liegen genau 2.5% im linken Rand."
     }
   },
   {
@@ -1305,6 +1585,69 @@ window.LEVELS_DATA = [
         "La desviación estándar poblacional σ también se reduce a la mitad proporcionalmente"
       ],
       "explanation": "¡Exacto! Debido a la raíz cuadrada en el denominador (√N), multiplicar por 4 el tamaño muestral reduce el error de estimación exactamente a la mitad."
+    },
+    "case_de": {
+      "title": "Fallstudie: Wartezeiten im Kundenservice (Schiefe Daten)",
+      "context": "Ein Telekom-Kundenservice hat Wartezeiten, die stark rechtsschief verteilt sind (viele 1-Minuten-Anrufe, einige über 30 Minuten). Die Leitung fragt: 'Dürfen wir überhaupt mit Normalverteilungen arbeiten?'",
+      "question": "Warum rettet uns hier der Zentrale Grenzwertsatz bei der Analyse des MITTELWERTS von Stichproben?"
+    },
+    "theory_de": {
+      "summary": "Der Zentrale Grenzwertsatz (ZGS) besagt: Für jede Grundgesamtheit mit endlicher Varianz (σ² < ∞) konvergiert die Verteilung der Stichprobenmittelwerte (X̄) gegen eine Normalverteilung. Bei mäßiger Schiefe reicht N ≥ 30; bei extremer Schiefe erfordert das Berry-Esseen-Theorem größere Stichproben (N ≥ 50–100).",
+      "formulaExplain": "Vervierfacht man N, halbiert sich der Standardfehler SE = σ / √N.",
+      "keyConcepts": [
+        {
+          "term": "Endliche Varianz Bedingung",
+          "desc": "ZGS erfordert σ² < ∞; versagt bei Cauchy- oder extremen Pareto-Verteilungen."
+        },
+        {
+          "term": "Stichprobenverteilung",
+          "desc": "Die Verteilung von Mittelwerten bei wiederholter Stichprobenziehung."
+        },
+        {
+          "term": "Standardfehler (SE)",
+          "desc": "Streuung der Mittelwerte: SE = σ / √N. Sinkt mit der Wurzel aus N."
+        }
+      ]
+    },
+    "simulation_de": {
+      "name": "ZGS Simulator: Von schief zu glockenförmig",
+      "description": "Ziehe 1.000 Stichproben aus einer rechtsschiefen Exponentialverteilung. Erlebe, wie der Mittelwert bei wachsendem N perfekt glockenförmig wird!"
+    },
+    "interpretation_de": {
+      "title": "Schlussfolgerung für den Kundendienst",
+      "metrics": [
+        {
+          "label": "Rohdatenverteilung",
+          "value": "Stark asymmetrisch",
+          "note": "Rechtsschief mit extremen Spitzen"
+        },
+        {
+          "label": "Mittelwert-Verteilung bei N=35",
+          "value": "Normalverteilt (Gauss)",
+          "note": "Dank Zentralem Grenzwertsatz"
+        },
+        {
+          "label": "Standardfehler (SE = σ/√35)",
+          "value": "1.05 Minuten",
+          "note": "Unsicherheit der Mittelwertschätzung"
+        },
+        {
+          "label": "Erforderliche Stichprobengröße",
+          "value": "N ≥ 35",
+          "note": "Garantiert robuste t-Inferenz"
+        }
+      ],
+      "recommendation": "Für die durchschnittliche Wartezeit dürfen t-Tests und Konfidenzintervalle verwendet werden, sofern N ≥ 35 eingehalten wird."
+    },
+    "quiz_de": {
+      "question": "Was geschieht mit dem Standardfehler (SE = σ / √N) des Mittelwerts, wenn die Stichprobengröße N vervierfacht wird?",
+      "options": [
+        "Der SE wird 4-mal kleiner, weil die Präzision proportional mit N skaliert",
+        "Der SE halbiert sich (wird 2-mal kleiner, da √4 = 2)",
+        "Der SE wird 16-mal kleiner, weil die Varianzreduktion quadratisch mit N² wächst",
+        "Die Populations-Standardabweichung σ halbiert sich ebenfalls im gleichen Verhältnis"
+      ],
+      "explanation": "Richtig! Wegen der Wurzel im Nenner (√N) führt eine 4-fache Stichprobengröße zu einer Halbierung des Schätzfehlers."
     }
   },
   {
@@ -1527,6 +1870,69 @@ window.LEVELS_DATA = [
         "La probabilidad de cometer un error Tipo I en esta muestra específica es exactamente del 5%"
       ],
       "explanation": "¡Riguroso y certero! Para los frecuentistas el parámetro μ es una constante fija desconocida. Son los límites del intervalo los que varían aleatoriamente entre réplicas muestrales."
+    },
+    "case_de": {
+      "title": "Fallstudie: Zufriedenheitswerte einer neuen Software",
+      "context": "Ein Marktforschungsinstitut befragt 100 Nutzer nach einem Redesign. Der Mittelwert liegt bei 75 Punkten (SD = 10). Das Management will wissen: 'Wie sicher ist dieser Wert wirklich?'",
+      "question": "Was bedeutet das 95%-Konfidenzintervall [73.04, 76.96] und welche Fehlinterpretation muss vermieden werden?"
+    },
+    "theory_de": {
+      "summary": "Das Konfidenzintervall quantifiziert die Stichprobenunsicherheit. Die 95% beziehen sich auf das Verfahren: Bei 100 Wiederholungen enthalten im Schnitt 95 der so berechneten Intervalle den wahren Populationsparameter μ.",
+      "formulaExplain": "Überlappungs-Nuance: Zwei unabhängige 95%-Intervalle dürfen bis zu ~29% überlappen und der Unterschied kann dennoch signifikant sein (p < 0.05), da SE_diff = √(SE₁² + SE₂²) < SE₁ + SE₂.",
+      "keyConcepts": [
+        {
+          "term": "Klassische Denk-Falle",
+          "desc": "FALSCH: 'Es gibt eine 95%-Wahrscheinlichkeit, dass μ in diesem spezifischen festen Intervall liegt.'"
+        },
+        {
+          "term": "Korrekte Interpretation",
+          "desc": "RICHTIG: '95% aller nach dieser Methode konstruierten Intervalle überdecken den wahren Parameter.'"
+        },
+        {
+          "term": "Fehlerspanne (Margin of Error)",
+          "desc": "1.96 × SE (für das 95%-Niveau). Bestimmt die Intervallbreite."
+        }
+      ]
+    },
+    "simulation_de": {
+      "name": "100-Stichproben-Visualisierer",
+      "description": "Generiere 100 unabhängige Stichproben gegen den wahren Wert μ = 75. Zähle grüne Treffer und rote Fehlwürfe!"
+    },
+    "interpretation_de": {
+      "title": "Befund & Handlungsempfehlung",
+      "metrics": [
+        {
+          "label": "Stichprobenmittelwert",
+          "value": "75.0 Punkte",
+          "note": "Punktschätzung"
+        },
+        {
+          "label": "95% Konfidenzintervall",
+          "value": "[73.04, 76.96]",
+          "note": "Breite: 3.92 Punkte"
+        },
+        {
+          "label": "Standardfehler (SE)",
+          "value": "1.00 Punkte",
+          "note": "SD / √100"
+        },
+        {
+          "label": "Empirische Trefferquote",
+          "value": "95%",
+          "note": "Über 100 Simulationsläufe"
+        }
+      ],
+      "recommendation": "Das Redesign erreicht mit 95%-Sicherheit einen Zufriedenheitswert zwischen 73 und 77 Punkten."
+    },
+    "quiz_de": {
+      "question": "Zwei unabhängige Behandlungsgruppen haben 95%-Konfidenzintervalle, die sich leicht überlappen (ca. 15% Überlappung). Bedeutet dies zwingend p > 0.05?",
+      "options": [
+        "Ja, jede Überlappung von 95%-Konfidenzintervallen beweist p > 0.05",
+        "Nein, da SE_Differenz = √(SE₁² + SE₂²) kleiner ist als die Summe SE₁ + SE₂, kann der Differenztest dennoch p < 0.05 ergeben",
+        "Ja, weil Konfidenzintervalle mathematisch äquivalent zu Bonferroni-korrigierten t-Tests sind",
+        "Nur dann, wenn beide Stichproben identische Varianzen und Stichprobengrößen aufweisen"
+      ],
+      "explanation": "Hervorragend! Dies ist einer der häufigsten Fehler in der Wissenschaft: Eine leichte Überlappung schließt statistische Signifikanz bei p < 0.05 keineswegs aus."
     }
   },
   {
@@ -1766,6 +2172,69 @@ window.LEVELS_DATA = [
         "La proporción de réplicas futuras que fracasará en alcanzar significación estadística"
       ],
       "explanation": "¡Precisión impecable! El valor p es la probabilidad condicional P(Estadístico ≥ Observado | H₀). Jamás cuantifica la probabilidad de que la hipótesis sea cierta."
+    },
+    "case_de": {
+      "title": "Fallstudie: Klinische Studie zu einem neuen Antidepressivum",
+      "context": "Ein Pharmaunternehmen testet Medikament X an 10.000 Patienten. Die Reduktion der Symptome beträgt 0.2 Punkte auf einer 100er-Skala (p = 0.0001). Das Marketing jubelt, doch der Chefarzt zögert.",
+      "question": "Was ist der fundamentale Unterschied zwischen statistischer Signifikanz (p-Wert) und praktischer Relevanz (Effektstärke Cohen's d)?"
+    },
+    "theory_de": {
+      "summary": "Bei riesigen Stichproben wird jeder winzige, klinisch unbedeutende Unterschied statistisch hochsignifikant (p < 0.001). Die Effektstärke (Cohen's d) quantifiziert die Größe des Effekts unabhängig von N.",
+      "formulaExplain": "Statistische Power (1 - β) ist die Wahrscheinlichkeit, einen echten Effekt nachzuweisen, falls er tatsächlich existiert.",
+      "keyConcepts": [
+        {
+          "term": "p-Wert",
+          "desc": "P(Daten | H₀). Wahrscheinlichkeit solch extremer Daten, falls die Nullhypothese wahr wäre."
+        },
+        {
+          "term": "Cohen's d",
+          "desc": "Effektstärke in Standardabweichungen: d = 0.2 (klein), 0.5 (mittel), 0.8 (groß)."
+        },
+        {
+          "term": "Alpha (α) & Beta (β)",
+          "desc": "α = Falsch Positiv (Typ I, 5%); β = Falsch Negativ (Typ II, meist 20%)."
+        }
+      ]
+    },
+    "simulation_de": {
+      "name": "Power, Alpha & Beta Simulator",
+      "description": "Verändere Cohen's d und Stichprobengröße N. Beobachte live die Power (1 - β) und die Überlappung der H₀- und H₁-Verteilungen!"
+    },
+    "interpretation_de": {
+      "title": "Klinisches Gutachten",
+      "metrics": [
+        {
+          "label": "p-Wert",
+          "value": "p = 0.0001",
+          "note": "Hochsignifikant (N = 10.000)"
+        },
+        {
+          "label": "Effektstärke (Cohen's d)",
+          "value": "d = 0.04",
+          "note": "Klinisch vernachlässigbar"
+        },
+        {
+          "label": "Power bei N=100",
+          "value": "Power = 6.2%",
+          "note": "Völlig unterpowert bei kleiner Stichprobe"
+        },
+        {
+          "label": "Entscheidung",
+          "value": "Keine Zulassungsempfehlung",
+          "note": "Aufwand und Nebenwirkungen überwiegen"
+        }
+      ],
+      "recommendation": "Lehne die Einführung ab. Trotz p < 0.0001 ist der Effekt mit d = 0.04 klinisch irrelevant."
+    },
+    "quiz_de": {
+      "question": "Ein Forscher erhöht die Stichprobengröße von N = 40 auf N = 4.000. Was passiert mit dem p-Wert eines winzigen Scheineffekts und der Effektstärke d?",
+      "options": [
+        "Die Effektstärke d sinkt auf null, während der p-Wert unverändert bleibt",
+        "Der p-Wert sinkt drastisch gegen null (wird hochsignifikant), während die wahre Effektstärke d unverändert klein bleibt",
+        "Sowohl der p-Wert als auch die Effektstärke d wachsen proportional mit der Quadratwurzel aus N",
+        "Die Typ-II-Fehlerrate β steigt, weil große Stichproben mehr Messrauschen akkumulieren"
+      ],
+      "explanation": "Korrekt! Mit riesigem N sinkt der p-Wert für jeden beliebig kleinen Effekt gegen null. Nur die Effektstärke d schützt vor dieser Illusion."
     }
   },
   {
@@ -2001,6 +2470,69 @@ window.LEVELS_DATA = [
         "El coeficiente de correlación de Pearson entre horas y nota es exactamente r = 0,20"
       ],
       "explanation": "¡Excelente! En regresión lineal simple, la pendiente cuantifica el cambio medio esperado en la variable respuesta Y por cada unidad adicional del predictor X."
+    },
+    "case_de": {
+      "title": "Fallstudie: Klausurnoten basierend auf Lernstunden vorhersagen",
+      "context": "Eine Kursleiterin will prüfen, wie wöchentliche Lernstunden mit der Statistikklausurnote zusammenhängen. Studenten wollen wissen: 'Wie viele Stunden brauche ich für eine 5.5?'",
+      "question": "Wie finden wir die optimale Ausgleichsgerade nach der Methode der kleinsten Quadrate (OLS)?"
+    },
+    "theory_de": {
+      "summary": "Ordinary Least Squares (OLS) minimiert die Summe der quadrierten vertikalen Abweichungen (Residuen ∑ eᵢ²). Aus den Normalgleichungen folgt exakt ∑ eᵢ = 0 und ∑ eᵢ Xᵢ = 0.",
+      "formulaExplain": "Für jede zusätzliche Lernstunde steigt die erwartete Note um 0.18 Punkte. Das OLS-Residuum summiert sich exakt zu null.",
+      "keyConcepts": [
+        {
+          "term": "Achsenabschnitt (β₀)",
+          "desc": "Erwarteter Y-Wert, wenn X = 0 ist (Basisnote ohne Lernen)."
+        },
+        {
+          "term": "Steigung (β₁)",
+          "desc": "Erwartete Veränderung in Y pro Einheit Zunahme in X."
+        },
+        {
+          "term": "Residuum (eᵢ)",
+          "desc": "Vertikaler Abstand eᵢ = yᵢ - ŷᵢ. Bei optimalem OLS gilt ∑ eᵢ = 0."
+        }
+      ]
+    },
+    "simulation_de": {
+      "name": "OLS Linien-Fitter & Residuenquadrate",
+      "description": "Bewege Steigung und Achsenabschnitt manuell. Finde die Position, an der die Residuenquadratsumme (SSE) minimal wird!"
+    },
+    "interpretation_de": {
+      "title": "Modell & Studienberatung",
+      "metrics": [
+        {
+          "label": "Achsenabschnitt (β₀)",
+          "value": "2.70",
+          "note": "Basispunkte ohne Vorbereitung"
+        },
+        {
+          "label": "Steigung (β₁)",
+          "value": "+0.18 pro Stunde",
+          "note": "Notenzuwachs pro Lernstunde"
+        },
+        {
+          "label": "Stunden für eine 5.5",
+          "value": "15.6 Stunden",
+          "note": "(5.5 - 2.70) / 0.18 ≈ 15.6 Std."
+        },
+        {
+          "label": "Residuensumme (∑ eᵢ)",
+          "value": "0.00",
+          "note": "Perfekt zu null summiert"
+        }
+      ],
+      "recommendation": "Empfiehl Studierenden mindestens 16 wöchentliche Lernstunden, um das Bestehen abzusichern."
+    },
+    "quiz_de": {
+      "question": "Im Modell Note = 2.5 + 0.20 × Stunden: Was ist der erwartete Effekt, wenn ein Student 10 zusätzliche Stunden lernt?",
+      "options": [
+        "Die Note steigt um 0.20 Punkte unabhängig von den Stunden",
+        "Die erwartete Note steigt um 2.0 Punkte (ΔŶ = 10 × 0.20)",
+        "Die Note wird mindestens eine 4.5, weil 2.5 die Untergrenze darstellt",
+        "Der Korrelationskoeffizient r steigt automatisch um 0.20"
+      ],
+      "explanation": "Korrekt! Die Steigung β₁ = 0.20 bedeutet: 10 zusätzliche Stunden ergeben 10 × 0.20 = +2.0 Notenpunkte."
     }
   },
   {
@@ -2216,6 +2748,59 @@ window.LEVELS_DATA = [
         "El estadístico F aumenta automáticamente para compensar los grados de libertad consumidos"
       ],
       "explanation": "¡Exacto! En cualquier muestra finita, las variables aleatorias poseen leves correlaciones accidentales con Y. MCO las aprovecha para reducir la suma de cuadrados, por lo que R² jamás decrece."
+    },
+    "case_de": {
+      "title": "Casus: Voorspellen van Huizenprijzen & De Ruisvariabelen",
+      "context": "Een analist voegt aan een huizenprijsmodel willekeurige toevalsgetallen toe. Zijn $R^2$ stijgt van 0.65 naar 0.73. Is het model werkelijk beter geworden?",
+      "question": "Waarom stijgt R² ALTIJD als je variabelen toevoegt, en waarom beschermt Adjusted R² ons hiertegen?"
+    },
+    "theory_de": {
+      "summary": "$R^2$ kan wiskundig gezien nooit dalen bij het toevoegen van variabelen. Gecorrigeerde $R^2$ (Adjusted $R^2$) straft voor extra parameters en daalt als een variabele minder bijdraagt dan toeval.",
+      "formulaExplain": "Als $k$ toeneemt zonder dat $R^2$ substantieel stijgt, keldert Adjusted $R^2$.",
+      "keyConcepts": [
+        {
+          "term": "R²",
+          "desc": "Percentage verklaarde variantie (SS_reg / SS_tot)."
+        },
+        {
+          "term": "Adjusted R²",
+          "desc": "Gecorrigeerd voor aantal voorspellers k. Daalt bij ruis!"
+        },
+        {
+          "term": "F-toets",
+          "desc": "Toetst of alle regressiecoëfficiënten gezamenlijk afwijken van nul."
+        }
+      ]
+    },
+    "simulation_de": {
+      "name": "R² vs Adjusted R² Stress Test",
+      "description": "Voeg zinloze ruisvariabelen toe. Zie hoe de gewone R² kunstmatig stijgt, terwijl de Adjusted R² direct daalt!"
+    },
+    "interpretation_de": {
+      "title": "Modelvergelijking & Keuze",
+      "recommendation": "Kies nooit een model puur op gewone $R^2$. Hanteer Adjusted $R^2$, AIC of BIC.",
+      "metrics": [
+        {
+          "label": "Beste model",
+          "value": "Model 2 (Oppervlakte + Kamers)",
+          "note": "Hoogste Adj-R² (0.708)"
+        },
+        {
+          "label": "Ruismodel (Model 3)",
+          "value": "Verwerpen!",
+          "note": "Adj-R² daalde naar 0.690"
+        }
+      ]
+    },
+    "quiz_de": {
+      "question": "Wat gebeurt er met de gewone R² als je 5 zuivere toevalsvectoren als extra regressoren toevoegt aan een OLS-model?",
+      "options": [
+        "R² daalt evenredig met het aantal irrelevante voorspellers",
+        "R² blijft gegarandeerd gelijk of stijgt een klein beetje, omdat OLS toevalsruis meeneemt in de modelpassing",
+        "R² wordt ongedefinieerd omdat toevalsvectoren een singuliere covariantiematrix veroorzaken",
+        "De Adjusted R² stijgt mee, omdat de residuele kwadratensom (RSS) altijd omlaag gaat"
+      ],
+      "explanation": "Juist! De gewone R² kan wiskundig gezien nooit dalen bij toevoeging van extra variabelen. Daarom gebruiken we Adjusted R², AIC of BIC om te corrigeren voor overbodige modelcomplexiteit."
     }
   },
   {
@@ -2426,6 +3011,59 @@ window.LEVELS_DATA = [
         "Violación de normalidad en los residuos, que obliga a emplear pruebas no paramétricas de rangos"
       ],
       "explanation": "¡Magistral! La forma de trompeta delata que la varianza residual crece con Ŷ (heterocedasticidad). Los coeficientes MCO siguen siendo insesgados, pero sus errores estándar convencionales son falsos."
+    },
+    "case_de": {
+      "title": "Casus: De 'Trompet' in Bedrijfswinsten (Heteroscedasticiteit)",
+      "context": "Bij kleine bedrijven liggen winstvoorspellingen strak rond de lijn; bij grote bedrijven waaiert de winst enorm uit (trompetvorm). Welke assumptie wordt geschonden?",
+      "question": "Waarom zijn de standaardfouten en p-waarden onbetrouwbaar als homoscedasticiteit geschonden wordt?"
+    },
+    "theory_de": {
+      "summary": "L.I.N.E.: Lineariteit, Onafhankelijkheid, Normaliteit van residuen, en Gelijke spreiding (Homoscedasticiteit). Schending van homoscedasticiteit vervalst de standaardfouten en p-waarden.",
+      "formulaExplain": "Remedie: log-transformatie $\\ln(Y)$ of robuuste Huber-White standaardfouten.",
+      "keyConcepts": [
+        {
+          "term": "Homoscedasticiteit",
+          "desc": "Constante variantie van de residuen over het hele bereik."
+        },
+        {
+          "term": "Heteroscedasticiteit",
+          "desc": "Trompet- of trechtervorm in de Residuals vs Fitted plot."
+        },
+        {
+          "term": "Q-Q Plot",
+          "desc": "Controleert of residuen de rechte lijn van de normale verdeling volgen."
+        }
+      ]
+    },
+    "simulation_de": {
+      "name": "Residuendiagnostiek & L.I.N.E. Lab",
+      "description": "Schakel tussen gezonde data, trompetvorm en niet-lineariteit in de Residuals vs Fitted en Q-Q plots."
+    },
+    "interpretation_de": {
+      "title": "Diagnostisch Oordeel & Remedie",
+      "recommendation": "Neem de natuurlijke logaritme van de winst of pas robuuste sandwich standaardfouten toe.",
+      "metrics": [
+        {
+          "label": "Breusch-Pagan Toets",
+          "value": "p < 0.001",
+          "note": "Heteroscedasticiteit aangetoond"
+        },
+        {
+          "label": "Aanbevolen actie",
+          "value": "Log-transformatie ln(Y)",
+          "note": "Stabiliseert de spreiding"
+        }
+      ]
+    },
+    "quiz_de": {
+      "question": "Wat signaleert een uitwaaierend trompetpatroon in een 'Residuals vs Fitted' spreidingsdiagram?",
+      "options": [
+        "Ernstige multicollineariteit tussen twee of meer verklarende variabelen",
+        "Heteroscedasticiteit (niet-constante residuele variantie), waardoor standaardfouten en hypothesetoetsen onbetrouwbaar worden",
+        "Structurele kromming in het conditionele verwachtingsgemiddelde van Y",
+        "Endogeniteit: correlatie tussen de voorspellers en de residuele storingsterm"
+      ],
+      "explanation": "Spot-on! Heteroscedasticiteit schendt de aanname van gelijke foutvariantie. OLS-puntschattingen blijven zuiver, maar standaardfouten en p-waarden zijn ongeldig zonder robuuste Huber-White correctie."
     }
   },
   {
@@ -2636,6 +3274,55 @@ window.LEVELS_DATA = [
         "Que el tamaño de muestra es insuficiente para incorporar múltiples predictores"
       ],
       "explanation": "¡Pensamiento causal riguroso! La inversión de signo al ajustar por un factor de confusión demuestra cómo los datos agregados inducen a conclusiones erróneas si no se cierran los caminos de puerta trasera."
+    },
+    "case_de": {
+      "title": "Casus: Sporten en Cholesterol (De Paradox)",
+      "context": "In enkelvoudige regressie lijkt sporten cholesterol te verhogen (+0.32, p=0.002). Maar ouderen sporten vaker én hebben biologisch hoger cholesterol. Wat gebeurt er als we Leeftijd meenemen?",
+      "question": "Waarom keert het effect om als we Leeftijd toevoegen als covariabele in meervoudige regressie?"
+    },
+    "theory_de": {
+      "summary": "Simpson's Paradox: een verband keert om zodra je controleert voor een confounder. In meervoudige regressie schatten we het effect ceteris paribus (onder gelijkblijvende omstandigheden).",
+      "formulaExplain": "Na controle voor leeftijd blijkt sporten fysiologisch gezond en cholesterol-verlagend.",
+      "keyConcepts": [
+        {
+          "term": "Confounder",
+          "desc": "Variabele die samenhangt met zowel voorspeller als uitkomst (Leeftijd)."
+        },
+        {
+          "term": "Ceteris Paribus",
+          "desc": "Het zuivere effect van sport voor mensen van exact dezelfde leeftijd."
+        }
+      ]
+    },
+    "simulation_de": {
+      "name": "Simpson's Paradox Visualizer",
+      "description": "Bekijk de misleidende gecombineerde stijgende lijn versus de twee gezonde dalende lijnen binnen de leeftijdsgroepen."
+    },
+    "interpretation_de": {
+      "title": "Enkelvoudig vs Meervoudig",
+      "recommendation": "Trek nooit causale conclusies uit enkelvoudige correlaties zonder te controleren voor confounders.",
+      "metrics": [
+        {
+          "label": "Enkelvoudig β (Sport)",
+          "value": "+0.32 (p = 0.002)",
+          "note": "Vertekend door confounder"
+        },
+        {
+          "label": "Meervoudig β (Sport | Leeftijd)",
+          "value": "-0.26 (p < 0.001)",
+          "note": "Zuiver fysiologisch effect"
+        }
+      ]
+    },
+    "quiz_de": {
+      "question": "Wat betekent het als de partiële regressiecoëfficiënt β₁ geschat wordt 'gecorrigeerd voor X₂'?",
+      "options": [
+        "Dat de correlatie tussen X₁ en Y kunstmatig op nul is gesteld via orthogonalisatie",
+        "Dat we kijken naar de associatie tussen X₁ en Y voor observaties met een identieke waarde op X₂ (ceteris paribus)",
+        "Dat X₁ en X₂ met elkaar vermenigvuldigd zijn als interactieterm in de ontwerpmatrix",
+        "Dat het causale pad van X₂ naar Y volledig geëlimineerd is via instrumentele variabelen"
+      ],
+      "explanation": "Exact! Meervoudige regressie isoleert het unieke partiële effect van X₁ op Y terwijl alle overige variabelen in het model constant worden gehouden."
     }
   },
   {
@@ -2849,6 +3536,60 @@ window.LEVELS_DATA = [
         "Que los residuos vulneran inmediatamente los supuestos de normalidad y homocedasticidad"
       ],
       "explanation": "¡Conocimiento riguroso! La multicolinealidad no genera sesgo (los estimadores siguen siendo insesgados), pero infla masivamente los errores estándar y desestabiliza las estimaciones individuales."
+    },
+    "case_de": {
+      "title": "Casus: De Hordeloper en Twee Benen",
+      "context": "Sprinttijd voorspellen met 'Linkerbeenlengte' én 'Rechterbeenlengte' ($r = 0.99$). De F-toets is $p < 0.0001$, maar beide afzonderlijke benen zijn $p = 0.68$ (niet-significant).",
+      "question": "Wat is multicollineariteit en hoe signaleert de VIF-score dit gevaar?"
+    },
+    "theory_de": {
+      "summary": "Wanneer voorspellers onderling sterk correleren, kan OLS de effecten niet scheiden. De standaardfouten exploderen met een factor $\\sqrt{\\text{VIF}}$, waardoor echte effecten statistisch onzichtbaar worden.",
+      "formulaExplain": "Bij $r = 0.99$ is $\\text{VIF} = \\frac{1}{1 - 0.99^2} = 50.25 \\approx 50.3$. De standaardfout is $\\sqrt{50.25} \\approx 7.1\\times$ zo breed als zonder collineariteit!",
+      "keyConcepts": [
+        {
+          "term": "Variance Inflation Factor (VIF)",
+          "desc": "VIF = 1 / (1 - R_j²). Geeft aan hoeveel keer groter de variantie is."
+        },
+        {
+          "term": "Drempelwaarden",
+          "desc": "VIF = 1 (ideaal), VIF > 5 (zorgelijk), VIF > 10 (kritiek: model is onbetrouwbaar)."
+        }
+      ]
+    },
+    "simulation_de": {
+      "name": "Multicollineariteit & VIF Simulator",
+      "description": "Schuif de correlatie tussen X₁ en X₂ omhoog van 0.0 naar 0.99. Zie de betrouwbaarheidsintervallen exploderen!"
+    },
+    "interpretation_de": {
+      "title": "Diagnose & Praktijk Oplossing",
+      "recommendation": "Verwijder één van de twee benen. De VIF zakt direct naar 1.0 en de overblijvende variabele wordt zeer significant.",
+      "metrics": [
+        {
+          "label": "Correlatie Linker/Rechterbeen",
+          "value": "r = 0.99",
+          "note": "Redundante voorspellers"
+        },
+        {
+          "label": "VIF Score",
+          "value": "VIF = 50.3",
+          "note": "Kritiek hoog (> 10; SE 7.1x opgeblazen)"
+        },
+        {
+          "label": "Oplossing",
+          "value": "Verwijder één variabele",
+          "note": "Of neem het gemiddelde"
+        }
+      ]
+    },
+    "quiz_de": {
+      "question": "Wat is het voornaamste gevaar van ernstige multicollineariteit (VIF > 15) tussen verklarende variabelen?",
+      "options": [
+        "De OLS-puntschattingen worden structureel vertekend en verliezen hun consistentie",
+        "Standaardfouten worden gigantisch opgeblazen, waardoor betrouwbaarheidsintervallen breed worden en afzonderlijke t-toetsen niet-significant lijken",
+        "Het totale verklaringspercentage R² en de globale F-toets van het model storten in naar nul",
+        "De residuen vertonen direct sterke seriële autocorrelatie"
+      ],
+      "explanation": "Meesterlijk! Collineariteit maakt puntschattingen uiterst instabiel en blaast de standaardfouten op (VIF), hoewel het model als geheel vaak wel een hoge en significante R² behoudt."
     }
   },
   {
@@ -3067,6 +3808,59 @@ window.LEVELS_DATA = [
         "OR = 0,50: la probabilidad del evento se reduce exactamente a la mitad"
       ],
       "explanation": "¡Exacto! En regresión logística, OR = e^β. Puesto que e^0,693 ≈ 2,00, cada unidad de aumento en el predictor duplica exactamente las odds del desenlace."
+    },
+    "case_de": {
+      "title": "Casus: Heropname van Hartpatiënten Binnen 30 Dagen",
+      "context": "Voorspel of een patiënt binnen 30 dagen opnieuw wordt opgenomen (1 = Ja, 0 = Nee). Gewone OLS geeft kansen van -15% of 120%. Hoe lost logistische regressie dit op?",
+      "question": "Hoe transformeert logistische regressie kansen via de 'logit' linkfunctie naar een prachtige S-curve en wat is een Odds Ratio?"
+    },
+    "theory_de": {
+      "summary": "De logit linkfunctie $\\ln(p / (1-p))$ transformeert kansen naar een onbegrensde schaal. De inverse is de sigmoïde functie, die garandeert dat voorspelde kansen strikt tussen 0 en 1 blijven. De Odds Ratio is $e^{\\beta_1}$.",
+      "formulaExplain": "Als $\\beta_1 = 0.92$, is de Odds Ratio $\\text{OR} = e^{0.92} = 2.51$.",
+      "keyConcepts": [
+        {
+          "term": "Odds",
+          "desc": "Kans op wel / kans op niet: p / (1 - p)."
+        },
+        {
+          "term": "Odds Ratio (OR)",
+          "desc": "e^(β₁). Bij OR = 2.5 zijn de odds 2.5x zo hoog."
+        },
+        {
+          "term": "Cutoff",
+          "desc": "Beslisdrempel (bijv. 0.50 of 0.35 voor extra sensitiviteit)."
+        }
+      ]
+    },
+    "simulation_de": {
+      "name": "De Sigmoïde S-curve & Confusion Matrix",
+      "description": "Verander de beslisgrens (cutoff van 0.1 tot 0.9) en zie de Confusion Matrix live mee veranderen."
+    },
+    "interpretation_de": {
+      "title": "Model Output & Medisch Besluit",
+      "recommendation": "Patiënten met hypertensie hebben een 2.5x hogere kansverhouding op complicaties.",
+      "metrics": [
+        {
+          "label": "Odds Ratio Hoge Bloeddruk",
+          "value": "2.51 (p = 0.004)",
+          "note": "2.5x hogere odds op heropname"
+        },
+        {
+          "label": "Beslisgrens monitoring",
+          "value": "Cutoff = 0.35",
+          "note": "Voor 90% detectie van heropnames"
+        }
+      ]
+    },
+    "quiz_de": {
+      "question": "Wat is de resulterende Odds Ratio (OR) wanneer de logistische regressiecoëfficiënt van een predictor β = 0 is?",
+      "options": [
+        "OR = 0 (de gebeurtenis kan onder geen enkele voorwaarde plaatsvinden)",
+        "OR = 1.0 (geen effect op de kansverhouding, want e⁰ = 1)",
+        "OR = 0.5 (gelijke kansen voor beide vergelijkingsgroepen)",
+        "OR is mathematisch onbepaald omdat men niet kan delen door de exponent van nul"
+      ],
+      "explanation": "Juist! Omdat logistische regressie de log-odds modelleert, is de odds ratio e^β. Voor β = 0 geldt e⁰ = 1, wat duidt op volledige afwezigheid van een effect."
     }
   },
   {
@@ -3282,6 +4076,59 @@ window.LEVELS_DATA = [
         "Que Lasso neutraliza la heterocedasticidad sin recurrir a errores estándar robustos"
       ],
       "explanation": "¡Conocimiento de alta precisión! Los vértices angulares de la restricción L₁ intersecan el contorno de verosimilitud en los ejes coordenados, fijando coeficientes irrelevantes exactamente en 0."
+    },
+    "case_de": {
+      "title": "Casus: Klantverloop met 50 Marketingvariabelen op N = 60",
+      "context": "Een model met 50 variabelen op 60 klanten behaalt $R^2 = 0.98$ op training, maar $R^2 = 0.08$ op nieuwe klanten (catastrofale overfitting). Hoe temmen straftermen dit?",
+      "question": "Waarom kan Lasso variabelen exact op nul zetten en Ridge niet?"
+    },
+    "theory_de": {
+      "summary": "Regularisatie telt een straf $\\lambda$ op voor grote coëfficiënten. Ridge ($L_2$) straft $\\sum \\beta_j^2$ (krimpt evenredig). Lasso ($L_1$) straft $\\sum |\\beta_j|$ en zet irrelevante variabelen exact op 0.",
+      "formulaExplain": "Lasso levert spaarzame, interpreteerbare modellen op.",
+      "keyConcepts": [
+        {
+          "term": "Ridge (L₂)",
+          "desc": "Krimpt alle coëfficiënten richting 0; ideaal bij multicollineariteit."
+        },
+        {
+          "term": "Lasso (L₁)",
+          "desc": "Zet coëfficiënten exact op nul; automatische feature selectie."
+        },
+        {
+          "term": "Penalty (λ)",
+          "desc": "Bepaalt de sterkte van de krimp, gekozen via cross-validatie."
+        }
+      ]
+    },
+    "simulation_de": {
+      "name": "Ridge vs Lasso Coëfficiënten Krimp Lab",
+      "description": "Schuif de penalty parameter λ omhoog en zie hoe Lasso variabelen uitschakelt naar nul."
+    },
+    "interpretation_de": {
+      "title": "Modelvergelijking & Conclusie",
+      "recommendation": "Kies Lasso als je vermoedt dat slechts enkele variabelen er echt toe doen.",
+      "metrics": [
+        {
+          "label": "Beste Lasso Penalty (λ)",
+          "value": "0.22",
+          "note": "Bepaald via Kruisvalidatie"
+        },
+        {
+          "label": "Geselecteerde variabelen",
+          "value": "6 van de 50",
+          "note": "Alleen de echte signaalgevers"
+        }
+      ]
+    },
+    "quiz_de": {
+      "question": "Wat is het unieke voordeel van Lasso (L₁) regularisatie boven Ridge (L₂) regularisatie?",
+      "options": [
+        "Lasso levert altijd een gesloten analytische OLS-oplossing zonder numerieke optimalisatie",
+        "Lasso zet coëfficiënten van minder relevante variabelen exact op nul (automatische feature selectie dankzij de hoekige L₁-norm)",
+        "Lasso is wiskundig immuun voor multicollineariteit wanneer variabelen perfect gecorreleerd zijn",
+        "Lasso minimaliseert de conditionele verwachting zonder afhankelijkheid van de strafparameter λ"
+      ],
+      "explanation": "Uitstekend! De ruitvormige L₁-contouren raken de OLS-ellipsen op de assen, waardoor irrelevante coëfficiënten exact nul worden. Ridge krimpt ze naar nul maar behoudt alle variabelen."
     }
   },
   {
@@ -3488,6 +4335,55 @@ window.LEVELS_DATA = [
         "Que los residuos vulneran la normalidad, impidiendo el cálculo de parámetros"
       ],
       "explanation": "¡Conocimiento de nivel maestro! MCO agrupado confunde medidas repetidas con información independiente, reduciendo artificialmente los errores estándar entre 2 y 5 veces."
+    },
+    "case_de": {
+      "title": "Casus: Toetsscores over 20 Verschillende Basisscholen",
+      "context": "600 leerlingen verdeeld over 20 scholen. Pooled OLS geeft $p = 0.0004$. Maar leerlingen binnen dezelfde school lijken op elkaar. Is deze p-waarde echt betrouwbaar?",
+      "question": "Waarom lijken leerlingen binnen dezelfde school op elkaar, en hoe leidt het negeren van clusters tot schijnprecisie?"
+    },
+    "theory_de": {
+      "summary": "In de praktijk is data vaak genest (patiënten bij artsen, leerlingen in scholen). Standaard OLS negeert deze afhankelijkheid en onderschat de standaardfouten met een factor $\\sqrt{1 + (m-1)\\text{ICC}}$.",
+      "formulaExplain": "Als ICC = 0.30 en $m = 30$, is de variantie-inflatie $1 + 29 \\times 0.30 = 9.7$!",
+      "keyConcepts": [
+        {
+          "term": "Intraclass Correlation (ICC)",
+          "desc": "Aandeel van totale variantie tussen clusters: σ²_tussen / (σ²_tussen + σ²_binnen)."
+        },
+        {
+          "term": "Schijnprecisie",
+          "desc": "Standaardfouten lijken tot 3x te klein, met een lawine aan Type I fouten tot gevolg."
+        }
+      ]
+    },
+    "simulation_de": {
+      "name": "Cluster Effect & ICC Simulator",
+      "description": "Verhoog de ICC van 0.0 naar 0.60. Zie hoe scholen uit elkaar drijven en de geclusterde SE toeneemt."
+    },
+    "interpretation_de": {
+      "title": "Methodologisch Oordeel",
+      "recommendation": "Gebruik nooit gewone OLS wanneer ICC > 0.05. Stap direct over naar Linear Mixed Models.",
+      "metrics": [
+        {
+          "label": "Berekende ICC",
+          "value": "0.28 (28%)",
+          "note": "28% van variantie zit tussen scholen"
+        },
+        {
+          "label": "Reële Standaardfout",
+          "value": "SE = 0.215",
+          "note": "Na rekening houden met clusters"
+        }
+      ]
+    },
+    "quiz_de": {
+      "question": "Wat is het grootste risico wanneer hiërarchisch geclusterde data geanalyseerd wordt met standaard OLS-regressie?",
+      "options": [
+        "OLS overschat de tussen-cluster variantie, waardoor geschatte hellingen structureel te steil worden",
+        "Standaardfouten worden dramatisch te klein geschat door schending van de onafhankelijkheidsaanname, wat leidt tot massale Type I fouten (schijnprecisie)",
+        "De Intraclass Correlatiecoëfficiënt (ICC) wordt wiskundig negatief",
+        "De schatting faalt omdat OLS vereist dat elk cluster exact hetzelfde aantal observaties telt"
+      ],
+      "explanation": "Helemaal goed! OLS behandelt afhankelijke observaties binnen clusters als onafhankelijke bewijspunten (pseudoreplicatie), waardoor standaardfouten te klein worden en toeval als significant wordt bestempeld."
     }
   },
   {
@@ -3703,6 +4599,59 @@ window.LEVELS_DATA = [
         "Los grados de libertad se reducen a cero para ese grupo específico"
       ],
       "explanation": "¡Dominio impecable! La contracción equilibra la evidencia muestral local con la distribución previa global: los grupos con escasas observaciones son atraídos hacia la media general."
+    },
+    "case_de": {
+      "title": "Casus: Leertijd vs Cijfer met School-Specifieke Startniveaus",
+      "context": "Elke school heeft een ander startniveau (van 5.0 tot 7.5), maar op elke school levert een uur studeren ongeveer +0.4 punt op. We willen één algemeen leereffect, maar elke school haar eigen intercept.",
+      "question": "Hoe splitst een Random Intercept Model de werkelijkheid op in Vaste Effecten en Willekeurige Effecten?"
+    },
+    "theory_de": {
+      "summary": "In een Random Intercept model splitsen we het intercept in een vast populatiegemiddelde $\\beta_0$ en een unieke afwijking per cluster $u_{0j} \\sim \\mathcal{N}(0, \\sigma^2_{u0})$. Dankzij Empirical Bayes Shrinkage worden kleine clusters behoedzaam naar het centrale gemiddelde getrokken.",
+      "formulaExplain": "We schatten slechts één variantieparameter $\\sigma^2_{u0}$ in plaats van 20 afzonderlijke dummies.",
+      "keyConcepts": [
+        {
+          "term": "Fixed Effect (β₁)",
+          "desc": "Het gemiddelde effect over de gehele populatie (+0.40 per uur)."
+        },
+        {
+          "term": "Random Intercept (u₀ⱼ)",
+          "desc": "Cluster-specifieke afwijking van het startniveau."
+        },
+        {
+          "term": "Shrinkage",
+          "desc": "Kleine groepen met weinig data leunen meer op het algehele gemiddelde."
+        }
+      ]
+    },
+    "simulation_de": {
+      "name": "Random Intercept & Shrinkage Visualizer",
+      "description": "Bekijk de parallelle regressielijnen per school. Verschuif de clustervariantie en zie shrinkage in actie."
+    },
+    "interpretation_de": {
+      "title": "Statsmodels / R (lme4) Output",
+      "recommendation": "Geeft een zuivere schatting van het leereffect mét respect voor startverschillen.",
+      "metrics": [
+        {
+          "label": "Fixed Effect: Leertijd (β₁)",
+          "value": "+0.405 (p < 0.001)",
+          "note": "Zuiver overkoepelend leereffect"
+        },
+        {
+          "label": "Random Effect Var(u₀)",
+          "value": "σ²_u₀ = 1.42",
+          "note": "Variatie in startniveau tussen scholen"
+        }
+      ]
+    },
+    "quiz_de": {
+      "question": "Wat gebeurt er dankzij 'shrinkage' (partial pooling) met een cluster of school waar toevallig slechts 2 observaties zijn gemeten?",
+      "options": [
+        "Het cluster wordt behandeld als een extreme uitschieter en krijgt een afzonderlijke dummy-parameter",
+        "Haar geschatte willekeurige intercept wordt sterk richting het overkoepelende populatiegemiddelde (grand mean) getrokken",
+        "De residuele variantie binnen dat specifieke cluster wordt gelijkgesteld aan nul",
+        "Haar geschatte helling wordt geforceerd om exact de maximale fixed-effect waarde aan te nemen"
+      ],
+      "explanation": "Exact! Bij kleine steekproeven is de empirische data lawaaierig; het mixed model vertrouwt meer op de overkoepelende populatieverdeling en 'krimpt' de schatting naar het centrum."
     }
   },
   {
@@ -3919,6 +4868,60 @@ window.LEVELS_DATA = [
         "Que la varianza residual supera a la varianza entre sujetos, vulnerando los supuestos"
       ],
       "explanation": "¡Perfección clínica y estadística! Una correlación negativa ρ₀₁ demuestra que valores basales inferiores se asocian a pendientes más empinadas de recuperación."
+    },
+    "case_de": {
+      "title": "Casus: Cognitief Herstel na een Beroerte over 6 Maanden",
+      "context": "Patiënten worden 6 maanden gevolgd. Patiënt 1 herstelt met +7.8 pt/mnd; patiënt 2 met slechts +1.9 pt/mnd. Er is variatie in startniveau én in hersteltempo.",
+      "question": "Hoe modelleer je zowel individuele startposities als individuele hersteltempo's over de tijd?"
+    },
+    "theory_de": {
+      "summary": "In een Random Slope model mag niet alleen het intercept variëren ($u_{0j}$), maar ook de hellingshoek ($u_{1j}$). Bovendien schatten we de correlatie tussen startniveau en herstelsnelheid (inhaaleffect).",
+      "formulaExplain": "$\\beta_1$ is het gemiddelde effect van de therapie over alle mensen.",
+      "keyConcepts": [
+        {
+          "term": "Random Slope (u₁ⱼ)",
+          "desc": "Individuele afwijking van het algemene hersteltempo: u₁ⱼ ~ N(0, σ²_u₁)."
+        },
+        {
+          "term": "Corr(u₀, u₁)",
+          "desc": "Negatieve correlatie duidt op een inhaaleffect: lagere starters herstellen sneller."
+        }
+      ]
+    },
+    "simulation_de": {
+      "name": "De Ultieme Mixed Model Simulator (Random Slopes)",
+      "description": "Speel met de random slope variantie en zie hoe individuele patiëntcurven uitwaaieren over de tijd."
+    },
+    "interpretation_de": {
+      "title": "MixedLM Output Interpretatie",
+      "recommendation": "Dit model is de absolute gouden standaard voor longitudinale data en herhaalde metingen.",
+      "metrics": [
+        {
+          "label": "Fixed Effect: Tijd",
+          "value": "+4.48 pt/mnd (p < 0.0001)",
+          "note": "Gemiddelde winst door therapie"
+        },
+        {
+          "label": "Random Slope Var(u₁)",
+          "value": "σ²_u₁ = 3.65",
+          "note": "Substantiële individuele verschillen"
+        },
+        {
+          "label": "Correlatie Intercept-Slope",
+          "value": "r = -0.42",
+          "note": "Inhaaleffect bij zware start"
+        }
+      ]
+    },
+    "quiz_de": {
+      "question": "Wat betekent het in een Random Slope model als de variantie van de helling σ²_u1 statistisch significant groter is dan nul?",
+      "options": [
+        "Dat het verband tussen de predictor en de uitkomst puur door heteroscedasticiteit wordt gedreven",
+        "Dat het effect van de predictor (de veranderingssnelheid) niet voor elk cluster gelijk is, maar betekenisvol varieert tussen groepen of individuen",
+        "Dat het model overgespecificeerd is en gereduceerd moet worden tot een Random Intercept model",
+        "Dat de correlatie tussen het intercept en de slope per definitie gelijk is aan nul"
+      ],
+      "explanation": "Juist! Een significante σ²_u1 toont aan dat clusters niet alleen een ander startniveau hebben (intercept), maar ook fundamenteel verschillen in hun reactiesnelheid of groeipatroon (helling)."
     }
   },
   {
@@ -4133,6 +5136,55 @@ window.LEVELS_DATA = [
         "Cuando los predictores exhiben alta multicolinealidad entre sí"
       ],
       "explanation": "¡Exacto! LMM exige una variable continua condicionalmente normal. Cuando los desenlaces son discretos (binarios, Poisson, conteos) y están agrupados, GLMM es estrictamente indispensable."
+    },
+    "case_de": {
+      "title": "Casus: Ziekenhuisinfecties over 40 Chirurgische Afdelingen",
+      "context": "We willen voorspellen of een patiënt een postoperatieve infectie oploopt (Ja/Nee = 1/0). Patiënten zijn geclusterd binnen 40 afdelingen. Het is dus én binair én geclusterd!",
+      "question": "Hoe combineert een GLMM de logit-linkfunctie met random intercepts om binaire geclusterde data correct te analyseren?"
+    },
+    "theory_de": {
+      "summary": "Wanneer je uitkomst niet continu en normaal is (bijv. binair of tellingen) én je data is geclusterd, combineer je GLM met Mixed Models: GLMM. Via een linkfunctie (zoals logit of log) modelleren we de verwachte waarde met random intercepts.",
+      "formulaExplain": "Hierdoor schat je betrouwbare Odds Ratios zonder dat ziekenhuizen met toevallig veel patiënten de data domineren.",
+      "keyConcepts": [
+        {
+          "term": "Linkfunctie g(μ)",
+          "desc": "Transformeert de niet-lineaire kans naar lineaire predictorschaal (bijv. logit)."
+        },
+        {
+          "term": "Random Intercept op Logit-schaal",
+          "desc": "Elk ziekenhuis krijgt een eigen basis-risiconiveau u₀ⱼ op de log-odds schaal."
+        }
+      ]
+    },
+    "simulation_de": {
+      "name": "GLMM Cluster-Risico Simulator",
+      "description": "Bekijk hoe de infectiekans per ziekenhuis varieert op de S-curve door de variatie in random intercepts."
+    },
+    "interpretation_de": {
+      "title": "GLMM Output Interpretatie",
+      "recommendation": "GLMM voorkomt dat je ziekenhuis-verschillen aanziet voor patiënt-factoren.",
+      "metrics": [
+        {
+          "label": "Operatieduur (per uur)",
+          "value": "OR = 1.48 (p = 0.002)",
+          "note": "+48% kans op infectie per extra uur"
+        },
+        {
+          "label": "Tussen-Afdeling Variantie",
+          "value": "σ²_u = 0.64",
+          "note": "Aanzienlijke kwaliteitsverschillen tussen afdelingen"
+        }
+      ]
+    },
+    "quiz_de": {
+      "question": "Wanneer stap je over van een Linear Mixed Model (LMM) naar een Generalized Linear Mixed Model (GLMM)?",
+      "options": [
+        "Wanneer het aantal niveaus in de hiërarchie toeneemt van twee naar drie of meer niveaus",
+        "Wanneer de geclusterde responsvariabele niet-Gaussisch is (zoals binaire uitkomsten, odds of Poisson-tellingen) en een linkfunctie vereist",
+        "Wanneer de predictoren onderling gecorreleerd zijn en de VIF groter is dan 10",
+        "Wanneer men Bayesiaanse MCMC-schatting verkiest boven Restricted Maximum Likelihood (REML)"
+      ],
+      "explanation": "Spot-on! GLMM combineert de flexibiliteit van GLM (voor binaire of teldata via linkfuncties zoals logit of log) met de clustering van mixed models (random effects)."
     }
   },
   {
@@ -4349,6 +5401,55 @@ window.LEVELS_DATA = [
         "Que la hipótesis nula de ausencia de efecto se rechaza con α = 0,048"
       ],
       "explanation": "¡Conocimiento magistral! En GAMs, EDF = 1 equivale a una recta simple. Un EDF de ~4,8 denota una curva suave y flexible con múltiples puntos de inflexión."
+    },
+    "case_de": {
+      "title": "Casus: Buitentemperatuur vs Energieverbruik (U-Vormige Kromming)",
+      "context": "Bij -5°C stijgt het gasverbruik hard (verwarming). Bij +18°C is het minimaal. Boven de 28°C stijgt het stroomverbruik weer hard (airco). Geen enkele rechte lijn kan dit vangen!",
+      "question": "Hoe laten splines in een GAM de data zelf bepalen hoe de curve loopt, zonder overfitting?"
+    },
+    "theory_de": {
+      "summary": "GAMs vervangen lineaire termen $\\beta X$ door gladde functies $f(X)$ (splines). Een gladheidsterm (smoothing parameter $\\lambda$) zorgt voor de balans tussen flexibiliteit en eenvoud.",
+      "formulaExplain": "Als $\\lambda \\to \\infty$ wordt de curve een rechte lijn; als $\\lambda \\to 0$ volgt hij elke afzonderlijke ruispunt.",
+      "keyConcepts": [
+        {
+          "term": "Smooth Function f(X)",
+          "desc": "Opgebouwd uit stuksgewijze polynomen (spline basis functies)."
+        },
+        {
+          "term": "Smoothing Parameter λ",
+          "desc": "Bestraft te wiebelige curven om overfitting te voorkomen."
+        }
+      ]
+    },
+    "simulation_de": {
+      "name": "GAM Spline & Smoothing Simulator",
+      "description": "Schuif aan smoothing parameter λ en zie hoe de curve verandert van een stijve rechte lijn naar een perfecte vloeiende curve."
+    },
+    "interpretation_de": {
+      "title": "GAM Output Interpretatie",
+      "recommendation": "Gebruik GAMs wanneer de natuurwetenschappelijke relatie duidelijk gekromd is maar je geen arbitraire $X^2$ of $X^3$ wilt forceren.",
+      "metrics": [
+        {
+          "label": "Effective Degrees of Freedom (edf)",
+          "value": "edf = 4.2",
+          "note": "Geeft de complexiteit van de kromming aan"
+        },
+        {
+          "label": "P-waarde van f(Temperatuur)",
+          "value": "p < 0.0001",
+          "note": "Hoogst significant niet-lineair effect"
+        }
+      ]
+    },
+    "quiz_de": {
+      "question": "Wat gebeurt er in een Generalized Additive Model (GAM) als de smoothing parameter λ naar oneindig nadert (λ → ∞)?",
+      "options": [
+        "De splines interpoleren elk individueel datapunt exact (extreme overfitting)",
+        "De strafterm op kromming domineert volledig, waardoor de geschatte functie convergeert naar een rechte lineaire lijn",
+        "De effectieve vrijheidsgraden (EDF) stijgen naar het maximale aantal basisknopen",
+        "De gegeneraliseerde kruisvalidatiescore (GCV) daalt altijd naar exact nul"
+      ],
+      "explanation": "Juist! De smoothing penalty bestraft de geïntegreerde kwadratische tweede afgeleide (kromming). Als λ → ∞ wordt elke kromming oneindig zwaar bestraft en blijft er een gewone rechte lijn over."
     }
   },
   {
@@ -4562,6 +5663,55 @@ window.LEVELS_DATA = [
         "Que el tratamiento reduce la mortalidad absoluta exactamente en 30 puntos porcentuales"
       ],
       "explanation": "¡Dominio clínico impecable! La Hazard Ratio evalúa tasas instantáneas de riesgo: HR = 0,70 equivale a una reducción instantánea del 30% en el peligro del evento."
+    },
+    "case_de": {
+      "title": "Casus: Overlevingstijd bij Kankertherapie (Rechtscensurering)",
+      "context": "We volgen patiënten tot 5 jaar. Sommige patiënten overlijden; anderen zijn na 5 jaar nog in leven of verhuizen halverwege. Je mag hen niet weggooien, want ze hebben bewezen maandenlang te overleven!",
+      "question": "Hoe berekent de Kaplan-Meier schatter de overlevingskans over de tijd ondanks ontbrekende eindpunten (censurering)?"
+    },
+    "theory_de": {
+      "summary": "In survival analysis is de uitkomsttijd 'gecensureerd' voor wie het event nog niet heeft meegemaakt. De Kaplan-Meier curve berekent cumulatieve overlevingskansen stap voor stap. Het Cox PH model schat Hazard Ratios ($HR$): het relatieve risico per tijdseenheid.",
+      "formulaExplain": "De noemer $n_i$ krimpt alleen voor patiënten die nog 'at risk' zijn op dat specifieke moment.",
+      "keyConcepts": [
+        {
+          "term": "Censurering",
+          "desc": "We weten dat de patiënt minstens T maanden heeft overleefd, maar niet wanneer het event daarna plaatsvindt."
+        },
+        {
+          "term": "Hazard Ratio (HR)",
+          "desc": "HR = 0.60 betekent 40% lager risico op overlijden op elk willekeurig moment."
+        }
+      ]
+    },
+    "simulation_de": {
+      "name": "Kaplan-Meier Curve & Hazard Ratio Lab",
+      "description": "Vergelijk de overlevingscurven van de nieuwe therapie vs standaardzorg. Zie de trapvormige dalingen bij events."
+    },
+    "interpretation_de": {
+      "title": "Cox Model Output",
+      "recommendation": "De nieuwe therapie biedt een statistisch en klinisch bewezen levensverlenging.",
+      "metrics": [
+        {
+          "label": "Hazard Ratio (Nieuwe Therapie)",
+          "value": "HR = 0.58 (p = 0.003)",
+          "note": "42% risicoreductie!"
+        },
+        {
+          "label": "Mediane Overleving",
+          "value": "38 mnd vs 22 mnd",
+          "note": "+16 maanden levensverlenging"
+        }
+      ]
+    },
+    "quiz_de": {
+      "question": "Wat betekent een Hazard Ratio van HR = 0.70 voor een nieuw medicijn in een Cox Proportional Hazards model?",
+      "options": [
+        "Dat de mediane overlevingstijd van behandelde patiënten met exact 70% toeneemt",
+        "Dat op elk moment tijdens de follow-up het risico op het optreden van het event 30% lager is in de behandelde groep dan in de controlegroep",
+        "Dat na afloop van de follow-up periode 70% van de behandelde patiënten nog in leven is",
+        "Dat de cumulatieve overlevingscurve een lineaire daling vertoont met een constante helling van 0.70"
+      ],
+      "explanation": "Uitstekend! De hazard ratio is de verhouding van de instantane gebeurteniskansen: HR = 0.70 betekent dat behandelde patiënten op elk tijdstip 70% van het risico van de controlegroep ervaren (een risicoreductie van 30%)."
     }
   },
   {
@@ -4778,6 +5928,59 @@ window.LEVELS_DATA = [
         "La inferencia bayesiana solo es válida cuando el tamaño muestral N es inferior a 30"
       ],
       "explanation": "¡Claridad conceptual de primer orden! Los frecuentistas conciben los parámetros como constantes fijas; los bayesianos modelan la incertidumbre asignando distribuciones de probabilidad a los parámetros."
+    },
+    "case_de": {
+      "title": "Casus: De Zeldzame Ziekte & De Positieve Test",
+      "context": "Een ziekte treft 1 op de 1.000 mensen (Prior = 0.1%). Een test is 99% accuraat. Een patiënt test positief. De arts denkt: 'Je bent voor 99% zeker ziek.' Maar wat zegt Thomas Bayes?",
+      "question": "Waarom is de werkelijke kans op ziekte na een positieve test slechts 2% en hoe actualiseert Bayesiaanse statistiek onze overtuigingen?"
+    },
+    "theory_de": {
+      "summary": "In de Bayesiaanse statistiek zijn parameters geen vaste onbekende getallen, maar kansverdelingen die onze onzekerheid representeren. We combineren eerdere kennis (Prior) met nieuwe observaties (Likelihood) om tot een geactualiseerde overtuiging te komen (Posterior).",
+      "formulaExplain": "Posterior = (Likelihood × Prior) / Bewijs.",
+      "keyConcepts": [
+        {
+          "term": "Prior P(θ)",
+          "desc": "Wat we wisten vóór we nieuwe data zagen."
+        },
+        {
+          "term": "Likelihood P(D | θ)",
+          "desc": "Hoe waarschijnlijk is de waargenomen data gegeven parameter θ."
+        },
+        {
+          "term": "Posterior P(θ | D)",
+          "desc": "Onze geactualiseerde kennis na het zien van de data."
+        }
+      ]
+    },
+    "simulation_de": {
+      "name": "Bayesiaanse Update Simulator",
+      "description": "Verander de sterkte van je Prior en voeg datapunten toe. Zie hoe de Posterior curve zich langzaam beweegt van de prior naar de data!"
+    },
+    "interpretation_de": {
+      "title": "Bayesiaanse Uitkomst",
+      "recommendation": "Bayesiaanse credible intervals geven wél de intuïtieve interpretatie die frequentistische CI's niet mogen claimen.",
+      "metrics": [
+        {
+          "label": "Posterior Mediaan",
+          "value": "θ = 0.42",
+          "note": "Geactualiseerde schatting"
+        },
+        {
+          "label": "95% Credible Interval",
+          "value": "[0.34, 0.51]",
+          "note": "Hierin ligt θ wél met 95% echte kans!"
+        }
+      ]
+    },
+    "quiz_de": {
+      "question": "Wat is het fundamentele conceptuele verschil tussen een frequentistisch 95% betrouwbaarheidsinterval en een Bayesiaans 95% Credible Interval?",
+      "options": [
+        "Frequentistische intervallen gebruiken altijd een uniforme prior, terwijl Bayesiaanse intervallen Gaussiaanse priors vereisen",
+        "In een Bayesiaans Credible Interval is er conditioneel op de data en de prior daadwerkelijk 95% kans dat de parameter binnen de grenzen ligt; in de frequentistische leer is de parameter vast en dekt 95% van denkbeeldige herhaalde intervallen de parameter",
+        "Frequentistische intervallen corrigeren automatisch voor meervoudig toetsen, terwijl Bayesiaanse intervallen de posterior opblazen",
+        "Een Bayesiaans Highest Posterior Density (HPD) interval is wiskundig altijd identiek aan het frequentistische Wald-interval"
+      ],
+      "explanation": "Briljant! In Bayes is de parameter een stochastische variabele met een posterior verdeling, waardoor je wél directe kansuitspraken mag doen over parameterwaarden."
     }
   },
   {
@@ -4984,6 +6187,55 @@ window.LEVELS_DATA = [
         "Lograr una tasa de aceptación del 100% exacto en Metropolis-Hastings"
       ],
       "explanation": "¡Riguroso y certero! Cadenas MCMC convergentes exploran la posterior con fluidez. El patrón de 'oruga peluda' y R̂ ≈ 1,00 demuestran que las cadenas son estacionarias y muestrean el mismo espacio."
+    },
+    "case_de": {
+      "title": "Casus: Complexe Verdelingen die Wiskundig Niet Integreerbaar Zijn",
+      "context": "Bij complexe modellen met honderden parameters kan de noemer $P(D) = \\int P(D|\\theta)P(\\theta)d\\theta$ niet met pen en papier berekend worden. Hoe kan een computer dan toch de posterior verkennen?",
+      "question": "Hoe wandelt een MCMC-keten door de parameterruimte om een representatieve wolk van posteriorsamples te verzamelen?"
+    },
+    "theory_de": {
+      "summary": "Markov Chain Monte Carlo (MCMC) genereert steekproeven uit de posterior zonder de normalisatieconstante te berekenen. Hamiltoniaanse Monte Carlo (HMC) gebruikt wrijvingloze fysica (een knikker die over een heuvelachtig potentiaaloppervlak rolt) om razendsnel hoog-dimensionale ruimten te verkennen.",
+      "formulaExplain": "HMC lost Hamilton's bewegingsvergelijkingen op om grote sprongen door de kansruimte te maken.",
+      "keyConcepts": [
+        {
+          "term": "Traceplot",
+          "desc": "Tijdsreeks van de wandeling. Moet eruitzien als een wollige rups (goede convergentie)."
+        },
+        {
+          "term": "R-hat (R̂)",
+          "desc": "Gelman-Rubin diagnostiek. R̂ < 1.05 betekent dat onafhankelijke ketens het eens zijn."
+        }
+      ]
+    },
+    "simulation_de": {
+      "name": "Hamiltoniaanse MCMC Wandelaar",
+      "description": "Bekijk hoe de sampler stappen zet door een 2D posteriorlandschap en inspecteer de live traceplot."
+    },
+    "interpretation_de": {
+      "title": "MCMC Diagnostiek",
+      "recommendation": "Pas MCMC pas toe wanneer analytische benaderingen te kort schieten voor niet-lineaire hiërarchische modellen.",
+      "metrics": [
+        {
+          "label": "R-hat (R̂)",
+          "value": "1.002",
+          "note": "Perfecte convergentie (< 1.05)"
+        },
+        {
+          "label": "Effectieve Steekproefgrootte (ESS)",
+          "value": "3.400 samples",
+          "note": "Voldoende onafhankelijke trekkingen"
+        }
+      ]
+    },
+    "quiz_de": {
+      "question": "Wat duidt op gezonde MCMC-convergentie in een traceplot en Gelman-Rubin diagnostiek?",
+      "options": [
+        "Ketenwaarden die snel convergeren naar één constante horizontale lijn zonder enige oscillatie",
+        "Een 'harige rups' waarin meerdere onafhankelijke ketens homogeen door elkaar heen mengen met een Gelman-Rubin R̂ dicht bij 1.00 (R̂ < 1.05)",
+        "Een periodieke sinusgolf waarin de keten systematisch de prior en de likelihood afwisselt",
+        "Een acceptatieratio van exact 100% bij Metropolis-Hastings voorstellen"
+      ],
+      "explanation": "Haarscherp! Goede MCMC-ketens verkennen de gehele posterior doelgericht. Een 'harige rups' en R̂ ≈ 1.00 bewijzen dat de ketens stationair zijn en dezelfde verdeling samplen."
     }
   },
   {
@@ -5198,6 +6450,55 @@ window.LEVELS_DATA = [
         "La incertidumbre se iguala a la media condicional del kernel RBF"
       ],
       "explanation": "¡Exacto! Sin ruido de medida, la observación es una certeza matemática. La varianza condicional multivariante normal en esa coordenada se anula por completo."
+    },
+    "case_de": {
+      "title": "Casus: Bodemschattingen op Onbekend Terrein (Kriging / GP)",
+      "context": "We boren op 12 plekken naar grondwaterkwaliteit. We willen niet alleen de kwaliteit voorspellen op ongemeten plekken, maar ook exact weten HOE ONZEKER we zijn tussen de boorpunten.",
+      "question": "Wat is een Gaussiaans Proces en hoe levert een kernel-matrix een verdeling over oneindig veel functies op?"
+    },
+    "theory_de": {
+      "summary": "Een Gaussiaans Proces (GP) is een niet-parametrische methode: we kiezen geen vaste formule, maar definiëren een verdeling over functies. Elke eindige subset van punten is multivariaat normaal verdeeld. Waar data ligt, knijpt de onzekerheidsband samen tot nul; tussen datapunten zwelt de onzekerheid op.",
+      "formulaExplain": "De lengteschaal $\\ell$ bepaalt hoe snel correlatie tussen twee punten vervalt in de ruimte.",
+      "keyConcepts": [
+        {
+          "term": "Covariantie Kernel k(x, x')",
+          "desc": "Bepaalt de gladheid (bijv. Radial Basis Function / Squared Exponential)."
+        },
+        {
+          "term": "Oneindig-dimensionaal",
+          "desc": "Een functie kan worden gezien als een oneindig lange vector van waarden."
+        }
+      ]
+    },
+    "simulation_de": {
+      "name": "Gaussiaans Proces (GP) Visualizer",
+      "description": "Klik om datapunten toe te voegen. Zie hoe de onzekerheidsband (95% credible band) rond je punten samenknijpt!"
+    },
+    "interpretation_de": {
+      "title": "GP Resultaat",
+      "recommendation": "GPs zijn ongeëvenaard voor ruimtelijke interpolatie, bayesiaanse optimalisatie en fysische modellering.",
+      "metrics": [
+        {
+          "label": "Lengteschaal (ℓ)",
+          "value": "1.85 km",
+          "note": "Reikwijdte van ruimtelijke correlatie"
+        },
+        {
+          "label": "Signaalvariantie (σ²)",
+          "value": "3.20",
+          "note": "Totale ruimtelijke variabiliteit"
+        }
+      ]
+    },
+    "quiz_de": {
+      "question": "Wat gebeurt er met de predictieve onzekerheid van een Gaussiaans Proces (zonder observatieruis, σ_n = 0) op de exacte locatie van een waargenomen datapunt?",
+      "options": [
+        "De voorspelde variantie convergeert naar de marginale prior variantie σ_f²",
+        "De residuele onzekerheid krimpt exact naar nul, waardoor de functie strict door het geobserveerde punt interpoleert",
+        "De lengteschaal ℓ daalt lokaal naar nul, waardoor de covariantiekernel instort",
+        "De onzekerheid wordt gelijk aan het conditionele gemiddelde van de RBF-kernel"
+      ],
+      "explanation": "Exact! Zonder meetruis is de observatie een absolute zekerheid. De conditionele multivariate normale verdeling heeft op dat punt variantie 0 en de GP-onzekerheidsband krimpt tot nul."
     }
   },
   {
@@ -5406,6 +6707,59 @@ window.LEVELS_DATA = [
         "Calcular ponderaciones por inverso de probabilidad sin teoría de grafos"
       ],
       "explanation": "¡Pensamiento causal de vanguardia! El operador do separa la asociación P(Y|X) de la intervención P(Y|do(X)) mediante cirugía de grafos: seccionando las flechas que determinan a X."
+    },
+    "case_de": {
+      "title": "Casus: Kijken (Zien) versus Doen (Interveniëren)",
+      "context": "Als mensen paracetamol slikken, hebben ze vaak hoofdpijn: $P(\\text{Hoofdpijn} \\mid \\text{Paracetamol}) > P(\\text{Hoofdpijn} \\mid \\text{Geen})$. Maakt paracetamol ziek? Nee! Maar $P(Y \\mid X) \\neq P(Y \\mid \\text{do}(X))$. Hoe formaliseert Judea Pearl dit?",
+      "question": "Wat is het verschil tussen conditioneren op een observatie en interveniëren met de do-operator in een causale graaf?"
+    },
+    "theory_de": {
+      "summary": "Causaliteit vereist een structureel causaal model (Directed Acyclic Graph, DAG). Met de do-operator $\\text{do}(X=x)$ knippen we de inkomende pijlen naar $X$ door om confounding te elimineren. In oneindig-dimensionale Hilbertruimten ($mathcal{H}$) embedden we complete kansverdelingen via Kernel Mean Embeddings om niet-lineaire causale effecten zonder parametrische aannames te schatten.",
+      "formulaExplain": "Pearl's backdoor-aanpassing isoleert het effect onder do(X). In een Reproducing Kernel Hilbert Space (RKHS, ℋ_Y) embedt de Kernel Mean Embedding de continue causale verdeling als element zonder parametrische aannames.",
+      "keyConcepts": [
+        {
+          "term": "do(X = x)",
+          "desc": "Stelt X actief in door interventie; verwijdert confounding invloeden."
+        },
+        {
+          "term": "Backdoor Criterium",
+          "desc": "Regels om te bepalen voor welke variabelen je moet controleren om causale effecten te isoleren."
+        },
+        {
+          "term": "Reproducing Kernel Hilbert Space (RKHS, ℋ)",
+          "desc": "Een oneindig-dimensionale functieruimte waarin kansverdelingen als vectoren worden gerepresenteerd."
+        }
+      ]
+    },
+    "simulation_de": {
+      "name": "Causale DAG & do-Operator Lab",
+      "description": "Schakel tussen 'Passief Observeren' en 'do(X) Interventie'. Zie hoe de confounder-pijl wordt doorgeknipt!"
+    },
+    "interpretation_de": {
+      "title": "Causaal Besluit",
+      "recommendation": "Trek nooit causale beleidsconclusies zonder expliciete causale DAG en backdoor-verantwoording.",
+      "metrics": [
+        {
+          "label": "Observationeel Verschil",
+          "value": "+0.35",
+          "note": "Misleidend door selectiebias"
+        },
+        {
+          "label": "Causaal Interventie-Effect",
+          "value": "-0.48 (p < 0.001)",
+          "note": "Het werkelijke genezende effect onder do(X)"
+        }
+      ]
+    },
+    "quiz_de": {
+      "question": "Wat is het doel van Judea Pearl's do-operator do(X = x) in een causaal Directed Acyclic Graph (DAG) model?",
+      "options": [
+        "Het conditioneert op alle colliders en tussenliggende variabelen om confounding te minimaliseren",
+        "Het simuleert een actieve fysieke interventie door alle inkomende causale pijlen naar X door te knippen, waarmee het zuivere effect op Y wordt geïsoleerd van confounders",
+        "Het transformeert niet-lineaire afhankelijkheden naar lineaire correlaties volgens de back-door stelling",
+        "Het berekent de inverse kansgewichten van een propensity score model zonder grafentheorie"
+      ],
+      "explanation": "Meesterlijk! De do-operator scheidt associatie P(Y|X) van echte interventie P(Y|do(X)) door het 'graph surgery' principe: knip de pijlen door die X bepalen en meet het onvervalste effect."
     }
   },
   {
@@ -5616,6 +6970,59 @@ window.LEVELS_DATA = [
         "Que la integral de Stratonovich produciría una deriva no nula en el gradiente de potencial"
       ],
       "explanation": "¡Fenomenal! Puesto que (dB_t)² = dt es del mismo orden de magnitud infinitesimal que dt, la segunda derivada de la expansión de Taylor se preserva. Es el corazón del cálculo estocástico."
+    },
+    "case_de": {
+      "title": "Casus: De Eiwitvouwing & Financiële Diffusie onder Ruis",
+      "context": "Een molecuul beweegt in een vloeistof. Het voelt een krachtveld (drift $\\mu$), maar botst ook voortdurend willekeurig tegen miljoenen watermoleculen (diffusie $\\sigma dB_t$). Gewone differentiaalvergelijkingen falen omdat het pad nergens differentieerbaar is!",
+      "question": "Waarom vereist stochastische ruis een nieuwe calculus (Itô calculus) en wat betekent dX_t = μ(X_t)dt + σ(X_t)dB_t?"
+    },
+    "theory_de": {
+      "summary": "Een Stochastische Differentiële Vergelijking (SDE) modelleert de evolutie van een toevalsproces in continue tijd. Het combineert een deterministische drift-component met een stochastische diffusie-term aangedreven door een Brownse beweging ($B_t$). Omdat Brownse paden fractal-achtig en nergens differentieerbaar zijn, geldt Itô's Lemma: $(dB_t)^2 = dt$.",
+      "formulaExplain": "De term $(dB_t)^2 = dt$ is het fundamentele verschil tussen klassieke Newtoniaanse calculus en stochastische calculus.",
+      "keyConcepts": [
+        {
+          "term": "Drift μ(X_t) dt",
+          "desc": "De deterministische neiging of richting van het systeem."
+        },
+        {
+          "term": "Diffusie σ(X_t) dB_t",
+          "desc": "De intensiteit van de continue willekeurige fluctuaties."
+        },
+        {
+          "term": "Itô Lemma",
+          "desc": "De kettingregel voor stochastische functies waarin de tweede afgeleide meedoet: df = f' dX + ½ f'' σ² dt."
+        }
+      ]
+    },
+    "simulation_de": {
+      "name": "SDE Euler-Maruyama Traject Simulator",
+      "description": "Verander de drift μ en diffusie σ en genereer live 20 stochastische paden door de tijd."
+    },
+    "interpretation_de": {
+      "title": "SDE Karakteristieken",
+      "recommendation": "SDE's zijn de standaardtaal voor biofysica, neurodynamica en continue financiële markten.",
+      "metrics": [
+        {
+          "label": "Verwachte Drift E[X_t]",
+          "value": "Lineaire trend",
+          "note": "Gemiddelde pad van het ensemble"
+        },
+        {
+          "label": "Variantie Var[X_t]",
+          "value": "Groeit evenredig met t",
+          "note": "Diffusie spreidt het ensemble uit"
+        }
+      ]
+    },
+    "quiz_de": {
+      "question": "Wat is volgens Itô calculus de doorslaggevende reden dat we de term ½ f''(X_t) σ² dt meenemen in Itô's Lemma?",
+      "options": [
+        "Omdat de verwachting van een Brownse beweging met de tijd kwadratisch divergeert",
+        "Omdat de kwadratische variatie van een Brownse beweging niet nul is, maar deterministisch gelijk is aan dt ((dB_t)² = dt), waardoor tweede-orde Taylor-termen niet verwaarloosbaar zijn in de limiet",
+        "Omdat Itô calculus alleen toepasbaar is op niet-continue martingalen met sprongprocessen",
+        "Omdat de Stratonovich integraal anders een niet-nul verwachtingsdrift zou opleveren in de driftterm"
+      ],
+      "explanation": "Fenomenaal! Omdat (dB_t)² = dt van dezelfde orde is als dt, blijft de tweede afgeleide in de Taylor-expansie behouden. Dit is het hart van stochastische calculus."
     }
   },
   {
@@ -5850,6 +7257,73 @@ window.LEVELS_DATA = [
         "Porque la derivada de Malliavin del campo de deriva colapsa a cero en el núcleo reproducible"
       ],
       "explanation": "¡Maestría Cenit Definitiva! Terry Lyons demostró que para caminos rugosos con p > 2 (H < 1/2), la aplicación de Itô es discontinua. Al enriquecer el camino con signaturas tensoriales iteradas, la solución recobra continuidad en la topología de p-variación."
+    },
+    "case_de": {
+      "title": "Casus: Het Hersenlandschap & Complexe Klimaatdynamica",
+      "context": "Stel je voor: we modelleren de dynamiek van 100 miljard neuronen of het planetaire klimaatsysteem. Data beweegt niet in een vlakke ruimte, maar op een gekromd energetisch oppervlak (Manifold $\\mathcal{M}$). De ruis is geen gladde Brownse beweging, maar extreem grillig fractaal (Rough Path met Hurst exponent $H < 1/2$). We kennen de vorm van de wetten niet (Non-parametric Bayesian), de toestand is een oneindig-dimensionaal veld in een Hilbertruimte ($\\mathcal{H}$), en we willen weten wat er gebeurt onder causale manipulatie (bijv. diepe hersenstimulatie of geo-engineering)!",
+      "question": "Hoe integreert de apex-formule geometrie, ruwe fractale stochastiek, oneindige dimensies en causaliteit tot één samenhangend model?"
+    },
+    "theory_de": {
+      "summary": "Dit is het absolute theoretische zenith van de statistiek. Elk symbool in deze formule vertegenwoordigt een meesterwerk van de 20e en 21e-eeuwse wiskunde:",
+      "formulaExplain": "In gewone mensentaal: een oneindig-dimensionaal toevalsproces ($X_t \\in \\mathcal{H}$) stroomt langs de steilste afdaling van een potentiaalveld over een gekromd oppervlak ($-\\nabla_{\\mathcal{M}} \\Phi dt$), terwijl het voortdurend wordt bestookt door ultra-grillige fractale schokken ($d\\mathbf{B}_t^{\\text{rough}}$), waarbij causale interventies de stroomlijnen herprogrammeren.",
+      "keyConcepts": [
+        {
+          "term": "Riemannse Manifold (ℳ) & ∇_ℳ Φ",
+          "desc": "Data leeft op een gekromd oppervlak. De gradiënt ∇_ℳ Φ volgt de geodeten (de kromming) van de ruimte via de Laplace-Beltrami operator."
+        },
+        {
+          "term": "Ruwe Paden (Rough Paths dB_t^rough)",
+          "desc": "Wanneer ruis te ruw is (Hurst H < 1/2), divergeert klassieke stochastische calculus. Terry Lyons' rough path theorie lost dit op door paden uit te breiden met geïtereerde integralen (Signatures)."
+        },
+        {
+          "term": "Oneindig-dimensionale Hilbertruimte (ℋ)",
+          "desc": "X_t is geen los getal meer, maar een complete continue functie of kwantumveld. Inproducten ⟨f, g⟩_ℋ definiëren afstanden en energie."
+        },
+        {
+          "term": "Causale Hilbert Inferentie",
+          "desc": "We modelleren niet slechts de associatieve stroom, maar de causale propagator onder do-interventies via Kernel Mean Embeddings in ℋ."
+        }
+      ]
+    },
+    "simulation_de": {
+      "name": "De Ultieme Apex Simulator: Manifold, Rough Paths & Vectorveld",
+      "description": "Bekijk de dynamiek op een gekromd 3D-zadelvlak / manifold. Pas de Hurst roughness H aan van Brownse beweging (0.50) naar ultra-ruw (0.25) en zie hoe de deeltjes over het Riemannse oppervlak bewegen onder het potentiaalveld!"
+    },
+    "interpretation_de": {
+      "title": "Apex Model Synthese",
+      "recommendation": "Gefeliciteerd! Je hebt de volledige reis voltooid van de meest basale centrummaten (€ 3.000 vs € 48.000 salaris) tot aan de wiskundige grens van de moderne theoretische statistiek. Je begrijpt nu hoe eenvoudige lineaire modellen stap voor stap transformeren tot oneindig-dimensionale stochastische systemen op gekromde ruimten!",
+      "metrics": [
+        {
+          "label": "Manifold Kromming (Ricci Scalar)",
+          "value": "R < 0 (Hyperbolisch)",
+          "note": "Kromming buigt de driftlijnen af"
+        },
+        {
+          "label": "Roughness Parameter (Hurst H)",
+          "value": "H = 0.32",
+          "note": "Niet-Markovian geheugeneffecten in ruis"
+        },
+        {
+          "label": "Hilbertruimte Dimensie",
+          "value": "dim(ℋ) = ∞",
+          "note": "Functieruimte L²(ℳ) met reproducerende kernel"
+        },
+        {
+          "label": "Causale Validatie",
+          "value": "do(Interventie) bewezen",
+          "note": "Stabiel onder externe perturbaties"
+        }
+      ]
+    },
+    "quiz_de": {
+      "question": "Waarom vereist de apex-vergelijking dX_t = -∇_ℳ Φ dt + σ dB_t^rough Terry Lyons' Rough Path theorie wanneer de Hurst exponent H < 1/2 is?",
+      "options": [
+        "Omdat paden met H < 1/2 Markoviaans zijn en de Fokker-Planck vergelijking niet-oplosbaar maken",
+        "Omdat voor H < 1/2 de p-variatie index p > 2 overschrijdt, waardoor klassieke Itô/Stratonovich integratie discontinu wordt en het pad verrijkt moet worden met hogere-orde tensor 'signatures' om een continue oplossing te garanderen",
+        "Omdat gekromde Riemannse manifolds geen diffusietensoren toestaan in ruimtes met fractale dimensies",
+        "Omdat de Malliavin-afgeleide van het rough vectorveld convergeert naar nul in de reproduceerbare kern"
+      ],
+      "explanation": "Ultieme apex-beheersing! Terry Lyons bewees dat voor extreem ruwe paden (p > 2, H < 1/2) de Itô-kaart discontinu is. Door het pad uit te breiden met tensor signatures wordt de oplossing weer continu in de p-variatie metriek."
     }
   }
 ];
