@@ -338,7 +338,7 @@ window.StatCharts = (function() {
 
     function samplePop() {
       if (distType === 'uniform') {
-        return 1.0 + Math.random() * 5.0;
+        return Math.floor(Math.random() * 6) + 1;
       } else {
         return -Math.log(1.0 - Math.random()) * 2.0;
       }
@@ -1776,7 +1776,7 @@ window.StatCharts = (function() {
           type: 'scatter'
         },
         {
-          label: isEs ? 'Pendiente Joven (Dalend)' : (isEn ? 'Young Slope (Decreasing)' : 'Helling Jongeren (Dalend)'),
+          label: isEs ? 'Pendiente Joven (Descendente)' : (isEn ? 'Young Slope (Decreasing)' : 'Helling Jongeren (Dalend)'),
           data: [{x: 1.2, y: 175}, {x: 4.8, y: 139}],
           borderColor: '#10b981',
           borderWidth: 2,
@@ -1784,7 +1784,7 @@ window.StatCharts = (function() {
           pointRadius: 0
         },
         {
-          label: isEs ? 'Pendiente Media (Dalend)' : (isEn ? 'Middle Slope (Decreasing)' : 'Helling Middelbaar (Dalend)'),
+          label: isEs ? 'Pendiente Media (Descendente)' : (isEn ? 'Middle Slope (Decreasing)' : 'Helling Middelbaar (Dalend)'),
           data: [{x: 3.2, y: 208}, {x: 7.8, y: 169}],
           borderColor: '#38bdf8',
           borderWidth: 2,
@@ -1792,7 +1792,7 @@ window.StatCharts = (function() {
           pointRadius: 0
         },
         {
-          label: isEs ? 'Pendiente Senior (Dalend)' : (isEn ? 'Senior Slope (Decreasing)' : 'Helling Senioren (Dalend)'),
+          label: isEs ? 'Pendiente Senior (Descendente)' : (isEn ? 'Senior Slope (Decreasing)' : 'Helling Senioren (Dalend)'),
           data: [{x: 5.7, y: 248}, {x: 10.3, y: 207}],
           borderColor: '#a855f7',
           borderWidth: 2,
@@ -1831,7 +1831,7 @@ window.StatCharts = (function() {
           legend: {
             labels: {
               color: '#cbd5e1',
-              filter: (item) => !item.text.startsWith('Slope')
+              filter: (item) => !item.text.includes('Slope') && !item.text.includes('Helling') && !item.text.includes('Pendiente')
             }
           }
         }

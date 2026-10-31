@@ -2160,16 +2160,30 @@ window.I18N = {
   },
 
   init() {
+    let lang = null;
     try {
-      const saved = localStorage.getItem('statistiek_lang');
-      if (saved === 'en' || saved === 'nl' || saved === 'es') {
-        this.currentLang = saved;
-      } else {
-        this.currentLang = 'nl';
+      if (typeof window !== 'undefined' && window.location && window.location.search) {
+        const params = new URLSearchParams(window.location.search);
+        const urlLang = params.get('lang');
+        if (urlLang === 'en' || urlLang === 'nl' || urlLang === 'es' || urlLang === 'de') {
+          lang = urlLang;
+          try {
+            localStorage.setItem('statistiek_lang', urlLang);
+          } catch(e) {}
+        }
       }
-    } catch(e) {
-      this.currentLang = 'nl';
+    } catch(e) {}
+
+    if (!lang) {
+      try {
+        const saved = localStorage.getItem('statistiek_lang');
+        if (saved === 'en' || saved === 'nl' || saved === 'es' || saved === 'de') {
+          lang = saved;
+        }
+      } catch(e) {}
     }
+
+    this.currentLang = lang || 'nl';
 
     if (typeof document !== 'undefined') {
       document.documentElement.lang = this.currentLang;
@@ -2236,8 +2250,7 @@ window.I18N = {
       nlBtn.className = activeClass;
     } else if (this.currentLang === 'es' && esBtn) {
       esBtn.className = activeClass;
-    }
-    if (this.currentLang === 'de' && deBtn) {
+    } else if (this.currentLang === 'de' && deBtn) {
       deBtn.className = activeClass;
     } else if (enBtn) {
       enBtn.className = activeClass;
