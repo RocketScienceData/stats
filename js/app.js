@@ -528,16 +528,15 @@ window.StatApp = (function() {
               </p>
             </div>
           </div>
-          </div>
-
-          <!-- Blok 5: Uitgebreide Oefeningen & Diagnostische Uitdagingen -->
-          <div id="level-exercise-card" class="bg-gradient-to-br from-slate-900 to-indigo-950/40 border border-indigo-900/40 rounded-2xl p-5 shadow-lg">
-            <!-- Dynamisch gerenderd via renderLevelExerciseStep() -->
-          </div>
 
         </div>
 
       </div>
+
+      <!-- Blok 5: Uitgebreide Oefeningen & Diagnostische Uitdagingen (Full Width) -->
+      <section id="level-exercise-card" class="mt-8 bg-gradient-to-br from-slate-900 via-slate-900/95 to-indigo-950/40 border border-indigo-500/30 rounded-3xl p-6 sm:p-8 shadow-2xl">
+        <!-- Dynamisch gerenderd via renderLevelExerciseStep() -->
+      </section>
     `;
 
     // Render de oefening-container
@@ -563,6 +562,7 @@ window.StatApp = (function() {
   }
 
   // Render specifieke oefening binnen het huidige level
+  // Render specifieke oefening binnen het huidige level
   function renderLevelExerciseStep(levelId) {
     const card = document.getElementById("level-exercise-card");
     if (!card) return;
@@ -577,104 +577,144 @@ window.StatApp = (function() {
     const allDone = completedInLevel === exercises.length;
 
     const t = (k) => window.I18N ? window.I18N.t(k) : k;
+    const lang = (window.I18N && window.I18N.currentLang) || 'en';
+    const isDe = lang === 'de';
+    const isEs = lang === 'es';
+    const isEn = lang === 'en';
 
     card.innerHTML = `
-      <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
-        <div class="flex items-center gap-2.5">
-          <div class="w-7 h-7 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center text-sm font-bold">🏆</div>
+      <!-- Header Bar: Titel, Badges, XP & Voortgang -->
+      <div class="flex flex-wrap items-center justify-between gap-4 pb-5 border-b border-slate-800/80 mb-6">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-2xl bg-amber-500/20 text-amber-400 border border-amber-500/30 flex items-center justify-center text-xl font-bold shadow-sm shrink-0">
+            🏆
+          </div>
           <div>
-            <h2 class="text-base font-bold text-white">${t('exercises_title')}</h2>
-            <span class="text-xs text-slate-400 font-mono">${t('exercise_step')} ${currentExerciseIndex + 1} ${t('of')} ${exercises.length}</span>
+            <h2 class="text-lg sm:text-xl font-extrabold text-white tracking-tight">${t('exercises_title')}</h2>
+            <div class="text-xs sm:text-sm text-slate-400 font-mono mt-0.5">
+              ${t('exercise_step')} <span class="text-indigo-400 font-bold">${currentExerciseIndex + 1}</span> ${t('of')} ${exercises.length}
+            </div>
           </div>
         </div>
-        <div class="flex items-center gap-2">
-          <span class="text-xs font-semibold text-amber-400 font-mono">${t('xp_per_question')}</span>
+
+        <div class="flex items-center gap-2.5">
+          <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-xs sm:text-sm font-semibold text-amber-300 font-mono shadow-sm">
+            <span>⚡</span>
+            <span>${t('xp_per_question')}</span>
+          </span>
+          ${allDone ? `
+            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-xs sm:text-sm font-semibold text-emerald-300">
+              <span>✓</span>
+              <span>${isDe ? 'Alle gelöst' : (isEs ? 'Completado' : (isEn ? 'All Solved' : 'Alles voltooid'))}</span>
+            </span>
+          ` : ''}
         </div>
       </div>
 
-      <!-- Stepper Badges -->
-      <div class="flex items-center gap-2 mb-4">
+      <!-- Stepper Badges (Ruim, responsief & overzichtelijk) -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 mb-6">
         ${exercises.map((e, idx) => {
           const isDone = !!state.completedExercises[e.id];
           const isCurrent = idx === currentExerciseIndex;
           const catLabel = window.I18N ? window.I18N.translateCategory(e.category) : (e.category || 'Vraag');
           return `
             <button 
+              type="button"
               onclick="StatApp.jumpToExercise(${idx})" 
-              class="flex-1 py-1.5 px-2 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition ${
+              class="w-full py-2.5 px-3 rounded-xl text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all duration-150 cursor-pointer ${
                 isCurrent 
-                  ? 'bg-indigo-600 text-white shadow-md' 
+                  ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/30 ring-2 ring-indigo-400/60' 
                   : (isDone 
-                      ? 'bg-emerald-950/70 text-emerald-400 border border-emerald-800/40 hover:bg-emerald-900/50' 
-                      : 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-slate-200')
+                      ? 'bg-emerald-950/70 text-emerald-300 border border-emerald-600/50 hover:bg-emerald-900/60' 
+                      : 'bg-slate-950/70 text-slate-400 border border-slate-800 hover:border-slate-700 hover:text-slate-200')
               }"
             >
-              <span>${isDone ? '✓' : idx + 1}</span>
-              <span class="hidden sm:inline text-[11px] opacity-80">${catLabel}</span>
+              <span class="w-5 h-5 rounded-full ${isCurrent ? 'bg-white/20' : (isDone ? 'bg-emerald-500/20 text-emerald-300' : 'bg-slate-800 text-slate-400')} flex items-center justify-center text-[11px] font-bold shrink-0">
+                ${isDone ? '✓' : idx + 1}
+              </span>
+              <span class="truncate">${catLabel}</span>
             </button>
           `;
         }).join('')}
       </div>
 
-      <!-- Oefening Vraag & Categorie -->
-      <div class="mb-4">
-        <div class="flex items-center gap-2 mb-1.5">
-          <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${
+      <!-- Vraagcontainer met royale typografie -->
+      <div class="p-5 sm:p-7 rounded-2xl bg-slate-950/60 border border-slate-800/80 mb-6 shadow-inner">
+        <div class="flex flex-wrap items-center gap-2.5 mb-3">
+          <span class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-lg ${
             rawEx.category === 'Valkuil' ? 'bg-rose-500/20 text-rose-300 border border-rose-500/40' :
             rawEx.category === 'Dilemma' ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40' :
             rawEx.category === 'Berekening' ? 'bg-sky-500/20 text-sky-300 border border-sky-500/40' :
             'bg-indigo-500/20 text-indigo-300 border border-indigo-500/40'
           }">
-            ${ex.category || 'Concept'}
+            ${window.I18N ? window.I18N.translateCategory(rawEx.category) : (rawEx.category || 'Concept')}
           </span>
-          <span class="text-xs font-bold text-white">${ex.title || ''}</span>
+          ${ex.title ? `<span class="text-xs sm:text-sm font-semibold text-slate-300">${ex.title}</span>` : ''}
         </div>
-        <p class="text-xs sm:text-sm text-slate-200 leading-relaxed">
+
+        <p class="text-base sm:text-lg text-slate-100 font-medium leading-relaxed tracking-normal">
           ${ex.question}
         </p>
       </div>
 
-      <!-- Antwoordopties -->
-      <div class="space-y-2 mb-4" id="exercise-options-container">
-        ${ex.options.map((opt, idx) => `
-          <button 
-            onclick="StatApp.handleExerciseAnswer(${levelId}, ${idx})"
-            class="ex-option-btn w-full text-left p-3 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-indigo-500/60 text-xs sm:text-sm text-slate-200 transition flex items-center justify-between group"
-          >
-            <span>${opt}</span>
-            <span class="ex-check text-slate-500 group-hover:text-indigo-400 font-bold ml-2">○</span>
-          </button>
-        `).join('')}
+      <!-- Antwoordopties (Brede, comfortabele cards met letterbadges) -->
+      <div class="space-y-3 mb-6" id="exercise-options-container">
+        ${ex.options.map((opt, idx) => {
+          const letter = ['A', 'B', 'C', 'D'][idx] || (idx + 1);
+          return `
+            <button 
+              type="button"
+              onclick="StatApp.handleExerciseAnswer(${levelId}, ${idx})"
+              class="ex-option-btn group w-full text-left p-4 sm:p-5 rounded-2xl bg-slate-950/80 hover:bg-slate-850 border border-slate-800 hover:border-indigo-500/60 text-slate-200 hover:text-white transition-all duration-150 flex items-start sm:items-center justify-between gap-4 shadow-sm hover:shadow-md cursor-pointer"
+            >
+              <div class="flex items-start sm:items-center gap-3.5 flex-1 min-w-0">
+                <div class="w-8 h-8 rounded-xl bg-slate-900 border border-slate-700/80 text-slate-300 group-hover:border-indigo-400 group-hover:text-white flex items-center justify-center text-xs sm:text-sm font-bold font-mono shrink-0 transition">
+                  ${letter}
+                </div>
+                <div class="flex-1 text-xs sm:text-sm md:text-base leading-relaxed text-slate-200 group-hover:text-white">
+                  ${opt}
+                </div>
+              </div>
+              <div class="ex-check w-7 h-7 rounded-full border border-slate-700 group-hover:border-indigo-400 flex items-center justify-center text-slate-500 group-hover:text-indigo-400 font-bold text-sm shrink-0 transition">
+                ○
+              </div>
+            </button>
+          `;
+        }).join('')}
       </div>
 
       <!-- Feedback Venster (Verborgen tot antwoord) -->
-      <div id="exercise-feedback-box" class="hidden p-3.5 rounded-xl text-xs mb-4">
-        <!-- Dynamisch gevuld -->
+      <div id="exercise-feedback-box" class="hidden p-4 sm:p-5 rounded-2xl text-xs sm:text-sm mb-6 transition-all duration-200">
+        <!-- Dynamisch gevuld via handleExerciseAnswer() -->
       </div>
 
-      <!-- Stepper Navigatie & Level Afronding -->
-      <div class="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-slate-800">
-        <div class="flex items-center gap-2">
+      <!-- Navigatie Footer -->
+      <div class="flex flex-wrap items-center justify-between gap-4 pt-5 border-t border-slate-800/80">
+        <div class="flex items-center gap-2.5">
           <button 
+            type="button"
             onclick="StatApp.prevExercise()" 
-            ${currentExerciseIndex === 0 ? 'disabled class="opacity-40 cursor-not-allowed text-xs text-slate-500 py-1.5 px-3"' : 'class="text-xs text-slate-300 hover:text-white py-1.5 px-3 rounded-lg bg-slate-800 hover:bg-slate-700 transition"'}
+            ${currentExerciseIndex === 0 ? 'disabled class="opacity-40 cursor-not-allowed text-xs sm:text-sm text-slate-500 py-2.5 px-4 rounded-xl bg-slate-800/50 border border-slate-700/40"' : 'class="text-xs sm:text-sm text-slate-300 hover:text-white py-2.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 transition font-medium cursor-pointer"'}
           >
             ◀ ${t('exercise_step')}
           </button>
           <button 
+            type="button"
             onclick="StatApp.nextExercise()" 
-            ${currentExerciseIndex === exercises.length - 1 ? 'disabled class="opacity-40 cursor-not-allowed text-xs text-slate-500 py-1.5 px-3"' : 'class="text-xs text-slate-300 hover:text-white py-1.5 px-3 rounded-lg bg-slate-800 hover:bg-slate-700 transition"'}
+            ${currentExerciseIndex === exercises.length - 1 ? 'disabled class="opacity-40 cursor-not-allowed text-xs sm:text-sm text-slate-500 py-2.5 px-4 rounded-xl bg-slate-800/50 border border-slate-700/40"' : 'class="text-xs sm:text-sm text-slate-300 hover:text-white py-2.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 transition font-medium cursor-pointer"'}
           >
             ${t('btn_next')} ▶
           </button>
         </div>
 
         <button 
+          type="button"
           id="btn-complete-level"
           onclick="StatApp.completeAndNext(${levelId})"
-          class="${allDone ? '' : 'hidden'} py-2 px-4 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold rounded-xl text-xs sm:text-sm shadow-lg transition"
+          class="${allDone ? '' : 'hidden'} px-6 py-3 bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-500 hover:from-emerald-500 hover:to-teal-400 text-white font-bold rounded-2xl text-xs sm:text-sm shadow-xl hover:shadow-emerald-500/25 transition transform hover:-translate-y-0.5 cursor-pointer flex items-center gap-2"
         >
-          ${levelId === 24 ? t('complete_apex') : t('complete_and_next')}
+          <span>${levelId === 24 ? t('complete_apex') : t('complete_and_next')}</span>
+          <span>➔</span>
         </button>
       </div>
     `;
@@ -718,11 +758,17 @@ window.StatApp = (function() {
       btn.disabled = true;
       const check = btn.querySelector(".ex-check");
       if (idx === rawEx.correctIndex) {
-        btn.classList.add("bg-emerald-950/70", "border-emerald-500", "text-emerald-200");
-        if (check) check.innerText = "✓";
+        btn.classList.add("bg-emerald-950/80", "border-emerald-500", "text-emerald-100", "ring-1", "ring-emerald-500/50");
+        if (check) {
+          check.innerText = "✓";
+          check.className = "ex-check w-7 h-7 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold text-sm shrink-0 shadow-md";
+        }
       } else if (idx === selectedIdx) {
-        btn.classList.add("bg-rose-950/70", "border-rose-500", "text-rose-200");
-        if (check) check.innerText = "✗";
+        btn.classList.add("bg-rose-950/80", "border-rose-500", "text-rose-100", "ring-1", "ring-rose-500/50");
+        if (check) {
+          check.innerText = "✗";
+          check.className = "ex-check w-7 h-7 rounded-full bg-rose-500 text-white flex items-center justify-center font-bold text-sm shrink-0 shadow-md";
+        }
       }
     });
 
@@ -743,13 +789,13 @@ window.StatApp = (function() {
         updateProgressHeader();
       }
 
-      feedbackBox.className = "p-3.5 rounded-xl text-xs mb-4 bg-emerald-950/60 border border-emerald-500/40 text-emerald-200";
+      feedbackBox.className = "p-4 sm:p-5 rounded-2xl text-xs sm:text-sm mb-6 bg-gradient-to-r from-emerald-950/80 via-emerald-900/40 to-teal-950/80 border border-emerald-500/50 text-emerald-100 shadow-xl";
       feedbackBox.innerHTML = `
-        <div class="font-bold mb-1 flex items-center gap-1.5">
+        <div class="font-bold text-sm sm:text-base mb-1.5 flex items-center gap-2">
           <span>✨</span>
           <span>${t('feedback_correct')}</span>
         </div>
-        <p class="leading-relaxed">${ex.explanation}</p>
+        <p class="leading-relaxed text-xs sm:text-sm text-emerald-200/90">${ex.explanation}</p>
       `;
 
       // Controleer of alle oefeningen voltooid zijn
@@ -759,18 +805,19 @@ window.StatApp = (function() {
       }
     } else {
       playWrongSound();
-      feedbackBox.className = "p-3.5 rounded-xl text-xs mb-4 bg-rose-950/60 border border-rose-500/40 text-rose-200";
+      feedbackBox.className = "p-4 sm:p-5 rounded-2xl text-xs sm:text-sm mb-6 bg-gradient-to-r from-rose-950/80 via-rose-900/40 to-red-950/80 border border-rose-500/50 text-rose-100 shadow-xl";
       feedbackBox.innerHTML = `
-        <div class="font-bold mb-1 flex items-center gap-1.5">
+        <div class="font-bold text-sm sm:text-base mb-1.5 flex items-center gap-2">
           <span>💡</span>
           <span>${t('feedback_wrong')}</span>
         </div>
-        <p class="leading-relaxed">${ex.explanation}</p>
-        <button onclick="StatApp.retryExercise()" class="mt-2 text-rose-300 underline font-semibold text-xs">
-          ${t('btn_retry_exercise')}
+        <p class="leading-relaxed text-xs sm:text-sm text-rose-200/90">${ex.explanation}</p>
+        <button type="button" onclick="StatApp.retryExercise()" class="inline-flex items-center gap-1.5 px-3.5 py-2 mt-3 rounded-xl bg-rose-600/30 hover:bg-rose-600/50 border border-rose-500/50 text-rose-200 font-semibold text-xs sm:text-sm transition cursor-pointer">
+          🔄 ${t('btn_retry_exercise')}
         </button>
       `;
     }
+    renderMath();
   }
 
   function retryExercise() {
@@ -778,9 +825,16 @@ window.StatApp = (function() {
     const feedbackBox = document.getElementById("exercise-feedback-box");
     buttons.forEach(btn => {
       btn.disabled = false;
-      btn.classList.remove("bg-emerald-950/70", "border-emerald-500", "text-emerald-200", "bg-rose-950/70", "border-rose-500", "text-rose-200");
+      btn.classList.remove(
+        "bg-emerald-950/80", "border-emerald-500", "text-emerald-100", "ring-1", "ring-emerald-500/50",
+        "bg-rose-950/80", "border-rose-500", "text-rose-100", "ring-1", "ring-rose-500/50",
+        "bg-emerald-950/70", "text-emerald-200", "bg-rose-950/70", "text-rose-200"
+      );
       const check = btn.querySelector(".ex-check");
-      if (check) check.innerText = "○";
+      if (check) {
+        check.innerText = "○";
+        check.className = "ex-check w-7 h-7 rounded-full border border-slate-700 group-hover:border-indigo-400 flex items-center justify-center text-slate-500 group-hover:text-indigo-400 font-bold text-sm shrink-0 transition";
+      }
     });
     if (feedbackBox) feedbackBox.classList.add("hidden");
   }
@@ -1124,13 +1178,23 @@ window.StatApp = (function() {
         ${q.title || (isDe ? 'Übung' : (isEs ? 'Ejercicio' : (isEn ? 'Exercise' : 'Oefening')))}: ${q.question}
       </h3>
 
-      <div id="arena-options-container" class="space-y-2 mt-4">
-        ${q.options.map((opt, idx) => `
-          <button onclick="StatApp.handleArenaAnswer(${idx})" class="arena-opt-btn w-full text-left p-3.5 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-emerald-500/50 text-xs sm:text-sm text-slate-200 transition flex items-center justify-between">
-            <span>${opt}</span>
-            <span class="arena-check text-slate-500 font-bold ml-2">○</span>
-          </button>
-        `).join('')}
+      <div id="arena-options-container" class="space-y-3 mt-4">
+        ${q.options.map((opt, idx) => {
+          const letter = ['A', 'B', 'C', 'D'][idx] || (idx + 1);
+          return `
+            <button type="button" onclick="StatApp.handleArenaAnswer(${idx})" class="arena-opt-btn group w-full text-left p-3.5 sm:p-4 rounded-xl bg-slate-950/80 hover:bg-slate-800/80 border border-slate-800 hover:border-emerald-500/50 text-slate-200 hover:text-white transition-all flex items-start sm:items-center justify-between gap-3.5 cursor-pointer">
+              <div class="flex items-start sm:items-center gap-3 flex-1 min-w-0">
+                <div class="w-7 h-7 rounded-lg bg-slate-900 border border-slate-700/80 text-slate-300 group-hover:border-emerald-400 group-hover:text-white flex items-center justify-center text-xs font-bold font-mono shrink-0 transition">
+                  ${letter}
+                </div>
+                <div class="flex-1 text-xs sm:text-sm leading-relaxed text-slate-200 group-hover:text-white">
+                  ${opt}
+                </div>
+              </div>
+              <span class="arena-check text-slate-500 group-hover:text-emerald-400 font-bold ml-2">○</span>
+            </button>
+          `;
+        }).join('')}
       </div>
 
       <div id="arena-feedback-box" class="hidden p-3.5 rounded-xl text-xs mt-4"></div>
