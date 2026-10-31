@@ -254,7 +254,7 @@ window.EXERCISES_DATA = {
         "Omdat de absolute som Σ |e_i| wiskundig niet gedefinieerd is voor continue residuen die rond nul oscilleren"
       ],
       "correctIndex": 1,
-      "explanation": "Exact! Als je niet kwadrateert, heffen positieve en negatieve fouten elkaar op. Bovendien bestraft het kwadraat grote fouten onevenredig zwaar en is het wiskundig elegant te differentiëren."
+      "explanation": "Exact! Bij de gewone som Σ e_i heffen positieve en negatieve fouten elkaar op (elke lijn door het zwaartepunt levert Σ e_i = 0). De absolute som Σ |e_i| (L1 / LAD-regressie) heft niet op, maar is bij het nulpunt niet differentieerbaar en mist een gesloten matrixoplossing. De kwadratensom Σ e_i² (OLS / L2) is overal continu differentieerbaar, levert de analytische schatter (XᵀX)⁻¹Xᵀy en is volgens Gauss-Markov de beste lineaire zuivere schatter (BLUE)."
     },
     {
       "id": "l6_ex3",

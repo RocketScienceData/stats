@@ -568,8 +568,8 @@ window.StatCharts = (function() {
             <input id="l6-slope-slider" type="range" min="0.00" max="0.36" step="0.01" value="0.18" class="w-full accent-sky-500 cursor-pointer">
           </div>
           <div>
-            <label class="text-xs text-slate-300 block mb-1">Intercept (β₀): <span id="l6-intercept-val" class="font-bold text-indigo-400">2.75</span></label>
-            <input id="l6-intercept-slider" type="range" min="1.0" max="5.0" step="0.05" value="2.75" class="w-full accent-indigo-500 cursor-pointer">
+            <label class="text-xs text-slate-300 block mb-1">Intercept (β₀): <span id="l6-intercept-val" class="font-bold text-indigo-400">2.70</span></label>
+            <input id="l6-intercept-slider" type="range" min="1.0" max="5.0" step="0.05" value="2.70" class="w-full accent-indigo-500 cursor-pointer">
           </div>
         </div>
 
@@ -577,11 +577,11 @@ window.StatCharts = (function() {
           <div class="flex items-center gap-3">
             <div class="bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700">
               <span class="text-[10px] text-slate-400">Model: </span>
-              <span id="l6-eq-display" class="font-mono text-xs font-bold text-white">Ŷ = 2.75 + 0.18·X</span>
+              <span id="l6-eq-display" class="font-mono text-xs font-bold text-white">Ŷ = 2.70 + 0.18·X</span>
             </div>
             <div class="bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700">
               <span class="text-[10px] text-slate-400">Kwadratensom der Fouten (SSE): </span>
-              <span id="l6-sse-display" class="font-mono text-xs font-bold text-emerald-400">0.38</span>
+              <span id="l6-sse-display" class="font-mono text-xs font-bold text-emerald-400">0.04</span>
             </div>
           </div>
           <button id="l6-opt-btn" class="px-3 py-1.5 bg-emerald-600/30 hover:bg-emerald-600 text-emerald-300 hover:text-white rounded-lg text-xs font-bold transition">
@@ -600,7 +600,7 @@ window.StatCharts = (function() {
     const interceptSlider = document.getElementById("l6-intercept-slider");
     const optBtn = document.getElementById("l6-opt-btn");
 
-    const points = [{ x: 10, y: 4.5 }, { x: 15, y: 5.5 }, { x: 20, y: 6.5 }, { x: 25, y: 7.0 }, { x: 30, y: 8.5 }, { x: 35, y: 9.0 }];
+    const points = [{ x: 10, y: 4.5 }, { x: 15, y: 5.5 }, { x: 20, y: 6.2 }, { x: 25, y: 7.1 }, { x: 30, y: 8.2 }, { x: 35, y: 9.0 }];
 
     function update() {
       const b1 = parseFloat(slopeSlider.value);
@@ -651,7 +651,7 @@ window.StatCharts = (function() {
     interceptSlider.addEventListener("input", update);
     optBtn.addEventListener("click", () => {
       slopeSlider.value = "0.18";
-      interceptSlider.value = "2.75";
+      interceptSlider.value = "2.70";
       update();
     });
 

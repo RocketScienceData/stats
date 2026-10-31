@@ -115,9 +115,9 @@ window.ADAPTIVE_ASSESSMENT = [
   },
   {
     id: "q6",
-    question: "Twee voorspellers in je regressiemodel correleren met r = 0.98. De VIF is 26. Wat is het symptoom in de modeloutput?",
-    question_en: "Two predictors in your regression model correlate with r = 0.98. The VIF is 26. What is the classic symptom in your model output?",
-    question_es: "Dos predictores en tu modelo de regresión correlacionan con r = 0,98. El FIV (VIF) es 26. ¿Cuál es el síntoma clásico en la salida del modelo?",
+    question: "Twee voorspellers in je regressiemodel correleren met r = 0.98 (VIF = 25.3). Wat is het symptoom in de modeloutput?",
+    question_en: "Two predictors in your regression model correlate with r = 0.98 (VIF = 25.3). What is the classic symptom in your model output?",
+    question_es: "Dos predictores en tu modelo de regresión correlacionan con r = 0,98 (FIV = 25,3). ¿Cuál es el síntoma clásico en la salida del modelo?",
     options: [
       { text: "De F-toets voor het totale model is hoog-significant, maar de individuele t-toetsen van beide variabelen zijn plotseling niet-significant (p > 0.05)", score: 4, feedback: "Meesterlijk! Dit is de klassieke handtekening van ernstige multicollineariteit." },
       { text: "Het model schendt de Gauss-Markov aanname van exogeniteit (E[ε|X] ≠ 0), waardoor OLS-schatters inconsistent worden", score: 0, feedback: "Multicollineariteit is een probleem van correlatie tussen regressoren onderling, geen endogeniteit of correlatie met de foutterm." },
@@ -373,14 +373,14 @@ window.LEVELS_DATA = [
       question: "Waarom redt de Centrale Limietstelling ons hier wanneer we het GEMIDDELDE over steekproeven analyseren?"
     },
     theory: {
-      summary: "De Centrale Limietstelling stelt dat ongeacht de vorm van de oorspronkelijke populatie, de verdeling van steekproefgemiddelden $(\\bar{X})$ naar een normale verdeling convergeert zodra $N \\ge 30$.",
+      summary: "De Centrale Limietstelling stelt dat voor elke populatie met een eindige variantie (σ² < ∞), de verdeling van steekproefgemiddelden (X̄) convergeert naar een normale verdeling als N toeneemt. Bij matig scheve verdelingen volstaat vaak N ≥ 30; bij zware scheefheid of uitschieters dicteert het Berry-Esseen theorema dat een grotere steekproef (N ≥ 100) nodig is.",
       keyConcepts: [
-        { term: "Populatieverdeling", desc: "De ruwe data van individuen (mag willekeurig scheef zijn)." },
+        { term: "Voorwaarde: Eindige Variantie", desc: "CLT vereist σ² < ∞; de stelling faalt bij verdelingen met oneindige variantie zoals de Cauchy-verdeling." },
         { term: "Steekproevenverdeling", desc: "De verdeling van GEMIDDELDEN bij herhaald trekken van steekproeven." },
-        { term: "Standaardfout (SE)", desc: "De spreiding van de gemiddelden: SE = σ / √N. Neemt af bij grotere N!" }
+        { term: "Standaardfout (SE)", desc: "De spreiding van de gemiddelden: SE = σ / √N. Neemt af met de wortel van N!" }
       ],
-      mathFormula: "\\bar{X} \\sim \\mathcal{N}\\left(\\mu, \\; \\frac{\\sigma}{\\sqrt{N}}\\right) \\quad \\text{voor } N \\ge 30",
-      formulaExplain: "Als $N$ 4 keer zo groot wordt, halveert de onzekerheid (SE) van je schatting."
+      mathFormula: "\\bar{X} \\xrightarrow{d} \\mathcal{N}\\left(\\mu, \\; \\frac{\\sigma^2}{N}\\right) \\quad \\text{als } N \\to \\infty \\quad (\\text{mits } \\sigma^2 < \\infty)",
+      formulaExplain: "Als N 4 keer zo groot wordt, halveert de standaardfout (SE). Bij zware scheefheid eist het Berry-Esseen theorema N > 50 voor Gaussische staarten."
     },
     simulation: {
       type: "clt_simulator",
@@ -395,7 +395,7 @@ window.LEVELS_DATA = [
         { label: "Verdeling gemiddelde bij N=35", value: "Normaal verdeeld (Gauss)", note: "Dankzij CLT!" },
         { label: "Standaardfout (SE = σ/√35)", value: "1.05 minuten", note: "Spreiding van de gemiddelde schatting" }
       ],
-      recommendation: "Je kunt gerust t-toetsen en betrouwbaarheidsintervallen gebruiken voor het gemiddelde, mits je steekproef $N \\ge 30$ telt."
+      recommendation: "Je kunt betrouwbaarheidsintervallen gebruiken voor het gemiddelde; bij sterke scheefheid is N ≥ 50 tot 100 aanbevolen, of een log-transformatie/bootstrap."
     },
     quiz: {
       question: "Wat gebeurt er met de standaardfout (SE = σ / √N) van het gemiddelde als je de steekproefomvang N verviervoudigt?",
@@ -436,7 +436,7 @@ window.LEVELS_DATA = [
         { term: "Foutmarge", desc: "1.96 × SE (voor 95% niveau). Bepaalt de breedte van het interval." }
       ],
       mathFormula: "95\\% \\text{ CI} = \\bar{x} \\pm 1.96 \\cdot \\frac{\\sigma}{\\sqrt{N}} = \\left[\\bar{x} - 1.96 \\cdot \\text{SE}, \\; \\bar{x} + 1.96 \\cdot \\text{SE}\\right]",
-      formulaExplain: "Als de intervallen van twee groepen niet overlappen, is het verschil statistisch significant."
+      formulaExplain: "Let op de overlap-valkuil: niet-overlappende intervallen garanderen p < 0.01 (zeer conservatief). Twee onafhankelijke 95%-intervallen mogen echter tot ~29% overlappen en tóch statistisch significant verschillen (p < 0.05), omdat SE_verschil = √(SE₁² + SE₂²) < SE₁ + SE₂."
     },
     simulation: {
       type: "ci_simulator",
@@ -540,9 +540,9 @@ window.LEVELS_DATA = [
       data: [
         { student: "Lucas", studieUren: 10, cijfer: 4.5 },
         { student: "Sanne", studieUren: 15, cijfer: 5.5 },
-        { student: "Timo", studieUren: 20, cijfer: 6.5 },
-        { student: "Noor", studieUren: 25, cijfer: 7.0 },
-        { student: "Lars", studieUren: 30, cijfer: 8.5 },
+        { student: "Timo", studieUren: 20, cijfer: 6.2 },
+        { student: "Noor", studieUren: 25, cijfer: 7.1 },
+        { student: "Lars", studieUren: 30, cijfer: 8.2 },
         { student: "Femke", studieUren: 35, cijfer: 9.0 }
       ],
       question: "Hoe vinden we de 'allerbeste' lijn door deze puntenwolk en wat betekent de helling in mensentaal?"
@@ -552,10 +552,10 @@ window.LEVELS_DATA = [
       keyConcepts: [
         { term: "Intercept (β₀)", desc: "Verwachte waarde van Y als X gelijk is aan 0." },
         { term: "Hellingsgetal (β₁)", desc: "Verwachte toename in Y bij 1 eenheid toename in X." },
-        { term: "Residu (eᵢ)", desc: "Verschil tussen waargenomen en voorspelde waarde: eᵢ = yᵢ - ŷᵢ." }
+        { term: "Residu (eᵢ)", desc: "Verschil tussen waargenomen en voorspelde waarde: eᵢ = yᵢ - ŷᵢ. De OLS-normaalvergelijkingen garanderen dat ∑ eᵢ = 0." }
       ],
-      mathFormula: "Y = \\beta_0 + \\beta_1 X + \\epsilon \\quad \\implies \\quad \\hat{Y} = 2.75 + 0.18 \\cdot X",
-      formulaExplain: "Voor elk extra studie-uur stijgt het verwachte cijfer met 0.18 punt."
+      mathFormula: "Y = \\beta_0 + \\beta_1 X + \\epsilon \\quad \\implies \\quad \\hat{Y} = 2.70 + 0.18 \\cdot X",
+      formulaExplain: "Voor elk extra studie-uur stijgt het verwachte cijfer met 0.18 punt. De OLS-residuensom is exact nul (∑ eᵢ = 0)."
     },
     simulation: {
       type: "ols_line_fitter",
@@ -565,9 +565,9 @@ window.LEVELS_DATA = [
     interpretation: {
       title: "Model & Beleidsadvies",
       metrics: [
-        { label: "Intercept (β₀)", value: "2.75", note: "Basisscore zonder voorbereiding" },
+        { label: "Intercept (β₀)", value: "2.70", note: "Basisscore zonder voorbereiding" },
         { label: "Helling (β₁)", value: "+0.18 per uur", note: "Winst per studie-uur" },
-        { label: "Uren voor een 5.5", value: "15.3 uur", note: "(5.5 - 2.75) / 0.18 ≈ 15 uur" }
+        { label: "Uren voor een 5.5", value: "15.6 uur", note: "(5.5 - 2.70) / 0.18 ≈ 15.6 uur" }
       ],
       recommendation: "Adviseer studenten minimaal 16 uur te reserveren voor dit vak om een voldoende veilig te stellen."
     },
@@ -765,7 +765,7 @@ window.LEVELS_DATA = [
         { term: "Drempelwaarden", desc: "VIF = 1 (ideaal), VIF > 5 (zorgelijk), VIF > 10 (kritiek: model is onbetrouwbaar)." }
       ],
       mathFormula: "\\text{VIF}_j = \\frac{1}{1 - R_j^2} \\quad \\implies \\quad \\text{SE}(\\beta_j) = \\sqrt{\\text{VIF}_j} \\cdot \\text{SE}_{\\text{ideaal}}",
-      formulaExplain: "Bij $r = 0.99$ is $\\text{VIF} \\approx 50$. De standaardfout is 7x zo groot als nodig!"
+      formulaExplain: "Bij $r = 0.99$ is $\\text{VIF} = \\frac{1}{1 - 0.99^2} = 50.25 \\approx 50.3$. De standaardfout is $\\sqrt{50.25} \\approx 7.1\\times$ zo breed als zonder collineariteit!"
     },
     simulation: {
       type: "multicollinearity_simulator",
@@ -776,7 +776,7 @@ window.LEVELS_DATA = [
       title: "Diagnose & Praktijk Oplossing",
       metrics: [
         { label: "Correlatie Linker/Rechterbeen", value: "r = 0.99", note: "Redundante voorspellers" },
-        { label: "VIF Score", value: "VIF = 50.2", note: "Kritiek hoog (> 10)" },
+        { label: "VIF Score", value: "VIF = 50.3", note: "Kritiek hoog (> 10; SE 7.1x opgeblazen)" },
         { label: "Oplossing", value: "Verwijder één variabele", note: "Of neem het gemiddelde" }
       ],
       recommendation: "Verwijder één van de twee benen. De VIF zakt direct naar 1.0 en de overblijvende variabele wordt zeer significant."
@@ -1400,8 +1400,8 @@ window.LEVELS_DATA = [
         { term: "Backdoor Criterium", desc: "Regels om te bepalen voor welke variabelen je moet controleren om causale effecten te isoleren." },
         { term: "Reproducing Kernel Hilbert Space (RKHS, ℋ)", desc: "Een oneindig-dimensionale functieruimte waarin kansverdelingen als vectoren worden gerepresenteerd." }
       ],
-      mathFormula: "P(Y \\mid \\text{do}(X = x)) = \\sum_z P(Y \\mid X=x, Z=z) P(Z=z) \\quad \\text{in } \\mathcal{H}",
-      formulaExplain: "De do-operator berekent wat er gebeurt als je het systeem zélf bestuurt in plaats van slechts toekijkt."
+      mathFormula: "P(Y \\mid \\text{do}(X = x)) = \\sum_z P(Y \\mid X=x, Z=z) P(Z=z) \\quad \\implies \\quad \\mu_{Y \\mid \\text{do}(x)} = \\int \\mathcal{C}_{Y \\mid X, Z}(x, z) \\, d\\mathbb{P}(z) \\in \\mathcal{H}_Y",
+      formulaExplain: "Pearl's backdoor-aanpassing isoleert het effect onder do(X). In een Reproducing Kernel Hilbert Space (RKHS, ℋ_Y) embedt de Kernel Mean Embedding de continue causale verdeling als element zonder parametrische aannames."
     },
     simulation: {
       type: "causal_dag_simulator",
@@ -1510,8 +1510,8 @@ window.LEVELS_DATA = [
         { term: "Oneindig-dimensionale Hilbertruimte (ℋ)", desc: "X_t is geen los getal meer, maar een complete continue functie of kwantumveld. Inproducten ⟨f, g⟩_ℋ definiëren afstanden en energie." },
         { term: "Causale Hilbert Inferentie", desc: "We modelleren niet slechts de associatieve stroom, maar de causale propagator onder do-interventies via Kernel Mean Embeddings in ℋ." }
       ],
-      mathFormula: "dX_t = \\nabla_{\\mathcal{M}} \\Phi(X_t) dt + \\sigma(X_t) d\\mathbf{B}_t^{\\text{rough}} \\quad \\text{in } \\mathcal{H}",
-      formulaExplain: "In gewone mensentaal: een oneindig-dimensionaal toevalsproces ($X_t \\in \\mathcal{H}$) stroomt langs de steilste afdaling van een onbekend potentiaalveld over een gekromd oppervlak ($\\nabla_{\\mathcal{M}} \\Phi dt$), terwijl het voortdurend wordt bestookt door ultra-grillige fractale schokken ($d\\mathbf{B}_t^{\\text{rough}}$), waarbij causale interventies de stroomlijnen herprogrammeren."
+      mathFormula: "dX_t = -\\nabla_{\\mathcal{M}} \\Phi(X_t) dt + \\sigma(X_t) d\\mathbf{B}_t^{\\text{rough}} \\quad \\text{in } \\mathcal{H}",
+      formulaExplain: "In gewone mensentaal: een oneindig-dimensionaal toevalsproces ($X_t \\in \\mathcal{H}$) stroomt langs de steilste afdaling van een potentiaalveld over een gekromd oppervlak ($-\\nabla_{\\mathcal{M}} \\Phi dt$), terwijl het voortdurend wordt bestookt door ultra-grillige fractale schokken ($d\\mathbf{B}_t^{\\text{rough}}$), waarbij causale interventies de stroomlijnen herprogrammeren."
     },
     simulation: {
       type: "apex_manifold_simulator",
@@ -1529,7 +1529,7 @@ window.LEVELS_DATA = [
       recommendation: "Gefeliciteerd! Je hebt de volledige reis voltooid van de meest basale centrummaten (€ 3.000 vs € 48.000 salaris) tot aan de wiskundige grens van de moderne theoretische statistiek. Je begrijpt nu hoe eenvoudige lineaire modellen stap voor stap transformeren tot oneindig-dimensionale stochastische systemen op gekromde ruimten!"
     },
     quiz: {
-      question: "Waarom vereist de apex-vergelijking dX_t = ∇_ℳ Φ dt + σ dB_t^rough Terry Lyons' Rough Path theorie wanneer de Hurst exponent H < 1/2 is?",
+      question: "Waarom vereist de apex-vergelijking dX_t = -∇_ℳ Φ dt + σ dB_t^rough Terry Lyons' Rough Path theorie wanneer de Hurst exponent H < 1/2 is?",
       options: [
               "Omdat paden met H < 1/2 Markoviaans zijn en de Fokker-Planck vergelijking niet-oplosbaar maken",
               "Omdat voor H < 1/2 de p-variatie index p > 2 overschrijdt, waardoor klassieke Itô/Stratonovich integratie discontinu wordt en het pad verrijkt moet worden met hogere-orde tensor 'signatures' om een continue oplossing te garanderen",

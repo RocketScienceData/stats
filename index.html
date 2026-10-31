@@ -338,6 +338,22 @@
           <!-- Dynamically populated via StatCharts.renderLandingTeaser() -->
         </div>
 
+        <!-- Visual Architecture Illustration: The 4-Phase Learning Continuum -->
+        <div class="mt-14 max-w-5xl mx-auto text-left">
+          <div class="flex items-center justify-between mb-3 px-1">
+            <div>
+              <span class="text-xs uppercase font-extrabold tracking-wider text-indigo-400 bg-indigo-500/10 px-3 py-1 rounded-full border border-indigo-500/30">
+                Visual Continuum
+              </span>
+              <h3 class="text-base sm:text-lg font-bold text-white mt-2">The Statistical Continuum: 4 Progressive Phases</h3>
+            </div>
+            <span class="text-xs text-slate-400 font-mono hidden sm:inline">Levels 1 → 24 Apex</span>
+          </div>
+          <div class="rounded-2xl overflow-hidden shadow-2xl border border-slate-800 bg-slate-900/60 p-2 sm:p-4 hover:border-slate-700 transition">
+            <img src="assets/images/stats_pipeline_journey.svg" alt="The 4-Phase Statistical Learning Continuum from Foundations to Apex" class="w-full h-auto rounded-xl" loading="lazy">
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -522,7 +538,7 @@
               </li>
               <li class="flex items-start gap-2.5">
                 <span class="text-emerald-400 font-bold mt-0.5">•</span>
-                <span data-i18n="pain_our_3">Master the Practical Sweet Spot (Mixed Models L13–19) up to the mathematical Zenith (Apex L24).</span>
+                <span data-i18n="pain_our_3">Master the Practical Sweet Spot (Mixed Models L13–18) up to the mathematical Zenith (Apex L24).</span>
               </li>
             </ul>
           </div>
@@ -530,6 +546,11 @@
             Result: Confident scientific reasoning and unshakeable statistical intuition.
           </div>
         </div>
+      </div>
+
+      <!-- Visual Comparison Infographic -->
+      <div class="mt-10 max-w-5xl mx-auto rounded-2xl overflow-hidden shadow-2xl border border-slate-800 bg-slate-900/60 p-2 sm:p-4 hover:border-slate-700 transition">
+        <img src="assets/images/old_way_vs_new_way.svg" alt="Traditional Frustrating Way vs Statistical Journey Interactive Intuition" class="w-full h-auto rounded-xl" loading="lazy">
       </div>
     </div>
 
@@ -735,6 +756,11 @@
         </button>
       </div>
 
+      <!-- Visual Architectural Breakdown of Simpson's Paradox & Multilevel Decomposition -->
+      <div class="mt-8 rounded-2xl overflow-hidden shadow-2xl border border-indigo-500/30 bg-slate-900/60 p-2 sm:p-4 hover:border-indigo-500/50 transition">
+        <img src="assets/images/simpsons_paradox_mixed_models.svg" alt="Simpson's Paradox and Hierarchical Mixed Model Architecture" class="w-full h-auto rounded-xl" loading="lazy">
+      </div>
+
     </div>
 
     <!-- Section 3: Why This Platform Works (Features) -->
@@ -792,6 +818,15 @@
           </div>
         </div>
 
+        <!-- Visual Causal Graph Surgery & Backdoor Identification Infographic -->
+        <div class="mb-12 max-w-5xl mx-auto rounded-2xl overflow-hidden shadow-2xl border border-sky-500/30 bg-slate-900/60 p-2 sm:p-4 hover:border-sky-500/50 transition">
+          <div class="flex items-center justify-between mb-2 px-1">
+            <span class="text-xs font-bold text-sky-400 uppercase tracking-wider">Causal Foundation Preview (Level 22)</span>
+            <span class="text-xs text-slate-400 font-mono">P(Y | do(X)) ≠ P(Y | X)</span>
+          </div>
+          <img src="assets/images/causal_dag_surgery.svg" alt="Causal Directed Acyclic Graphs (DAGs) and Pearl's do-Operator Graph Surgery" class="w-full h-auto rounded-xl" loading="lazy">
+        </div>
+
         <!-- Spotlight Feature Card: Apex Certificate Preview -->
         <div class="bg-gradient-to-r from-purple-950/80 via-slate-900 to-indigo-950/80 border border-purple-500/40 rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl">
           <div class="max-w-2xl">
@@ -806,7 +841,7 @@
               For those who want to venture to the absolute mathematical frontier: Infinite-Dimensional Non-parametric Bayesian SDEs on Manifolds with Rough Paths & Causal Hilbert Spaces. Complete all 24 levels and claim your official certificate.
             </p>
             <div class="inline-block p-2.5 bg-slate-950/70 rounded-xl border border-purple-500/30 text-xs font-mono text-purple-300">
-              dX_t = ∇_ℳ Φ(X_t) dt + σ(X_t) dB_t^rough in ℋ
+              dX_t = -∇_ℳ Φ(X_t) dt + σ(X_t) dB_t^rough in ℋ
             </div>
           </div>
           <button onclick="StatApp.jumpToLevel(24)" class="shrink-0 px-6 py-3.5 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold rounded-xl text-sm shadow-xl transition" data-i18n="cert_spotlight_cta">
@@ -1030,7 +1065,7 @@
       </p>
 
       <div class="p-3.5 bg-slate-900/90 border border-purple-500/40 rounded-2xl text-xs sm:text-sm font-mono text-purple-200 mb-6">
-        dX_t = ∇_ℳ Φ(X_t) dt + σ(X_t) dB_t^rough in ℋ
+        dX_t = -∇_ℳ Φ(X_t) dt + σ(X_t) dB_t^rough in ℋ
         <div class="text-[11px] text-slate-400 mt-1 font-sans">
           Infinite-Dimensional Non-parametric Bayesian SDEs on Manifolds with Rough Paths & Causal Hilbert Spaces
         </div>
