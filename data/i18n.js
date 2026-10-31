@@ -358,6 +358,184 @@ const dict = {
 
     // Footer
     footer_text: "Statistical Journey • 80+ Problems & Diagnostic Scenarios • From Descriptive Statistics to Infinite-Dimensional Non-parametric Bayesian SDEs on Manifolds with Rough Paths & Causal Hilbert Spaces"
+  },
+
+  es: {
+    // SEO & Meta
+    meta_title: "Statistical Journey | Curso Adaptativo de Estadística del Nivel 1 al 24 Apex",
+    meta_desc: "Domina el razonamiento estadístico real sin la fricción de programar. 24 niveles progresivos desde estadística descriptiva y modelos mixtos hasta SDEs dimensionalmente infinitas en variedades. Con evaluación diagnóstica adaptativa y arena interactiva de práctica.",
+
+    // Navegación
+    nav_brand_title: "Statistical",
+    nav_brand_sub: "Journey",
+    nav_subtitle: "Aprendizaje Adaptativo • Nivel 1 a 24 Apex (Geometría, SDEs y Espacios de Hilbert)",
+    nav_status_prefix: "Estado:",
+    nav_status_unscanned: "Aún no evaluado",
+    nav_btn_scan: "Diagnóstico",
+    nav_btn_arena: "Arena de Práctica",
+    nav_tab_landing: "🏠 Inicio",
+    nav_tab_studio: "🔬 Estudio del Curso",
+    nav_btn_sound_title: "Activar/Desactivar sonido",
+    nav_btn_reset_title: "Restablecer progreso",
+
+    // Landing Page Hero
+    hero_badge: "✨ 100% Intuición Estadística • Cero Fricción de Código • Desde lo Básico hasta el Apex",
+    hero_title_1: "Domina la Estadística Real.",
+    hero_title_2: "De Medidas Descriptivas a Espacios de Hilbert.",
+    hero_subtitle: "Sin dolores de cabeza con la sintaxis de R o Python. Comprende qué hace realmente un modelo, por qué fallan los supuestos, cómo los Modelos Lineales Mixtos dominan los datos jerárquicos y cómo operan las SDEs en variedades continuas. Totalmente adaptativo, visual e interactivo.",
+    hero_cta_scan: "🧠 Realiza la Evaluación Diagnóstica Gratuita",
+    hero_cta_studio: "🚀 Entrar al Estudio del Curso (Niveles 1–24)",
+    hero_cta_sweetspot: "🎯 Ir a Modelos Mixtos (N13)",
+
+    // Estadísticas Clave
+    stat_levels: "24 Niveles",
+    stat_levels_desc: "Desde Cero hasta el Apex",
+    stat_exercises: "80+ Problemas",
+    stat_exercises_desc: "Casos, Dilemas y Trampas",
+    stat_simulators: "24 Simuladores",
+    stat_simulators_desc: "Retroalimentación Visual en Tiempo Real",
+    stat_coding: "0 Líneas de Código",
+    stat_coding_desc: "100% Razonamiento Estadístico",
+
+    // 4 Fases Roadmap
+    roadmap_title: "Las Cuatro Fases de tu Viaje Estadístico",
+    roadmap_subtitle: "Una hoja de ruta cristalina: identifica tu nivel actual y avanza hacia la maestría estadística.",
+    phase1_title: "Fase 1: Fundamentos y Probabilidad",
+    phase1_subtitle: "Niveles 1 al 5",
+    phase1_desc: "Puntajes Z, pruebas t, ANOVA, valores p e intervalos de confianza. Construye una base inquebrantable.",
+    phase2_title: "Fase 2: Regresión Clásica y Diagnósticos",
+    phase2_subtitle: "Niveles 6 al 12",
+    phase2_desc: "MCO (OLS), análisis de residuos, multicolinealidad, heterocedasticidad, regresión logística GLM y modelos de Poisson.",
+    phase3_title: "Fase 3: Modelos Mixtos (El Punto Clave Práctico)",
+    phase3_subtitle: "Niveles 13 al 19",
+    phase3_desc: "Interceptos aleatorios, pendientes aleatorias, CCI, medidas repetidas, GEE y distribuciones a priori bayesianas. El pilar del 90% de la investigación empírica.",
+    phase4_title: "Fase 4: Fronteras Avanzadas y Apex",
+    phase4_subtitle: "Niveles 20 al 24",
+    phase4_desc: "Inferencia MCMC, análisis de supervivencia, razonamiento causal con DAGs, geometría de variedades y SDEs dimensionalmente infinitas.",
+
+    // Live Teaser Demo
+    teaser_badge: "⚡ Demostración Intuitiva en Vivo",
+    teaser_title: "Experimenta el Momento '¡Eureka!': La Paradoja de Simpson en Tiempo Real",
+    teaser_subtitle: "Descubre en 3 segundos cómo los datos agregados pueden engañar y por qué los Modelos Mixtos son indispensables.",
+    teaser_pooled_btn: "MCO Agrupado (Agregado Engañoso)",
+    teaser_mixed_btn: "Modelo Mixto (Separación por Clúster)",
+    teaser_explanation_pooled: "⚠️ <strong>MCO Agrupado dibuja una pendiente negativa (β = -0.42):</strong> ¡parece sugerir que el ejercicio <em>aumenta</em> el colesterol! Esta es la clásica trampa de la agregación.",
+    teaser_explanation_mixed: "✨ <strong>Dentro de cada grupo de edad, el ejercicio reduce con fuerza el colesterol (β = -0.78):</strong> ¡el ejercicio es altamente protector! En 3 segundos comprendes por qué existen los Modelos Lineales Mixtos.",
+
+    // Dolor vs Avance
+    pain_title: "Por Qué la Educación Estadística Clásica Falla (Y Cómo lo Solucionamos)",
+    pain_subtitle: "Deja de desperdiciar el 80% de tu energía depurando sintaxis de librerías y comas perdidas. Concéntrate en lo que de verdad importa: el criterio científico.",
+    pain_trad_title: "La Forma Antigua y Frustrante",
+    pain_trad_1: "Horas interminables depurando errores de sintaxis en R o Python en lugar de comprender la mecánica del modelo.",
+    pain_trad_2: "Memorizar fórmulas griegas a ciegas y reportar p < 0.05 sin comprobar los supuestos de los residuos (L.I.N.E.).",
+    pain_trad_3: "Ignorar el agrupamiento y la dependencia en los datos, lo que produce errores estándar subestimados y conclusiones falsas.",
+    pain_our_title: "El Método Statistical Journey",
+    pain_our_1: "100% comprensión conceptual con controles interactivos, visualizaciones instantáneas y conjuntos de datos reales.",
+    pain_our_2: "Identifica trampas al instante: p-hacking, paradoja de Simpson, multicolinealidad y heterocedasticidad.",
+    pain_our_3: "Domina desde el Punto Clave Práctico (Modelos Mixtos N13–19) hasta el Cenit Matemático (Apex N24).",
+
+    // Personas Objetivo
+    target_title: "Diseñado para Investigadores, Científicos de Datos y Analistas",
+    target_subtitle: "Tanto si publicas en revistas de alto impacto como si tomas decisiones estratégicas: la intuición estadística pura es tu mayor ventaja.",
+    target_1_title: "Doctorandos e Investigadores Académicos",
+    target_1_desc: "Modela con total seguridad medidas repetidas, clústeres jerárquicos (CCI) y curvas de supervivencia para artículos revisados por pares.",
+    target_2_title: "Científicos de Datos e Ingenieros de ML",
+    target_2_desc: "Mira más allá de 'model.fit()'. Domina diagramas causales (DAGs), distribuciones a priori bayesianas y variedades riemannianas.",
+    target_3_title: "Analistas y Tomadores de Decisiones",
+    target_3_desc: "Detecta paneles engañosos, desenmascara factores de confusión ocultos y evita errores costosos debidos a supuestos erróneos.",
+
+    // Enfoques Destacados
+    sweetspot_spotlight_title: "El Punto Clave Práctico: Modelos Lineales Mixtos (Niveles 13–19)",
+    sweetspot_spotlight_desc: "Más del 90% de los datos empíricos en medicina, biología, psicología y negocios son agrupados o longitudinales. El MCO estándar subestima severamente los errores estándar, generando precisión ilusoria. Los niveles 13 al 19 te enseñan exactamente cuándo y cómo usar interceptos y pendientes aleatorias.",
+    sweetspot_spotlight_cta: "🎯 Ir a Modelos Mixtos (N13)",
+    cert_spotlight_title: "El Apex Teórico: Nivel 24 y Certificado Verificado",
+    cert_spotlight_desc: "Para quienes desean explorar la frontera matemática absoluta: SDEs bayesianas no paramétricas de dimensión infinita en variedades con trayectorias rugosas y espacios causales de Hilbert. Completa los 24 niveles y obtén tu certificado oficial.",
+    cert_spotlight_cta: "🏆 Explorar el Apex Nivel 24",
+    final_cta_title: "¿Listo para Transformar tu Forma de Ver los Datos?",
+    final_cta_subtitle: "Sin registro obligatorio. Sin tarjeta de crédito. 100% gratuito y de libre acceso. Comienza en el Nivel 1 o realiza la evaluación diagnóstica de 2 minutos.",
+
+    // Características
+    features_title: "Por Qué Funciona este Enfoque",
+    features_subtitle: "La enseñanza tradicional te obliga a luchar con la sintaxis de librerías. Nosotros agudizamos tu razonamiento matemático y analítico.",
+    feat1_title: "Escáner Diagnóstico Adaptativo",
+    feat1_desc: "Cero tiempo perdido. Nuestra evaluación de 10 escenarios detecta tu nivel real de conocimientos y te sitúa de inmediato en tu punto óptimo.",
+    feat2_title: "24 Simuladores Interactivos",
+    feat2_desc: "Modifica parámetros, añade ruido, rota variedades 3D y observa cómo reaccionan los valores p y las distribuciones posteriores en tiempo real.",
+    feat3_title: "Arena de Práctica y Trampas Críticas",
+    feat3_desc: "80+ dilemas realistas sobre p-hacking, paradoja de Simpson, sesgo de colisionador, residuos no normales y sobredispersión.",
+    feat4_title: "Apex Teórico y Certificado",
+    feat4_desc: "Domina el Nivel 24 y obtén un certificado digital verificable en SDEs Bayesianas No Paramétricas de Dimensión Infinita en Variedades.",
+
+    // FAQ
+    faq_title: "Preguntas Frecuentes (FAQ)",
+    faq_q1: "¿Necesito experiencia previa en programación (R o Python)?",
+    faq_a1: "No, en absoluto. Este curso se centra al 100% en la intuición estadística, supuestos, selección de modelos e interpretación de diagnósticos. Todo el cálculo y las simulaciones se ejecutan en vivo en tu navegador.",
+    faq_q2: "¿Cómo funciona la evaluación diagnóstica adaptativa?",
+    faq_a2: "En 10 preguntas de escenarios prácticos, el algoritmo evalúa tu dominio desde contrastes básicos hasta modelos mixtos avanzados y principios bayesianos, recomendándote tu nivel de inicio ideal.",
+    faq_q3: "¿Puedo saltar directamente a cualquier nivel?",
+    faq_a3: "¡Sí! Los 24 niveles están completamente desbloqueados. Puedes ir directamente a Modelos Mixtos (Nivel 13) o al Apex (Nivel 24).",
+    faq_q4: "¿Existe una constancia oficial de finalización?",
+    faq_a4: "Sí. Al completar el Nivel 24 puedes generar, imprimir o guardar un certificado digital verificado oficial en formato PDF.",
+
+    // App Studio View
+    sidebar_title: "Statistical Journey (1–24)",
+    step_indicator: "Paso",
+    of: "de",
+    coach_title: "Tutor Estadístico Adaptativo",
+    coach_status_label: "Tu Estado:",
+    recalibrate_btn: "⚡ Recalibrar Nivel",
+    arena_btn: "🎯 Arena de Práctica",
+    case_title: "El Caso de Estudio",
+    research_question: "Pregunta de Investigación:",
+    core_concept: "Concepto Clave y Perspectiva Matemática",
+    key_formula: "Definición Matemática:",
+    metrics_title: "Métricas del Modelo y Diagnósticos",
+    simulation_title: "Laboratorio de Simulación Interactiva",
+    recommendations_title: "Consejos Prácticos y Selección de Modelos",
+    exercises_title: "Serie de Ejercicios Interactivos",
+    exercise_step: "Ejercicio",
+    btn_check: "Verificar Respuesta",
+    btn_retry: "Intentar de Nuevo",
+    btn_next: "Siguiente Ejercicio",
+    btn_complete_level: "Completar Nivel y Continuar",
+    congrats_title: "¡Excelente Trabajo!",
+    congrats_desc: "Has dominado todos los ejercicios de este nivel. ¿Listo para el siguiente desafío?",
+    btn_prev_level: "← Nivel Anterior",
+    btn_next_level: "Siguiente Nivel →",
+    btn_apex_cert: "🏆 Ver Certificado Apex",
+
+    // Modal Diagnóstico
+    scan_modal_title: "Evaluación Estadística Adaptativa",
+    scan_modal_desc: "Responde 10 preguntas diagnósticas de casos reales para determinar tu nivel óptimo de inicio.",
+    scan_step: "Pregunta",
+    scan_btn_start: "🚀 Iniciar Diagnóstico",
+    scan_result_title: "¡Evaluación Completada!",
+    scan_result_advice: "Nivel de Inicio Recomendado:",
+    scan_btn_go: "Ir Directamente a este Nivel",
+
+    // Modal Arena
+    arena_modal_title: "La Arena de Práctica",
+    arena_modal_desc: "Pon a prueba tus habilidades con un flujo infinito de desafíos a lo largo de los 24 niveles.",
+    arena_filter_all: "Todo (N1–N24)",
+    arena_filter_f1: "Fase 1: Fundamentos",
+    arena_filter_f2: "Fase 2: Regresión",
+    arena_filter_f3: "Fase 3: Modelos Mixtos",
+    arena_filter_f4: "Fase 4: Avanzado",
+    arena_streak: "Racha Actual:",
+    arena_btn_next: "Siguiente Pregunta →",
+
+    // Modal Certificado
+    cert_badge: "Certificado del Apex Teórico",
+    cert_headline: "Maestría en Modelos Estadísticos Avanzados",
+    cert_desc: "Se certifica que el/la candidato/a ha completado satisfactoriamente los 24 niveles del Statistical Journey: desde la Estadística Descriptiva y Regresión Clásica, pasando por el Punto Clave de los Modelos Lineales Mixtos, hasta el Cenit de:",
+    cert_name_default: "Viajero/a Estadístico/a",
+    cert_earned_on: "Obtenido el",
+    cert_total_xp: "Total obtenido: 2.400+ XP",
+    cert_btn_print: "🖨️ Imprimir / Guardar en PDF",
+    cert_btn_close: "Cerrar",
+
+    // Footer
+    footer_text: "Statistical Journey • 80+ Ejercicios y Escenarios Diagnósticos • Desde Medidas Descriptivas hasta SDEs Bayesianas No Paramétricas de Dimensión Infinita en Variedades con Trayectorias Rugosas y Espacios Causales de Hilbert"
   }
 };
 
@@ -395,6 +573,40 @@ const levelMeta = {
       23: { title: "Stochastic Differential Equations (SDEs)", badge: "SDEs", subtitle: "Ito calculus, continuous diffusion drift, Brownian motion, and stochastic volatility." },
       24: { title: "Infinite-Dimensional Non-parametric Bayesian SDEs on Manifolds with Rough Paths & Causal Hilbert Spaces", badge: "The Ultimate Apex (Level 24)", subtitle: "Non-Euclidean Riemannian manifolds, rough path signatures, and infinite-dimensional RKHS operators." }
     }
+  },
+  es: {
+    phases: {
+      1: "Fase 1: Fundamentos y Probabilidad",
+      2: "Fase 2: Regresión Clásica y Diagnósticos",
+      3: "Fase 3: Modelos Mixtos (Punto Clave Práctico)",
+      4: "Fase 4: Fronteras Avanzadas y Cenit Teórico"
+    },
+    levels: {
+      1: { title: "Estadística Descriptiva y la Trampa de los Atípicos", badge: "Fundamento", subtitle: "Media, mediana, dispersión y por qué una sola métrica puede distorsionar la realidad." },
+      2: { title: "Distribuciones de Probabilidad y la Curva Normal", badge: "Fundamento", subtitle: "Puntuaciones Z, la regla 68-95-99.7 y desviaciones de la campana de Gauss." },
+      3: { title: "El Teorema del Límite Central (TLC)", badge: "Fundamento", subtitle: "Por qué las medias muestrales convergen a la normalidad independientemente de la forma poblacional." },
+      4: { title: "Intervalos de Confianza (IC) y Margen de Error", badge: "Fundamento", subtitle: "¿Qué tan seguros podemos estar? La interpretación rigurosa del intervalo de confianza al 95%." },
+      5: { title: "Contraste de Hipótesis, Pruebas t y el Valor p", badge: "Fundamento", subtitle: "Hipótesis nula, errores Tipo I/II y el abismo entre significación estadística y relevancia clínica." },
+      6: { title: "Regresión Lineal I: MCO (OLS) y la Recta de Mejor Ajuste", badge: "Regresión Clásica", subtitle: "Línea de mejor ajuste, pendiente beta_1, intercepto y suma de cuadrados residuales." },
+      7: { title: "Bondad de Ajuste: R², R² Ajustado y la Prueba F", badge: "Regresión Clásica", subtitle: "Explicar varianza frente a penalizar predictores que solo aportan ruido." },
+      8: { title: "Supuestos del Modelo y Diagnósticos (L.I.N.E.)", badge: "Regresión Clásica", subtitle: "Linealidad, independencia, normalidad de residuos y homocedasticidad." },
+      9: { title: "Regresión Múltiple y Confusión (Paradoja de Simpson)", badge: "Regresión Clásica", subtitle: "Cómo los factores de confusión omitidos pueden invertir por completo los efectos observados." },
+      10: { title: "Multicolinealidad y FIV (Factor de Inflación de la Varianza)", badge: "Regresión Clásica", subtitle: "Cuando los predictores correlacionan fuertemente: errores estándar inflados y coeficientes erráticos." },
+      11: { title: "Regresión Logística y Odds Ratios", badge: "Regresión Clásica", subtitle: "Modelado de respuestas binarias, log-odds, curva sigmoide y razones de momios clínicas." },
+      12: { title: "Regularización: Ridge (L₂) y Lasso (L₁)", badge: "Regresión Clásica", subtitle: "Penalización por contracción, dispersión, selección de características y el dilema sesgo-varianza." },
+      13: { title: "Datos Agrupados y el Fracaso de MCO Estándar", badge: "Modelos Mixtos (Punto Clave)", subtitle: "Correlación intraclase (CCI), pseudorreplicación y por qué MCO subestima los errores estándar." },
+      14: { title: "Modelos Lineales Mixtos I: Interceptos Aleatorios", badge: "Modelos Mixtos (Punto Clave)", subtitle: "Permitir que los grupos tengan variabilidad basal compartiendo una pendiente común." },
+      15: { title: "Modelos Lineales Mixtos II: Pendientes Aleatorias y Medidas Repetidas", badge: "Punto Clave Práctico", subtitle: "Modelado jerárquico donde los efectos del tratamiento varían entre unidades a lo largo del tiempo." },
+      16: { title: "Modelos Mixtos Lineales Generalizados (GLMM)", badge: "GLMM", subtitle: "Respuestas no normales (binarias, conteos) combinadas con efectos aleatorios de grupo." },
+      17: { title: "Modelos Aditivos Generalizados (GAMs)", badge: "GAMs", subtitle: "Splines de suavizado y relaciones no lineales sin ajuste manual de polinomios." },
+      18: { title: "Análisis de Supervivencia y Modelado de Tiempo hasta el Evento", badge: "Supervivencia", subtitle: "Censura por la derecha, curvas de Kaplan-Meier, hazard ratios y riesgos proporcionales de Cox." },
+      19: { title: "Fundamentos Bayesianos: Priori, Verosimilitud y Posteriori", badge: "Bayesiano", subtitle: "Actualización de creencias previas con evidencia empírica mediante el Teorema de Bayes." },
+      20: { title: "MCMC Bayesiano y Monte Carlo Hamiltoniano (HMC)", badge: "MCMC", subtitle: "Muestreo en geometrías posteriores intratables usando Stan y PyMC." },
+      21: { title: "Modelos Bayesianos No Paramétricos y Procesos Gaussianos", badge: "Procesos Gaussianos", subtitle: "El truco del kernel y distribución sobre espacios de funciones en lugar de parámetros fijos." },
+      22: { title: "Inferencia Causal en Espacios de Hilbert y Do-Cálculo", badge: "Inferencia Causal", subtitle: "Do-cálculo de Pearl, ajuste por confusión, variables instrumentales y kernels RKHS." },
+      23: { title: "Ecuaciones Diferenciales Estocásticas (SDEs)", badge: "SDEs", subtitle: "Cálculo de Itô, difusión continua, movimiento browniano y volatilidad estocástica." },
+      24: { title: "SDEs Bayesianas No Paramétricas de Dimensión Infinita en Variedades con Trayectorias Rugosas y Espacios Causales de Hilbert", badge: "El Apex Definitivo (Nivel 24)", subtitle: "Variedades riemannianas no euclidianas, signaturas de trayectorias rugosas y operadores en RKHS de dimensión infinita." }
+    }
   }
 };
 
@@ -418,41 +630,60 @@ window.I18N = {
   },
 
   getLevelTitle(level) {
-    if (this.currentLang === 'en' && this.levelMeta.en.levels[level.id]) {
+    const lang = this.currentLang || 'en';
+    if (this.levelMeta[lang] && this.levelMeta[lang].levels[level.id]) {
+      return this.levelMeta[lang].levels[level.id].title;
+    }
+    if (this.levelMeta.en && this.levelMeta.en.levels[level.id]) {
       return this.levelMeta.en.levels[level.id].title;
     }
     return level.title;
   },
 
   getLevelSubtitle(level) {
-    if (this.currentLang === 'en' && this.levelMeta.en.levels[level.id]) {
+    const lang = this.currentLang || 'en';
+    if (this.levelMeta[lang] && this.levelMeta[lang].levels[level.id]) {
+      return this.levelMeta[lang].levels[level.id].subtitle;
+    }
+    if (this.levelMeta.en && this.levelMeta.en.levels[level.id]) {
       return this.levelMeta.en.levels[level.id].subtitle;
     }
     return level.subtitle;
   },
 
   getLevelBadge(level) {
-    if (this.currentLang === 'en' && this.levelMeta.en.levels[level.id]) {
+    const lang = this.currentLang || 'en';
+    if (this.levelMeta[lang] && this.levelMeta[lang].levels[level.id]) {
+      return this.levelMeta[lang].levels[level.id].badge;
+    }
+    if (this.levelMeta.en && this.levelMeta.en.levels[level.id]) {
       return this.levelMeta.en.levels[level.id].badge;
     }
     return level.badge;
   },
 
   getPhaseTitle(phaseNumber) {
-    if (this.currentLang === 'en' && this.levelMeta.en.phases[phaseNumber]) {
+    const lang = this.currentLang || 'en';
+    if (lang === 'nl') {
+      const defaultPhases = {
+        1: "Fase 1: De Fundamenten",
+        2: "Fase 2: Klassieke Regressie & Diagnostiek",
+        3: "Fase 3: Mixed Models (De Praktische Sweet Spot)",
+        4: "Fase 4: Geavanceerde Grenzen & Apex"
+      };
+      return defaultPhases[phaseNumber] || `Fase ${phaseNumber}`;
+    }
+    if (this.levelMeta[lang] && this.levelMeta[lang].phases[phaseNumber]) {
+      return this.levelMeta[lang].phases[phaseNumber];
+    }
+    if (this.levelMeta.en && this.levelMeta.en.phases[phaseNumber]) {
       return this.levelMeta.en.phases[phaseNumber];
     }
-    const defaultPhases = {
-      1: "Fase 1: De Fundamenten",
-      2: "Fase 2: Klassieke Regressie & Diagnostiek",
-      3: "Fase 3: Mixed Models (De Praktische Sweet Spot)",
-      4: "Fase 4: Geavanceerde Grenzen & Apex"
-    };
-    return defaultPhases[phaseNumber] || `Fase ${phaseNumber}`;
+    return `Phase ${phaseNumber}`;
   },
 
   setLang(lang) {
-    if (lang !== 'nl' && lang !== 'en') lang = 'en';
+    if (lang !== 'nl' && lang !== 'en' && lang !== 'es') lang = 'en';
     this.currentLang = lang;
     try {
       localStorage.setItem('statistiek_lang', lang);
@@ -471,7 +702,7 @@ window.I18N = {
   init() {
     try {
       const saved = localStorage.getItem('statistiek_lang');
-      if (saved === 'en' || saved === 'nl') {
+      if (saved === 'en' || saved === 'nl' || saved === 'es') {
         this.currentLang = saved;
       } else {
         // English first by default!
@@ -531,14 +762,21 @@ window.I18N = {
     // Update active state in language selector buttons
     const nlBtn = document.getElementById('lang-btn-nl');
     const enBtn = document.getElementById('lang-btn-en');
-    if (nlBtn && enBtn) {
-      if (this.currentLang === 'nl') {
-        nlBtn.className = "px-2 py-1 rounded bg-indigo-600 text-white font-bold text-xs shadow transition";
-        enBtn.className = "px-2 py-1 rounded bg-slate-800 text-slate-400 hover:text-white font-medium text-xs transition";
-      } else {
-        nlBtn.className = "px-2 py-1 rounded bg-slate-800 text-slate-400 hover:text-white font-medium text-xs transition";
-        enBtn.className = "px-2 py-1 rounded bg-indigo-600 text-white font-bold text-xs shadow transition";
-      }
+    const esBtn = document.getElementById('lang-btn-es');
+
+    const inactiveClass = "px-2 py-1 rounded bg-slate-800 text-slate-400 hover:text-white font-medium text-xs transition";
+    const activeClass = "px-2 py-1 rounded bg-indigo-600 text-white font-bold text-xs shadow transition";
+
+    if (nlBtn) nlBtn.className = inactiveClass;
+    if (enBtn) enBtn.className = inactiveClass;
+    if (esBtn) esBtn.className = inactiveClass;
+
+    if (this.currentLang === 'nl' && nlBtn) {
+      nlBtn.className = activeClass;
+    } else if (this.currentLang === 'es' && esBtn) {
+      esBtn.className = activeClass;
+    } else if (enBtn) {
+      enBtn.className = activeClass;
     }
   }
 };

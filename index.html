@@ -18,6 +18,7 @@
   <link rel="canonical" href="https://rocketsciencedata.github.io/stats/">
   <link rel="alternate" hreflang="en" href="https://rocketsciencedata.github.io/stats/?lang=en">
   <link rel="alternate" hreflang="nl" href="https://rocketsciencedata.github.io/stats/?lang=nl">
+  <link rel="alternate" hreflang="es" href="https://rocketsciencedata.github.io/stats/?lang=es">
   <link rel="alternate" hreflang="x-default" href="https://rocketsciencedata.github.io/stats/">
 
   <!-- Open Graph / Facebook / LinkedIn -->
@@ -29,6 +30,7 @@
   <meta property="og:image" content="https://rocketsciencedata.github.io/stats/og-preview.png">
   <meta property="og:locale" content="en_US">
   <meta property="og:locale:alternate" content="nl_NL">
+  <meta property="og:locale:alternate" content="es_ES">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
@@ -70,7 +72,7 @@
         },
         "educationalLevel": "Beginner to Advanced & Research Frontier",
         "courseCode": "STAT-1-24",
-        "inLanguage": ["en", "nl"],
+        "inLanguage": ["en", "nl", "es"],
         "isAccessibleForFree": true,
         "hasCourseInstance": {
           "@type": "CourseInstance",
@@ -230,13 +232,16 @@
       <!-- Quick Actions & Multilingual Switcher (English First) -->
       <div class="flex items-center gap-1.5 sm:gap-2">
         
-        <!-- Language Selector (EN First / NL) -->
+        <!-- Language Selector (EN First / NL / ES) -->
         <div class="flex items-center bg-slate-900 border border-slate-800 rounded-xl p-0.5">
           <button id="lang-btn-en" onclick="StatApp.setLanguage('en')" class="px-2 py-1 rounded bg-indigo-600 text-white font-bold text-xs shadow transition" title="English">
             🇬🇧 EN
           </button>
           <button id="lang-btn-nl" onclick="StatApp.setLanguage('nl')" class="px-2 py-1 rounded bg-slate-800 text-slate-400 hover:text-white font-medium text-xs transition" title="Nederlands">
             🇳🇱 NL
+          </button>
+          <button id="lang-btn-es" onclick="StatApp.setLanguage('es')" class="px-2 py-1 rounded bg-slate-800 text-slate-400 hover:text-white font-medium text-xs transition" title="Español">
+            🇪🇸 ES
           </button>
         </div>
 

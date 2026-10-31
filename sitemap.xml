@@ -8,6 +8,7 @@
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://rocketsciencedata.github.io/stats/?lang=en"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://rocketsciencedata.github.io/stats/?lang=nl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://rocketsciencedata.github.io/stats/?lang=es"/>
   </url>
   <url>
     <loc>https://rocketsciencedata.github.io/stats/#roadmap</loc>

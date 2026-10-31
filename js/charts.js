@@ -947,11 +947,15 @@ window.StatCharts = (function() {
 
     let datasets = [];
 
+    const lang = (window.I18N && window.I18N.currentLang) || 'en';
+    const isEn = lang === 'en';
+    const isEs = lang === 'es';
+
     if (mode === 'pooled') {
       const allPoints = [...cluster1, ...cluster2, ...cluster3];
       datasets = [
         {
-          label: window.I18N && window.I18N.currentLang === 'en' ? 'All Patients (Pooled OLS)' : 'Alle Patiënten (Gepooled OLS)',
+          label: isEs ? 'Todos los Pacientes (MCO Agrupado)' : (isEn ? 'All Patients (Pooled OLS)' : 'Alle Patiënten (Gepooled OLS)'),
           data: allPoints,
           backgroundColor: '#f43f5e',
           borderColor: '#fda4af',
@@ -959,7 +963,7 @@ window.StatCharts = (function() {
           type: 'scatter'
         },
         {
-          label: window.I18N && window.I18N.currentLang === 'en' ? 'Deceptive Pooled Trend (Simpson\'s Trap)' : 'Vertekende Lijn (Aggregatievalkuil)',
+          label: isEs ? 'Tendencia Agrupada Engañosa (Trampa de Simpson)' : (isEn ? 'Deceptive Pooled Trend (Simpson\'s Trap)' : 'Vertekende Lijn (Aggregatievalkuil)'),
           data: [{x: 1.5, y: 240}, {x: 10, y: 145}],
           borderColor: '#f43f5e',
           borderWidth: 3,
@@ -971,7 +975,7 @@ window.StatCharts = (function() {
     } else {
       datasets = [
         {
-          label: window.I18N && window.I18N.currentLang === 'en' ? 'Young Cohort (20–35)' : 'Jongeren (20–35)',
+          label: isEs ? 'Cohorte Joven (20–35)' : (isEn ? 'Young Cohort (20–35)' : 'Jongeren (20–35)'),
           data: cluster1,
           backgroundColor: '#10b981',
           borderColor: '#34d399',
@@ -979,7 +983,7 @@ window.StatCharts = (function() {
           type: 'scatter'
         },
         {
-          label: window.I18N && window.I18N.currentLang === 'en' ? 'Middle-Aged (36–50)' : 'Middelbaar (36–50)',
+          label: isEs ? 'Edad Media (36–50)' : (isEn ? 'Middle-Aged (36–50)' : 'Middelbaar (36–50)'),
           data: cluster2,
           backgroundColor: '#38bdf8',
           borderColor: '#7dd3fc',
@@ -987,7 +991,7 @@ window.StatCharts = (function() {
           type: 'scatter'
         },
         {
-          label: window.I18N && window.I18N.currentLang === 'en' ? 'Seniors (51–70)' : 'Senioren (51–70)',
+          label: isEs ? 'Adultos Mayores (51–70)' : (isEn ? 'Seniors (51–70)' : 'Senioren (51–70)'),
           data: cluster3,
           backgroundColor: '#a855f7',
           borderColor: '#c084fc',
@@ -995,7 +999,7 @@ window.StatCharts = (function() {
           type: 'scatter'
         },
         {
-          label: 'Slope Young',
+          label: isEs ? 'Pendiente Joven' : 'Slope Young',
           data: [{x: 5.5, y: 180}, {x: 10.5, y: 138}],
           borderColor: '#10b981',
           borderWidth: 2,
@@ -1003,7 +1007,7 @@ window.StatCharts = (function() {
           pointRadius: 0
         },
         {
-          label: 'Slope Middle',
+          label: isEs ? 'Pendiente Media' : 'Slope Middle',
           data: [{x: 3, y: 210}, {x: 8, y: 167}],
           borderColor: '#38bdf8',
           borderWidth: 2,
@@ -1011,7 +1015,7 @@ window.StatCharts = (function() {
           pointRadius: 0
         },
         {
-          label: 'Slope Senior',
+          label: isEs ? 'Pendiente Senior' : 'Slope Senior',
           data: [{x: 1.2, y: 250}, {x: 5, y: 205}],
           borderColor: '#a855f7',
           borderWidth: 2,
@@ -1030,7 +1034,7 @@ window.StatCharts = (function() {
           x: {
             title: {
               display: true,
-              text: window.I18N && window.I18N.currentLang === 'en' ? 'Weekly Physical Exercise (Hours)' : 'Wekelijkse Beweging (Uren)',
+              text: isEs ? 'Ejercicio Físico Semanal (Horas)' : (isEn ? 'Weekly Physical Exercise (Hours)' : 'Wekelijkse Beweging (Uren)'),
               color: '#94a3b8'
             },
             grid: { color: 'rgba(255,255,255,0.06)' },
@@ -1039,7 +1043,7 @@ window.StatCharts = (function() {
           y: {
             title: {
               display: true,
-              text: window.I18N && window.I18N.currentLang === 'en' ? 'Serum Cholesterol (mg/dL)' : 'Serum Cholesterol (mg/dL)',
+              text: isEs ? 'Colesterol Sérico (mg/dL)' : (isEn ? 'Serum Cholesterol (mg/dL)' : 'Serum Cholesterol (mg/dL)'),
               color: '#94a3b8'
             },
             grid: { color: 'rgba(255,255,255,0.06)' },

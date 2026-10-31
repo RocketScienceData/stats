@@ -1,6 +1,6 @@
 # 🌌 Statistical Journey: From Foundations to Level 24 Apex
 
-[🇬🇧 Read in English](README.md) • [🇳🇱 Lees in het Nederlands](README.nl.md) • [🚀 Live Web App](https://rocketsciencedata.github.io/stats/)
+[🇬🇧 Read in English](README.md) • [🇳🇱 Lees in het Nederlands](README.nl.md) • [🇪🇸 Leer en Español](README.es.md) • [🚀 Live Web App](https://rocketsciencedata.github.io/stats/)
 
 An adaptive, interactive online platform engineered for **statistical intuition, model mechanics, and scientific judgment** — advancing from descriptive statistics and mixed models to the mathematical zenith:
 
@@ -22,11 +22,11 @@ python3 serve.py
 
 ---
 
-## 🌐 Complete Multilingual Support (English First & Dutch)
+## 🌐 Complete Multilingual Support (English, Dutch & Spanish)
 
-The platform offers a seamless bilingual learning experience (**English 🇬🇧 & Dutch 🇳🇱**):
+The platform offers a seamless trilingual learning experience (**English 🇬🇧, Dutch 🇳🇱 & Spanish 🇪🇸**):
 * **Default Language:** English is the default initial language upon visiting the platform.
-* **Instant Language Toggle:** Switch between English and Dutch in one click using the header buttons `[ 🇬🇧 EN ]` and `[ 🇳🇱 NL ]`.
+* **Instant Language Toggle:** Switch between languages in one click using the header buttons `[ 🇬🇧 EN ]`, `[ 🇳🇱 NL ]`, and `[ 🇪🇸 ES ]`.
 * **Persistent Preferences:** Your language choice is remembered across sessions via `localStorage` (`statistiek_lang`).
 * **Fully Localized Content:**
   - High-converting landing page with live interactive Simpson's Paradox simulator.

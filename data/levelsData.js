@@ -7,6 +7,7 @@ window.ADAPTIVE_ASSESSMENT = [
     id: "q1",
     question: "Stel: je analyseert de wachttijden van spoedeisende hulp patiënten. De meeste patiënten wachten 10 minuten, maar een paar wachten 6 uur. De directie wil één betrouwbaar centrumgetal rapporteren. Welk getal adviseer je?",
     question_en: "Suppose you analyze Emergency Room patient wait times. Most patients wait 10 minutes, but a few wait 6 hours. Hospital management wants a single reliable central tendency figure. What metric do you recommend?",
+    question_es: "Supón que analizas los tiempos de espera de pacientes en Urgencias. La mayoría espera 10 minutos, pero unos pocos esperan 6 horas. La dirección solicita una sola métrica de tendencia central fiable. ¿Cuál recomiendas?",
     options: [
       { text: "Het rekenkundig gemiddelde, want dat gebruikt alle data", score: 0, feedback: "Het gemiddelde wordt enorm opgeblazen door de 6-uur uitschieters." },
       { text: "De mediaan, omdat deze robuust is tegen extreme uitschieters", score: 2, feedback: "Uitstekend! De mediaan geeft een zuiver beeld van de typische patiënt." },
@@ -17,12 +18,18 @@ window.ADAPTIVE_ASSESSMENT = [
       { text: "The median, because it is robust against extreme outliers", score: 2, feedback: "Excellent! The median provides an accurate, unskewed view of the typical patient." },
       { text: "The standard deviation", score: 0, feedback: "Standard deviation measures dispersion, not central tendency." }
     ],
+    options_es: [
+      { text: "La media aritmética, ya que utiliza todos los datos", score: 0, feedback: "La media se infla drásticamente por los pacientes atípicos de 6 horas." },
+      { text: "La mediana, porque es robusta frente a valores atípicos extremos", score: 2, feedback: "¡Excelente! La mediana proporciona una visión fiel y sin sesgo del paciente típico." },
+      { text: "La desviación estándar", score: 0, feedback: "La desviación estándar mide dispersión, no tendencia central." }
+    ],
     domain: "fundamenten"
   },
   {
     id: "q2",
     question: "Wat gebeurt er met de standaardfout (SE = σ / √N) van een gemiddelde als je de steekproefomvang N verviervoudigt (bv. van 25 naar 100)?",
     question_en: "What happens to the Standard Error (SE = σ / √N) of a sample mean if you quadruple sample size N (e.g. from 25 to 100)?",
+    question_es: "¿Qué le ocurre al Error Estándar (SE = σ / √N) de una media muestral si cuadruplicas el tamaño de muestra N (ej. de 25 a 100)?",
     options: [
       { text: "De foutmarge halveert (wordt 2x zo klein, want √4 = 2)", score: 2, feedback: "Exact! Wet van de afnemende meeropbrengst bij steekproeftrekking." },
       { text: "De foutmarge wordt 4x zo klein", score: 0, feedback: "Niet juist, vanwege de wortel in de noemer deelt men door √4 = 2." },
@@ -33,12 +40,18 @@ window.ADAPTIVE_ASSESSMENT = [
       { text: "The margin of error becomes 4x smaller", score: 0, feedback: "Incorrect: due to the square root in the denominator, you divide by √4 = 2." },
       { text: "The standard error remains identical", score: 0, feedback: "Incorrect: larger samples always reduce estimation uncertainty." }
     ],
+    options_es: [
+      { text: "El margen de error se reduce a la mitad (2 veces menor, porque √4 = 2)", score: 2, feedback: "¡Exacto! Ley de rendimientos decrecientes en el muestreo empírico." },
+      { text: "El margen de error se reduce 4 veces", score: 0, feedback: "Incorrecto: debido a la raíz cuadrada en el denominador, se divide por √4 = 2." },
+      { text: "El error estándar permanece exactamente idéntico", score: 0, feedback: "Incorrecto: muestras más grandes siempre reducen la incertidumbre de estimación." }
+    ],
     domain: "fundamenten"
   },
   {
     id: "q3",
     question: "Een farmaceutisch onderzoek met N = 200.000 patiënten vindt een bloeddrukdaling van 0.3 mmHg met p = 0.00004. Wat concludeer je?",
     question_en: "A clinical trial with N = 200,000 patients discovers a blood pressure decrease of 0.3 mmHg with p = 0.00004. What is your conclusion?",
+    question_es: "Un ensayo clínico con N = 200.000 pacientes halla una reducción de presión arterial de 0,3 mmHg con p = 0,00004. ¿Cuál es tu conclusión?",
     options: [
       { text: "Het medicijn is een revolutionaire doorbraak omdat p zo minuscuul klein is", score: 0, feedback: "Pas op: p-waarde meet alleen bewijs tegen toeval, niet de praktische relevantie!" },
       { text: "Het effect is statistisch significant maar klinisch volstrekt verwaarloosbaar (0.3 mmHg is niet merkbaar)", score: 3, feedback: "Heel scherp! Bij gigantische N worden zelfs triviale effecten significant." },
@@ -49,12 +62,18 @@ window.ADAPTIVE_ASSESSMENT = [
       { text: "The effect is statistically significant but clinically negligible (0.3 mmHg is unnoticeable)", score: 3, feedback: "Spot on! With massive sample size N, even trivial noise effects become significant." },
       { text: "The study must be repeated due to a computational error", score: 0, feedback: "The math is correct, but effect size is far too small to be therapeutically meaningful." }
     ],
+    options_es: [
+      { text: "El fármaco es un avance revolucionario porque el valor p es diminuto", score: 0, feedback: "Cuidado: el valor p solo mide evidencia contra el azar, no relevancia práctica." },
+      { text: "El efecto es estadísticamente significativo pero clínicamente despreciable (0,3 mmHg no es perceptible)", score: 3, feedback: "¡Muy agudo! Con tamaños de muestra masivos, hasta el ruido más trivial resulta significativo." },
+      { text: "El estudio debe repetirse por un error de cálculo", score: 0, feedback: "El cálculo es correcto, pero el tamaño del efecto es demasiado pequeño para tener utilidad terapéutica." }
+    ],
     domain: "fundamenten"
   },
   {
     id: "q4",
     question: "In een regressiemodel voeg je 4 volstrekt willekeurige toevalsgetallen toe als extra voorspellers. Wat gebeurt er gegarandeerd met de gewone R² en de Gecorrigeerde R² (Adjusted R²)?",
     question_en: "In a regression model, you add 4 completely random noise variables as additional predictors. What is guaranteed to happen to regular R² and Adjusted R²?",
+    question_es: "En un modelo de regresión añades 4 variables aleatorias de puro ruido como predictores. ¿Qué ocurrirá con certeza con el R² ordinario y el R² Ajustado?",
     options: [
       { text: "Beide dalen direct naar nul", score: 0, feedback: "Niet juist. Gewone R² kan wiskundig gezien nooit dalen bij extra variabelen." },
       { text: "Gewone R² stijgt of blijft gelijk; Adjusted R² daalt omdat toeval wordt bestraft", score: 3, feedback: "Haarscherp! Adjusted R² beschermt tegen schijnverbetering door ruis." },
@@ -65,12 +84,18 @@ window.ADAPTIVE_ASSESSMENT = [
       { text: "Ordinary R² increases or stays constant; Adjusted R² decreases because noise is penalized", score: 3, feedback: "Razor sharp! Adjusted R² protects against spurious overfitting from noise." },
       { text: "Ordinary R² drops, but the model p-value automatically decreases", score: 0, feedback: "Incorrect. OLS always picks up minute chance correlations." }
     ],
+    options_es: [
+      { text: "Ambos caen inmediatamente a cero", score: 0, feedback: "Incorrecto. Matemáticamente, el R² ordinario nunca disminuye al añadir predictores." },
+      { text: "El R² ordinario aumenta o permanece constante; el R² Ajustado disminuye al penalizar el ruido", score: 3, feedback: "¡Impecable! El R² Ajustado protege contra el sobreajuste espurio por variables sin valor." },
+      { text: "El R² ordinario cae, pero el valor p disminuye automáticamente", score: 0, feedback: "Incorrecto. MCO siempre captura correlaciones minúsculas debidas al azar." }
+    ],
     domain: "regressie"
   },
   {
     id: "q5",
     question: "In de 'Residuals vs Fitted' plot van een regressiemodel zie je dat de punten steeds verder uitwaaieren naarmate de voorspelde waarde stijgt (trompetvorm). Wat is het gevaar?",
     question_en: "In the 'Residuals vs Fitted' plot of an OLS model, the points fan out progressively as fitted values increase (trumpet shape). What is the hazard?",
+    question_es: "En el gráfico de 'Residuos vs Valores Ajustados' de un modelo MCO, los puntos se dispersan cada vez más a medida que sube el valor predicho (forma de trompeta). ¿Cuál es el peligro?",
     options: [
       { text: "Geen enkel gevaar, zolang R² maar boven 0.70 ligt", score: 0, feedback: "Fataal misverstand. Heteroscedasticiteit ondermijnt de validiteit van je toetsen." },
       { text: "Heteroscedasticiteit: de standaardfouten zijn vertekend, waardoor p-waarden en betrouwbaarheidsintervallen onbetrouwbaar zijn", score: 3, feedback: "Juist! Pas een log-transformatie of robuuste Huber-White standaardfouten toe." },
@@ -81,12 +106,18 @@ window.ADAPTIVE_ASSESSMENT = [
       { text: "Heteroscedasticity: standard errors are biased, invalidating p-values and confidence intervals", score: 3, feedback: "Correct! Apply a log-transformation or robust Huber-White standard errors." },
       { text: "The model is automatically non-linear", score: 0, feedback: "Not necessarily: heteroscedasticity refers to unequal error variance, not functional curvature." }
     ],
+    options_es: [
+      { text: "Ningún peligro, siempre que el R² supere 0,70", score: 0, feedback: "Error crítico. La heterocedasticidad invalida la inferencia independientemente del R²." },
+      { text: "Heterocedasticidad: los errores estándar están sesgados, invalidando valores p e intervalos de confianza", score: 3, feedback: "¡Correcto! Aplica una transformación logarítmica o errores estándar robustos de Huber-White." },
+      { text: "El modelo es automáticamente no lineal", score: 0, feedback: "No necesariamente; la heterocedasticidad se refiere a varianza desigual, no a curvatura funcional." }
+    ],
     domain: "regressie"
   },
   {
     id: "q6",
     question: "Twee voorspellers in je regressiemodel correleren met r = 0.98. De VIF is 26. Wat is het symptoom in de modeloutput?",
     question_en: "Two predictors in your regression model correlate with r = 0.98. The VIF is 26. What is the classic symptom in your model output?",
+    question_es: "Dos predictores en tu modelo de regresión correlacionan con r = 0,98. El FIV (VIF) es 26. ¿Cuál es el síntoma clásico en la salida del modelo?",
     options: [
       { text: "De F-toets voor het totale model is hoog-significant, maar de individuele t-toetsen van beide variabelen zijn plotseling niet-significant (p > 0.05)", score: 4, feedback: "Meesterlijk! Dit is de klassieke handtekening van ernstige multicollineariteit." },
       { text: "De coëfficiënten worden automatisch negatief", score: 0, feedback: "Niet waar, collineariteit kan tekens doen flippen maar maakt ze niet automatisch negatief." },
@@ -97,12 +128,18 @@ window.ADAPTIVE_ASSESSMENT = [
       { text: "Both regression coefficients automatically turn negative", score: 0, feedback: "Untrue: collinearity can cause sign flipping, but does not guarantee negativity." },
       { text: "R² drops exactly to zero", score: 0, feedback: "Incorrect: R² remains high, but variance inflation destroys individual estimates." }
     ],
+    options_es: [
+      { text: "La prueba F global del modelo es altamente significativa, pero las pruebas t individuales de ambos predictores resultan no significativas (p > 0,05)", score: 4, feedback: "¡Magistral! Es la firma distintiva clásica de la multicolinealidad severa." },
+      { text: "Ambos coeficientes se vuelven automáticamente negativos", score: 0, feedback: "Falso: la colinealidad puede invertir signos, pero no garantiza signo negativo." },
+      { text: "El R² cae exactamente a cero", score: 0, feedback: "Incorrecto: el R² sigue siendo alto, pero la inflación de varianza arruina las estimaciones individuales." }
+    ],
     domain: "regressie"
   },
   {
     id: "q7",
     question: "Je onderzoekt toetsscores van 600 leerlingen verdeeld over 20 basisscholen (30 lln per school). Waarom is een standaard OLS regressie hier gevaarlijk?",
     question_en: "You analyze test scores of 600 pupils distributed across 20 primary schools (30 pupils per school). Why is standard OLS regression hazardous?",
+    question_es: "Analizas las calificaciones de 600 estudiantes distribuidos en 20 colegios (30 alumnos por escuela). ¿Por qué la regresión MCO ordinaria es peligrosa aquí?",
     options: [
       { text: "Omdat de data niet lineair kan zijn met zoveel leerlingen", score: 0, feedback: "Niet de kern. Het probleem zit in de afhankelijkheid binnen clusters." },
       { text: "Omdat leerlingen binnen dezelfde school op elkaar lijken (clustering, ICC > 0), waardoor OLS de standaardfouten dramatisch onderschat en valse significantie rapporteert (schijnprecisie)", score: 4, feedback: "Meesterlijk! Dit is de essentie van intraclass correlatie en pseudo-replicatie." },
@@ -113,12 +150,18 @@ window.ADAPTIVE_ASSESSMENT = [
       { text: "Pupils in the same school correlate (clustering, ICC > 0), causing OLS to drastically underestimate standard errors and produce false significance (spurious precision)", score: 4, feedback: "Masterful! This is the essence of intraclass correlation (ICC) and pseudoreplication." },
       { text: "Because OLS only functions when all schools have identical pupil counts", score: 0, feedback: "Untrue: OLS handles unbalanced designs, but completely ignores cluster correlation." }
     ],
+    options_es: [
+      { text: "Porque los datos no pueden ser lineales con tantos estudiantes", score: 0, feedback: "Ese no es el problema clave. El riesgo reside en la dependencia intragrupo." },
+      { text: "Los alumnos de la misma escuela se parecen (clustering, CCI > 0), provocando que MCO subestime drásticamente los errores estándar y reporte significación falsa (precisión ilusoria)", score: 4, feedback: "¡Magistral! Esta es la esencia de la correlación intraclase y la pseudorreplicación." },
+      { text: "Porque MCO solo funciona si todas las escuelas tienen exactamente la misma cantidad de alumnos", score: 0, feedback: "Falso: MCO admite diseños desbalanceados, pero ignora la correlación clúster." }
+    ],
     domain: "mixed_models"
   },
   {
     id: "q8",
     question: "Wat is het fundamentele verschil tussen een Random Intercept model en een Random Slope model?",
     question_en: "What is the fundamental distinction between a Random Intercept model and a Random Slope model?",
+    question_es: "¿Cuál es la diferencia fundamental entre un modelo de Intercepto Aleatorio y uno de Pendiente Aleatoria?",
     options: [
       { text: "Random Intercept varieert het beginniveau per cluster; Random Slope laat ook het effect/de reactiesnelheid per cluster variëren", score: 5, feedback: "Exact! Bij Random Slopes heeft elk cluster een eigen hellingshoek." },
       { text: "Random Slope werkt alleen met binaire uitkomsten", score: 0, feedback: "Onjuist. Random Slopes worden breed toegepast op continue en herhaalde metingen." },
@@ -129,12 +172,18 @@ window.ADAPTIVE_ASSESSMENT = [
       { text: "Random Slope only functions with binary outcome data", score: 0, feedback: "Incorrect. Random Slopes are widely used in continuous and repeated measures data." },
       { text: "Random Intercept is Bayesian while Random Slope is frequentist", score: 0, feedback: "Incorrect: both models can be estimated via either frequentist (REML) or Bayesian (MCMC) paradigms." }
     ],
+    options_es: [
+      { text: "El Intercepto Aleatorio varía el punto de partida por grupo; la Pendiente Aleatoria permite además que el efecto/trayectoria varíe según cada grupo", score: 5, feedback: "¡Exacto! En modelos de pendiente aleatoria cada clúster tiene su propia inclinación." },
+      { text: "La Pendiente Aleatoria solo funciona con variables de respuesta binarias", score: 0, feedback: "Incorrecto. Se utiliza ampliamente en datos continuos y medidas repetidas." },
+      { text: "El Intercepto Aleatorio es bayesiano y la Pendiente Aleatoria es frecuentista", score: 0, feedback: "Falso: ambos se pueden estimar tanto por métodos frecuentistas (REML) como bayesianos (MCMC)." }
+    ],
     domain: "mixed_models"
   },
   {
     id: "q9",
     question: "Wat is in causale inferentie (Judea Pearl) het verschil tussen de passieve observatie P(Y | X) en de causale interventie P(Y | do(X))?",
     question_en: "In causal inference (Judea Pearl), what is the crucial difference between observational conditional P(Y | X) and interventional P(Y | do(X))?",
+    question_es: "En inferencia causal (Judea Pearl), ¿cuál es la diferencia crucial entre la observación pasiva P(Y | X) y la intervención P(Y | do(X))?",
     options: [
       { text: "P(Y | X) kijkt alleen naar natuurlijke associaties inclusief confounders; P(Y | do(X)) 'knipt' alle binnenkomende pijlen naar X door om het zuivere effect van een externe ingreep te modelleren", score: 5, feedback: "Briljant causaal inzicht! Dit scheidt passief observeren van echt beleidsmatig ingrijpen." },
       { text: "do(X) is alleen een andere notatie voor de p-waarde", score: 0, feedback: "Onjuist, do(X) is de fundamentele operator van de causale do-calculus." },
@@ -145,12 +194,18 @@ window.ADAPTIVE_ASSESSMENT = [
       { text: "do(X) is merely alternative mathematical notation for p-values", score: 0, feedback: "Incorrect: do(X) is the fundamental algebraic operator of Pearl's causal do-calculus." },
       { text: "There is mathematically no difference between the two", score: 0, feedback: "Fundamentally wrong. Correlation ≠ Causation." }
     ],
+    options_es: [
+      { text: "P(Y | X) refleja asociación observacional pasiva incluyendo confusores; P(Y | do(X)) corta las flechas entrantes hacia X para aislar el efecto puro de una intervención", score: 5, feedback: "¡Brillante intuición causal! Formaliza la diferencia entre predecir e intervenir activamente." },
+      { text: "do(X) es solo una notación alternativa para el valor p", score: 0, feedback: "Incorrecto: do(X) es el operador algebraico fundamental del do-cálculo de Pearl." },
+      { text: "Matemáticamente no existe diferencia alguna entre ambas", score: 0, feedback: "Totalmente erróneo. Correlación ≠ Causalidad." }
+    ],
     domain: "apex"
   },
   {
     id: "q10",
     question: "Waarom faalt klassieke stochastische calculus (Itô/Stratonovich) in de apex-formule dX_t = ∇_ℳ Φ(X_t) dt + σ(X_t) dB_t^rough wanneer de ruis een Hurst exponent H < 1/2 heeft?",
     question_en: "Why does classical stochastic calculus (Itô/Stratonovich) fail in the apex formula dX_t = ∇_ℳ Φ(X_t) dt + σ(X_t) dB_t^rough when driving noise has Hurst exponent H < 1/2?",
+    question_es: "¿Por qué falla el cálculo estocástico clásico (Itô/Stratonovich) en la fórmula apex dX_t = ∇_ℳ Φ(X_t) dt + σ(X_t) dB_t^rough cuando el ruido tiene un exponente de Hurst H < 1/2?",
     options: [
       { text: "Omdat het pad dan te glad is om een integraal te berekenen", score: 0, feedback: "Integendeel: H < 1/2 betekent dat het pad extreem grillig en ruw is." },
       { text: "Omdat de kwadratische variatie divergeert en klassieke Riemann-Stieltjes integratie niet langer continu is in de p-variatie topologie, wat Terry Lyons oploste via geïtereerde integralen (Signatures)", score: 6, feedback: "Fenomenaal inzicht op het niveau van de theoretische fysica en moderne stochastiek!" },
@@ -160,6 +215,11 @@ window.ADAPTIVE_ASSESSMENT = [
       { text: "Because the trajectory is too smooth to calculate an integral", score: 0, feedback: "On the contrary: H < 1/2 signifies extreme roughness and wild irregularity." },
       { text: "Quadratic variation diverges and integration is no longer continuous in p-variation topology, solved by Terry Lyons via iterated integrals (Rough Path Signatures)", score: 6, feedback: "Phenomenal insight at the pinnacle of theoretical physics and modern stochastic analysis!" },
       { text: "Because Hilbert spaces only exist for Gaussian distributions", score: 0, feedback: "Untrue: Hilbert spaces are complete inner product vector spaces, independent of probability distributions." }
+    ],
+    options_es: [
+      { text: "Porque la trayectoria es demasiado suave para integrar", score: 0, feedback: "Al contrario: H < 1/2 significa que la trayectoria es extremadamente rugosa e irregular." },
+      { text: "La variación cuadrática diverge y la integración ya no es continua en la topología de p-variación, resuelto por Terry Lyons mediante integrales iteradas (Signaturas de Trayectorias Rugosas)", score: 6, feedback: "¡Conocimiento de nivel superior en la vanguardia del análisis estocástico moderno!" },
+      { text: "Porque los espacios de Hilbert solo existen para distribuciones gaussianas", score: 0, feedback: "Falso: los espacios de Hilbert son espacios vectoriales completos con producto interno, independientes de distribuciones de probabilidad." }
     ],
     domain: "apex"
   }

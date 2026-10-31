@@ -219,7 +219,7 @@ window.StatApp = (function() {
             }">
               ${isCompleted ? '✓' : (isApex ? 'Ω' : lvl.id)}
             </span>
-            <span class="truncate ${isApex ? 'font-extrabold text-purple-200' : ''}">${isApex ? (window.I18N && window.I18N.currentLang === 'en' ? 'Level 24: The Apex Model' : 'Level 24: Het Apex Model') : levelTitle}</span>
+            <span class="truncate ${isApex ? 'font-extrabold text-purple-200' : ''}">${isApex ? (window.I18N && window.I18N.currentLang === 'es' ? 'Nivel 24: El Modelo Apex' : (window.I18N && window.I18N.currentLang === 'en' ? 'Level 24: The Apex Model' : 'Level 24: Het Apex Model')) : levelTitle}</span>
           </div>
           ${isApex ? '<span class="text-xs">⚡</span>' : ''}
         `;
@@ -607,7 +607,9 @@ window.StatApp = (function() {
           onclick="StatApp.completeAndNext(${levelId})"
           class="${allDone ? '' : 'hidden'} py-2 px-4 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold rounded-xl text-xs sm:text-sm shadow-lg transition"
         >
-          ${levelId === 24 ? (window.I18N && window.I18N.currentLang === 'en' ? '🎉 Complete Level 24 & Claim Apex Mastery!' : '🎉 Rond Level 24 Af & Claim Apex Meesterschap!') : (window.I18N && window.I18N.currentLang === 'en' ? 'Complete Level & Next ➔' : 'Rond Level Af & Naar Volgend Level ➔')}
+          ${levelId === 24 
+            ? (window.I18N && window.I18N.currentLang === 'es' ? '🎉 ¡Completa el Nivel 24 y Reclama la Maestría Apex!' : (window.I18N && window.I18N.currentLang === 'en' ? '🎉 Complete Level 24 & Claim Apex Mastery!' : '🎉 Rond Level 24 Af & Claim Apex Meesterschap!')) 
+            : (window.I18N && window.I18N.currentLang === 'es' ? 'Completar Nivel y Siguiente ➔' : (window.I18N && window.I18N.currentLang === 'en' ? 'Complete Level & Next ➔' : 'Rond Level Af & Naar Volgend Level ➔'))}
         </button>
       </div>
     `;
@@ -677,7 +679,7 @@ window.StatApp = (function() {
       feedbackBox.innerHTML = `
         <div class="font-bold mb-1 flex items-center gap-1.5">
           <span>✨</span>
-          <span>${window.I18N && window.I18N.currentLang === 'en' ? 'Correctly answered! (+50 XP)' : 'Uitstekend beantwoord! (+50 XP)'}</span>
+          <span>${window.I18N && window.I18N.currentLang === 'es' ? '¡Respuesta correcta! (+50 XP)' : (window.I18N && window.I18N.currentLang === 'en' ? 'Correctly answered! (+50 XP)' : 'Uitstekend beantwoord! (+50 XP)')}</span>
         </div>
         <p class="leading-relaxed">${ex.explanation}</p>
       `;
@@ -693,11 +695,11 @@ window.StatApp = (function() {
       feedbackBox.innerHTML = `
         <div class="font-bold mb-1 flex items-center gap-1.5">
           <span>💡</span>
-          <span>${window.I18N && window.I18N.currentLang === 'en' ? 'Not quite right yet:' : 'Nog niet helemaal juist:'}</span>
+          <span>${window.I18N && window.I18N.currentLang === 'es' ? 'Aún no es del todo correcto:' : (window.I18N && window.I18N.currentLang === 'en' ? 'Not quite right yet:' : 'Nog niet helemaal juist:')}</span>
         </div>
         <p class="leading-relaxed">${ex.explanation}</p>
         <button onclick="StatApp.retryExercise()" class="mt-2 text-rose-300 underline font-semibold text-xs">
-          ${window.I18N && window.I18N.currentLang === 'en' ? 'Try again' : 'Probeer opnieuw'}
+          ${window.I18N && window.I18N.currentLang === 'es' ? 'Intentar de nuevo' : (window.I18N && window.I18N.currentLang === 'en' ? 'Try again' : 'Probeer opnieuw')}
         </button>
       `;
     }
@@ -716,23 +718,37 @@ window.StatApp = (function() {
   }
 
   function getAdaptiveMentorGuidance(levelId) {
-    const isEn = window.I18N && window.I18N.currentLang === 'en';
-    if (levelId <= 5) {
-      return isEn
-        ? "Focus in this foundational phase on practical intuition. Do not be blinded by p-values; pay close attention to dispersion metrics (IQR) and effect sizes (Cohen's d)."
-        : "Focus in deze fundament-fase op de fysiologische en praktische intuïtie. Laat je niet verblinden door p-waarden; let vooral op de spreidingsmaten (IQR) en effectgroottes (Cohen's d).";
-    } else if (levelId <= 12) {
-      return isEn
-        ? "In this regression phase, watch out for classical OLS traps: always inspect L.I.N.E. residual plots for trumpet patterns and beware of Simpson's paradox with omitted confounders."
-        : "In deze regressie-fase waarschuw ik voor de klassieke OLS-valkuilen: controleer altijd de L.I.N.E. residu-plots op trompetvormen en wees alert op Simpson's paradox bij weggelaten variabelen.";
-    } else if (levelId <= 18) {
-      return isEn
-        ? "This is the crucial Practical Sweet Spot! Real-world data is clustered or longitudinal; pooled OLS ignores dependencies. Master the difference between Random Intercepts and Slopes."
-        : "Dit is de cruciale Sweet Spot! Omdat de meeste echte data geclusterd of longitudinaal is, negeert pooled OLS cruciale afhankelijkheden. Let goed op het verschil tussen Random Intercepts en Slopes.";
+    const lang = (window.I18N && window.I18N.currentLang) || 'en';
+    if (lang === 'es') {
+      if (levelId <= 5) {
+        return "Concéntrate en esta fase de fundamentos en la intuición práctica. No te dejes cegar por los valores p; presta atención a las medidas de dispersión (IQR) y tamaños del efecto (d de Cohen).";
+      } else if (levelId <= 12) {
+        return "En esta fase de regresión, mantén la guardia ante las trampas clásicas de MCO: inspecciona siempre los gráficos de residuos L.I.N.E. en busca de formas de trompeta y vigila la paradoja de Simpson.";
+      } else if (levelId <= 18) {
+        return "¡Este es el Punto Clave Práctico indispensable! Los datos reales son agrupados o longitudinales; MCO agrupado ignora dependencias. Domina la diferencia entre Interceptos y Pendientes Aleatorias.";
+      } else {
+        return "¡Has alcanzado la frontera teórica! Aquí transformamos tablas finitas en funciones continuas en espacios de Hilbert y trayectorias estocásticas rugosas en variedades no euclidianas.";
+      }
+    } else if (lang === 'en') {
+      if (levelId <= 5) {
+        return "Focus in this foundational phase on practical intuition. Do not be blinded by p-values; pay close attention to dispersion metrics (IQR) and effect sizes (Cohen's d).";
+      } else if (levelId <= 12) {
+        return "In this regression phase, watch out for classical OLS traps: always inspect L.I.N.E. residual plots for trumpet patterns and beware of Simpson's paradox with omitted confounders.";
+      } else if (levelId <= 18) {
+        return "This is the crucial Practical Sweet Spot! Real-world data is clustered or longitudinal; pooled OLS ignores dependencies. Master the difference between Random Intercepts and Slopes.";
+      } else {
+        return "You have reached the theoretical frontier. Here we transform from finite tables to continuous functions in Hilbert spaces and rough stochastic paths on curved manifolds!";
+      }
     } else {
-      return isEn
-        ? "You have reached the theoretical frontier. Here we transform from finite tables to continuous functions in Hilbert spaces and rough stochastic paths on curved manifolds!"
-        : "Je bevindt je nu op het theoretische grensvlak. Hier transformeren we van eindige tabellen naar continue functies in Hilbertruimten en niet-gladde stochastische paden op gekromde manifolds!";
+      if (levelId <= 5) {
+        return "Focus in deze fundament-fase op de fysiologische en praktische intuïtie. Laat je niet verblinden door p-waarden; let vooral op de spreidingsmaten (IQR) en effectgroottes (Cohen's d).";
+      } else if (levelId <= 12) {
+        return "In deze regressie-fase waarschuw ik voor de klassieke OLS-valkuilen: controleer altijd de L.I.N.E. residu-plots op trompetvormen en wees alert op Simpson's paradox bij weggelaten variabelen.";
+      } else if (levelId <= 18) {
+        return "Dit is de cruciale Sweet Spot! Omdat de meeste echte data geclusterd of longitudinaal is, negeert pooled OLS cruciale afhankelijkheden. Let goed op het verschil tussen Random Intercepts en Slopes.";
+      } else {
+        return "Je bevindt je nu op het theoretische grensvlak. Hier transformeren we van eindige tabellen naar continue functies in Hilbertruimten en niet-gladde stochastische paden op gekromde manifolds!";
+      }
     }
   }
 
@@ -821,28 +837,30 @@ window.StatApp = (function() {
     if (!container || !window.ADAPTIVE_ASSESSMENT) return;
 
     const totalSteps = window.ADAPTIVE_ASSESSMENT.length;
-    const isEn = window.I18N && window.I18N.currentLang === 'en';
+    const lang = (window.I18N && window.I18N.currentLang) || 'en';
+    const isEn = lang === 'en';
+    const isEs = lang === 'es';
 
     if (adaptiveCurrentStep >= totalSteps) {
       // Bereken eindoordeel
       let recommendedLevel = 1;
-      let competenceName = "Fundamenten Leerling";
+      let competenceName = isEs ? "Explorador de Fundamentos" : (isEn ? "Foundations Explorer" : "Fundamenten Leerling");
 
       if (adaptiveUserScore >= 20) {
         recommendedLevel = 24;
-        competenceName = "Apex Kosmoloog";
+        competenceName = isEs ? "Cosmólogo del Apex" : (isEn ? "Apex Cosmologist" : "Apex Kosmoloog");
       } else if (adaptiveUserScore >= 16) {
         recommendedLevel = 19;
-        competenceName = "Bayesiaans Expert";
+        competenceName = isEs ? "Experto Bayesiano" : (isEn ? "Bayesian Expert" : "Bayesiaans Expert");
       } else if (adaptiveUserScore >= 11) {
         recommendedLevel = 13;
-        competenceName = "Mixed Models Virtuoos";
+        competenceName = isEs ? "Virtuoso de Modelos Mixtos" : (isEn ? "Mixed Models Virtuoso" : "Mixed Models Virtuoos");
       } else if (adaptiveUserScore >= 6) {
         recommendedLevel = 6;
-        competenceName = "Regressie Analist";
+        competenceName = isEs ? "Analista de Regresión" : (isEn ? "Regression Analyst" : "Regressie Analist");
       } else {
         recommendedLevel = 1;
-        competenceName = "Fundamenten Verkenner";
+        competenceName = isEs ? "Explorador de Fundamentos" : (isEn ? "Foundations Explorer" : "Fundamenten Verkenner");
       }
 
       state.competenceLevel = competenceName;
@@ -856,37 +874,45 @@ window.StatApp = (function() {
         window.StatAnalytics.trackScanComplete(adaptiveUserScore, competenceName, recommendedLevel);
       }
 
+      const scanResultTitle = isEs ? '¡Evaluación Completada!' : (isEn ? 'Assessment Complete!' : 'Intake Analyse Voltooid!');
+      const scorePrefix = isEs ? 'Según tu puntuación diagnóstica de' : (isEn ? 'Based on your diagnostic score of' : 'Op basis van je diagnostische score van');
+      const detectedLabel = isEs ? 'Nivel de Competencia Detectado:' : (isEn ? 'Detected Competence Level:' : 'Gedetecteerd Competentieniveau:');
+      const recommendedLabel = isEs ? 'Nivel de Inicio Recomendado:' : (isEn ? 'Recommended Start Level:' : 'Geadviseerd Startlevel:');
+      const adviceText = recommendedLevel === 1
+        ? (isEs ? 'Comienza en el Nivel 1 para construir una base sólida e inquebrantable.' : (isEn ? 'Start at Level 1 to build an unbreakable rock-solid foundation.' : 'Start bij Level 1 om een onwrikbare basis op te bouwen.'))
+        : (isEs ? `Cuentas con los conocimientos previos para avanzar directamente al Nivel ${recommendedLevel}.` : (isEn ? `You have sufficient prior knowledge to jump straight to Level ${recommendedLevel}.` : `Je beschikt over voldoende voorkennis om direct bij Level ${recommendedLevel} aan te haken.`));
+      const ctaBtnText = isEs ? `Ir Directamente al Nivel ${recommendedLevel}` : (isEn ? `Go Directly to Level ${recommendedLevel}` : `Ga Direct naar Level ${recommendedLevel}`);
+      const closeBtnText = isEs ? 'Cerrar' : (isEn ? 'Close' : 'Sluiten');
+
       container.innerHTML = `
         <div class="text-center py-4">
           <div class="w-16 h-16 mx-auto rounded-2xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-3xl mb-3">
             🎯
           </div>
           <h3 class="text-xl font-bold text-white mb-1">
-            ${isEn ? 'Assessment Complete!' : 'Intake Analyse Voltooid!'}
+            ${scanResultTitle}
           </h3>
           <p class="text-xs text-slate-400 mb-4">
-            ${isEn ? 'Based on your diagnostic score of' : 'Op basis van je diagnostische score van'} <strong class="text-indigo-400">${adaptiveUserScore} / 25 pt</strong>:
+            ${scorePrefix} <strong class="text-indigo-400">${adaptiveUserScore} / 25 pt</strong>:
           </p>
 
           <div class="p-4 bg-indigo-950/60 border border-indigo-500/40 rounded-2xl mb-6 text-left">
-            <div class="text-[11px] text-slate-400 uppercase font-mono">${isEn ? 'Detected Competence Level:' : 'Gedetecteerd Competentieniveau:'}</div>
+            <div class="text-[11px] text-slate-400 uppercase font-mono">${detectedLabel}</div>
             <div class="text-lg font-bold text-white mt-0.5">${competenceName}</div>
             <div class="text-xs text-emerald-400 mt-2 font-semibold">
-              ${isEn ? 'Recommended Start Level:' : 'Geadviseerd Startlevel:'} Level ${recommendedLevel}
+              ${recommendedLabel} ${isEs ? 'Nivel' : 'Level'} ${recommendedLevel}
             </div>
             <p class="text-xs text-slate-300 mt-1 leading-relaxed">
-              ${recommendedLevel === 1 
-                ? (isEn ? 'Start at Level 1 to build an unbreakable rock-solid foundation.' : 'Start bij Level 1 om een onwrikbare basis op te bouwen.')
-                : (isEn ? `You have sufficient prior knowledge to jump straight to Level ${recommendedLevel}.` : `Je beschikt over voldoende voorkennis om direct bij Level ${recommendedLevel} aan te haken.`)}
+              ${adviceText}
             </p>
           </div>
 
           <div class="flex items-center justify-center gap-3">
             <button onclick="StatApp.jumpToLevel(${recommendedLevel}); StatApp.closeModal('modal-adaptive-scan');" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl text-xs sm:text-sm shadow-lg transition">
-              ${isEn ? `Go Directly to Level ${recommendedLevel}` : `Ga Direct naar Level ${recommendedLevel}`} ➔
+              ${ctaBtnText} ➔
             </button>
             <button onclick="StatApp.closeModal('modal-adaptive-scan')" class="px-4 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs sm:text-sm transition">
-              ${isEn ? 'Close' : 'Sluiten'}
+              ${closeBtnText}
             </button>
           </div>
         </div>
@@ -895,12 +921,13 @@ window.StatApp = (function() {
     }
 
     const q = window.ADAPTIVE_ASSESSMENT[adaptiveCurrentStep];
-    const questionText = (isEn && q.question_en) ? q.question_en : q.question;
-    const currentOptions = (isEn && q.options_en) ? q.options_en : q.options;
+    const questionText = (isEs && q.question_es) ? q.question_es : ((isEn && q.question_en) ? q.question_en : q.question);
+    const currentOptions = (isEs && q.options_es) ? q.options_es : ((isEn && q.options_en) ? q.options_en : q.options);
+    const stepLabel = isEs ? 'Pregunta' : (isEn ? 'Question' : 'Vraag');
 
     container.innerHTML = `
       <div class="flex items-center justify-between text-xs text-slate-400 mb-2 font-mono">
-        <span>${isEn ? 'Question' : 'Vraag'} ${adaptiveCurrentStep + 1} / ${totalSteps}</span>
+        <span>${stepLabel} ${adaptiveCurrentStep + 1} / ${totalSteps}</span>
         <span class="text-indigo-400 font-bold">${Math.round((adaptiveCurrentStep / totalSteps) * 100)}%</span>
       </div>
       <div class="w-full bg-slate-800 rounded-full h-1.5 mb-4">
@@ -926,8 +953,10 @@ window.StatApp = (function() {
 
   function answerAdaptiveStep(optionIndex) {
     const q = window.ADAPTIVE_ASSESSMENT[adaptiveCurrentStep];
-    const isEn = window.I18N && window.I18N.currentLang === 'en';
-    const currentOptions = (isEn && q.options_en) ? q.options_en : q.options;
+    const lang = (window.I18N && window.I18N.currentLang) || 'en';
+    const isEn = lang === 'en';
+    const isEs = lang === 'es';
+    const currentOptions = (isEs && q.options_es) ? q.options_es : ((isEn && q.options_en) ? q.options_en : q.options);
     const opt = currentOptions[optionIndex] || q.options[optionIndex];
     adaptiveUserScore += (opt.score || 0);
 
@@ -1011,7 +1040,7 @@ window.StatApp = (function() {
 
       <div class="mt-4 pt-3 border-t border-slate-800 flex justify-end">
         <button id="arena-next-btn" onclick="StatApp.loadNextArenaQuestion()" class="hidden px-4 py-2 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold rounded-xl text-xs shadow transition">
-          ${window.I18N && window.I18N.currentLang === 'en' ? 'Next Question ➔' : 'Volgende Vraag ➔'}
+          ${window.I18N && window.I18N.currentLang === 'es' ? 'Siguiente Pregunta ➔' : (window.I18N && window.I18N.currentLang === 'en' ? 'Next Question ➔' : 'Volgende Vraag ➔')}
         </button>
       </div>
     `;
@@ -1059,7 +1088,7 @@ window.StatApp = (function() {
 
       feedbackBox.className = "p-3.5 rounded-xl text-xs mt-4 bg-emerald-950/60 border border-emerald-500/40 text-emerald-200";
       feedbackBox.innerHTML = `
-        <div class="font-bold mb-1">${window.I18N && window.I18N.currentLang === 'en' ? `✨ Correctly answered! (+50 XP, Streak: 🔥 ${state.arenaStreak})` : `✨ Juist beantwoord! (+50 XP, Streak: 🔥 ${state.arenaStreak})`}</div>
+        <div class="font-bold mb-1">${window.I18N && window.I18N.currentLang === 'es' ? `✨ ¡Respuesta correcta! (+50 XP, Racha: 🔥 ${state.arenaStreak})` : (window.I18N && window.I18N.currentLang === 'en' ? `✨ Correctly answered! (+50 XP, Streak: 🔥 ${state.arenaStreak})` : `✨ Juist beantwoord! (+50 XP, Streak: 🔥 ${state.arenaStreak})`)}</div>
         <p class="leading-relaxed">${arenaCurrentQuestion.explanation}</p>
       `;
     } else {
@@ -1070,7 +1099,7 @@ window.StatApp = (function() {
 
       feedbackBox.className = "p-3.5 rounded-xl text-xs mt-4 bg-rose-950/60 border border-rose-500/40 text-rose-200";
       feedbackBox.innerHTML = `
-        <div class="font-bold mb-1">${window.I18N && window.I18N.currentLang === 'en' ? '💡 That was not the right answer (Streak reset)' : '💡 Helaas niet juist (Streak gereset)'}</div>
+        <div class="font-bold mb-1">${window.I18N && window.I18N.currentLang === 'es' ? '💡 Esa no era la respuesta correcta (Racha reiniciada)' : (window.I18N && window.I18N.currentLang === 'en' ? '💡 That was not the right answer (Streak reset)' : '💡 Helaas niet juist (Streak gereset)')}</div>
         <p class="leading-relaxed">${arenaCurrentQuestion.explanation}</p>
       `;
     }
@@ -1092,7 +1121,9 @@ window.StatApp = (function() {
     const dateSpan = document.getElementById("cert-date");
     if (dateSpan) {
       const today = new Date();
-      dateSpan.innerText = today.toLocaleDateString(window.I18N && window.I18N.currentLang === 'en' ? 'en-US' : 'nl-NL', {
+      const currentLang = (window.I18N && window.I18N.currentLang) || 'en';
+      const locale = currentLang === 'es' ? 'es-ES' : (currentLang === 'en' ? 'en-US' : 'nl-NL');
+      dateSpan.innerText = today.toLocaleDateString(locale, {
         year: 'numeric',
         month: 'long',
         day: 'numeric'
@@ -1113,9 +1144,12 @@ window.StatApp = (function() {
   }
 
   function resetProgress() {
-    const confirmMsg = window.I18N && window.I18N.currentLang === 'en'
-      ? "Are you sure you want to reset all progress, XP, and streaks back to Level 1?"
-      : "Weet je zeker dat je alle voortgang, XP en streaks wilt resetten naar Level 1?";
+    const currentLang = (window.I18N && window.I18N.currentLang) || 'en';
+    const confirmMsg = currentLang === 'es'
+      ? "¿Estás seguro de que deseas restablecer todo el progreso, XP y rachas al Nivel 1?"
+      : (currentLang === 'en'
+          ? "Are you sure you want to reset all progress, XP, and streaks back to Level 1?"
+          : "Weet je zeker dat je alle voortgang, XP en streaks wilt resetten naar Level 1?");
 
     if (confirm(confirmMsg)) {
       if (window.StatAnalytics) {
@@ -1129,8 +1163,8 @@ window.StatApp = (function() {
         completedLevels: [],
         completedExercises: {},
         soundEnabled: true,
-        userName: "Statistiek Reiziger",
-        competenceLevel: window.I18N && window.I18N.currentLang === 'en' ? "Not yet scanned" : "Nog niet gescand",
+        userName: currentLang === 'es' ? "Viajero/a Estadístico/a" : (currentLang === 'en' ? "Statistics Voyager" : "Statistiek Reiziger"),
+        competenceLevel: currentLang === 'es' ? "Aún no evaluado" : (currentLang === 'en' ? "Not yet scanned" : "Nog niet gescand"),
         diagnosticScore: 0,
         scanCompleted: false,
         arenaStreak: 0
