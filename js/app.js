@@ -186,8 +186,8 @@ window.StatApp = (function() {
     const phases = [
       { id: 1, range: [1, 5], color: "emerald" },
       { id: 2, range: [6, 12], color: "sky" },
-      { id: 3, range: [13, 19], color: "indigo" },
-      { id: 4, range: [20, 24], color: "purple" }
+      { id: 3, range: [13, 18], color: "indigo" },
+      { id: 4, range: [19, 24], color: "purple" }
     ];
 
     phases.forEach(ph => {

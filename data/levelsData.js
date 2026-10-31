@@ -276,7 +276,7 @@ window.LEVELS_DATA = [
         { label: "Gemiddelde (Mean)", value: "€ 7.700", note: "Vertekend door de CEO-uitschieter!" },
         { label: "Mediaan (Median)", value: "€ 3.100", note: "Representatief voor de typische medewerker" },
         { label: "Standaardafwijking (SD)", value: "€ 14.168", note: "Opgeblazen spreidingsgetal" },
-        { label: "IQR (Q3 - Q1)", value: "€ 350", note: "De werkelijke compacte spreiding" }
+        { label: "IQR (Q3 - Q1)", value: "€ 400", note: "De werkelijke compacte spreiding (3400 - 3000)" }
       ],
       recommendation: "Adviseer de directie en OR om de mediaan en IQR te rapporteren bij inkomens- en wachttijddata."
     },

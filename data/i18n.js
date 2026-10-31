@@ -75,11 +75,11 @@ const dict = {
     phase2_subtitle: "Levels 6 t/m 12",
     phase2_desc: "OLS, residuen-analyse, multicollineariteit, heteroscedasticiteit, GLM logistische regressie en Poisson.",
     phase3_title: "Fase 3: Mixed Models (De Praktische Sweet Spot)",
-    phase3_subtitle: "Levels 13 t/m 19",
-    phase3_desc: "Random intercepts, random slopes, ICC, herhaalde metingen, GEE en introductie tot Bayesiaanse priors. De ruggengraat van 90% van modern onderzoek.",
+    phase3_subtitle: "Levels 13 t/m 18",
+    phase3_desc: "Random intercepts, random slopes, ICC, herhaalde metingen, GEE en GLMM. De ruggengraat van 90% van modern empirisch onderzoek.",
     phase4_title: "Fase 4: Geavanceerde Grenzen & Apex",
-    phase4_subtitle: "Levels 20 t/m 24",
-    phase4_desc: "MCMC inferentie, survival curves, causaal redeneren met DAGs, manifold geometrie en oneindig-dimensionale SDEs.",
+    phase4_subtitle: "Levels 19 t/m 24",
+    phase4_desc: "Bayesiaans denken, MCMC sampling, survival curves, causale DAGs, manifold geometrie en oneindig-dimensionale SDEs.",
 
     // Live Teaser Demo
     teaser_badge: "⚡ Live Intuïtie Preview",
@@ -87,8 +87,8 @@ const dict = {
     teaser_subtitle: "Ontdek in 3 seconden hoe samengevoegde data kan liegen en waarom Mixed Models onmisbaar zijn.",
     teaser_pooled_btn: "Gepoolde OLS (Vertekend Totaal)",
     teaser_mixed_btn: "Mixed Model (Cluster Scheiding)",
-    teaser_explanation_pooled: "⚠️ <strong>Gepoolde OLS tekent een negatieve lijn (β = -0.42):</strong> het lijkt alsof sporten cholesterol <em>verhoogt</em>! Dit is de klassieke aggregatievalkuil.",
-    teaser_explanation_mixed: "✨ <strong>Binnen elke leeftijdscategorie daalt cholesterol krachtig (β = -0.78):</strong> sporten is juist enorm gezond! In 3 seconden begrijp je waarom Linear Mixed Models bestaan.",
+    teaser_explanation_pooled: "⚠️ <strong>Gepoolde OLS tekent een stijgende lijn (β = +0.54):</strong> doordat ouderen vaker sporten én een hoger basischolesterol hebben, lijkt het alsof sporten cholesterol <em>verhoogt</em>! Dit is de klassieke Simpson's Paradox aggregatievalkuil.",
+    teaser_explanation_mixed: "✨ <strong>Binnen elke leeftijdscategorie daalt cholesterol krachtig (β = -0.78):</strong> sporten verlaagt cholesterol wél degelijk! Een Mixed Model scheidt leeftijd van het ware trainingseffect.",
 
     // Pijn vs Doorbraak
     pain_title: "Waarom Klassiek Statistiekonderwijs Faalt (En Hoe Wij Dit Oplossen)",
@@ -113,8 +113,8 @@ const dict = {
     target_3_desc: "Herken misleidende dashboards, ontmasker p-hacking en voorkom kostbare bedrijfsfouten door foute data-aannames.",
 
     // Spotlights
-    sweetspot_spotlight_title: "De Praktische Sweet Spot: Linear Mixed Models (Levels 13–19)",
-    sweetspot_spotlight_desc: "Meer dan 90% van alle reële data in geneeskunde, biologie, psychologie en e-commerce is geclusterd of longitudinaal. Standaard OLS onderschat standaardfouten dramatisch. Levels 13 t/m 19 leren je exact wanneer en hoe je Random Intercepts en Random Slopes inzet.",
+    sweetspot_spotlight_title: "De Praktische Sweet Spot: Linear Mixed Models (Levels 13–18)",
+    sweetspot_spotlight_desc: "Meer dan 90% van alle reële data in geneeskunde, biologie, psychologie en e-commerce is geclusterd of longitudinaal. Standaard OLS onderschat standaardfouten dramatisch. Levels 13 t/m 18 leren je exact wanneer en hoe je Random Intercepts en Random Slopes inzet.",
     sweetspot_spotlight_cta: "🎯 Spring Direct naar Mixed Models (L13)",
     cert_spotlight_title: "Het Theoretische Apex: Level 24 & Geverifieerd Certificaat",
     cert_spotlight_desc: "Voor wie de uiterste grenzen wil verkennen: Infinite-Dimensional Non-parametric Bayesian SDEs on Manifolds with Rough Paths & Causal Hilbert Spaces. Voltooi alle 24 niveaus en download je geverifieerde certificaat.",
@@ -277,11 +277,11 @@ const dict = {
     phase2_subtitle: "Levels 6 to 12",
     phase2_desc: "OLS, residual diagnostics, multicollinearity, heteroscedasticity, GLM logistic regression, and Poisson models.",
     phase3_title: "Phase 3: Mixed Models (The Practical Sweet Spot)",
-    phase3_subtitle: "Levels 13 to 19",
-    phase3_desc: "Random intercepts, random slopes, ICC, repeated measures, GEE, and Bayesian priors. The powerhouse for 90% of real-world research.",
+    phase3_subtitle: "Levels 13 to 18",
+    phase3_desc: "Random intercepts, random slopes, ICC, repeated measures, GEE, and GLMMs. The powerhouse for 90% of real-world research.",
     phase4_title: "Phase 4: Advanced Frontiers & Apex",
-    phase4_subtitle: "Levels 20 to 24",
-    phase4_desc: "MCMC inference, survival analysis, causal reasoning with DAGs, manifold geometry, and infinite-dimensional SDEs.",
+    phase4_subtitle: "Levels 19 to 24",
+    phase4_desc: "Bayesian thinking, MCMC sampling, survival analysis, causal DAGs, manifold geometry, and infinite-dimensional SDEs.",
 
     // Live Teaser Demo
     teaser_badge: "⚡ Live Intuition Preview",
@@ -289,8 +289,8 @@ const dict = {
     teaser_subtitle: "Discover in 3 seconds how aggregated data can mislead, and why Linear Mixed Models are essential.",
     teaser_pooled_btn: "Pooled OLS (Deceptive Aggregate)",
     teaser_mixed_btn: "Mixed Model (Cluster Separation)",
-    teaser_explanation_pooled: "⚠️ <strong>Pooled OLS produces a negative slope (β = -0.42):</strong> it suggests exercise <em>increases</em> cholesterol! This is the classical aggregation trap.",
-    teaser_explanation_mixed: "✨ <strong>Within each age group, exercise sharply reduces cholesterol (β = -0.78):</strong> physical activity is protective! In 3 seconds, you intuitively grasped why Linear Mixed Models exist.",
+    teaser_explanation_pooled: "⚠️ <strong>Pooled OLS produces an upward slope (β = +0.54):</strong> because seniors exercise more yet have higher baseline cholesterol, it deceptively appears as if exercise <em>increases</em> cholesterol! This is Simpson's Paradox.",
+    teaser_explanation_mixed: "✨ <strong>Within each age group, exercise sharply reduces cholesterol (β = -0.78):</strong> physical activity is genuinely protective! A Mixed Model separates age confounding from the true treatment effect.",
 
     // Pain vs Breakthrough
     pain_title: "Why Traditional Statistics Education Fails (And How We Fix It)",
@@ -315,8 +315,8 @@ const dict = {
     target_3_desc: "Spot misleading dashboards, unmask hidden confounders, and avoid costly strategic blunders caused by flawed assumptions.",
 
     // Spotlights
-    sweetspot_spotlight_title: "The Practical Sweet Spot: Linear Mixed Models (Levels 13–19)",
-    sweetspot_spotlight_desc: "Over 90% of empirical data in medicine, biology, psychology, and commerce is clustered or longitudinal. Standard OLS severely underestimates standard errors, generating spurious precision. Levels 13 to 19 teach you exactly when and how to deploy Random Intercepts and Random Slopes.",
+    sweetspot_spotlight_title: "The Practical Sweet Spot: Linear Mixed Models (Levels 13–18)",
+    sweetspot_spotlight_desc: "Over 90% of empirical data in medicine, biology, psychology, and commerce is clustered or longitudinal. Standard OLS severely underestimates standard errors, generating spurious precision. Levels 13 to 18 teach you exactly when and how to deploy Random Intercepts and Random Slopes.",
     sweetspot_spotlight_cta: "🎯 Jump to Mixed Models (L13)",
     cert_spotlight_title: "The Theoretical Apex: Level 24 & Verified Completion",
     cert_spotlight_desc: "For those who want to venture to the absolute mathematical frontier: Infinite-Dimensional Non-parametric Bayesian SDEs on Manifolds with Rough Paths & Causal Hilbert Spaces. Complete all 24 levels and claim your official certificate.",
@@ -479,11 +479,11 @@ const dict = {
     phase2_subtitle: "Niveles 6 al 12",
     phase2_desc: "MCO (OLS), análisis de residuos, multicolinealidad, heterocedasticidad, regresión logística GLM y modelos de Poisson.",
     phase3_title: "Fase 3: Modelos Mixtos (El Punto Clave Práctico)",
-    phase3_subtitle: "Niveles 13 al 19",
-    phase3_desc: "Interceptos aleatorios, pendientes aleatorias, CCI, medidas repetidas, GEE y distribuciones a priori bayesianas. El pilar del 90% de la investigación empírica.",
+    phase3_subtitle: "Niveles 13 al 18",
+    phase3_desc: "Interceptos aleatorios, pendientes aleatorias, CCI, medidas repetidas, GEE y GLMMs. El pilar del 90% de la investigación empírica.",
     phase4_title: "Fase 4: Fronteras Avanzadas y Apex",
-    phase4_subtitle: "Niveles 20 al 24",
-    phase4_desc: "Inferencia MCMC, análisis de supervivencia, razonamiento causal con DAGs, geometría de variedades y SDEs dimensionalmente infinitas.",
+    phase4_subtitle: "Niveles 19 al 24",
+    phase4_desc: "Inferencia bayesiana, MCMC, análisis de supervivencia, razonamiento causal con DAGs, geometría de variedades y SDEs de dimensión infinita.",
 
     // Live Teaser Demo
     teaser_badge: "⚡ Demostración Intuitiva en Vivo",
@@ -491,8 +491,8 @@ const dict = {
     teaser_subtitle: "Descubre en 3 segundos cómo los datos agregados pueden engañar y por qué los Modelos Mixtos son indispensables.",
     teaser_pooled_btn: "MCO Agrupado (Agregado Engañoso)",
     teaser_mixed_btn: "Modelo Mixto (Separación por Clúster)",
-    teaser_explanation_pooled: "⚠️ <strong>MCO Agrupado dibuja una pendiente negativa (β = -0.42):</strong> ¡parece sugerir que el ejercicio <em>aumenta</em> el colesterol! Esta es la clásica trampa de la agregación.",
-    teaser_explanation_mixed: "✨ <strong>Dentro de cada grupo de edad, el ejercicio reduce con fuerza el colesterol (β = -0.78):</strong> ¡el ejercicio es altamente protector! En 3 segundos comprendes por qué existen los Modelos Lineales Mixtos.",
+    teaser_explanation_pooled: "⚠️ <strong>MCO Agrupado dibuja una pendiente ascendente (β = +0.54):</strong> dado que los adultos mayores hacen más ejercicio pero tienen mayor colesterol basal, ¡parece que el ejercicio <em>aumenta</em> el colesterol! Es la Paradoja de Simpson.",
+    teaser_explanation_mixed: "✨ <strong>Dentro de cada grupo de edad, el ejercicio reduce con fuerza el colesterol (β = -0.78):</strong> ¡la actividad física es protectora! Un Modelo Mixto aísla la edad del verdadero efecto del ejercicio.",
 
     // Dolor vs Avance
     pain_title: "Por Qué la Educación Estadística Clásica Falla (Y Cómo lo Solucionamos)",
@@ -517,8 +517,8 @@ const dict = {
     target_3_desc: "Detecta paneles engañosos, desenmascara factores de confusión ocultos y evita errores costosos debidos a supuestos erróneos.",
 
     // Enfoques Destacados
-    sweetspot_spotlight_title: "El Punto Clave Práctico: Modelos Lineales Mixtos (Niveles 13–19)",
-    sweetspot_spotlight_desc: "Más del 90% de los datos empíricos en medicina, biología, psicología y negocios son agrupados o longitudinales. El MCO estándar subestima severamente los errores estándar, generando precisión ilusoria. Los niveles 13 al 19 te enseñan exactamente cuándo y cómo usar interceptos y pendientes aleatorias.",
+    sweetspot_spotlight_title: "El Punto Clave Práctico: Modelos Lineales Mixtos (Niveles 13–18)",
+    sweetspot_spotlight_desc: "Más del 90% de los datos empíricos en medicina, biología, psicología y negocios son agrupados o longitudinales. El MCO estándar subestima severamente los errores estándar, generando precisión ilusoria. Los niveles 13 al 18 te enseñan exactamente cuándo y cómo usar interceptos y pendientes aleatorias.",
     sweetspot_spotlight_cta: "🎯 Ir a Modelos Mixtos (N13)",
     cert_spotlight_title: "El Apex Teórico: Nivel 24 y Certificado Verificado",
     cert_spotlight_desc: "Para quienes desean explorar la frontera matemática absoluta: SDEs bayesianas no paramétricas de dimensión infinita en variedades con trayectorias rugosas y espacios causales de Hilbert. Completa los 24 niveles y obtén tu certificado oficial.",
@@ -683,20 +683,20 @@ const levelMeta = {
 };
 
 window.I18N = {
-  currentLang: 'en',
+  currentLang: 'nl',
   dict: dict,
   levelMeta: levelMeta,
 
   t(key) {
-    const lang = this.currentLang || 'en';
+    const lang = this.currentLang || 'nl';
     if (this.dict[lang] && this.dict[lang][key]) {
       return this.dict[lang][key];
     }
-    if (this.dict['en'] && this.dict['en'][key]) {
-      return this.dict['en'][key];
-    }
     if (this.dict['nl'] && this.dict['nl'][key]) {
       return this.dict['nl'][key];
+    }
+    if (this.dict['en'] && this.dict['en'][key]) {
+      return this.dict['en'][key];
     }
     return key;
   },
@@ -777,11 +777,11 @@ window.I18N = {
       if (saved === 'en' || saved === 'nl' || saved === 'es') {
         this.currentLang = saved;
       } else {
-        // English first by default!
-        this.currentLang = 'en';
+        // Dutch by default
+        this.currentLang = 'nl';
       }
     } catch(e) {
-      this.currentLang = 'en';
+      this.currentLang = 'nl';
     }
 
     if (typeof document !== 'undefined') {
